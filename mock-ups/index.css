@@ -1,0 +1,144 @@
+body {
+	margin: 0;
+	background-color: #868e96;
+}
+ /**
+		NAV
+ */
+nav {
+	background-color: #2B3E50;
+	display: flex;	
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	font-size: 24px;
+	font-weight: bold;
+	
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+}
+
+/**
+	SECTION
+*/
+
+section {
+	display: grid;
+	grid-template-columns: 55% 45%;
+	grid-template-rows: 5% 75% auto;
+	height: 100vh;
+}
+
+section > * {
+	margin: 3em;
+}
+
+/**
+		Description
+*/
+section > div#text {
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	text-align: justify;
+	padding: 4em;
+}
+
+section > div#text h1 {
+	padding-bottom: 0.5em;
+}
+
+section > div#text p {
+	padding-bottom: 1em;
+}
+
+section > div#sign {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	background-color: #2B3E50;
+	display: flex;
+	flex-direction: column;
+}
+
+/**
+	FORMS
+*/
+section > div#sign > form {
+	text-align: center;
+	margin: auto 5em ;
+	width: auto;
+	/*display: flex;
+	align-items: center;*/
+}
+
+section > div#sign > form.hide {
+	display: none;
+}
+
+section > div#sign > form > * {
+	margin: 0.5em 0;
+}
+
+#sign_buttons {
+	display: flex;
+	width: 100%;
+}
+#sign_buttons button{
+	background-color: #5bc0de;
+	border: 0;
+	padding: 1em;
+	width: 50%;
+	color: #EBEBEB;
+	font-size: 20px;
+}
+
+#sign_buttons button:first-child {
+	border-right: 1px solid #EBEBEB;
+}
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #2B3E50;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
