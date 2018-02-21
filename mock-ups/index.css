@@ -18,6 +18,7 @@ nav > * {
 }
 
 nav a {
+	text-decoration: none;
 	font-size: 24px;
 	font-weight: bold;
 	
@@ -33,6 +34,19 @@ nav > form {
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+} 
+
+nav ul li {
+	list-style: none;
+	display: inline;
 }
 
 /**
@@ -87,8 +101,6 @@ section > div#sign > form {
 	text-align: center;
 	margin: auto 5em ;
 	width: auto;
-	/*display: flex;
-	align-items: center;*/
 }
 
 section > div#sign > form.hide {
@@ -99,11 +111,23 @@ section > div#sign > form > * {
 	margin: 0.5em 0;
 }
 
+section > div#sign > form > button {
+	display: block;
+	width: 15em;
+	margin: 0.5em auto;
+}
+
+section > div#sign > form > button:first-of-type {
+	margin: 1.5em auto 0 auto;
+}
+
 #sign_buttons {
 	display: flex;
 	width: 100%;
 }
-#sign_buttons button{
+#sign_buttons a{
+	text-decoration: none;
+	text-align: center;
 	background-color: #5bc0de;
 	border: 0;
 	padding: 1em;
@@ -112,8 +136,16 @@ section > div#sign > form > * {
 	font-size: 20px;
 }
 
-#sign_buttons button:first-child {
+#sign_buttons a:first-child {
 	border-right: 1px solid #EBEBEB;
+}
+
+#sign_buttons a:hover {
+	background-color: #4b9eb7;
+}
+
+#sign_buttons a#selected {
+	background-color: #4b9eb7;	
 }
 
 /**
@@ -141,4 +173,85 @@ footer > div#contacts {
 footer > div#info {
 	grid-column-start: 2;
 	grid-column-end: 3;
+}
+
+
+@media screen and (max-width: 1024px){
+	section {
+		display: block;
+		margin: 10vh 15% 0 15%;
+	}
+
+	section > div#text {
+		text-align: justify;
+		padding: 0;
+		margin: 0;
+	}
+
+	section > div#sign {
+		margin: 3em 0 0 0;
+		padding: 0 0 1em 0;
+		background-color: #2B3E50;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 900px){
+	nav input.form-control {
+		display: none;
+	} 
+	nav div ul {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+
+	section {
+		display: block;
+		margin: 10% 10% 10% 10%;
+		height: auto;
+	}
+	section > div#text {
+		text-align: justify;
+		padding: 0;
+		margin: 0;
+	}
+
+	section > div#sign {
+		margin: 3em 0 0 0;
+		padding: 0 0 1em 0;
+		background-color: #2B3E50;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 635px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
 }
