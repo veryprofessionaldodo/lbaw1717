@@ -1,0 +1,134 @@
+body {
+	margin: 0;
+	background-color: #868e96;
+}
+ /**
+		NAV
+ */
+nav {
+	background-color: #2B3E50;
+	display: flex;	
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+	
+}
+
+nav > form {
+	display: flex;
+	flex-grow: 1;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+} 
+
+nav ul li {
+	list-style: none;
+	display: inline;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+
+/**
+	DASHBOARD
+*/
+
+div#dashboard {
+	display: grid;
+	grid-template-columns: 15% auto;
+	height: 100vh;
+}
+
+/**
+	ASIDE
+*/
+
+aside {
+	grid-column-start: 1;
+	grid-column-end: 2;
+	background-color: #dbd8d2;
+	text-align: center;
+	color: #2B3E50;
+	display: grid;
+	grid-template-rows: 25% 50% auto;
+	box-shadow: 0 0 20px;
+}
+
+aside > * {
+	margin: 1em auto;
+}
+
+aside div#info {
+	grid-row-start: 1;
+	grid-row-end: 2;
+	margin: 2em 0;
+}
+
+aside div#info > p {
+	margin-bottom: 0.5em;
+}
+
+aside div#info img {
+	max-width: 10em;
+	border-radius: 50%;
+	box-shadow: 0px 0px 20px;
+	margin-bottom: 1em;
+}
+
+aside div#statistics {
+	grid-row-start: 2;
+	grid-row-end: 3;
+	margin: auto;
+}
+
+/**
+	SECTION
+*/
+
+section {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
