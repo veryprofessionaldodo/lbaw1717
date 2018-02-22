@@ -93,18 +93,22 @@ aside {
 	text-align: center;
 	color: #2B3E50;
 	display: grid;
-	grid-template-rows: 25% 50% auto;
+	grid-template-rows: 30% 50% auto;
 	box-shadow: 0 0 20px;
 }
 
+aside p {
+	font-size: 1vw;
+}
+
 aside > * {
-	margin: 1em auto;
+	/*margin: 1em auto;*/
 }
 
 aside div#info {
 	grid-row-start: 1;
 	grid-row-end: 2;
-	margin: 2em 0;
+	margin: 2em auto 0.5em auto;
 }
 
 aside div#info > p {
@@ -112,9 +116,10 @@ aside div#info > p {
 }
 
 aside div#info img {
-	max-width: 10em;
+	max-width:50%;
+	max-height:50%;
 	border-radius: 50%;
-	box-shadow: 0px 0px 20px;
+	box-shadow: 0px 0px 10px;
 	margin-bottom: 1em;
 }
 
@@ -131,4 +136,13 @@ aside div#statistics {
 section {
 	grid-column-start: 2;
 	grid-column-end: 3;
+}
+
+section div h4 {
+	text-align: left;
+	margin: 1em 0 1em 1em;
+}
+
+section div div.project {
+	
 }

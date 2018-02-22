@@ -57,7 +57,7 @@ section {
 	display: grid;
 	grid-template-columns: 55% 45%;
 	grid-template-rows: 5% 75% auto;
-	height: 100vh;
+	min-height: 100vh;
 }
 
 section > * {
@@ -76,8 +76,9 @@ section > div#text {
 	padding: 4em;
 }
 
-section > div#text h1 {
+section > div#text h2 {
 	padding-bottom: 0.5em;
+	text-align: left;
 }
 
 section > div#text p {
@@ -99,7 +100,7 @@ section > div#sign {
 */
 section > div#sign > form {
 	text-align: center;
-	margin: auto 5em ;
+	margin: auto 5em;
 	width: auto;
 }
 
@@ -119,6 +120,10 @@ section > div#sign > form > button {
 
 section > div#sign > form > button:first-of-type {
 	margin: 1.5em auto 0 auto;
+}
+
+section > div#sign > form > button:last-of-type {
+	margin-bottom: 1.5em;
 }
 
 #sign_buttons {
@@ -201,7 +206,7 @@ footer > div#info {
 	nav input.form-control {
 		display: none;
 	} 
-	nav div ul {
+	div#mobile ul {
 		display: none;
 	}
 	nav div label {
@@ -218,13 +223,16 @@ footer > div#info {
 	nav div input:checked ~ label:before{
 		content: "\2715";
 	}
-	nav div input:checked ~ ul {
+	
+	/**   USAR JAVASCRIPT  */
+	/*
+	nav div input:checked ~ div#mobile ul {
 		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
+		display: block;
+		width: 100%;
+		background-color: white;
 		transition-delay: 0s;
-	}
+	}*/
 
 	section {
 		display: block;
@@ -253,5 +261,38 @@ footer > div#info {
 		float: left;
 		padding-top: 0.5em;
 		transition-delay: 0s;
+	}
+
+	h2 {
+		font-size: 20px;
+		text-align: center;
+	}
+
+	p {
+		font-size: 14px;
+	}
+
+	h3 {
+		font-size: 20px;
+	}
+
+	section > div#sign > form {
+		text-align: center;
+		margin: auto 2em;
+		width: auto;
+	}
+
+	section > div#sign > form > button {
+		display: block;
+		width: 100%;
+		margin: 0.5em auto;
+	}
+
+	section > div#sign > form > button:first-of-type {
+		margin: 1.5em auto 0 auto;
+	}
+
+	section > div#sign > form > button:last-of-type {
+		margin-bottom: 1.5em;
 	}
 }
