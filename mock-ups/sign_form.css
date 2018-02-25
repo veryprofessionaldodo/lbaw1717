@@ -1,0 +1,86 @@
+body {
+	margin: 0;
+	background-color: #868e96;
+}
+ /**
+		NAV
+ */
+nav {
+	background-color: #2B3E50;
+	display: flex;	
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+	
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+}
+
+
+/** 
+	SECTION
+*/
+
+section {
+	margin: auto;
+	min-height: 100vh;
+}
+
+section form {
+	margin: auto;
+	width: 50%;
+	text-align: center;
+}
+
+section form > * {
+	margin: 1em auto;
+}
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #2B3E50;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
