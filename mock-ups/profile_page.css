@@ -117,7 +117,6 @@ aside div#info > p {
 
 aside div#info img {
 	max-width:50%;
-	max-height:50%;
 	border-radius: 50%;
 	box-shadow: 0px 0px 10px;
 	margin-bottom: 1em;
@@ -132,11 +131,17 @@ aside div#statistics {
 /**
 	SECTION
 */
-
 section {
 	grid-column-start: 2;
 	grid-column-end: 3;
+	text-align: center;
 }
+
+section button#new_project.btn.btn-primary {
+	margin: 2em auto;
+	padding: 1em;
+}
+
 
 section div h4 {
 	text-align: left;
@@ -144,5 +149,49 @@ section div h4 {
 }
 
 section div div.project {
-	
+	background-color: #8d9dad;
+	margin: 1em 3em;
+	padding: 1em 0;
+	box-shadow: 0 0 5px #000;
+
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-template-rows: 50% 50%;
+}
+
+section div div.project > h5 {
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	text-align: center;
+}
+
+section div div.project > p {
+	grid-row-start: 2;
+	grid-row-end: 3;
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+section div div.project .project_info{
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 3;
+	grid-column-end: 4;
+	margin: auto;
+}
+
+section div div.project .project_info > *{
+	display: inline-block;
+	margin: auto 1em;
+}
+
+section div div.project .project_info > button.btn.btn-danger{
+	font-size: 0.75em;
+}
+
+section div div.project:hover {
+	background-color: #788796;
+	cursor: pointer;
 }
