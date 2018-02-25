@@ -1,0 +1,52 @@
+body {
+	margin: 0;
+	background-color: #868e96;
+}
+
+nav {
+	background-color: #2B3E50;
+	display: flex;	
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+	
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+} 
+
+nav ul li {
+	list-style: none;
+	display: inline;
+}
+
+.project{
+	background-color: red;
+}
