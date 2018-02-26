@@ -1,13 +1,17 @@
 body {
 	margin: 0;
-	background-color: #EEEEDD;
+	background-color: #324147;
 }
-
+ /**
+		NAV
+ */
 nav {
-	background-color: #2B3E50;
+	background-color: #112830;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
+	z-index: 1;
 }
 
 nav > * {
@@ -23,8 +27,8 @@ nav a {
 }
 
 nav > form {
-	flex-grow: 2;
 	display: flex;
+	flex-grow: 1;
 	align-items:center;
 	justify-content: center;
 }
@@ -32,6 +36,12 @@ nav > form {
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
+	background-color: #203c47;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav div input, nav div label {
@@ -47,6 +57,7 @@ nav ul li {
 	display: inline;
 }
 
+
 /* PROJECT AND DETAILS */
 
 .project {
@@ -55,7 +66,7 @@ nav ul li {
 	margin-right: auto;
 	width: 70%;
 	display: grid;
-	grid-template-columns: 4fr 1fr 1fr;
+	grid-template-columns: 4fr 1fr 1fr 1.2fr;
 	grid-template-rows: 2fr 2fr;
 	background-color: #868e96;
 }
@@ -83,7 +94,7 @@ nav ul li {
 	margin-bottom: 20%;
 }
 
-.project > a.active_members {
+.project > p.active_members {
 	grid-row-start: 1;
 	grid-row-end: 3;
 	grid-column-start: 2;
@@ -93,23 +104,33 @@ nav ul li {
 	color: #CCC;
 }
 
-#filter p {
-	color: #000;
+#filter button {
+	margin-top: 1%;
+	margin-left: 70%;
 }
 
-.project > a.active_members:hover {
+.project > p.active_members:hover {
 	transition: color 0.5s;
 	color: #EFEFEF;
 }
 
-.project > button {
-	grid-row-start: 1;
-	grid-row-end: 3;
+.project > p.number_members {
 	grid-column-start: 3;
 	grid-column-end: 4;		
-	margin-left: 8%;
-	margin-right: 8%;
+	grid-row-start: 1;
+	grid-row-end: 3;
 	margin: auto;
+}
+
+.project button {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 4;
+	grid-column-end: 5;		
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 25%;
+	margin-bottom: 25%;
 }
 
 .project_title {

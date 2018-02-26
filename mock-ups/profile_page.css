@@ -1,15 +1,17 @@
 body {
 	margin: 0;
-	background-color: #868e96;
+	background-color: #223e47;
 }
  /**
 		NAV
  */
 nav {
-	background-color: #2B3E50;
+	background-color: #112830;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
+	z-index: 1;
 }
 
 nav > * {
@@ -34,6 +36,12 @@ nav > form {
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
+	background-color: #203c47;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav div input, nav div label {
@@ -89,12 +97,13 @@ div#dashboard {
 aside {
 	grid-column-start: 1;
 	grid-column-end: 2;
-	background-color: #dbd8d2;
+	background-color: #1b323a;
 	text-align: center;
-	color: #2B3E50;
+	color: #e3eaed;
 	display: grid;
 	grid-template-rows: 30% 50% auto;
-	box-shadow: 0 0 20px;
+	box-shadow: 0 0px 5px 1px black;
+
 }
 
 aside p {
@@ -150,6 +159,7 @@ div#options form {
 div#options > form > input.form-control {
 	display: inline;
 	width: 50%;
+	background-color: #516268;
 }
 
 div.btn-group {
@@ -167,13 +177,12 @@ section button#new_project.btn.btn-primary {
 	padding: 1em;
 }
 
-
 section div.project {
-	background-color: #8d9dad;
+	background-color: #a4b6bc;
 	margin: 1em 3em;
 	padding: 1em 0;
 	box-shadow: 0 0 5px #000;
-
+	color: #000;
 	display: grid;
 	grid-template-columns: 15% auto auto;
 	/*grid-template-rows: 50% 50%;*/

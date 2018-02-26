@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	<title>Search Public Projects</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="search.css">
-</head>
-<body>
-	<nav>
-		<a href="">PLAV</a>
-		<form>
-	  		<input class="form-control mr-sm-2" type="text" placeholder="Search">
-	  		<button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-		</form>
-		<div>
-			<input type="checkbox" id="hamburger"> 
-      		<label class="hamburger" for="hamburger"></label>
-      		<div id="mobile">
-				<ul>
-					<li><a href="#" class="btn btn-info">Sign In</a></li>
-					<li><a href="#" class="btn btn-info">Sign Up</a></li>
-				</ul>
-			</div> <!-- USAR JAVASCRIPT PARA MOSTRAR"-->
-		</div>
-	</nav>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+		<title>Search Public Projects</title>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="search.css">
+	</head>
+	<body>
+		<nav>
+			<a href="">PLAV</a>
+			<form>
+	  			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+		  		<button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+			</form>
+			<div>
+				<input type="checkbox" id="hamburger"> 
+      			<label class="hamburger" for="hamburger"></label>
+      			<div id="mobile">
+					<ul>
+						<li><a href="#" class="btn btn-info">Sign In</a></li>
+						<li><a href="#" class="btn btn-info">Sign Up</a></li>
+					</ul>
+				</div> <!-- USAR JAVASCRIPT PARA MOSTRAR"-->
+			</div>
+		</nav>
 
-	<div class="all_projects">
-		<div id="filter">
-			<p>Sort by:</p>
-		</div>
+		<div class="all_projects">
+			<div id="filter">
+				<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By:</button>
+			</div>
 
-		<div class="project"> 
-			<a href="#" class="project_title">Fazer o Curso</a>
-            <p href="#" class="project_description">Tentativa de fazer o curso na sua plentitude, basicamente</p>
-            <a href="#" class="active_members">Active Members</a>
-            <button href="#" class="btn btn-primary">Join</button>
-		 </div>
+			<div class="project"> 
+				<a href="" ref="#" class="project_title">Fazer o Curso</a>
+            	<p href="#" class="project_description">Tentativa de fazer o curso na sua plentitude, basicamente</p>
+            	<p href="#" class="active_members">Active Members</p>
+            	<p href="#" class="number_members">123</p>
+	            <button href="#" class="btn btn-primary">Join</button>
+		 	</div>
 
-		 <div class="project"> 
-			<a href="#" class="project_title">IART</a>
-           	<p href="#" class="project_description">Métodos alternativos de fazer coisas com máquinas que pensam yoyoyoyoyoyo texto grande</p>
-          	<a href="#" class="active_members">Active Members</a>
-		    <button href="#" class="btn btn-primary">Join</button>
-		 </div>
-		 
+		 	<div class="project"> 
+				<a href="#" class="project_title">IART</a>
+           		<p href="#" class="project_description">Métodos alternativos de fazer coisas com máquinas que pensam yoyoyoyoyoyo texto grande</p>
+          		<p href="#" class="active_members">Active Members</a>
+          		<p href="#" class="number_members">312</p>
+			    <button href="#" class="btn btn-primary">Join</button>
+		 	</div>
+		 	
 
-		 <div class="project"> 
-			<a href="#" class="project_title">Project 1</a>
-           	<p href="#" class="project_description">Description</p>
-          	<a href="#" class="active_members">Active Members</a>
-		    <button href="#" class="btn btn-primary">Join</button>
-		 </div>
+			 <div class="project"> 
+				<a href="#" class="project_title">Project 1</a>
+           		<p href="#" class="project_description">Description</p>
+          		<p href="" ref="#" class="active_members">Active Members</a>
+          		<p href="#" class="number_members">1000</p>
+			    <button href="#" class="btn btn-primary">Join</button>
+			 </div>
 
-		 <div class="project"> 
-			<a href="#" class="project_title">Project 1</a>
-           	<p hidden="" ref="#" class="project_description">Description</p>
-         	<a href="#" class="active_members">Active Members</a>
-		    <button href="#" class="btn btn-primary">Join</button>	
-		 </div>
-	</ul>
+		 	<div class="project"> 
+				<a href="#" class="project_title">Project 1</a>
+           		<p hidden="" ref="#" class="project_description">Description</p>
+         		<p href="#" class="active_members">Active Members</a>
+         		<p href="#" class="number_members">12</p>
+			    <button href="#" class="btn btn-primary">Join</button>	
 
-</body>
+		 	</div>
+		</ul>
+
+	</body>
 </html>
