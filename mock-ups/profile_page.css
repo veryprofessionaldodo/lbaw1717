@@ -78,7 +78,7 @@ nav ul li {
 
 div#dashboard {
 	display: grid;
-	grid-template-columns: 15% auto;
+	grid-template-columns: 20% auto;
 	height: 100vh;
 }
 
@@ -87,13 +87,14 @@ div#dashboard {
 */
 
 aside {
+	min-width: 10em;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	background-color: #dbd8d2;
 	text-align: center;
 	color: #2B3E50;
 	display: grid;
-	grid-template-rows: 30% 50% auto;
+	grid-template-rows: 40% 40% auto;
 	box-shadow: 0 0 20px;
 }
 
@@ -102,7 +103,7 @@ aside p {
 }
 
 aside > * {
-	/*margin: 1em auto;*/
+	margin: 1em auto;
 }
 
 aside div#info {
@@ -111,7 +112,7 @@ aside div#info {
 	margin: 2em auto 0.5em auto;
 }
 
-aside div#info > p {
+aside div#info p {
 	margin-bottom: 0.5em;
 }
 
@@ -131,67 +132,178 @@ aside div#statistics {
 /**
 	SECTION
 */
+
+div#options {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin: 0 3em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+div#options form {
+	margin: 0 auto;
+	width: 50%;
+	text-align: right;
+}
+
+div#options > form > input.form-control {
+	display: inline;
+	width: 50%;
+}
+
+div.btn-group {
+	margin: 0 0 0 1em;
+}
+
+
 section {
 	grid-column-start: 2;
 	grid-column-end: 3;
-	text-align: center;
 }
 
 section button#new_project.btn.btn-primary {
-	margin: 2em auto;
+	margin: 2em 1em;
 	padding: 1em;
 }
 
 
-section div h4 {
-	text-align: left;
-	margin: 1em 0 1em 1em;
-}
-
-section div div.project {
+section div.project {
 	background-color: #8d9dad;
 	margin: 1em 3em;
 	padding: 1em 0;
 	box-shadow: 0 0 5px #000;
 
 	display: grid;
-	grid-template-columns: auto auto auto;
-	grid-template-rows: 50% 50%;
+	grid-template-columns: 15% auto auto;
+	/*grid-template-rows: 50% 50%;*/
 }
+/*
+section div div.project > * {
+	display: inline;
+}*/
 
-section div div.project > h5 {
-	grid-row-start: 1;
-	grid-row-end: 2;
+section div.project > h5 {
+	/*grid-row-start: 1;
+	grid-row-end: 2;*/
 	grid-column-start: 1;
 	grid-column-end: 2;
+	margin: auto;
 	text-align: center;
 }
 
-section div div.project > p {
-	grid-row-start: 2;
-	grid-row-end: 3;
-	grid-column-start: 1;
-	grid-column-end: 2;
+section div.project > p {
+	/*grid-row-start: 2;
+	grid-row-end: 3;*/
+	grid-column-start: 2;
+	margin: auto;
+	grid-column-end: 3;
 }
 
-section div div.project .project_info{
-	grid-row-start: 1;
-	grid-row-end: 3;
+section div.project .project_info{
+	/*grid-row-start: 1;
+	grid-row-end: 3;*/
 	grid-column-start: 3;
 	grid-column-end: 4;
 	margin: auto;
+	text-align: center;
 }
 
-section div div.project .project_info > *{
+section div.project .project_info > *{
 	display: inline-block;
 	margin: auto 1em;
 }
 
-section div div.project .project_info > button.btn.btn-danger{
-	font-size: 0.75em;
+section div.project .project_info > button.btn.btn-secondary{
+	font-size: 14px;
 }
 
-section div div.project:hover {
+section div.project:hover {
 	background-color: #788796;
 	cursor: pointer;
+}
+
+
+@media screen and (max-width: 720px){
+	div#dashboard {
+		display: block;
+	}
+	aside {
+		background-color: #dbd8d2;
+		color: #2B3E50;
+		box-shadow: 0 0 20px;
+		display: grid;
+		grid-template-columns: 60% auto;
+		max-height: 15em;
+	}
+
+	aside p {
+		font-size: 0.75em;
+	}
+
+	/*aside > * {
+		margin: 1em auto;
+	}*/
+
+	aside div#info {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		display: grid;
+		grid-template-columns: 60% 40%;
+		margin: 1em;
+	}
+
+	aside div#info #info_text {
+		grid-column-start: 2;
+		grid-column-end: 3;
+		margin: auto;
+	}
+
+	aside div#info img {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		margin: auto;
+		max-width:75%;
+		max-height: 75%;
+		border-radius: 50%;
+		box-shadow: 0px 0px 10px;
+	}
+
+	aside div#statistics {
+		grid-column-start: 2;
+		grid-column-end: 3;
+		grid-row-start: 1;
+		grid-row-end: 2;
+		margin: auto;
+	}
+
+	aside > a {
+		grid-column-start: 2;
+		grid-column-end: 3;
+		margin: 0;
+	}
+
+
+	div#options {
+		display: block;
+		text-align: center;
+	}
+	div#options > button.btn.btn-primary {
+		display: block;
+	}
+
+	div#options form {
+		display: inline;
+		margin: auto;
+		text-align: center;
+	}
+	div.btn-group {
+		display: inline;
+		margin: 0 0 0 1em;
+	}
+	section button#new_project.btn.btn-primary {
+		margin: 1em auto;
+		padding: 1em;
+	}
 }

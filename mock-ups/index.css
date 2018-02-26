@@ -25,17 +25,18 @@ nav a {
 }
 
 nav > form {
-	flex-grow: 2;
+	flex-grow: 1;
 	display: flex;
 	align-items:center;
 	justify-content: center;
+	margin: 0 auto;
 }
 
 nav > form > .form-control {
 	display: inline-block;
-	width: 50%;
+	width: 30%;
 }
-
+/*
 nav div input, nav div label {
 	display: none;
 }
@@ -47,7 +48,7 @@ nav ul {
 nav ul li {
 	list-style: none;
 	display: inline;
-}
+}*/
 
 /**
 	SECTION
@@ -150,7 +151,7 @@ section > div#sign > form > button:last-of-type {
 }
 
 #sign_buttons a#selected {
-	background-color: #4b9eb7;	
+	background-color: #2B3E50;	
 }
 
 /**

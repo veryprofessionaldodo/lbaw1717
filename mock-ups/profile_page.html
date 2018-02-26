@@ -25,9 +25,11 @@
 		<aside>
 			<div id="info">
 				<img src="res/profile/profile-pic.png">
-				<h3>John Doe</h3>
-				<p>john_doe_93</p>
-				<p>johndoe@gmail.com</p>
+				<div id="info_text">
+					<h3>John Doe</h3>
+					<p>john_doe_93</p>
+					<p>johndoe@gmail.com</p>
+				</div>
 			</div>
 
 			<div id="statistics">
@@ -41,30 +43,57 @@
 		</aside>
 
 		<section>
-			<button id="new_project" class="btn btn-primary">Create New Project</button>
-			<div id="coordinator">
-				<h4>Coordinator</h4>
-				<div class="project">
-					<h5>LBAW</h5>
-					<p>Website made for the course subject LBAW.</p>
-					<div class="project_info">
-						<p>26 Members</p>
-						<span>0 Sprint(s)</span>
-						<button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-					</div>
+			<div id="options">
+				<button id="new_project" class="btn btn-primary">Create New Project</button>
+				<form>
+					<input type="text" name="search" placeholder="Search" class="form-control mr-sm-2">
+					<button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+				</form>
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+				  <button type="button" class="btn btn-primary">Role</button>
+				  <div class="btn-group" role="group">
+				    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+				      <a class="dropdown-item" href="#">Coordinator</a>
+				      <a class="dropdown-item" href="#">Team Member</a>
+				    </div>
+				  </div>
 				</div>
 			</div>
-
-			<div id="member">
-				<h4>Member</h4>
-				<div class="project">
-					<h5>IART</h5>
-					<p>Project made for the course subject IART.</p>
-					<div class="project_info">
-						<p>14 Members</p>
-						<span>1 Sprint(s)</span>
-						<button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-					</div>
+			<div class="project">
+				<h5>LBAW</h5>
+				<p>Coordinator</p>
+				<div class="project_info">
+					<p>26 Members</p>
+					<span>0 Sprint(s)</span>
+					<button class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i></button>
+				</div>
+			</div>
+			<div class="project">
+				<h5>LBAW</h5>
+				<p>Coordinator</p>
+				<div class="project_info">
+					<p>26 Members</p>
+					<span>0 Sprint(s)</span>
+					<button class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i></button>
+				</div>
+			</div>
+			<div class="project">
+				<h5>LBAW</h5>
+				<p>Coordinator</p>
+				<div class="project_info">
+					<p>26 Members</p>
+					<span>0 Sprint(s)</span>
+					<button class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i></button>
+				</div>
+			</div>
+			<div class="project">
+				<h5>IART</h5>
+				<p>Team Member</p>
+				<div class="project_info">
+					<p>14 Members</p>
+					<span>1 Sprint(s)</span>
+					<button class="btn btn-secondary"><i class="fas fa-sign-out-alt"></i></button>
 				</div>
 			</div>
 
