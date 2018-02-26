@@ -1,0 +1,320 @@
+body {
+	margin: 0;
+	background-color: #868e96;
+}
+
+ /**
+		NAV
+ */
+nav {
+	background-color: #2B3E50;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav ul li {
+	list-style: none;
+	display: inline-flex;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+/*
+		Container
+*/
+
+#container{
+	display:grid;
+	grid-template-columns: 20% auto 20%;
+	grid-template-rows: 20% 20% auto;
+}
+
+
+
+
+/*
+DIV extra-buttons
+*/
+
+
+#extra-buttons{
+	grid-column: 2;
+	grid-row: 1;
+}
+
+#navbarsearch{
+	grid-column: 2;
+	grid-row: 2;
+}
+
+/*
+		NAVBAR
+*/
+
+
+/*#navbarNavAltMarkup{
+	display: grid;
+	position: relative;
+	left:20%;
+}
+#navbarNavAltMarkup2{
+	background-color: #666666;
+	border-style:solid;
+	border-color: #000000;
+	padding-right:460px;
+}
+
+#navbarNavAltMarkup a{
+	margin: 5% 20%;
+	border-right-color: #000000;
+
+}*/
+
+
+/*
+		Sprint
+*/
+
+#sprints{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	text-align: center;
+}
+
+#sprint{
+	grid-template-columns: auto auto auto;
+	grid-template-rows: 50% 50%;
+}
+
+
+
+
+
+
+ /**
+		NAV
+ */
+nav {
+	background-color: #2B3E50;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+
+}
+
+nav > form {
+	display: flex;
+	flex-grow: 1;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav ul li {
+	list-style: none;
+	display: inline;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+
+/**
+	DASHBOARD
+*/
+
+div#dashboard {
+	display: grid;
+	grid-template-columns: 15% auto;
+	height: 100vh;
+}
+
+/**
+	SECTION
+*/
+section {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	text-align: center;
+}
+
+section button#new_project.btn.btn-primary {
+	margin: 2em auto;
+	padding: 1em;
+}
+
+
+section div h4 {
+	text-align: left;
+	margin: 1em 0 1em 1em;
+}
+
+section div div.project {
+	background-color: #8d9dad;
+	margin: 1em 3em;
+	padding: 1em 0;
+	box-shadow: 0 0 5px #000;
+
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-template-rows: 50% 50%;
+}
+
+section div div.project > h5 {
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	text-align: center;
+}
+
+section div div.project > p {
+	grid-row-start: 2;
+	grid-row-end: 3;
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+section div div.project .project_info{
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 3;
+	grid-column-end: 4;
+	margin: auto;
+}
+
+section div div.project .project_info > *{
+	display: inline-block;
+	margin: auto 1em;
+}
+
+section div div.project .project_info > button.btn.btn-danger{
+	font-size: 0.75em;
+}
+
+section div div.project:hover {
+	background-color: #788796;
+	cursor: pointer;
+}
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #2B3E50;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
