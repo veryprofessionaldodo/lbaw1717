@@ -131,67 +131,94 @@ aside div#statistics {
 /**
 	SECTION
 */
+
+div#options {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin: 0 3em;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+div#options form {
+	margin: 0 auto;
+	width: 50%;
+	text-align: right;
+}
+
+div#options > form > input.form-control {
+	display: inline;
+	width: 50%;
+}
+
+div.btn-group {
+	margin: 0;
+}
+
+
 section {
 	grid-column-start: 2;
 	grid-column-end: 3;
-	text-align: center;
 }
 
 section button#new_project.btn.btn-primary {
-	margin: 2em auto;
+	margin: 2em 1em;
 	padding: 1em;
 }
 
 
-section div h4 {
-	text-align: left;
-	margin: 1em 0 1em 1em;
-}
-
-section div div.project {
+section div.project {
 	background-color: #8d9dad;
 	margin: 1em 3em;
 	padding: 1em 0;
 	box-shadow: 0 0 5px #000;
 
 	display: grid;
-	grid-template-columns: auto auto auto;
-	grid-template-rows: 50% 50%;
+	grid-template-columns: 15% auto auto;
+	/*grid-template-rows: 50% 50%;*/
 }
+/*
+section div div.project > * {
+	display: inline;
+}*/
 
-section div div.project > h5 {
-	grid-row-start: 1;
-	grid-row-end: 2;
+section div.project > h5 {
+	/*grid-row-start: 1;
+	grid-row-end: 2;*/
 	grid-column-start: 1;
 	grid-column-end: 2;
+	margin: auto;
 	text-align: center;
 }
 
-section div div.project > p {
-	grid-row-start: 2;
-	grid-row-end: 3;
-	grid-column-start: 1;
-	grid-column-end: 2;
+section div.project > p {
+	/*grid-row-start: 2;
+	grid-row-end: 3;*/
+	grid-column-start: 2;
+	margin: auto;
+	grid-column-end: 3;
 }
 
-section div div.project .project_info{
-	grid-row-start: 1;
-	grid-row-end: 3;
+section div.project .project_info{
+	/*grid-row-start: 1;
+	grid-row-end: 3;*/
 	grid-column-start: 3;
 	grid-column-end: 4;
 	margin: auto;
+	text-align: center;
 }
 
-section div div.project .project_info > *{
+section div.project .project_info > *{
 	display: inline-block;
 	margin: auto 1em;
 }
 
-section div div.project .project_info > button.btn.btn-danger{
-	font-size: 0.75em;
+section div.project .project_info > button.btn.btn-secondary{
+	font-size: 14px;
 }
 
-section div div.project:hover {
+section div.project:hover {
 	background-color: #788796;
 	cursor: pointer;
 }
