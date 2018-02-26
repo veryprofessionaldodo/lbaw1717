@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #868e96;
+	background-color: #EEEEDD;
 }
 
 nav {
@@ -47,6 +47,77 @@ nav ul li {
 	display: inline;
 }
 
-.project{
-	background-color: red;
+/* PROJECT AND DETAILS */
+
+.project {
+	margin-top: 1%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	display: grid;
+	grid-template-columns: 4fr 1fr 1fr;
+	grid-template-rows: 2fr 2fr;
+	background-color: #868e96;
+}
+
+.project:first-child{
+	margin-top: 3%;
+}
+
+.project > a.project_title{
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	margin-left: 7%;
+	margin-top: 10%;	
+}
+
+.project > p.project_description {
+	grid-row-start: 2;
+	grid-row-end: 3;
+	grid-column-start: 1;
+	grid-column-end: 2;	
+	margin-left: 7%;
+	margin-top: 5%;
+	margin-bottom: 20%;
+}
+
+.project > a.active_members {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 2;
+	grid-column-end: 3;	
+	text-align: center;
+	margin: auto;
+	color: #CCC;
+}
+
+#filter p {
+	color: #000;
+}
+
+.project > a.active_members:hover {
+	transition: color 0.5s;
+	color: #EFEFEF;
+}
+
+.project > button {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 3;
+	grid-column-end: 4;		
+	margin-left: 8%;
+	margin-right: 8%;
+	margin: auto;
+}
+
+.project_title {
+	font-size: 1.6em;
+	color: #f2f4f7;
+}
+
+.project_description {
+	font-size: 0.8em;
+	color: #dee1e5;
 }
