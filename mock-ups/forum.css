@@ -82,7 +82,7 @@ THREADS
 #container {
     display: grid;
     grid-template-rows: [row0] 25% [row1] auto [row2];
-	grid-template-columns: [col0] 20% [col1] auto [col2] 20% [col3];
+	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];
 }
 
 #header {
@@ -93,7 +93,7 @@ THREADS
 }
 
 #header h1{
-	padding-top: 45px;
+	margin: 1em;
 }
 
 #threads {
@@ -109,7 +109,8 @@ THREADS
 }
 
 #threads td {
-	height: 80px;
+	/*height: 80px;*/
+	padding: 1em;
 	font-size: 125%;
 }
 
@@ -117,4 +118,40 @@ THREADS
 	display: block;
 	text-decoration: none;
 	color: rgb(71, 84, 97);
+}
+
+@media screen and (max-width: 635px){
+	nav input.form-control {
+		display: none;
+	} 
+
+	#container {
+	    display: grid;
+	    grid-template-rows: [row0] 25% [row1] auto [row2];
+		grid-template-columns: [col0] 5% [col1] auto [col2] 5% [col3];
+	}
+	
+	#threads td {
+		font-size: 3vw;
+	}
+
+	#threads th {
+		font-size: 3.5vw;
+	}
+}
+
+@media screen and (max-width: 950px) and (min-width: 636px) {
+	#container {
+	    display: grid;
+	    grid-template-rows: [row0] 25% [row1] auto [row2];
+		grid-template-columns: [col0] 10% [col1] auto [col2] 10% [col3];
+	}
+
+	#threads td {
+		font-size: 2vw;
+	}
+
+	#threads th {
+		font-size: 2.5vw;
+	}
 }

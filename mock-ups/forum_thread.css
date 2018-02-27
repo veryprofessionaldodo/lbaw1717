@@ -80,22 +80,111 @@ POST
 */
 
 #container {
-    display: grid;
-    grid-template-rows: [row0] 100px [row1] auto [row2];
-	grid-template-columns: [col0] 20% [col1] auto [col2] 20% [col3];
-}
-
-#header {
-    grid-column: 2;
-    grid-row: 1;
+   /* margin: 5% 15% auto 15%;*/
+   margin: 2em 10em;
+    /*grid-template-rows: [row0] 25% [row1] auto [row2];
+	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];*/
 }
 
 #thread {
-	grid-column: 2;
-    grid-row: 2;
 	background-color: #2B3E50
+}
+
+#thread table {
+	margin: 0;
 }
 
 #thread td {
 	font-size: 125%;
+}
+
+#thread td.date {
+	vertical-align: middle;	
+	text-align: center;
+	padding: 0 1em;
+}
+
+#thread tbody th {
+	text-align: center;
+}
+
+
+@media screen and (max-width: 635px){
+	nav input.form-control {
+		display: none;
+	} 
+
+	#container {
+	    margin: 5% 5% auto 5%;
+	}
+	
+	#thread td p{
+		font-size: 2vw;
+	}
+
+	#thread td h2{
+		font-size: 4.5vw;
+	}
+
+	#thread th p{
+		font-size: 3.5vw;
+	}
+
+	#thread th img {
+		max-width: 100%;
+    	height: auto;
+	}
+/*
+	#thread td {
+		display: block;
+		border: 0;
+	}
+
+	#thread td.date{	
+		text-align: center;
+		margin: auto;
+	}
+
+	#thread td.date p{ 
+		display: inline-block;
+	}
+*/
+	#thread label {
+		font-size:3.5vw;
+	}
+
+	#thread div input.form-control {
+		max-height: 50%;
+	}
+}
+
+@media screen and (max-width: 950px) and (min-width: 636px) {
+	#container {
+	    margin: 5% 10% auto 10%;
+	}
+
+	#thread td p{
+		font-size: 2vw;
+	}
+
+	#thread th {
+		vertical-align: middle;
+	}
+
+	#thread th p{
+		font-size: 2.5vw;
+	}
+
+	#thread td h2{
+		font-size: 3.5vw;
+	}
+
+	#thread th img {
+		max-width: 100%;
+    	height: auto;
+	}
+
+	#thread label {
+		font-size:2.5vw;
+	}
 }

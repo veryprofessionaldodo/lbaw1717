@@ -186,7 +186,6 @@ section div.project {
 	color: #000;
 	display: grid;
 	grid-template-columns: 15% auto auto;
-	/*grid-template-rows: 50% 50%;*/
 }
 /*
 section div div.project > * {
@@ -194,25 +193,20 @@ section div div.project > * {
 }*/
 
 section div.project > h5 {
-	/*grid-row-start: 1;
-	grid-row-end: 2;*/
 	grid-column-start: 1;
 	grid-column-end: 2;
 	margin: auto;
+	font-weight: bold;
 	text-align: center;
 }
 
 section div.project > p {
-	/*grid-row-start: 2;
-	grid-row-end: 3;*/
 	grid-column-start: 2;
 	margin: auto;
 	grid-column-end: 3;
 }
 
 section div.project .project_info{
-	/*grid-row-start: 1;
-	grid-row-end: 3;*/
 	grid-column-start: 3;
 	grid-column-end: 4;
 	margin: auto;
@@ -233,18 +227,114 @@ section div.project:hover {
 	cursor: pointer;
 }
 
-
-@media screen and (max-width: 720px){
+@media screen and (max-width: 500px){
+	nav input.form-control {
+		display: none;
+	} 
 	div#dashboard {
 		display: block;
 	}
 	aside {
-		background-color: #dbd8d2;
-		color: #2B3E50;
-		box-shadow: 0 0 20px;
+		display: none;
+	}
+
+	div#options {
+		display: block;
+		text-align: center;
+	}
+	div#options > button.btn.btn-primary {
+		display: block;
+	}
+
+	div#options form {
+		display: inline;
+		text-align: center;	
+	}
+	.btn {
+		vertical-align: inherit;
+	}
+
+	div.btn-group {
+		margin: 0 0 0 1em;
+	}
+
+	section button#new_project.btn.btn-primary {
+		margin: 1em auto;
+		padding: 1em;
+	}
+
+	section div.project {
+		margin: 1em 3em;
+		padding: 1em;
+		box-shadow: 0 0 5px #000;
+		color: #000;
+		display: grid;
+		grid-template-columns: 20% auto 50%;
+		grid-template-rows: 50% auto;
+	}
+	/*
+	section div div.project > * {
+		display: inline;
+	}*/
+
+	section div.project > h5 {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		margin: auto;
+		font-size: 4vw;
+		text-align: center;
+	}
+
+	section div.project > p {
+		grid-column-start: 2;
+		margin: auto 1em;
+		font-size: 3vw;
+		text-align: center;
+		grid-column-end: 3;
+	}
+
+	section div.project .project_info{
+		grid-column-start: 3;
+		grid-column-end: 4;
+		margin: auto;
+		text-align: center;
+		display: grid;
+		grid-template-columns: 50% auto;
+	}
+
+	section div.project .project_info > *{
+		font-size: 2.5vw;
+	}
+
+	section div.project .project_info > span, section div.project .project_info > p {
+		grid-column-start: 1;	
+	}
+
+	section div.project .project_info > button {
+		grid-column-start: 2;
+		grid-row-start: 1;
+		grid-row-end: 3;
+	}
+	section div.project .project_info > button.btn.btn-secondary{
+		font-size: 12px;
+	}
+}
+
+
+@media screen and (max-width: 720px) and (min-width: 501px){
+	div#dashboard {
+		display: block;
+	}
+	aside {
+		background-color: #1b323a;
+		color: #e3eaed;
+		box-shadow: 0 0 20px black;
 		display: grid;
 		grid-template-columns: 60% auto;
 		max-height: 15em;
+		min-width: 0;
+		padding: 1em;
+		margin-bottom: 2em;
 	}
 
 	aside p {
@@ -305,10 +395,102 @@ section div.project:hover {
 	div#options form {
 		display: inline;
 		margin: auto;
+		text-align: center;	
+	}
+	.btn {
+		vertical-align: inherit;
+	}
+
+	div.btn-group {
+		margin: 0 0 0 1em;
+	}
+	section button#new_project.btn.btn-primary {
+		margin: 1em auto;
+		padding: 1em;
+	}
+}
+
+@media screen and (min-height: 1024px) and (orientation:portrait){
+	div#dashboard {
+		display: block;
+	}
+	aside {
+		background-color: #1b323a;
+		color: #e3eaed;
+		box-shadow: 0 0 20px black;
+		display: grid;
+		grid-template-columns: 60% auto;
+		max-height: 15em;
+		padding: 1em;
+		min-width: 0;
+		margin-bottom: 2em;
+	}
+
+	aside p {
+		font-size: 0.75em;
+	}
+
+	/*aside > * {
+		margin: 1em auto;
+	}*/
+
+	aside div#info {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		display: grid;
+		grid-template-columns: 60% 40%;
+		margin: 1em;
+	}
+
+	aside div#info #info_text {
+		grid-column-start: 2;
+		grid-column-end: 3;
+		margin: auto;
+	}
+
+	aside div#info img {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		margin: auto;
+		max-width:100%;
+		max-height: 100%;
+		border-radius: 50%;
+		box-shadow: 0px 0px 10px;
+	}
+
+	aside div#statistics {
+		grid-column-start: 2;
+		grid-column-end: 3;
+		grid-row-start: 1;
+		grid-row-end: 2;
+		margin: auto;
+	}
+
+	aside > a {
+		grid-column-start: 2;
+		grid-column-end: 3;
+		margin: 0;
+	}
+
+
+	div#options {
+		display: block;
 		text-align: center;
 	}
-	div.btn-group {
+	div#options > button.btn.btn-primary {
+		display: block;
+	}
+
+	div#options form {
 		display: inline;
+		margin: auto;
+		text-align: center;	
+	}
+	.btn {
+		vertical-align: inherit;
+	}
+
+	div.btn-group {
 		margin: 0 0 0 1em;
 	}
 	section button#new_project.btn.btn-primary {
