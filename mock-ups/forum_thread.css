@@ -75,46 +75,27 @@ nav ul li {
 
 /*
 
-THREADS
+POST
 
 */
 
 #container {
     display: grid;
-    grid-template-rows: [row0] 25% [row1] auto [row2];
+    grid-template-rows: [row0] 100px [row1] auto [row2];
 	grid-template-columns: [col0] 20% [col1] auto [col2] 20% [col3];
 }
 
 #header {
-	grid-row: 1;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#thread {
 	grid-column: 2;
-	color:  #2B3E50;
-	align-items: center;
-}
-
-#header h1{
-	padding-top: 45px;
-}
-
-#threads {
-	grid-column-start: col1;
-	grid-column-end: col2;
-	grid-row-start: row1;
-	grid-row-end: row2;
+    grid-row: 2;
 	background-color: #2B3E50
 }
 
-#threads th {
+#thread td {
 	font-size: 125%;
-}
-
-#threads td {
-	height: 80px;
-	font-size: 125%;
-}
-
-#threads a{
-	display: block;
-	text-decoration: none;
-	color: rgb(71, 84, 97);
 }
