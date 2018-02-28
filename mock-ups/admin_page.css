@@ -1,0 +1,102 @@
+body {
+	margin: 0;
+	background-color: #868e96;
+}
+
+ /**
+		NAV
+ */
+nav {
+	background-color: #2B3E50;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav ul li {
+	list-style: none;
+	display: inline-flex;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+
+/**
+	SECTION
+*/
+
+.container-fluid {
+	margin: 5em auto;
+	vertical-align: top;
+}
+
+
+div#users, div#comments {
+	background-color: #1b323a;
+	padding: 1em 3em;
+	margin: 0 auto 3em auto;
+	box-shadow: 0 0 10px #1b323a;
+	height: auto;
+}
+
+div#users.col-lg-4, div#comments.col-lg-4 {
+	height: 100%;
+}
+
+div.user_notification, div.comment_notification {
+	cursor: pointer;
+	background-color: #a4b6bc;
+	padding: 1em;
+	margin: 2em 0;
+}
+
+div.user_notification p, div.comment_notification p{
+	margin: 0;
+	letter-spacing: 0.5px;
+}
