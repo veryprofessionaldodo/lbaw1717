@@ -1,12 +1,13 @@
 body {
 	margin: 0;
-	background-color: #3e646d;
+	background-color: #deeded;
 	height: 100%;
 	width: 100%
 }
 /**
 		NAV
  */
+
 nav {
 	background-color: #112830;
 	display: flex;	
@@ -115,6 +116,12 @@ THREADS
 
 */
 
+.table {
+	border: solid 3px;
+	border-color: #003;
+    box-shadow: 0 0 5px #000;
+}
+
 tr#descriptions_table{
 	text-align: center;
 	padding: 0;
@@ -141,7 +148,7 @@ tr#descriptions_table{
 }
 
 #header h1{
-	color: #d7eaef;
+	color: #112323;
 	margin: 1em;
 }
 

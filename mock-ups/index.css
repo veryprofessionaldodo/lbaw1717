@@ -1,12 +1,12 @@
 body {
 	margin: 0;
-	background-color: #868e96;
+	background-color: #deeded;
 }
  /**
 		NAV
  */
 nav {
-	background-color: #2B3E50;
+	background-color: #112830;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
@@ -34,8 +34,20 @@ nav > form {
 
 nav > form > .form-control {
 	display: inline-block;
-	width: 30%;
+	width: 50%;
+	background-color: #203c47;
 }
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav > form > .form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
 /*
 nav div input, nav div label {
 	display: none;
@@ -75,6 +87,7 @@ section > div#text {
 	grid-row-end: 3;
 	text-align: justify;
 	padding: 4em;
+	color: #005;
 }
 
 section > div#text h2 {

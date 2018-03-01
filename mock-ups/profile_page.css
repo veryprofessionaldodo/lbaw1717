@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #3e646d;
+	background-color: #deeded;
 }
  /**
 		NAV
@@ -103,7 +103,7 @@ aside {
 	min-width: 10em;
 	grid-column-start: 1;
 	grid-column-end: 2;
-	background-color: #213d44;
+	background-color: #384d51;
 	text-align: center;
 	color: #e3eaed;
 	display: grid;
@@ -184,7 +184,7 @@ section button#new_project.btn.btn-primary {
 }
 
 section div.project {
-	background-color: #d3eced;
+	background-color: #4f707a;
 	margin: 1em 3em;
 	padding: 1em 0;
 	box-shadow: 0 0 5px #000;
@@ -203,14 +203,14 @@ section div.project > h5 {
 	margin: auto;
 	font-weight: bold;
 	text-align: center;
-	color: #183535;
+	color: #f2fcff;
 }
 
 section div.project > p {
 	grid-column-start: 2;
 	margin: auto;
 	grid-column-end: 3;
-	color: #183535;
+	color: #f2fcff;
 }
 
 section div.project .project_info{
@@ -218,7 +218,7 @@ section div.project .project_info{
 	grid-column-end: 4;
 	margin: auto;
 	text-align: center;
-	color: #183535;
+	color: #f2fcff;
 }
 
 section div.project .project_info > *{
@@ -231,7 +231,7 @@ section div.project .project_info > button.btn.btn-secondary{
 }
 
 section div.project:hover {
-	background-color: #e8f9f9;
+	background-color: #618893;
 	cursor: pointer;
 }
 

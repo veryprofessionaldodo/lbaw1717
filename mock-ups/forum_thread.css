@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #3e646d;
+	background-color: #deeded;
 	height: 100%;
 	width: 100%
 }
@@ -114,6 +114,12 @@ nav ul li {
 POST
 
 */
+
+.table {
+	border: solid 6px;
+	border-color: #003;
+    box-shadow: 0 0 10px #000;
+}
 
 #container {
    /* margin: 5% 15% auto 15%;*/
