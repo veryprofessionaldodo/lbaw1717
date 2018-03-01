@@ -79,7 +79,7 @@ nav ul li {
 #container{
 	display:grid;
 	grid-template-columns: 20% auto 20%;
-	grid-template-rows: 20% 20% auto;
+	grid-template-rows: 20% 20% auto auto;
 }
 
 
@@ -90,57 +90,33 @@ DIV extra-buttons
 */
 
 
-#extra-buttons{
+#info_buttons{
 	grid-column: 2;
 	grid-row: 1;
 }
 
-#navbarsearch{
+.nav-tabs{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 	grid-column: 2;
 	grid-row: 2;
 }
 
-/*
-		NAVBAR
-*/
-
-
-/*#navbarNavAltMarkup{
-	display: grid;
-	position: relative;
-	left:20%;
-}
-#navbarNavAltMarkup2{
-	background-color: #666666;
-	border-style:solid;
-	border-color: #000000;
-	padding-right:460px;
+.nav-tabs .nav-item {
+	width: 300px;
 }
 
-#navbarNavAltMarkup a{
-	margin: 5% 20%;
-	border-right-color: #000000;
-
-}*/
-
-
-/*
-		Sprint
-*/
-
-#sprints{
-	grid-column-start: 2;
-	grid-column-end: 3;
-	text-align: center;
-}
-
-#sprint{
-	grid-template-columns: auto auto auto;
-	grid-template-rows: 50% 50%;
+#sprints {
+	grid-column: 2;
+	grid-row: 3;
 }
 
 
-
+#filler {
+	grid-column: 2;
+	grid-row: 4;
+}
 
 
 
@@ -318,3 +294,10 @@ footer > div#info {
 	grid-column-start: 2;
 	grid-column-end: 3;
 }
+
+@media screen and (min-width: 768px) {
+
+	.list-group .collapse{
+				display:block;
+		  }  
+	}
