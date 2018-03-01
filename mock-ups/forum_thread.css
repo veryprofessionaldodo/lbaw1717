@@ -1,17 +1,19 @@
 body {
 	margin: 0;
-	background-color: #8d9dad;
+	background-color: #3e646d;
 	height: 100%;
 	width: 100%
 }
- /**
+/**
 		NAV
  */
 nav {
-	background-color: #2B3E50;
+	background-color: #112830;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
+	z-index: 1;
 }
 
 nav > * {
@@ -36,6 +38,17 @@ nav > form {
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
+	background-color: #203c47;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav > form > .form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav div input, nav div label {
@@ -50,6 +63,29 @@ nav ul li {
 	list-style: none;
 	display: inline;
 }
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
 
 #user {
 	display: flex;
@@ -94,6 +130,10 @@ POST
 	margin: 0;
 }
 
+table thead tr#thread_main_text {
+	background-color: #182f35;
+}
+
 #thread td {
 	font-size: 125%;
 }
@@ -107,6 +147,23 @@ POST
 #thread tbody th {
 	text-align: center;
 }
+
+input.form-control {
+	margin-left: 0;
+	width: 90%%;
+	background-color: #203c47;
+}
+
+input.form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+input.form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
 
 
 @media screen and (max-width: 635px){

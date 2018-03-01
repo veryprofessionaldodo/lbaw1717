@@ -1686,7 +1686,9 @@ pre code {
 
 .table th,
 .table td {
-  padding: 0.75rem;
+  padding-left : 0.75em;
+  padding-top : 0.75em;
+  padding-right : 0.75em;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
 }
