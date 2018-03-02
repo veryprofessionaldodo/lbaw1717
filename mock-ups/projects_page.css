@@ -140,9 +140,11 @@ div.list-group-item {
 div.list-group-item p{
 	vertical-align: inherit;
 	margin: auto 0;
+	color: #002;
 }
 
 div.list-group-item a{
+	color: #002;
 	cursor: pointer;
 	text-align: left;
 	vertical-align: super;
@@ -153,7 +155,7 @@ div.list-group-item span {
 }
 
 div.sprint-task {
-	background-color: #4DD0E1;
+	background-color: #B2EBF2;
 	padding: 1em 1em 1em 3em;
 	display: grid;
 	grid-template-columns: 5% auto auto;
@@ -174,7 +176,7 @@ div.sprint-task svg{
 }
 
 div.sprint-task p{
-	color: #000;
+	color: #002;
 	grid-column-start: 2;
 	grid-column-end: 3;
 	margin: auto 0;
@@ -190,7 +192,7 @@ div.sprint-task input[type="checkbox"] {
 }
 
 div.comment {
-	background-color: #1c566b;
+	background-color: #3797A4;
 	padding: 1em 1em 1em 5em;
 	display: grid;
 	grid-template-columns: 5% 15% auto;
@@ -218,7 +220,7 @@ div.comment > * {
 }
 
 div.comment > p {
-	background-color: #fff;
+	background-color: #DDD;
 	color: black;
 	text-align: justify;
 	padding: 1em;
@@ -240,8 +242,9 @@ div.comment > p {
 */
 
 div#members .header h4{
+	color: #001;
 	padding: 1em;
-	background-color: #2B3E50; 
+	background-color: #E0F7FA; 
 }
 
 div#members div.member {

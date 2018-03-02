@@ -1,12 +1,12 @@
 body {
 	margin: 0;
-	background-color: #deeded;
+	background-color: #006064;
 }
  /**
 		NAV
  */
 nav {
-	background-color: #112830;
+	background-color: #002527;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
@@ -62,7 +62,7 @@ section form {
 	margin: 3em auto;
 	width: 40%;
 	text-align: center;
-	background-color: #2B3E50;
+	background-color: #002E30;
 	padding: 1em 3em;
 	box-shadow: 0px 0px 10px #2B3E50;
 }
@@ -87,7 +87,7 @@ section hr {
 
 input.form-control {
 	background-color: #b1d1d3;
-	color: #AAA;
+	color: #868E96;
 }
 
 input.form-control:hover {
@@ -96,6 +96,7 @@ input.form-control:hover {
 }
 
 input.form-control:focus {
+	color: #001;
 	transition: background-color 0.2s;
 	background-color: #edfdff;
 }

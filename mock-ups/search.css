@@ -1,12 +1,12 @@
 body {
 	margin: 0;
-	background-color: #deeded;
+	background-color: #006064;
 }
  /**
 		NAV
  */
 nav {
-	background-color: #112830;
+	background-color: #002527;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
@@ -74,7 +74,10 @@ nav ul li {
 	display: grid;
 	grid-template-columns: 4fr 1fr 1.2fr;
 	grid-template-rows: 2fr 2fr;
-	background-color: #4f707a;
+	background-color: #B2DFDB;
+	padding: 10px;
+	color: #001;
+	box-shadow: 0 0 5px #000;
 }
 
 .project:first-child{
@@ -113,17 +116,12 @@ nav ul li {
 	grid-column-end: 3;	
 	text-align: center;
 	margin: auto;
-	color: #CCC;
+	color: #001;
 }
 
 #filter button {
 	margin-top: 1%;
 	margin-left: 70%;
-}
-
-.project > p.active_members:hover {
-	transition: color 0.5s;
-	color: #EFEFEF;
 }
 
 .project button {
@@ -154,10 +152,10 @@ nav ul li {
 
 .project_title {
 	font-size: 1.6em;
-	color: #f2f4f7;
+	color: #001;
 }
 
 .project_description {
 	font-size: 0.8em;
-	color: #dee1e5;
+	color: #001;
 }
