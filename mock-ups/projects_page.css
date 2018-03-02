@@ -90,10 +90,13 @@ section.container-fluid {
 	DIV extra-buttons
 */
 
+#info_buttons {
+	margin: auto;
+}
 
-#info_buttons{
-	grid-column: 2;
-	grid-row: 1;
+#info_buttons button{
+	width: 8em;
+	margin: 0.5em 0;
 }
 
 section.container-fluid .row .nav-tabs {
@@ -221,6 +224,32 @@ div.comment > p {
 */
 
 
+/**
+	MEMBERS
+*/
+
+div#members .header h4{
+	padding: 1em;
+	background-color: #2B3E50; 
+}
+
+div#members div.member {
+	margin: 1em auto;
+}
+
+div#members div.member img{
+	margin: auto;
+	max-width: 75%;
+	max-height: 75%;
+	border-radius: 50%;
+}
+
+div#members div.member a{
+	margin: 1em auto;
+	font-weight: bold;
+	display: block;
+}
+
 
 /**
 		FOOTER
@@ -247,4 +276,20 @@ footer > div#contacts {
 footer > div#info {
 	grid-column-start: 2;
 	grid-column-end: 3;
+}
+
+@media screen and (max-width: 562px){
+	section.container-fluid {
+		min-height: 100vh;
+		margin: 2em auto;
+		width: 100%;
+	}
+	#info_buttons {
+		margin: auto;
+	}
+
+	#info_buttons button {
+		display: block;
+		margin: 0.5em auto;
+	}
 }
