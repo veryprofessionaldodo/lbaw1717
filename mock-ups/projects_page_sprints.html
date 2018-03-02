@@ -33,7 +33,7 @@
 	</nav>
 	<section class="container-fluid">
 		<div class="row">
-			<div class="col-5 offset-4">
+			<div class="col-12">
 				<div id="info_buttons">
 					<button type="button" class="btn btn-primary"><i class="fas fa-comments"></i> Forum</button>
 					<button type="button" class="btn btn-secondary"><i class="fas fa-chart-line"></i> Statistics</button>
@@ -56,43 +56,6 @@
 				</ul>
 			</div>
 		</div>
-
-		<!--
-		<div class="row">
-			<div class="col-12">
-				<div id="sprints">
-					<ul class="list-group">
-						<li data-toggle="collapse" data-target=".list-group-item d-flex justify-content-between align-items-center" class="list-group-item d-flex justify-content-between align-items-center">
-							<p><i class="fas fa-sort-down fa-2x"></i>Cras justo odio</p>
-							<span>2 days until deadline</span>
-							<span class="badge badge-primary badge-pill">8</span>
-
-							<li class="sprint-task list-group-item d-flex justify-content-between align-items-center">
-								<p>Make front page</p>
-								<input type="checkbox" class="" id="customCheck2">
-							</li>
-							<li class="sprint-task list-group-item d-flex justify-content-between align-items-center">
-								<p>Make database</p>
-								<input type="checkbox" class="" id="customCheck2">
-							</li>
-							<li class="sprint-task list-group-item d-flex justify-content-between align-items-center">
-								<p>Clean code</p>
-								<input type="checkbox" class="" id="customCheck2">
-							</li>
-						</li>
-						<li class="list-group-item d-flex justify-content-between align-items-center">
-							<p><i class="fas fa-caret-right fa-2x"></i>Dapibus ac facilisis in</p>
-							<span class="badge badge-primary badge-pill">2</span>
-						</li>
-						<li class="list-group-item d-flex justify-content-between align-items-center">
-							<p><i class="fas fa-caret-right fa-2x"></i>Morbi leo risus</p>
-							<span class="badge badge-primary badge-pill">1</span>
-						</li>
-					</ul>
-				</div>	
-			</div>
-		</div>
-		-->
 		<div class="row">
 			<div class="col-12" id="sprints">
 				<div class="list-group list-group-root well">
@@ -108,6 +71,7 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-1-c-1"><i class="fas fa-sort-down"></i></a>
 							<p>Make front page</p>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -116,19 +80,29 @@
 								<img src="res/profile/profile-pic.png">
 								<h6>John Doe</h6>
 								<p>This one is tricky!</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
 								<img src="res/profile/profile-pic.png">
 								<h6>Zukko</h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<span>12-12-12</span>
+							</div>
+							<div class="comment">
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
 						<!-- Task -->
-						<div class="sprint-task">
+						<div class="sprint-task task_completed">
 							<a data-toggle="collapse" href="#sprint-1-c-2"><i class="fas fa-sort-down"></i></a>
-							<p>Make database</p>
-							<input type="checkbox">
+							<p class="task_completed">Make database</p>
+							<!--<button class="btn">Claim task</button>-->
+							<input type="checkbox" checked="">
 						</div>
 						<!-- Comments -->
 						<div class="list-group collapse" id="sprint-1-c-2">
@@ -136,21 +110,32 @@
 								<img src="res/profile/profile-pic.png">
 								<h6>John Doe</h6>
 								<p>This one is tricky!</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
 								<img src="res/profile/profile-pic.png">
 								<h6>Zukko</h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
 								<img src="res/profile/profile-pic.png">
 								<h6>John Doe</h6>
 								<p>This one is tricky!</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
 								<img src="res/profile/profile-pic.png">
 								<h6>Zukko</h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<span>12-12-12</span>
+							</div>
+							<div class="comment">
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -158,6 +143,13 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-1-c-3"><i class="fas fa-sort-down"></i></a>
 							<p>Clean code</p>
+							<div class="assigned_users">
+								<img src="res/profile/profile-pic.png" title="John Doe">
+								<img src="res/profile/profile-pic.png" title="Emmet Doe">
+								<img src="res/profile/profile-pic.png" title="Joanne Doe">
+								<img src="res/profile/profile-pic.png" title="Elton John">
+							</div>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -166,11 +158,20 @@
 								<img src="res/profile/profile-pic.png">
 								<h6>John Doe</h6>
 								<p>This one is tricky!</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
 								<img src="res/profile/profile-pic.png">
 								<h6>Zukko</h6>
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<span>12-12-12</span>
+							</div>
+							<div class="comment">
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -187,6 +188,7 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-2-c-1"><i class="fas fa-sort-down"></i></a>
 							<p>Make gameplay</p>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -195,11 +197,20 @@
 								<img src="res/profile/profile-pic.png">
 								<h6>John Doe</h6>
 								<p>This one is tricky!</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
 								<img src="res/profile/profile-pic.png">
 								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu.</p>
+								<span>12-12-12</span>
+							</div>
+							<div class="comment">
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -207,6 +218,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-2-c-2"><i class="fas fa-sort-down"></i></a>
 							<p>Make graphics</p>
+							<div class="assigned_users">
+								<img src="res/profile/profile-pic.png" title="Iroh">
+							</div>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -215,11 +230,14 @@
 								<img src="res/profile/profile-pic.png">
 								<h6>John Doe</h6>
 								<p>This one is tricky!</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -227,6 +245,7 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-2-c-3"><i class="fas fa-sort-down"></i></a>
 							<p>Make models</p>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -235,11 +254,20 @@
 								<img src="res/profile/profile-pic.png">
 								<h6>John Doe</h6>
 								<p>This one is tricky!</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
 								<img src="res/profile/profile-pic.png">
 								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p>Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<span>12-12-12</span>
+							</div>
+							<div class="comment">
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -247,19 +275,26 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-2-c-4"><i class="fas fa-sort-down"></i></a>
 							<p>Test</p>
+							<div class="assigned_users">
+								<img src="res/profile/profile-pic.png" title="Katara">
+							</div>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
 						<div class="list-group collapse" id="sprint-2-c-4">
 							<div class="comment">
 								<img src="res/profile/profile-pic.png">
-								<h6>John Doe</h6>
-								<p>This one is tricky!</p>
+								<h6>Zukko</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu.</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -276,19 +311,20 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-1"><i class="fas fa-sort-down"></i></a>
 							<p>Make products</p>
+							<div class="assigned_users">
+								<img src="res/profile/profile-pic.png" title="Iroh">
+							</div>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
 						<div class="list-group collapse" id="sprint-3-c-1">
 							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>John Doe</h6>
-								<p>This one is tricky!</p>
-							</div>
-							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -296,19 +332,17 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-2"><i class="fas fa-sort-down"></i></a>
 							<p>Hire people</p>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
 						<div class="list-group collapse" id="sprint-3-c-2">
 							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>John Doe</h6>
-								<p>This one is tricky!</p>
-							</div>
-							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -316,19 +350,17 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-3"><i class="fas fa-sort-down"></i></a>
 							<p>Make money</p>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
 						<div class="list-group collapse" id="sprint-3-c-3">
 							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>John Doe</h6>
-								<p>This one is tricky!</p>
-							</div>
-							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -336,6 +368,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-4"><i class="fas fa-sort-down"></i></a>
 							<p>Give a good salary</p>
+							<div class="assigned_users">
+								<img src="res/profile/profile-pic.png" title="Aang">
+							</div>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -344,11 +380,14 @@
 								<img src="res/profile/profile-pic.png">
 								<h6>John Doe</h6>
 								<p>This one is tricky!</p>
+								<span>12-12-12</span>
 							</div>
 							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -356,19 +395,17 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-5"><i class="fas fa-sort-down"></i></a>
 							<p>Make good quality products</p>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
 						<div class="list-group collapse" id="sprint-3-c-5">
 							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>John Doe</h6>
-								<p>This one is tricky!</p>
-							</div>
-							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 
@@ -376,19 +413,17 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-6"><i class="fas fa-sort-down"></i></a>
 							<p>Don't be douchebags</p>
+							<button class="btn">Claim task</button>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
 						<div class="collapse" id="sprint-3-c-6">
 							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>John Doe</h6>
-								<p>This one is tricky!</p>
-							</div>
-							<div class="comment">
-								<img src="res/profile/profile-pic.png">
-								<h6>Zukko</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec feugiat sem massa, eu iaculis odio varius eu. Cras eleifend, ligula et dictum maximus, nisi metus ornare risus, in gravida dolor nisl sit amet diam. Nullam facilisis, orci vitae cursus rhoncus, ligula tellus posuere ligula, a finibus ante turpis quis lectus. Nam at eleifend sem, vel pretium erat. Praesent purus felis, scelerisque in est in, ultricies sollicitudin velit. Vivamus ut sem eu tortor luctus commodo. Nam accumsan at justo quis eleifend. Curabitur sit amet semper est, eu auctor arcu.</p>
+								<p class="label">New comment:</p>
+								<div class="form_comment">
+									<input type="text" class="form-control" name="comment">
+									<button class="btn btn-primary" type="submit">Send</button>
+								</div>
 							</div>
 						</div>
 					</div>

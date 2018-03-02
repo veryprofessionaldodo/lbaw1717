@@ -132,7 +132,7 @@ div.list-group-item svg{
 div.list-group-item {
 	padding: 1em;
 	display: grid;
-	grid-template-columns: 50% auto auto;	
+	grid-template-columns: 50% auto auto;
 }
 
 div.list-group-item p{
@@ -152,15 +152,16 @@ div.list-group-item span {
 
 div.sprint-task {
 	background-color: #2B3E50;
-	padding: 1em 1em 1em 3em;
+	padding: 0 1em 0 3em;
 	display: grid;
-	grid-template-columns: 5% auto auto;
+	grid-template-columns: 5% auto auto auto 5%;
 }
 
 div.sprint-task svg{
 	grid-column-start: 1;
 	grid-column-end: 2;
 	font-size: 18px;
+	margin: 1em 0;
 }
 
 div.sprint-task p{
@@ -170,17 +171,48 @@ div.sprint-task p{
 	text-align: left;
 }
 
+div.sprint-task button.btn {
+	grid-column-start: 4;
+	grid-column-end: 5;
+	background-color: #012;
+	margin: auto 0 auto auto;
+	padding: 0 1em;
+}
+
+div.sprint-task div.assigned_users {
+	margin: auto 0 auto auto;
+}
+
+div.sprint-task div.assigned_users img{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	max-width: 5%;
+	min-width: 1em;
+	/*max-width: 2em;
+	max-height: 2em;*/
+	border-radius: 50px;
+	margin: auto 0 auto auto;
+}
+
 div.sprint-task input[type="checkbox"] {
 	width: 1.5em;
 	height: 1.5em;
 	margin: auto 0 auto auto;
-	grid-column-start: 3;
-	grid-column-end: 4;
+	grid-column-start: 5;
+	grid-column-end: 6;
+}
+
+div.sprint-task.task_completed {
+	opacity: 0.8;	
+}
+
+div.sprint-task.task_completed p.task_completed {
+	text-decoration: line-through;
 }
 
 div.comment {
 	background-color: #1c566b;
-	padding: 1em 1em 1em 5em;
+	padding: 1em 1em 1em 4em;
 	display: grid;
 	grid-template-columns: 5% 15% auto;
 }
@@ -188,6 +220,7 @@ div.comment {
 div.comment img {
 	max-width: 100%;
 	max-height: 100%;
+	min-width: 2em;
 	border-radius: 50px;
 	grid-column-start: 1; 
 	grid-column-end: 2; 
@@ -197,7 +230,7 @@ div.comment h6 {
 	font-weight: bold;
 	grid-column-start: 2; 
 	grid-column-end: 3;
-	text-align: left; 
+	text-align: justify; 
 	margin: auto 1em;
 }
 
@@ -211,10 +244,50 @@ div.comment > p {
 	color: black;
 	text-align: justify;
 	padding: 1em;
-	border-radius: 50px;
+	border-radius: 20px;
 	width: auto;
-	margin: auto auto auto 1em;
+	margin: 0 auto 0 1em;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+}
 
+div.comment > span {
+	font-size: 12px;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	text-align: left;
+	margin: 0 2em;
+}
+
+div.comment p.label {
+	grid-column-start: 1; 
+	grid-column-end: 3;
+	background-color: inherit;
+	color: white;
+	margin: auto 1em;
+	padding: 0;
+	text-align: right;
+	vertical-align: middle;
+}
+
+div.comment div.form_comment {
+	display: flex;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+	width: auto;
+	margin: 0;
+}
+
+div.comment div.form_comment input.form-control {
+	margin: 0 0 0 1em;
+	width: 100%;
+	flex-grow: 1;
+}
+
+div.comment div.form_comment button.btn {
+	margin: 0;
 }
 
 
@@ -228,13 +301,19 @@ div.comment > p {
 	MEMBERS
 */
 
-div#members .header h4{
+div#members {
+	margin: 0;
+	background-color: #4E5D6C;	
+}
+
+div#members .header {
 	padding: 1em;
 	background-color: #2B3E50; 
 }
 
 div#members div.member {
 	margin: 1em auto;
+	
 }
 
 div#members div.member img{
@@ -278,18 +357,96 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
-@media screen and (max-width: 562px){
+@media screen and (max-width: 600px){
 	section.container-fluid {
 		min-height: 100vh;
-		margin: 2em auto;
+		margin: 2em 0;
 		width: 100%;
+		max-width: 100%;
+		padding: 0 1em;
 	}
-	#info_buttons {
+	div.list-group-item p {
+		font-size: 12px;
+	}
+
+	div.list-group-item a{
+		font-size: 15px;
+	}
+
+	div.sprint-task {
+		padding: 0 1em 0 1em;
+	}
+
+	div.sprint-task svg{
+		font-size: 16px;
+		padding: 0 2px 0 0;
+	}
+
+	div.sprint-task button {
+		font-size: 12px;
+	}
+
+	div.sprint-task p {
+		font-size: 14px;
+	}
+
+	div.comment {
+		padding: 1em;
+		display: block;
+	}
+
+	div.comment > img {
+		max-width: 10%;
+		display: block;
+		margin: auto;
+	}
+	div.comment p {
+		display: block;
+		font-size: 12px;
+		margin: auto;
+	}
+	div.comment p.label {
+		text-align: left;
 		margin: auto;
 	}
 
-	#info_buttons button {
-		display: block;
-		margin: 0.5em auto;
+	div.comment h6 {
+		font-size: 14px;
+	}
+	div.comment div.form_comment {
+		display: flex;
+		width: auto;
+		margin: 0;
+	}
+
+	div.comment div.form_comment input.form-control {
+		margin: 0;
+		width: 100%;
+		flex-grow: 1;
+	}
+
+	div.comment div.form_comment button.btn {
+		margin: 0;
+		padding: 0 0.5em;
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 820px) and (min-width: 601px) {
+	div.comment p {
+		font-size: 12px;
+	}
+	div.comment h6 {
+		font-size: 14px;
+		padding: 0 0.5em;
+	}
+	div.comment {
+		padding: 2em;
+	}
+}
+
+@media screen and (max-width: 1070px) and (min-width: 820px) {
+	div.comment p {
+		font-size: 12px;
 	}
 }
