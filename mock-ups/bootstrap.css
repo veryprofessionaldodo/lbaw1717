@@ -3949,7 +3949,7 @@ tbody.collapse.show {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #EBEBEB;
-  background-color: #2B3E50;
+  background-color: #002325;
   border-color: #4E5D6C;
 }
 
@@ -5253,8 +5253,8 @@ tbody.collapse.show {
   display: block;
   padding: 0.75rem 1.25rem;
   margin-bottom: -1px;
-  background-color: #4E5D6C;
-  border: 1px solid transparent;
+  background-color: #00838F;
+  border: 2px solid #003;
 }
 
 .list-group-item:first-child {
@@ -9125,7 +9125,8 @@ label,
 .nav-tabs .nav-link:hover,
 .nav-pills .nav-link,
 .nav-pills .nav-link:hover {
-  color: #002325;
+  color: #DDD;
+  background-color: #00494C;
 }
 
 .nav-tabs .nav-link.disabled,

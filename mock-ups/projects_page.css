@@ -21,7 +21,6 @@ nav a {
 	text-decoration: none;
 	font-size: 24px;
 	font-weight: bold;
-
 }
 
 nav > form {
@@ -123,6 +122,10 @@ section.container-fluid .row .nav-tabs {
 	grid-row: 3;
 }
 
+div a {
+	color: #EEE;
+}
+
 div.list-group-item svg{
 	margin-right: 0.5em;
 	font-size: 24px;
@@ -150,10 +153,18 @@ div.list-group-item span {
 }
 
 div.sprint-task {
-	background-color: #2B3E50;
+	background-color: #4DD0E1;
 	padding: 1em 1em 1em 3em;
 	display: grid;
 	grid-template-columns: 5% auto auto;
+	border-left: 2px solid #000;
+	border-right: 2px solid #000;
+	border-top: 2px solid #000;
+}
+
+div.sprint-task:first-child {
+	border-left: 2px solid #000;
+	border-right: 2px solid #000;
 }
 
 div.sprint-task svg{
@@ -163,6 +174,7 @@ div.sprint-task svg{
 }
 
 div.sprint-task p{
+	color: #000;
 	grid-column-start: 2;
 	grid-column-end: 3;
 	margin: auto 0;
