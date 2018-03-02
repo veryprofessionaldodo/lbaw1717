@@ -2525,7 +2525,7 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #1c566b;
+  background-color: #004649;
   border-color: #999;
 }
 
@@ -9125,7 +9125,7 @@ label,
 .nav-tabs .nav-link:hover,
 .nav-pills .nav-link,
 .nav-pills .nav-link:hover {
-  color: #EBEBEB;
+  color: #002325;
 }
 
 .nav-tabs .nav-link.disabled,

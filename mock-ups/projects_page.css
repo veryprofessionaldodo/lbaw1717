@@ -1,13 +1,12 @@
 body {
 	margin: 0;
-	background-color: #868e96;
+	background-color: #006064;
 }
-
- /**
+/**
 		NAV
  */
 nav {
-	background-color: #2B3E50;
+	background-color: #002527;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

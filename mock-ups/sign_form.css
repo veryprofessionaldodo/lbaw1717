@@ -129,3 +129,11 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
+form > p {
+	display: inline-block;
+}
+
+form > a {
+	display: inline;
+}
+

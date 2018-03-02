@@ -1,12 +1,12 @@
 body {
 	margin: 0;
-	background-color: #deeded;
+	background-color: #006064;
 }
  /**
 		NAV
  */
 nav {
-	background-color: #112830;
+	background-color: #002527;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
@@ -104,7 +104,7 @@ aside {
 	min-width: 10em;
 	grid-column-start: 1;
 	grid-column-end: 2;
-	background-color: #384d51;
+	background-color: #004649;
 	text-align: center;
 	color: #e3eaed;
 	display: grid;
@@ -166,7 +166,7 @@ div#options form {
 div#options > form > input.form-control {
 	display: inline;
 	width: 50%;
-	background-color: #304c54;
+	background-color: #003638;
 }
 
 div.btn-group {
@@ -185,7 +185,7 @@ section button#new_project.btn.btn-primary {
 }
 
 section div.project {
-	background-color: #4f707a;
+	background-color: #B2DFDB;
 	margin: 1em 3em;
 	padding: 1em 0;
 	box-shadow: 0 0 5px #000;
@@ -204,14 +204,14 @@ section div.project > h5 {
 	margin: auto;
 	font-weight: bold;
 	text-align: center;
-	color: #f2fcff;
+	color: #111;
 }
 
 section div.project > p {
 	grid-column-start: 2;
 	margin: auto;
 	grid-column-end: 3;
-	color: #f2fcff;
+	color: #111;
 }
 
 section div.project .project_info{
@@ -219,7 +219,7 @@ section div.project .project_info{
 	grid-column-end: 4;
 	margin: auto;
 	text-align: center;
-	color: #f2fcff;
+	color: #111;
 }
 
 section div.project .project_info > *{
@@ -228,11 +228,12 @@ section div.project .project_info > *{
 }
 
 section div.project .project_info > button.btn.btn-secondary{
+	background-color: #004649;
 	font-size: 14px;
 }
 
 section div.project:hover {
-	background-color: #618893;
+	background-color: #80DEEA;
 	cursor: pointer;
 }
 

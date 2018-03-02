@@ -1,12 +1,12 @@
 body {
 	margin: 0;
-	background-color: #deeded;
+	background-color: #006064;
 }
  /**
 		NAV
  */
 nav {
-	background-color: #112830;
+	background-color: #002527;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
@@ -88,7 +88,7 @@ section > div#text {
 	grid-row-end: 3;
 	text-align: justify;
 	padding: 4em;
-	color: #005;
+	color: #E0F7FA;
 }
 
 section > div#text h2 {
@@ -105,7 +105,7 @@ section > div#sign {
 	grid-column-end: 3;
 	grid-row-start: 2;
 	grid-row-end: 3;
-	background-color: #2B3E50;
+	background-color: #002E30;
 	display: flex;
 	flex-direction: column;
 }
@@ -128,6 +128,7 @@ section > div#sign > form > * {
 }
 
 section > div#sign > form > button {
+
 	display: block;
 	width: 15em;
 	margin: 0.5em auto;
@@ -148,11 +149,11 @@ section > div#sign > form > button:last-of-type {
 #sign_buttons a{
 	text-decoration: none;
 	text-align: center;
-	background-color: #5bc0de;
+	background-color: #004144;
 	border: 0;
 	padding: 1em;
 	width: 50%;
-	color: #EBEBEB;
+	color: #999;
 	font-size: 20px;
 }
 
@@ -165,14 +166,15 @@ section > div#sign > form > button:last-of-type {
 }
 
 #sign_buttons a#selected {
-	background-color: #2B3E50;	
+	color: #EBEBEB;
+	background-color: #002E30;	
 }
 
 /**
 		FOOTER
 */
 footer {
-	background-color: #2B3E50;
+	background-color: #002527;
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
@@ -211,7 +213,7 @@ footer > div#info {
 	section > div#sign {
 		margin: 3em 0 0 0;
 		padding: 0 0 1em 0;
-		background-color: #2B3E50;
+		background-color: #002E30;
 		display: flex;
 		flex-direction: column;
 	}
