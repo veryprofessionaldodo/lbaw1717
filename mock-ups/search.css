@@ -64,6 +64,34 @@ nav ul li {
 }
 
 
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+
 /* PROJECT AND DETAILS */
 
 .project {
