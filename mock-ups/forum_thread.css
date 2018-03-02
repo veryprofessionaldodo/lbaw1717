@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #deeded;
+	background-color: #006064;
 	height: 100%;
 	width: 100%
 }
@@ -8,7 +8,7 @@ body {
 		NAV
  */
 nav {
-	background-color: #112830;
+	background-color: #002527;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
@@ -108,6 +108,34 @@ nav ul li {
 	color: white;
 	font-size: 24px;
 	margin-right: 1em;
+}
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
 }
 
 /*

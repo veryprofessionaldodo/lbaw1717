@@ -1,15 +1,14 @@
 body {
 	margin: 0;
-	background-color: #deeded;
-	height: 100%;
-	width: 100%
+	background-color: #006064;
+	  min-height: 100%;
 }
 /**
 		NAV
  */
 
 nav {
-	background-color: #112830;
+	background-color: #002527;
 	display: flex;	
 	justify-content: space-between;
 	align-items: center;
@@ -111,6 +110,35 @@ nav ul li {
 	margin-right: 1em;
 }
 
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+
 /*
 
 THREADS
@@ -118,9 +146,14 @@ THREADS
 */
 
 .table {
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
 	border: solid 3px;
 	border-color: #003;
     box-shadow: 0 0 5px #000;
+    grid-row-start: row1;
+    grid-row-end: row2;
 }
 
 tr#descriptions_table{
@@ -132,14 +165,10 @@ tr#descriptions_table{
 	margin: auto;
 	padding: 0;
 	vertical-align: top;
+
 }
 
 
-#container {
-    display: grid;
-    grid-template-rows: [row0] 25% [row1] auto [row2];
-	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];
-}
 
 #header {
 	grid-row: 1;
@@ -149,7 +178,7 @@ tr#descriptions_table{
 }
 
 #header h1{
-	color: #112323;
+	color: #E0F7FA;
 	margin: 1em;
 }
 
@@ -158,7 +187,6 @@ tr#descriptions_table{
 	grid-column-end: col2;
 	grid-row-start: row1;
 	grid-row-end: row2;
-	background-color: #2B3E50
 }
 
 #threads th {
@@ -166,6 +194,8 @@ tr#descriptions_table{
 	padding-top: 0.1em;
 	padding-bottom: 0.1em;
 	vertical-align: middle;
+	background-color: #B2EBF2;
+
 }
 
 #threads td {
@@ -174,6 +204,16 @@ tr#descriptions_table{
 	padding-top: 0.1em;
 	padding-bottom: 0.1em;
 	vertical-align: middle;
+	background-color: #B2EBF2;
+	text-align: center;
+}
+
+#threads th.desc {
+	background-color: #002E30;
+}
+
+#thread_main_text {
+	background-color:#002E30;
 }
 
 
@@ -187,29 +227,21 @@ tr#descriptions_table{
 	nav input.form-control {
 		display: none;
 	} 
-
-	#container {
-	    display: grid;
-	    grid-template-rows: [row0] 25% [row1] auto [row2];
-		grid-template-columns: [col0] 5% [col1] auto [col2] 5% [col3];
-	}
 	
 	#threads td {
 		font-size: 3vw;
 	}
 
 	#threads th {
-		font-size: 3.5vw;
+		font-size: 3.5vw;	grid-row: 1;
+	grid-column: 2;
+	color:  #2B3E50;
+	align-items: center;
+
 	}
 }
 
 @media screen and (max-width: 950px) and (min-width: 636px) {
-	#container {
-	    display: grid;
-	    grid-template-rows: [row0] 25% [row1] auto [row2];
-		grid-template-columns: [col0] 10% [col1] auto [col2] 10% [col3];
-	}
-
 	#threads td {
 		font-size: 1em;
 	}
