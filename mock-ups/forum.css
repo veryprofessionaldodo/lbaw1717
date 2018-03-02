@@ -110,40 +110,15 @@ nav ul li {
 	margin-right: 1em;
 }
 
-
-/**
-		FOOTER
-*/
-footer {
-	background-color: #002527;
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
-
-footer > * {
-	margin: 2em auto;
-}
-
-footer a, footer p {
-	font-size: 14px;
-}
-
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
-}
-
-
 /*
 
 THREADS
 
 */
+
+div#container {
+	min-height: 100vh;
+}
 
 .table {
 	margin-left: auto;
@@ -222,6 +197,36 @@ tr#descriptions_table{
 	text-decoration: none;
 	color: rgb(71, 84, 97);
 }
+
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
 
 @media screen and (max-width: 635px){
 	nav input.form-control {
