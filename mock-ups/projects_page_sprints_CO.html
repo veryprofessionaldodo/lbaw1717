@@ -41,6 +41,13 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-12 new_sprint">
+				<button class="btn btn-info"><i class="fas fa-plus"></i> Create New</button>
+			</div>
+		</div>
+
 		<div class="row">
 			<div class="col-12">
 				<ul class="nav nav-tabs">
@@ -56,6 +63,7 @@
 				</ul>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-12" id="sprints">
 				<div class="list-group list-group-root well">
@@ -63,6 +71,7 @@
 					<div class="list-group-item">
     					<a data-toggle="collapse" href="#sprint-1"><i class="fas fa-sort-down"></i>Make website</a>
   						<p>2 days until deadline</p>
+  						<button class="btn edit_sprint"><i class="fas fa-pencil-alt"></i></button>
 						<span class="badge badge-primary badge-pill">3</span>
 					</div>
 					<!-- Tasks -->
@@ -71,7 +80,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-1-c-1"><i class="fas fa-sort-down"></i></a>
 							<p>Make front page</p>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -101,7 +113,10 @@
 						<div class="sprint-task task_completed">
 							<a data-toggle="collapse" href="#sprint-1-c-2"><i class="fas fa-sort-down"></i></a>
 							<p class="task_completed">Make database</p>
-							<!--<button class="btn">Claim task</button>-->
+							<!--<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>-->
 							<input type="checkbox" checked="">
 						</div>
 						<!-- Comments -->
@@ -149,7 +164,10 @@
 								<img src="res/profile/profile-pic.png" title="Joanne Doe">
 								<img src="res/profile/profile-pic.png" title="Elton John">
 							</div>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -180,6 +198,7 @@
 					<div class="list-group-item">
     					<a data-toggle="collapse" href="#sprint-2"><i class="fas fa-sort-down fa-2x"></i>Make game</a>
   						<p>10 days until deadline</p>
+  						<button class="btn edit_sprint"><i class="fas fa-pencil-alt"></i></button>
 						<span class="badge badge-primary badge-pill">4</span>
 					</div>
 					<!-- Tasks -->
@@ -188,7 +207,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-2-c-1"><i class="fas fa-sort-down"></i></a>
 							<p>Make gameplay</p>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -221,7 +243,10 @@
 							<div class="assigned_users">
 								<img src="res/profile/profile-pic.png" title="Iroh">
 							</div>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -245,7 +270,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-2-c-3"><i class="fas fa-sort-down"></i></a>
 							<p>Make models</p>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -278,7 +306,10 @@
 							<div class="assigned_users">
 								<img src="res/profile/profile-pic.png" title="Katara">
 							</div>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -303,6 +334,7 @@
 					<div class="list-group-item">
     					<a data-toggle="collapse" href="#sprint-3"><i class="fas fa-sort-down fa-2x"></i>Be a successful company</a>
   						<p>30 days until deadline</p>
+  						<button class="btn edit_sprint"><i class="fas fa-pencil-alt"></i></button>
 						<span class="badge badge-primary badge-pill">6</span>
 					</div>
 					<!-- Tasks -->
@@ -314,7 +346,10 @@
 							<div class="assigned_users">
 								<img src="res/profile/profile-pic.png" title="Iroh">
 							</div>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -332,7 +367,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-2"><i class="fas fa-sort-down"></i></a>
 							<p>Hire people</p>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -350,7 +388,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-3"><i class="fas fa-sort-down"></i></a>
 							<p>Make money</p>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -371,7 +412,10 @@
 							<div class="assigned_users">
 								<img src="res/profile/profile-pic.png" title="Aang">
 							</div>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -395,7 +439,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-5"><i class="fas fa-sort-down"></i></a>
 							<p>Make good quality products</p>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->
@@ -413,7 +460,10 @@
 						<div class="sprint-task">
 							<a data-toggle="collapse" href="#sprint-3-c-6"><i class="fas fa-sort-down"></i></a>
 							<p>Don't be douchebags</p>
-							<button class="btn">Claim task</button>
+							<div class="coordinator_options">
+								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn">Assign task</button>
+							</div>
 							<input type="checkbox">
 						</div>
 						<!-- Comments -->

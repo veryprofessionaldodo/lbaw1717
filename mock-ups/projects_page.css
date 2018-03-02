@@ -98,7 +98,7 @@ section.container-fluid {
 }
 
 section.container-fluid .row .nav-tabs {
-	margin-top: 3em;
+	margin-top: 1em;
 }
 
 .nav-tabs{
@@ -111,6 +111,14 @@ section.container-fluid .row .nav-tabs {
 
 .nav-tabs .nav-item {
 	flex-grow: 1;
+}
+
+/**
+	COORDINATOR
+*/
+
+div.new_sprint {
+	margin: 1em auto;
 }
 
 /**
@@ -135,7 +143,7 @@ div.list-group-item {
 	padding: 1em;
 	display: grid;
 	border: 0;
-	grid-template-columns: 50% auto auto;
+	grid-template-columns: 50% auto auto auto;
 }
 
 div.list-group-item p{
@@ -151,7 +159,23 @@ div.list-group-item a{
 	vertical-align: super;
 }
 
+div.list-group-item button.btn.edit_sprint {
+	grid-column: 3;
+	grid-row: 1; 
+	background-color: inherit;
+	padding: 0;
+	margin: auto 0 auto auto;
+}
+
+div.list-group-item button.btn.edit_sprint svg {
+	font-size: 14px;
+	margin: auto 0;
+	color: #002;
+}
+
 div.list-group-item span {
+	grid-column: 4;
+	grid-row: 1; 
 	margin: auto 0 auto auto;
 }
 
@@ -186,9 +210,35 @@ div.sprint-task p{
 	text-align: left;
 }
 
+div.sprint-task div.coordinator_options {
+	grid-column-start: 4;
+	grid-column-end: 5;
+	display: flex;
+	justify-content: flex-end;
+}
+
+div.sprint-task div.coordinator_options button.edit_task.btn {
+	background-color: inherit;
+	padding: 0;
+	grid-column-start: 4;
+	grid-column-end: 5;
+	grid-row: 1;
+}
+
+div.sprint-task button.edit_task.btn svg {
+	font-size: 14px;
+	margin: auto 0;
+}
+
+div.sprint-task div.coordinator_options button.btn {
+	margin: auto 1em;
+	padding: 0 1em;
+}
+
 div.sprint-task button.btn {
 	grid-column-start: 4;
 	grid-column-end: 5;
+	grid-row: 1;
 	background-color: #012;
 	margin: auto 0 auto auto;
 	padding: 0 1em;
@@ -259,7 +309,7 @@ div.comment > p {
 	padding: 1em;
 	border-radius: 20px;
 	width: auto;
-	margin: 0 auto 0 1em;
+	margin: 0 2em 0 1em;
 	grid-column-start: 3; 
 	grid-column-end: 4;
 	grid-row: 1;
@@ -269,8 +319,24 @@ div.comment > span {
 	font-size: 12px;
 	grid-column-start: 3; 
 	grid-column-end: 4;
+	grid-row: 2;
 	text-align: left;
-	margin: 0 2em;
+	margin: 0 4em;
+}
+
+div.comment div.user_options {
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+	margin: auto 0 auto auto;
+}
+
+div.comment div.user_options button {
+	font-size: 12px;
+	display: block;
+	background-color: inherit;
+	color: #3e4a56;
+	padding: 0;
 }
 
 div.comment p.label {
@@ -389,7 +455,11 @@ footer > div#info {
 	}
 
 	div.list-group-item a{
-		font-size: 15px;
+		font-size: 14px;
+	}
+
+	div.list-group-item button.btn.edit_sprint svg {
+		font-size: 12px;
 	}
 
 	div.sprint-task {
@@ -417,12 +487,25 @@ footer > div#info {
 	div.comment > img {
 		max-width: 10%;
 		display: block;
-		margin: auto;
+		margin: auto auto;
+	}
+	div.comment h6 {
+		display: block;
+		text-align: center;
 	}
 	div.comment p {
 		display: block;
 		font-size: 12px;
 		margin: auto;
+	}
+	div.comment div.user_options {
+		display: inline;
+		margin: auto auto;
+	}
+	div.comment div.user_options button.btn {
+		font-size: 10px;
+		display: inline;
+		margin: auto auto;
 	}
 	div.comment p.label {
 		text-align: left;
