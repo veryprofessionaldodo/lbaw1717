@@ -380,35 +380,34 @@ div.comment div.form_comment button.btn {
 	MEMBERS
 */
 
-/*<<<<<<< HEAD*/
-div#members {
+div.members {
 	margin: 0;
 	background-color: #4E5D6C;	
 }
 
-div#members .header{
+div.members .header{
 	color: #001;
 	background-color: #E0F7FA; 
 }
 
-div#members .header h4 {
+div.members .header h4 {
 	margin: auto;
 	padding: 1em;
 }
 
-div#members div.member {
+div.members div.member {
 	margin: 1em auto;
 	
 }
 
-div#members div.member img{
+div.members div.member img{
 	margin: auto;
 	max-width: 75%;
 	max-height: 75%;
 	border-radius: 50%;
 }
 
-div#members div.member a{
+div.members div.member a{
 	margin: 1em auto;
 	font-weight: bold;
 	display: block;
@@ -419,7 +418,7 @@ div#members div.member a{
 */
 
 div.row {
-	opacity: 0.3;
+	opacity: 1;
 }
 
 div.container.create_new {
