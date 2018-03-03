@@ -111,6 +111,131 @@ nav ul li {
 }
 
 
+/*
+
+POST
+
+*/
+
+div#container ol.breadcrumb {
+	background-color: inherit;
+	padding: 0;
+}
+
+.table {
+	border: solid 6px;
+	border-color: #003;
+    box-shadow: 0 0 10px #000;
+}
+
+#container {
+   /* margin: 5% 15% auto 15%;*/
+   margin: 2em 10em;
+    /*grid-template-rows: [row0] 25% [row1] auto [row2];
+	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];*/
+}
+
+#thread {
+	background-color: #2B3E50;
+	margin-bottom: 2em;
+}
+
+#thread div#header {
+	background-color: #182f35;
+	border-width: 5px 5px 0 5px;
+	border-style: solid;
+	border-color: black;
+	padding: 1em;
+}
+
+
+#thread div.col-lg-2:last-of-type {
+	margin: auto;
+	text-align: center;
+}
+
+#thread div#issue {
+	margin: auto;
+	text-align: justify;
+}
+/*
+#thread img {
+	position: relative;
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+}*/
+
+#thread div.comment {
+	padding: 1em;
+	border-width: 0 5px 1px 5px;
+	border-style: solid;
+	border-color: black;
+}
+
+#thread div.comment .col-lg-8:nth-child(2) {
+	padding: 0 1em;
+}
+
+#thread div.comment:last-of-type {
+	border-width: 0 5px 5px 5px;
+	border-style: solid;
+	border-color: black;
+}
+
+#thread div.comment {
+	padding: 1em;
+}
+/*
+#thread table {
+	margin: 0;
+}
+
+table thead tr#thread_main_text {
+	background-color: #182f35;
+}
+
+#thread td {
+	font-size: 125%;
+}
+
+#thread td.date {
+	vertical-align: middle;	
+	text-align: center;
+	padding: 0 1em;
+}
+
+#thread tbody th {
+	text-align: center;
+}
+*/
+input.form-control {
+	margin-left: 0;
+	width: 90%;
+	background-color: #203c47;
+}
+
+input.form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+input.form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+#thread .comment a, #thread #header a{
+	background-color: inherit;
+	color: #3e4a56;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+	margin: auto;
+	text-align: center;
+	transition: background-color 0s;
+}
+
 /**
 		FOOTER
 */
@@ -138,84 +263,46 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
-/*
+/*@media screen and (max-width: 990px) {
+	nav input.form-control {
+		display: none;
+	} 
 
-POST
-
-*/
-
-div#container ol.breadcrumb {
-	background-color: inherit;
-	padding: 0;
-}
-
-.table {
-	border: solid 6px;
-	border-color: #003;
-    box-shadow: 0 0 10px #000;
-}
-
-#container {
-   /* margin: 5% 15% auto 15%;*/
-   margin: 2em 10em;
-    grid-template-rows: [row0] 25% [row1] auto [row2];
-	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];
-}
-
-#thread {
-	background-color: #2B3E50
-}
-
-#thread table {
-	margin: 0;
-}
-
-table thead tr#thread_main_text {
-	background-color: #182f35;
-}
-
-#thread td {
-	font-size: 125%;
-}
-
-#thread td.date {
-	vertical-align: middle;	
-	text-align: center;
-	padding: 0 1em;
-}
-
-#thread tbody th {
-	text-align: center;
-}
-
-input.form-control {
-	margin-left: 0;
-	width: 90%;
-	background-color: #203c47;
-}
-
-input.form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-input.form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-#thread td.user_options a{
-	background-color: inherit;
-	color: #3e4a56;
-	grid-column-start: 3; 
-	grid-column-end: 4;
-	grid-row: 1;
-	margin: auto;
-	text-align: center;
-	transition: background-color 0s;
-}
+	#container {
+	    margin: 5% 5% auto 5%;
+	}
 
 
+	#thread #header{
+		display: block;
+	}
+
+	#thread div div {
+		margin: auto;
+		width: auto;
+	}
+
+	#thread figcaption {
+		font-size: 12px;
+	}
+
+	#thread img {
+		max-width: 75%;
+    	height: auto;
+	}
+
+	#thread #issue p {
+		font-size: 14px;
+	}
+
+	#thread p {
+		font-size: 12px;
+	}
+
+	#thread h2{
+		font-size: 20px;
+	}
+}*/
 
 @media screen and (max-width: 635px){
 	nav input.form-control {
@@ -225,7 +312,55 @@ input.form-control:focus {
 	#container {
 	    margin: 5% 5% auto 5%;
 	}
+
+	#thread {
+		display: block;
+	}
+
+	div.row > div.col-3{
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+
+	div.row > div.col-7 {
+		margin-top: 1em;
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+
+	div.row > div.col-2{
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+
+	div.row > div.col-8 {
+		margin-top: 1em;
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+
+	#thread figcaption {
+		font-size: 12px;
+	}
+
+	#thread img {
+		max-width: 75%;
+    	height: auto;
+    }
+
+	#thread #issue p {
+		font-size: 14px;
+	}
+
+	#thread p {
+		font-size: 12px;
+	}
+
+	#thread h2{
+		font-size: 20px;
+	}
 	
+	/*
 	#thread td p{
 		font-size: 2vw;
 	}
@@ -239,24 +374,10 @@ input.form-control:focus {
 	}
 
 	#thread th img {
-		max-width: 100%;
+		max-width: 75%;
     	height: auto;
 	}
-/*
-	#thread td {
-		display: block;
-		border: 0;
-	}
 
-	#thread td.date{	
-		text-align: center;
-		margin: auto;
-	}
-
-	#thread td.date p{ 
-		display: inline-block;
-	}
-*/
 	#thread label {
 		font-size:3.5vw;
 	}
@@ -264,6 +385,10 @@ input.form-control:focus {
 	#thread div input.form-control {
 		max-height: 50%;
 	}
+
+	#thread td.user_options a {
+
+	}*/
 }
 
 @media screen and (max-width: 950px) and (min-width: 636px) {
@@ -271,7 +396,29 @@ input.form-control:focus {
 	    margin: 5% 10% auto 10%;
 	}
 
-	#thread td p{
+	#thread figcaption {
+		font-size: 12px;
+	}
+
+	#thread img {
+		max-width: 100%;
+    	height: auto;
+    	margin: auto;
+	}
+
+	#thread #issue p {
+		font-size: 14px;
+	}
+
+	#thread p {
+		font-size: 12px;
+	}
+
+	#thread h2{
+		font-size: 20px;
+	}
+	
+	/*#thread td p{
 		font-size: 2vw;
 	}
 
@@ -294,5 +441,5 @@ input.form-control:focus {
 
 	#thread label {
 		font-size:2.5vw;
-	}
+	}*/
 }

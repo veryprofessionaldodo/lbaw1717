@@ -1,19 +1,15 @@
 body {
 	margin: 0;
 	background-color: #006064;
-	  min-height: 100%;
 }
 /**
 		NAV
  */
-
 nav {
 	background-color: #002527;
-	display: flex;	
+	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	position: relative;
-	z-index: 1;
 }
 
 nav > * {
@@ -25,21 +21,21 @@ nav a {
 	text-decoration: none;
 	font-size: 24px;
 	font-weight: bold;
-	
 }
 
 nav > form {
+	flex-grow: 2;
 	display: flex;
-	flex-grow: 1;
 	align-items:center;
 	justify-content: center;
+
 }
 
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #203c47;
 	color: #AAA;
+	background-color: #203c47;
 }
 
 nav > form > .form-control:hover {
@@ -58,11 +54,11 @@ nav div input, nav div label {
 
 nav ul {
 	margin: 0;
-} 
+}
 
 nav ul li {
 	list-style: none;
-	display: inline;
+	display: inline-flex;
 }
 
 #user {
@@ -87,71 +83,46 @@ nav ul li {
 	margin-right: 1em;
 }
 
-
-#user {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	margin-right: 1em;
-}
-
-/*
-
-THREADS
-
-*/
+/**
+	CONTENT
+*/	
 
 div#container {
+	margin: 1em 3em;
 	min-height: 100vh;
-	z-index: auto;
 }
 
-div#container div#options {
+div#container div.member {
+	margin: 1em 2em;
+	background-color: #3797A4;
 	display: flex;
 	justify-content: space-between;
+	box-shadow: 0 0 10px #002527;
 }
 
-div#container div#options ol.breadcrumb {
-	background-color: inherit;
-}
-
-div#container button.btn {
-	margin: auto 1em;
-}
-
-div#container h1 {
-	margin: 0 0 0.5em 0;
-}
-
-
-#overlay {
-	min-height: 100vh;
-	z-index: 200;
-	width: 75%;
+div#container div.member > * {
 	margin: auto;
 }
 
+div#container div.member img {
+	max-width: 5em;
+	max-height: 5em;
+	border-radius: 50%;
+	margin: 1em 2em;
+}
 
+div#container div.member h3 {
+	margin: auto auto auto 0;
+}
+
+div#container div.member button {
+	margin: auto 3em auto auto;
+}
 /**
 		FOOTER
 */
 footer {
-	background-color: #002527;
+	background-color: #2B3E50;
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
@@ -174,18 +145,33 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
-
-@media screen and (max-width: 880px) {
-	div#overlay h3 {
-		font-size: 36px;
-		text-align: center;
+@media screen and (max-width: 500px){
+	div#container {
+		margin: 1em 1em;
 	}
 
-	label {
-		font-size: 14px;
+	div#container div.member {
+		margin: 1em 0;
+	}
+	div#container div.member img {
+		max-width: 3em;
+		max-height: 3em;
+		margin: 1em 1em;
 	}
 
-	p.lead a {
-		font-size: 14px;
+	div#container div.member h3 {
+		font-size: 16px;
+		margin-left: 0;
+	}
+
+	div#container div.member button{
+		font-size: 12px;
+		margin-right: 1em;
+	}
+}
+
+@media screen and (max-width: 580px){
+	div#container div.member h3 {
+		font-size: 20px;
 	}
 }

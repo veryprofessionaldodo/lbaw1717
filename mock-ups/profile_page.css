@@ -135,7 +135,7 @@ button#notification:hover ~ .dropdown {
 div#dashboard {
 	display: grid;
 	grid-template-columns: 20% auto;
-	height: 100vh;
+	min-height: 100vh;
 }
 
 /**
@@ -211,10 +211,23 @@ div#options > form > input.form-control {
 	background-color: #003638;
 }
 
+form#new_project_name {
+	margin: 0 3em;
+}
+
+form#new_project_name > input.form-control {
+	display: inline;
+	width: 50%;
+	background-color: #003638;
+}
+
 div.btn-group {
 	margin: 0 0 0 1em;
 }
 
+.hide {
+	display: none;
+}
 
 section {
 	grid-column-start: 2;
