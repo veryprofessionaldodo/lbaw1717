@@ -118,6 +118,7 @@ THREADS
 
 div#container {
 	min-height: 100vh;
+	z-index: auto;
 }
 
 .table {
@@ -198,6 +199,13 @@ tr#descriptions_table{
 	color: rgb(71, 84, 97);
 }
 
+#overlay {
+	position: relative;
+	width: 800px;;
+	height: 400px;
+	z-index: 200;
+	margin: auto;
+}
 
 
 /**

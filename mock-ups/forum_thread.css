@@ -153,8 +153,8 @@ POST
 #container {
    /* margin: 5% 15% auto 15%;*/
    margin: 2em 10em;
-    /*grid-template-rows: [row0] 25% [row1] auto [row2];
-	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];*/
+    grid-template-rows: [row0] 25% [row1] auto [row2];
+	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];
 }
 
 #thread {
@@ -185,7 +185,7 @@ table thead tr#thread_main_text {
 
 input.form-control {
 	margin-left: 0;
-	width: 90%%;
+	width: 90%;
 	background-color: #203c47;
 }
 
