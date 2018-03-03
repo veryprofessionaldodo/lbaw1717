@@ -36,8 +36,8 @@ nav > form {
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #203c47;
 	color: #AAA;
+	background-color: #203c47;
 }
 
 nav > form > .form-control:hover {
@@ -219,6 +219,11 @@ div.btn-group {
 section {
 	grid-column-start: 2;
 	grid-column-end: 3;
+}
+
+section p {
+	margin-top: 2rem;
+	text-align: center;
 }
 
 section button#new_project.btn.btn-primary {

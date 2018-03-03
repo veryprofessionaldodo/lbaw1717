@@ -204,6 +204,17 @@ input.form-control:focus {
 	background-color: #2b4e5b;
 }
 
+#thread td.user_options a{
+	background-color: inherit;
+	color: #3e4a56;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+	margin: auto;
+	text-align: center;
+	transition: background-color 0s;
+}
+
 
 
 @media screen and (max-width: 635px){

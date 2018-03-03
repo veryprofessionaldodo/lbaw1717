@@ -28,11 +28,24 @@ nav > form {
 	display: flex;
 	align-items:center;
 	justify-content: center;
+
 }
 
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
+	color: #AAA;
+	background-color: #203c47;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav > form > .form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav div input, nav div label {
@@ -266,7 +279,7 @@ div.sprint-task input[type="checkbox"] {
 }
 
 div.sprint-task.task_completed {
-	opacity: 0.8;	
+	opacity: 1;	
 }
 
 div.sprint-task.task_completed p.task_completed {
