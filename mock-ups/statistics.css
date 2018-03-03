@@ -1,0 +1,122 @@
+body {
+	margin: 0;
+	background-color: #006064;
+}
+/**
+		NAV
+ */
+nav {
+	background-color: #002527;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav ul li {
+	list-style: none;
+	display: inline-flex;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+/**
+
+CONTAINER
+
+*/
+
+
+#container {
+    display: grid;
+    grid-template-columns: auto 45% auto;
+    grid-template-rows: 10% 10% 10% 50%;
+    height: 100vh; 
+}
+
+#container .title {
+    grid-row: 1;
+    grid-column-start: 3;
+    grid-column-end: 8;
+    align-self: center;
+    justify-self: center;
+}
+
+#container .sprints_stats{
+    grid-column-start: 2;
+    grid-row: 2;
+    align-self: center;
+}
+
+#container .tasks_stats {
+    grid-column-start: 2;
+    grid-row: 3;
+    align-self: center;
+}
+
+#container #contributor {
+    color: #000000;
+}
+
+#container .members_stats {
+    grid-column: 2;
+    grid-row: 4;
+    background-color: #006064;
+}
+
+#contributor_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+}

@@ -5244,7 +5244,7 @@ tbody.collapse.show {
 }
 
 .list-group-item-action:active {
-  color: #EBEBEB;
+  color: rgb(0, 0, 0);
   background-color: #4E5D6C;
 }
 
@@ -5274,15 +5274,15 @@ tbody.collapse.show {
 }
 
 .list-group-item.disabled, .list-group-item:disabled {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(3, 3, 3, 0.4);
   background-color: #4E5D6C;
 }
 
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  background-color: #DF691A;
-  border-color: #DF691A;
+  background-color: #4E5D6C;
+  border-color: #4E5D6C;
 }
 
 .list-group-flush .list-group-item {
