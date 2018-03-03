@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>User Profile</title>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<link rel="stylesheet" type="text/css" href="bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="profile_page.css">
+	<link rel="stylesheet" type="text/css" href="profile_page_logged_in_visitor.css">
 </head>
-
 <body>
 	<nav>
 		<a href="index.html">Proyekt</a>
@@ -53,7 +51,9 @@
 			<img src="res/profile/profile-pic.png">
 		</div>
 	</nav>
+
 	<div id="dashboard">
+
 		<aside>
 			<div id="info">
 				<img src="res/profile/profile-pic.png">
@@ -71,12 +71,11 @@
 				<p>4 sprints contributed to</p>
 			</div>
 
-			<a href="#">Edit Profile</a>
+			<button class="btn" title="Report"><i class="fas fa-flag"></i></button>
 		</aside>
 
 		<section>
 			<div id="options">
-				<button id="new_project" class="btn btn-primary">Create New Project</button>
 				<form>
 					<input type="text" name="search" placeholder="Search" class="form-control mr-sm-4">
 					<button class="btn btn-primary my-2 my-sm-0" type="submit">
@@ -96,14 +95,10 @@
 				</div>
 			</div>
 			<div class="project">
-				<h5>BitConnect</h5>
-				<p>Team Member</p>
+				<h5>LBAW</h5>
+				<p>Coordinator</p>
 				<div class="project_info">
 					<p>26 Members</p>
-					<span>0 Sprint(s)</span>
-					<button class="btn btn-secondary">
-						<i class="fas fa-sign-out-alt"></i>
-					</button>
 				</div>
 			</div>
 			<div class="project">
@@ -111,10 +106,6 @@
 				<p>Coordinator</p>
 				<div class="project_info">
 					<p>26 Members</p>
-					<span>0 Sprint(s)</span>
-					<button class="btn btn-secondary">
-						<i class="fas fa-sign-out-alt"></i>
-					</button>
 				</div>
 			</div>
 			<div class="project">
@@ -122,10 +113,6 @@
 				<p>Coordinator</p>
 				<div class="project_info">
 					<p>26 Members</p>
-					<span>0 Sprint(s)</span>
-					<button class="btn btn-secondary">
-						<i class="fas fa-sign-out-alt"></i>
-					</button>
 				</div>
 			</div>
 			<div class="project">
@@ -133,15 +120,11 @@
 				<p>Team Member</p>
 				<div class="project_info">
 					<p>14 Members</p>
-					<span>1 Sprint(s)</span>
-					<button class="btn btn-secondary">
-						<i class="fas fa-sign-out-alt"></i>
-					</button>
 				</div>
 			</div>
 
 		</section>
 	</div>
-</body>
 
+</body>
 </html>

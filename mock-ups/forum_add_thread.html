@@ -12,44 +12,46 @@
     <nav>
         <a href="index.html">Proyekt</a>
         <form>
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
         <div id="user">
             <input type="checkbox" id="hamburger"> 
-              <label class="hamburger" for="hamburger"></label>
-              <button id="notification"><i class="fas fa-bell"></i></button>
+            <label class="hamburger" for="hamburger"></label>
+            <button id="notification"><i class="fas fa-bell"></i></button>
             <img src="res/profile/profile-pic.png">
         </div>
     </nav>
+
     <div id="container">
-        <div id="header">
-            <center>
-                    <h1>Forum</h1>            
-             </center>
+
+        <div id="options">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Project</a></li>            
+                <li class="breadcrumb-item"><a href="#">Forum</a></li>            
+                <li class="breadcrumb-item active">New Thread</li>            
+            </ol>
         </div>
+
         <div id="overlay">
-                <div class="jumbotron">
-                    <h3 class="display-3">Creating a new issue</h3>
-                    <p class="lead"></p>
-                    <hr class="my-4">
-                    <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">Insert the title of the new issue: </label>
-                            <input type="text" class="form-control" placeholder="Title..." id="inputDefault">
-                          </div>
-                    <div class="form-group">
-                            <label class="col-form-label" for="inputDefault">Insert the description of the issue: </label>
-                            <textarea class="form-control" id="exampleTextarea" placeholder ="Description..." rows="5"></textarea>
-                    </div>
-                    <p class="lead">
-                          <a class="btn btn-primary btn-lg" href="#" role="button">Create</a>
-                    </p>
-                      </div>   
+            <div class="jumbotron">
+                <h3 class="display-3">Creating a new thread</h3>
+                <p class="lead"></p>
+                <hr class="my-4">
+                <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">Insert the title of the new issue: </label>
+                    <input type="text" class="form-control" placeholder="Title..." id="inputDefault">
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="inputDefault">Insert the description of the issue: </label>
+                    <textarea class="form-control" id="exampleTextarea" placeholder ="Description..." rows="5"></textarea>
+                </div>
+                <p class="lead">
+                  <a class="btn btn-primary btn-lg" href="#" role="button">Create</a>
+                </p>
+            </div>   
         </div>
     </div>
-
- 
-    
 
     <footer>
         <div id="contacts">

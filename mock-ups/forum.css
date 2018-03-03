@@ -121,6 +121,23 @@ div#container {
 	z-index: auto;
 }
 
+div#container div#options {
+	display: flex;
+	justify-content: space-between;
+}
+
+div#container div#options ol.breadcrumb {
+	background-color: inherit;
+}
+
+div#container button.btn {
+	margin: auto 1em;
+}
+
+div#container h1 {
+	margin: 0 0 0.5em 0;
+}
+
 .table {
 	margin-left: auto;
 	margin-right: auto;
@@ -200,10 +217,9 @@ tr#descriptions_table{
 }
 
 #overlay {
-	position: relative;
-	width: 800px;;
-	height: 400px;
+	height: 100vh;
 	z-index: 200;
+	width: 75%;
 	margin: auto;
 }
 
