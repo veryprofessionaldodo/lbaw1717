@@ -297,6 +297,72 @@ section div.project:hover {
 	cursor: pointer;
 }
 
+
+/**
+	EDIT PROFILE
+*/
+
+div#dashboard {
+	opacity: 0.3;
+}
+
+div.container.edit_profile {
+	/*left: 25%;
+	top: 50%;*/
+	left:0;
+	right:0;
+	top:5em;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	z-index: 1;
+	display: block;
+	background-color: #2B3E50;
+	padding: 1em;
+	max-width: 40em;
+	height: 25em;
+	text-align: justify;
+}
+
+div.container.edit_profile h2 {
+	font-size: 24px;
+	text-align: center;
+}
+
+div.container.edit_profile > button {
+	margin: 0.25em 0 0 0;
+}
+
+div.container.edit_profile div.form_area {
+	display: flex;
+	justify-content: space-between;
+	margin: 1em 0;
+}
+
+div.container.edit_profile div.form_area_date {
+	display: block;
+	margin: 1em 0;
+}
+
+div.container.edit_profile label {
+	display: inline;
+	text-align: left;
+	clear: both;
+    margin: auto 1em;
+}
+
+div.container.edit_profile input.form-control {
+	flex-grow: 1;
+	width: auto;
+}
+
+div.container.edit_profile div#form_options {
+	text-align: center;
+	margin: 1em;
+}
+
+
+
 @media screen and (max-width: 500px){
 	nav input.form-control {
 		display: none;

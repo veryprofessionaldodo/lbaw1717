@@ -85,14 +85,50 @@ nav ul li {
 
 /**
 	CONTENT
-*/	
+*/
 
-div#container {
+section {
+	text-align: center;
+}
+
+section.container-fluid {
+	min-height: 100vh;
+	margin: 2em auto;
+	max-width: 75%;
+}	
+
+/** 
+	NAVTABS
+*/
+
+
+section.container-fluid .row .nav-tabs {
+	margin-top: 1em;
+}
+
+.nav-tabs{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.nav-tabs .nav-item {
+	flex-grow: 1;
+}
+
+
+
+
+div#members {
+	background-color: #006064;
+	width: 100%;
 	margin: 1em 3em;
 	min-height: 100vh;
 }
 
-div#container div.member {
+div#members div.member {
 	margin: 1em 2em;
 	background-color: #3797A4;
 	display: flex;
@@ -100,22 +136,22 @@ div#container div.member {
 	box-shadow: 0 0 10px #002527;
 }
 
-div#container div.member > * {
+div#members div.member > * {
 	margin: auto;
 }
 
-div#container div.member img {
+div#members div.member img {
 	max-width: 5em;
 	max-height: 5em;
 	border-radius: 50%;
 	margin: 1em 2em;
 }
 
-div#container div.member h3 {
+div#members div.member h3 {
 	margin: auto auto auto 0;
 }
 
-div#container div.member button {
+div#members div.member button {
 	margin: auto 3em auto auto;
 }
 /**
@@ -146,32 +182,32 @@ footer > div#info {
 }
 
 @media screen and (max-width: 500px){
-	div#container {
+	div#members {
 		margin: 1em 1em;
 	}
 
-	div#container div.member {
+	div#members div.member {
 		margin: 1em 0;
 	}
-	div#container div.member img {
+	div#members div.member img {
 		max-width: 3em;
 		max-height: 3em;
 		margin: 1em 1em;
 	}
 
-	div#container div.member h3 {
+	div#members div.member h3 {
 		font-size: 16px;
 		margin-left: 0;
 	}
 
-	div#container div.member button{
+	div#members div.member button{
 		font-size: 12px;
 		margin-right: 1em;
 	}
 }
 
 @media screen and (max-width: 580px){
-	div#container div.member h3 {
+	div#members div.member h3 {
 		font-size: 20px;
 	}
 }
