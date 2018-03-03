@@ -36,8 +36,8 @@ nav > form {
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #203c47;
 	color: #AAA;
+	background-color: #203c47;
 }
 
 nav > form > .form-control:hover {
