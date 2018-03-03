@@ -80,16 +80,13 @@ CONTAINER
 #container {
     display: grid;
     grid-template-columns: auto 45% auto;
-    grid-template-rows: 10% 10% 10% 50%;
-    height: 100vh; 
+    grid-template-rows: 5% 10% 10% 50%;
+    height: 100vh;
+    background-color: #006064; 
 }
 
-#container .title {
-    grid-row: 1;
-    grid-column-start: 3;
-    grid-column-end: 8;
-    align-self: center;
-    justify-self: center;
+.title {
+    padding-top: 50px;
 }
 
 #container .sprints_stats{

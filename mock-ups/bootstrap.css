@@ -4522,6 +4522,7 @@ tbody.collapse.show {
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   padding: 1.25rem;
+  height:10%;
 }
 
 .card-title {
@@ -5244,7 +5245,7 @@ tbody.collapse.show {
 }
 
 .list-group-item-action:active {
-  color: rgb(0, 0, 0);
+  color: #EBEBEB;
   background-color: #4E5D6C;
 }
 
@@ -5274,15 +5275,15 @@ tbody.collapse.show {
 }
 
 .list-group-item.disabled, .list-group-item:disabled {
-  color: rgba(3, 3, 3, 0.4);
+  color: rgba(255, 255, 255, 0.4);
   background-color: #4E5D6C;
 }
 
 .list-group-item.active {
   z-index: 2;
   color: #fff;
-  background-color: #4E5D6C;
-  border-color: #4E5D6C;
+  background-color: #DF691A;
+  border-color: #DF691A;
 }
 
 .list-group-flush .list-group-item {
