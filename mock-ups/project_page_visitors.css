@@ -135,6 +135,16 @@ div#dashboard {
 	display: grid;
 	grid-template-columns: 40% auto;
 	min-height: 100vh;
+	text-align: center;
+}
+
+div#dashboard button.btn {
+	display: block;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	margin: 1em auto 3em auto;
+	padding: 1em 2em;
+	width: auto;
 }
 
 aside {
