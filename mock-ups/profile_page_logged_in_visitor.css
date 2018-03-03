@@ -133,8 +133,9 @@ button#notification:hover ~ .dropdown {
 */
 
 div#dashboard {
+	margin: 1em;
 	display: grid;
-	grid-template-columns: 20% auto;
+	grid-template-columns: 40% auto;
 	height: 100vh;
 }
 
@@ -144,6 +145,7 @@ div#dashboard {
 
 aside {
 	min-width: 10em;
+	margin: 0 auto auto auto;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	background-color: #004649;
@@ -184,6 +186,10 @@ aside div#statistics {
 	grid-row-start: 2;
 	grid-row-end: 3;
 	margin: auto;
+}
+
+aside button.btn {
+	border-radius: 50px;
 }
 
 /**
