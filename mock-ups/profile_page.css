@@ -215,6 +215,11 @@ section {
 	grid-column-end: 3;
 }
 
+section p {
+	margin-top: 2rem;
+	text-align: center;
+}
+
 section button#new_project.btn.btn-primary {
 	margin: 2em 1em;
 	padding: 1em;
