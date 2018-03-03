@@ -414,6 +414,96 @@ div#members div.member a{
 	display: block;
 }
 
+/**
+	New SPRINT
+*/
+
+div.row {
+	opacity: 0.3;
+}
+
+div.container.create_new {
+	/*left: 25%;
+	top: 50%;*/
+	left:0;
+	right:0;
+	top:5em;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	z-index: 1;
+	display: block;
+	background-color: #2B3E50;
+	padding: 1em;
+	max-width: 40em;
+	height: 25em;
+	text-align: justify;
+}
+
+div.container.create_new h2 {
+	font-size: 24px;
+	text-align: center;
+}
+
+div.container.create_new > button {
+	margin: 0.25em 0 0 0;
+}
+
+div.container.create_new div.form_area {
+	display: flex;
+	justify-content: space-between;
+	margin: 1em 0;
+}
+
+div.container.create_new div.form_area_date {
+	display: block;
+	margin: 1em 0;
+}
+
+div.container.create_new label {
+	display: inline;
+	text-align: left;
+	clear: both;
+    margin: auto 1em;
+}
+
+div.container.create_new input.form-control {
+	flex-grow: 1;
+	width: auto;
+}
+
+div.container.create_new input[type="date"].form-control {
+	display: inline;
+	flex-grow: 0;
+	margin-left: 0;
+}
+
+div.container.create_new div#new_tasks {
+	background-color: #4E5D6C;
+	padding: 1em;
+}
+
+div.container.create_new div.created_task {
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+}
+
+div.container.create_new div#new_tasks p {
+	display: inline;
+	margin: auto auto auto 0;
+}
+
+div.container.create_new div#new_tasks div.created_task button.btn.delete {
+	padding: 0;
+	background-color: inherit;
+	display: inline;
+}
+
+div.container.create_new div#form_options {
+	text-align: center;
+	margin: 1em;
+}
 
 /**
 		FOOTER
@@ -530,6 +620,32 @@ footer > div#info {
 	div.comment div.form_comment button.btn {
 		margin: 0;
 		padding: 0 0.5em;
+		font-size: 12px;
+	}
+
+	/**
+		New Sprint or task
+	*/
+
+	div.container.create_new {
+		width: 100vw;
+		height: 100vh;	
+		margin: 1em 0;
+	}
+
+	div.container.create_new div.form_area {
+		display: block;
+		margin: 1em 0;
+	}
+
+	div.container div.form_area button.btn {
+		margin: 0;
+		padding: 0 0.5em;
+		font-size: 12px;
+	}
+
+	div.container.create_new label{
+		display: block;
 		font-size: 12px;
 	}
 }
