@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Statistics</title>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="statistics.css">
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">Proyekt</a>
+            <form>
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                  <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div id="user">
+                <input type="checkbox" id="hamburger"> 
+                  <label class="hamburger" for="hamburger"></label>
+                  <button id="notification"><i class="fas fa-bell"></i></button>
+                <img src="res/profile/profile-pic.png">
+            </div>
+        </nav>
+        
+
+
+        <div class="title">
+            <center>
+                <h1>Project's Name Stats</h1> 
+            </center>       
+        </div>
+
+        <div id="container">
+           
+            <div class="sprints_stats">
+                <div class="card">
+                    <div class="card-body">
+                        <h3><i class="fas fa-bolt"></i> &nbsp; &nbsp; 12 sprints completed</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="tasks_stats">
+                <div class="card">
+                    <div class="card-body">
+                        <h3><i class="far fa-sticky-note"></i> &nbsp; &nbsp; 90 tasks completed</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="members_stats">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        <h4>Top contributors</h4>
+                    </a>
+                    <a href="#" id="contributor" class="list-group-item list-group-item-action">
+                        <div id="contributor_info">
+                            <img src="res/forum/bee.jpg" height="30px" width="30px">
+                            <p style="padding-right:230px">BeeMargarida</p>
+                            <p>25 tasks completed</p>
+                        </div>   
+                    </a>
+                    <a href="#" id="contributor" class="list-group-item list-group-item-action">
+                            <div id="contributor_info">
+                                <img src="res/forum/dodo.jpg" height="30px" width="30px">
+                                <p style="padding-right:230px">angrydodo</p>
+                                <p>12 tasks completed</p>
+                            </div>   
+                    </a>
+                    <a href="#" id="contributor" class="list-group-item list-group-item-action">
+                        <div id="contributor_info">
+                            <img src="res/forum/liedson.jpg" height="30px" width="30px">
+                            <p style="padding-right:230px">Vespinha</p>
+                            <p>8 tasks completed</p>
+                        </div>
+                    </a>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

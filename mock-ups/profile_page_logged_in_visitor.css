@@ -133,10 +133,10 @@ button#notification:hover ~ .dropdown {
 */
 
 div#dashboard {
-	margin: 1em;
+	margin: 1em 1em 3em 1em;
 	display: grid;
 	grid-template-columns: 40% auto;
-	height: 100vh;
+	min-height: 100vh;
 }
 
 /**
@@ -154,7 +154,6 @@ aside {
 	display: grid;
 	grid-template-rows: 30% 50% auto;
 	box-shadow: 0 0px 5px 1px black;
-
 }
 
 aside p {
@@ -275,14 +274,36 @@ section div.project .project_info > *{
 	margin: auto 1em;
 }
 
-section div.project .project_info > button.btn.btn-secondary{
-	background-color: #004649;
-	font-size: 14px;
-}
-
 section div.project:hover {
 	background-color: #80DEEA;
 	cursor: pointer;
+}
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
 }
 
 @media screen and (max-width: 500px){
@@ -291,9 +312,17 @@ section div.project:hover {
 	} 
 	div#dashboard {
 		display: block;
+		margin: 1em;
 	}
-	aside {
-		display: none;
+
+	aside p {
+		font-size: 10px;
+	}
+
+	aside div#info img {
+		max-width:50%;
+		max-height:50%;
+		margin-top: 1em;
 	}
 
 	div#options {
@@ -316,20 +345,14 @@ section div.project:hover {
 		margin: 0 0 0 1em;
 	}
 
-	section button#new_project.btn.btn-primary {
-		margin: 1em auto;
-		padding: 1em;
-	}
-
 	section div.project:hover {
 		color: #FFF;
 	}
 
 	section div.project {
-		margin: 1em 3em;
+		margin: 1em 0;
 		padding: 1em;
 		box-shadow: 0 0 5px #000;
-		color: #000;
 		display: grid;
 		grid-template-columns: 20% auto 50%;
 		grid-template-rows: 50% auto;
@@ -343,18 +366,16 @@ section div.project:hover {
 		grid-column-start: 1;
 		grid-column-end: 2;
 		margin: auto;
-		font-size: 4vw;
+		font-size: 14px;
 		text-align: center;
-		color: #d3eced;
 	}
 
 	section div.project > p {
 		grid-column-start: 2;
 		margin: auto 1em;
-		font-size: 3vw;
+		font-size: 12px;
 		text-align: center;
 		grid-column-end: 3;
-		color: #FFF;
 	}
 
 	section div.project .project_info{
@@ -367,21 +388,13 @@ section div.project:hover {
 	}
 
 	section div.project .project_info > *{
-		font-size: 2.5vw;
+		font-size: 10px;
 	}
 
 	section div.project .project_info > span, section div.project .project_info > p {
 		grid-column-start: 1;	
 	}
 
-	section div.project .project_info > button {
-		grid-column-start: 2;
-		grid-row-start: 1;
-		grid-row-end: 3;
-	}
-	section div.project .project_info > button.btn.btn-secondary{
-		font-size: 12px;
-	}
 }
 
 
@@ -390,65 +403,22 @@ section div.project:hover {
 		display: block;
 	}
 	aside {
-		background-color: #1b323a;
-		color: #e3eaed;
-		box-shadow: 0 0 20px black;
-		display: grid;
-		grid-template-columns: 60% auto;
-		max-height: 15em;
-		min-width: 0;
-		padding: 1em;
-		margin-bottom: 2em;
+		display: block;
 	}
 
 	aside p {
-		font-size: 0.75em;
-	}
-
-	/*aside > * {
-		margin: 1em auto;
-	}*/
-
-	aside div#info {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		display: grid;
-		grid-template-columns: 60% 40%;
-		margin: 1em;
-	}
-
-	aside div#info #info_text {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: auto;
+		font-size: 12px;
 	}
 
 	aside div#info img {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		margin: auto;
-		max-width:75%;
-		max-height: 75%;
-		border-radius: 50%;
-		box-shadow: 0px 0px 10px;
-	}
-
-	aside div#statistics {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		margin: auto;
-	}
-
-	aside > a {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: 0;
+		max-width:25%;
+		max-height:25%;
+		margin-top: 1em;
 	}
 
 
 	div#options {
+		margin-top: 1em;
 		display: block;
 		text-align: center;
 	}
@@ -468,6 +438,11 @@ section div.project:hover {
 	div.btn-group {
 		margin: 0 0 0 1em;
 	}
+
+	section div.project {
+		padding: 1em;
+	}
+
 	section button#new_project.btn.btn-primary {
 		margin: 1em auto;
 		padding: 1em;
@@ -484,7 +459,6 @@ section div.project:hover {
 		box-shadow: 0 0 20px black;
 		display: grid;
 		grid-template-columns: 60% auto;
-		max-height: 15em;
 		padding: 1em;
 		min-width: 0;
 		margin-bottom: 2em;
@@ -492,6 +466,30 @@ section div.project:hover {
 
 	aside p {
 		font-size: 0.75em;
+	}
+
+	aside div#info img {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		margin: auto;
+		max-width:50%;
+		max-height: 50%;
+		border-radius: 50%;
+		box-shadow: 0px 0px 10px;
+	}
+
+	aside div#statistics {
+		grid-column-start: 2;
+		grid-column-end: 3;
+		grid-row-start: 1;
+		grid-row-end: 2;
+		margin: auto;
+	}
+
+	aside > button {
+		grid-column-start: 2;
+		grid-column-end: 3;
+		margin: auto;
 	}
 
 	/*aside > * {
