@@ -176,6 +176,36 @@ footer > div#info {
 
 
 @media screen and (max-width: 880px) {
+	nav input.form-control {
+		display: none;
+	} 
+	div#mobile ul {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	
+	/**   USAR JAVASCRIPT  */
+	/*
+	nav div input:checked ~ div#mobile ul {
+		visibility: visible;
+		display: block;
+		width: 100%;
+		background-color: white;
+		transition-delay: 0s;
+	}*/
 	div#overlay h3 {
 		font-size: 36px;
 		text-align: center;
