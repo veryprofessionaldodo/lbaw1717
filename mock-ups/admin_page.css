@@ -62,6 +62,11 @@ nav ul li {
 	display: inline-flex;
 }
 
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+}
+
 #user {
 	display: flex;
 	align-items: center;
@@ -144,4 +149,37 @@ div.user_notification:hover, div.comment_notification:hover {
 div.user_notification p, div.comment_notification p{
 	margin: 0;
 	letter-spacing: 0.5px;
+}
+
+@media screen and (max-width: 580px){
+	nav input.form-control {
+		display: none;
+	} 
+	div#mobile {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	
+	/**   USAR JAVASCRIPT  */
+	/*
+	nav div input:checked ~ div#mobile ul {
+		visibility: visible;
+		display: block;
+		width: 100%;
+		background-color: white;
+		transition-delay: 0s;
+	}*/
 }

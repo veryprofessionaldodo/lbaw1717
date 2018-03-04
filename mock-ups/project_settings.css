@@ -189,7 +189,8 @@ div#members div.member button {
 div#requests {
 	background-color: #002527;
 	margin: 0;
-	min-height: 100vh;
+	padding: 1em 0;
+	
 }
 
 div#requests div.request:last-of-type {
@@ -246,6 +247,20 @@ footer > div#info {
 }
 
 @media screen and (max-width: 500px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+	nav input.form-control {
+		display: none;
+	}
+	div#mobile {
+		display: none;
+	}
+
 	div#members {
 		margin: 1em 1em;
 	}
@@ -330,8 +345,21 @@ footer > div#info {
 		padding: 0;
 		max-width: 100%;
 	}
+
+	div#add_user {
+		display: block;
+	}
+
+	div#add_user button{
+		vertical-align: inherit;
+	}
+
 	div#members {
 		margin: 0;
+	}
+
+	div#members div.member {
+		display: block;
 	}
 
 	div#members div.member button:last-of-type{
@@ -349,7 +377,7 @@ footer > div#info {
 	div#members div.member button {
 		padding: 0 2px;
 		font-size: 12px;
-		margin: auto 0.5em;
+		margin: 1em 0.5em;
 	}
 
 	div#requests {
