@@ -307,9 +307,34 @@ footer > div#info {
 }
 
 @media screen and (max-width: 500px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
 	nav input.form-control {
 		display: none;
-	} 
+	}
+	div#mobile {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	
 	div#dashboard {
 		display: block;
 		margin: 1em;
