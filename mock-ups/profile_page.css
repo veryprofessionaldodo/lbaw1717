@@ -473,6 +473,10 @@ div.container.edit_profile div#form_options {
 		margin: 1em 2em;
 	}
 
+	div.container.edit_profile div.form_area input.form-control{
+		margin: 0 auto;
+	}
+
 	div.container div.form_area button.btn {
 		margin: 0;
 		padding: 0 0.5em;
@@ -482,6 +486,7 @@ div.container.edit_profile div#form_options {
 	div.container.edit_profile label{
 		display: block;
 		font-size: 12px;
+		text-align: center;
 	}
 }
 
