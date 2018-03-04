@@ -174,12 +174,18 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
-
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 550px) {
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
 	nav input.form-control {
 		display: none;
-	} 
-	div#mobile ul {
+	}
+	div#mobile {
 		display: none;
 	}
 	nav div label {
@@ -196,7 +202,6 @@ footer > div#info {
 	nav div input:checked ~ label:before{
 		content: "\2715";
 	}
-	
 	/**   USAR JAVASCRIPT  */
 	/*
 	nav div input:checked ~ div#mobile ul {
@@ -206,6 +211,15 @@ footer > div#info {
 		background-color: white;
 		transition-delay: 0s;
 	}*/
+}
+
+
+@media screen and (max-width: 880px) {
+	div#mobile ul {
+		display: none;
+	}
+	
+	
 	div#overlay h3 {
 		font-size: 36px;
 		text-align: center;

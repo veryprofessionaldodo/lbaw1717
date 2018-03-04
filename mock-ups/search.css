@@ -68,7 +68,7 @@ nav ul li {
 
 div#all_projects {
 	min-height: 100vh;
-	margin: auto 10%;
+	margin: 1em 10%;
 }
 
 .project {
@@ -125,7 +125,7 @@ div#all_projects {
 }
 
 #filter button {
-	margin-top: 1%;
+	margin: 1em 0 1em 0;
 	margin-left: 70%;
 }
 
