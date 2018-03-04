@@ -202,6 +202,22 @@ div.sprint-task {
 	border-top: 2px solid #000;*/
 }
 
+div.sprint-task.create_task {
+	padding: 1em;
+	display: flex;
+	justify-content: flex-start;
+}
+
+div.sprint-task.create_task input {
+	width: 100%;
+	margin: auto 1em;
+}
+
+div.sprint-task.create_task button {
+	margin: auto;
+	display: inline;
+}
+
 div.sprint-task:first-child {
 	/*border-left: 2px solid #000;
 	border-right: 2px solid #000;*/
@@ -579,6 +595,21 @@ footer > div#info {
 
 	div.sprint-task p {
 		font-size: 14px;
+	}
+
+
+	div.sprint-task.create_task {
+		padding: 1em 0em;
+		justify-content: center;
+	}
+
+	div.sprint-task.create_task input {
+		width: 50%;
+		margin: auto 1em;
+	}
+
+	div.sprint-task.create_task button {
+		margin: auto 0;
 	}
 
 	div.comment {
