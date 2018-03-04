@@ -216,8 +216,12 @@ tr#descriptions_table{
 	color: rgb(71, 84, 97);
 }
 
+div#container {
+	min-height: 100vh;
+}
+
 #overlay {
-	height: 100vh;
+	min-height: 100vh;
 	z-index: 200;
 	width: 75%;
 	margin: auto;
@@ -289,11 +293,16 @@ footer > div#info {
 	}
 
 	#threads th {
-		font-size: 3.5vw;	grid-row: 1;
-	grid-column: 2;
-	color:  #2B3E50;
-	align-items: center;
+		font-size: 3.5vw;	
+		grid-row: 1;
+		grid-column: 2;
+		color:  #2B3E50;
+		align-items: center;
+	}
 
+	#overlay h3{
+		font-size: 32px;
+		text-align: center;
 	}
 }
 

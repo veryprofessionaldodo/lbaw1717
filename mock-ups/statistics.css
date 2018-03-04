@@ -78,10 +78,8 @@ CONTAINER
 
 
 #container {
-    display: grid;
-    grid-template-columns: auto 45% auto;
-    grid-template-rows: 5% 10% 10% 50%;
-    height: 100vh;
+   	margin: auto 4em;
+    min-height: 100vh;
     background-color: #006064; 
 }
 
@@ -101,7 +99,7 @@ CONTAINER
     align-self: center;
 }
 
-#container #contributor {
+#container .contributor {
     color: #000000;
 }
 
@@ -111,9 +109,97 @@ CONTAINER
     background-color: #006064;
 }
 
-#contributor_info {
+.contributor_info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-self: center;
+}
+
+.contributor_info p {
+	margin: auto 0;
+}
+
+.list-group-item.list-group-item-action.active {
+	border: 1px solid black;
+}
+
+@media screen and (max-width: 430px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+	nav input.form-control {
+		display: none;
+	}
+	div#mobile {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+
+	#container {
+	   	margin: auto 1em;
+	}
+
+	h3, h4{
+		font-size: 18px;
+	}
+
+	p {
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 635px) and (min-width: 431px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+	nav input.form-control {
+		display: none;
+	}
+	div#mobile {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+
+	h3, h4{
+		font-size: 18px;
+	}
+
+	p {
+		font-size: 14px;
+	}
 }

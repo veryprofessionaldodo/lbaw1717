@@ -140,3 +140,19 @@ form > a {
 	display: inline;
 }
 
+@media screen and (max-width: 410px) {
+	nav input.form-control {
+		display: none;
+	} 
+	section form {
+		margin: 3em 1em;
+		width: auto;
+	}
+}
+
+@media screen and (max-width: 670px) and (min-width: 411px) {
+	section form {
+		margin: 3em 4em;
+		width: auto;
+	}
+}
