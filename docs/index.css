@@ -1,0 +1,301 @@
+body {
+	margin: 0;
+	background-color: #006064;
+}
+ /**
+		NAV
+ */
+nav {
+	background-color: #002527;
+	display: flex;	
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+	
+}
+
+nav > form {
+	flex-grow: 1;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+	background-color: #203c47;
+	color: #AAA;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav > form > .form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+/**
+	SECTION
+*/
+section {
+	display: grid;
+	grid-template-columns: 55% 45%;
+	grid-template-rows: 5% 75% auto;
+	min-height: 100vh;
+}
+
+section > * {
+	margin: 3em;
+}
+
+/**
+		Description
+*/
+section > div#text {
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	text-align: justify;
+	padding: 4em;
+	color: #E0F7FA;
+}
+
+section > div#text h2 {
+	padding-bottom: 0.5em;
+	text-align: left;
+}
+
+section > div#text p {
+	padding-bottom: 1em;
+}
+
+section > div#sign {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	background-color: #002E30;
+	display: flex;
+	flex-direction: column;
+}
+
+/**
+	FORMS
+*/
+section > div#sign > form {
+	text-align: center;
+	margin: auto 5em;
+	width: auto;
+}
+
+section > div#sign > form.hide {
+	display: none;
+}
+
+section > div#sign > form > * {
+	margin: 0.5em 0;
+}
+
+section > div#sign > form > button {
+
+	display: block;
+	width: 15em;
+	margin: 0.5em auto;
+}
+
+section > div#sign > form > button:first-of-type {
+	margin: 1.5em auto 0 auto;
+}
+
+section > div#sign > form > button:last-of-type {
+	margin-bottom: 1.5em;
+}
+
+#sign_buttons {
+	display: flex;
+	width: 100%;
+}
+#sign_buttons a{
+	text-decoration: none;
+	text-align: center;
+	background-color: #004144;
+	border: 0;
+	padding: 1em;
+	width: 50%;
+	color: #999;
+	font-size: 20px;
+}
+
+#sign_buttons a:first-child {
+	border-right: 1px solid #EBEBEB;
+}
+
+#sign_buttons a:hover {
+	background-color: #4b9eb7;
+}
+
+#sign_buttons a#selected {
+	color: #EBEBEB;
+	background-color: #002E30;	
+}
+
+
+
+@media screen and (max-width: 1024px){
+	section {
+		display: block;
+		margin: 10vh 15% 0 15%;
+	}
+
+	section > div#text {
+		text-align: justify;
+		padding: 0;
+		margin: 0;
+	}
+
+	section > div#sign {
+		margin: 3em 0 0 0;
+		padding: 0 0 1em 0;
+		background-color: #002E30;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 900px){
+	nav input.form-control {
+		display: none;
+	} 
+	div#mobile ul {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	
+	/**   USAR JAVASCRIPT  */
+	/*
+	nav div input:checked ~ div#mobile ul {
+		visibility: visible;
+		display: block;
+		width: 100%;
+		background-color: white;
+		transition-delay: 0s;
+	}*/
+
+	section {
+		display: block;
+		margin: 10% 10% 10% 10%;
+		height: auto;
+	}
+	section > div#text {
+		text-align: justify;
+		padding: 0;
+		margin: 0;
+	}
+
+	section > div#sign {
+		margin: 3em 0 0 0;
+		padding: 0 0 1em 0;
+		background-color: #2B3E50;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 635px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+
+	h2 {
+		font-size: 20px;
+		text-align: center;
+	}
+
+	p {
+		font-size: 14px;
+	}
+
+	h3 {
+		font-size: 20px;
+	}
+
+	section > div#sign > form {
+		text-align: center;
+		margin: auto 2em;
+		width: auto;
+	}
+
+	section > div#sign > form > button {
+		display: block;
+		width: 100%;
+		margin: 0.5em auto;
+	}
+
+	section > div#sign > form > button:first-of-type {
+		margin: 1.5em auto 0 auto;
+	}
+
+	section > div#sign > form > button:last-of-type {
+		margin-bottom: 1.5em;
+	}
+}

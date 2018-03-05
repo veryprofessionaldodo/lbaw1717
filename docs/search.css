@@ -1,0 +1,276 @@
+body {
+	margin: 0;
+	background-color: #006064;
+}
+ /**
+		NAV
+ */
+nav {
+	background-color: #002527;
+	display: flex;	
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	z-index: 1;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+	
+}
+
+nav > form {
+	display: flex;
+	flex-grow: 1;
+	align-items:center;
+	justify-content: center;
+	color: #AAA;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+	background-color: #203c47;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav > form > .form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+} 
+
+nav ul li {
+	list-style: none;
+	display: inline;
+}
+
+
+/* PROJECT AND DETAILS */
+
+div#all_projects {
+	min-height: 100vh;
+	margin: 1em 10%;
+}
+
+.project {
+	margin-top: 1%;
+	margin-left: auto;
+	margin-right: auto;
+	display: grid;
+	grid-template-columns: 50% auto auto;
+	grid-template-rows: 2fr 2fr;
+	background-color: #B2DFDB;
+	padding: 10px;
+	color: #001;
+	box-shadow: 0 0 5px #000;
+}
+
+.project:first-child{
+	margin-top: 3%;
+}
+
+.project > a.project_title{
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	margin: auto;
+	padding-top: 15%;
+	margin-left: 5%;
+}
+
+.project > a.project_title:hover{
+	color: #8f9193;
+	text-decoration: none;
+}
+
+.project > p.project_description {
+	grid-row-start: 2;
+	grid-row-end: 3;
+	grid-column-start: 1;
+	grid-column-end: 2;	
+	vertical-align: middle;
+	margin: auto 1em;
+	padding: 0 1em 0 0;
+	text-align: justify;
+}
+
+.project > p.active_members {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 2;
+	grid-column-end: 3;	
+	text-align: center;
+	margin: auto;
+	color: #001;
+}
+
+#filter button {
+	margin: 1em 0 1em 0;
+	margin-left: 70%;
+}
+
+.project button {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 3;
+	grid-column-end: 4;		
+	margin: auto;
+	background-color: #d0e8e8;	
+	color: #003;
+}
+
+.project button:hover {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 3;
+	grid-column-end: 4;		
+}
+
+
+
+.project_title {
+	font-size: 1.6em;
+	color: #001;
+}
+
+.project_description {
+	font-size: 0.8em;
+	color: #001;
+}
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+@media screen and (max-width: 1046px) {
+	p.active_members {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 800px){
+	nav input.form-control {
+		display: none;
+	} 
+	div#mobile ul {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	
+	/**   USAR JAVASCRIPT  */
+	/*
+	nav div input:checked ~ div#mobile ul {
+		visibility: visible;
+		display: block;
+		width: 100%;
+		background-color: white;
+		transition-delay: 0s;
+	}*/
+
+	p {
+		font-size: 14px;
+	}
+}
+
+@media screen and (max-width: 635px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+
+	p.project_description {
+		display: none;
+	}
+
+	a.project_title {
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 420px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+
+	.project > p.active_members br{
+		display: none;
+	}
+
+	a.project_title {
+		font-size: 18px;
+	}
+
+	.project > p.active_members {
+		font-size: 12px;
+		grid-row-start: 2;
+		grid-row-end: 3;
+		grid-column-start: 1;
+		grid-column-end: 1;
+		text-align: left;
+		margin-left: 0.5em;
+	}
+}

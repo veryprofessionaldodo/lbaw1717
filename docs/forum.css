@@ -1,0 +1,317 @@
+body {
+	margin: 0;
+	background-color: #006064;
+	  min-height: 100%;
+}
+/**
+		NAV
+ */
+
+nav {
+	background-color: #002527;
+	display: flex;	
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	z-index: 1;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+	
+}
+
+nav > form {
+	display: flex;
+	flex-grow: 1;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+	background-color: #203c47;
+	color: #AAA;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav > form > .form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+} 
+
+nav ul li {
+	list-style: none;
+	display: inline;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+/*
+
+THREADS
+
+*/
+
+div#container {
+	min-height: 100vh;
+	z-index: auto;
+}
+
+div#container div#options {
+	display: flex;
+	justify-content: space-between;
+}
+
+div#container div#options ol.breadcrumb {
+	background-color: inherit;
+}
+
+div#container button.btn {
+	margin: auto 1em;
+}
+
+div#container h1 {
+	margin: 0 0 0.5em 0;
+}
+
+.table {
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	border: solid 3px;
+	border-color: #003;
+    box-shadow: 0 0 5px #000;
+    grid-row-start: row1;
+    grid-row-end: row2;
+}
+
+tr#descriptions_table{
+	text-align: center;
+	padding: 0;
+}
+
+.table thead th.desc {
+	margin: auto;
+	padding: 0;
+	vertical-align: top;
+
+}
+
+
+
+#header {
+	grid-row: 1;
+	grid-column: 2;
+	color:  #2B3E50;
+	align-items: center;
+}
+
+#header h1{
+	color: #E0F7FA;
+	margin: 1em;
+}
+
+#threads {
+	grid-column-start: col1;
+	grid-column-end: col2;
+	grid-row-start: row1;
+	grid-row-end: row2;
+}
+
+#threads th {
+	font-size: 125%;
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
+	vertical-align: middle;
+	background-color: #B2EBF2;
+
+}
+
+#threads td {
+	/*height: 80px;*/
+	font-size: 125%;
+	padding-top: 0.1em;
+	padding-bottom: 0.1em;
+	vertical-align: middle;
+	background-color: #B2EBF2;
+	text-align: center;
+}
+
+#threads th.desc {
+	background-color: #002E30;
+}
+
+#thread_main_text {
+	background-color:#002E30;
+}
+
+
+#threads a{
+	display: block;
+	text-decoration: none;
+	color: rgb(71, 84, 97);
+}
+
+div#container {
+	min-height: 100vh;
+}
+
+#overlay {
+	min-height: 100vh;
+	z-index: 200;
+	width: 75%;
+	margin: auto;
+}
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+
+@media screen and (max-width: 635px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+	nav input.form-control {
+		display: none;
+	}
+	div#mobile {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+
+	.table {
+		width: 90%;
+	}
+	#threads td {
+		font-size: 3vw;
+	}
+
+	#threads th {
+		font-size: 3.5vw;	
+		grid-row: 1;
+		grid-column: 2;
+		color:  #2B3E50;
+		align-items: center;
+	}
+
+	#overlay h3{
+		font-size: 32px;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: 950px) and (min-width: 636px) {
+	#threads td {
+		font-size: 1em;
+	}
+
+	#threads th {
+		font-size: 1.5em;
+	}
+}

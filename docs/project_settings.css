@@ -1,0 +1,462 @@
+body {
+	margin: 0;
+	background-color: #006064;
+}
+/**
+		NAV
+ */
+nav {
+	background-color: #002527;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+	color: #AAA;
+	background-color: #203c47;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav > form > .form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav ul li {
+	list-style: none;
+	display: inline-flex;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+/**
+	CONTENT
+*/
+
+section {
+	text-align: center;
+}
+
+section.container-fluid {
+	min-height: 100vh;
+	margin: 2em auto;
+	max-width: 75%;
+}	
+
+/** 
+	NAVTABS
+*/
+
+
+section.container-fluid .row .nav-tabs {
+	margin-top: 1em;
+}
+
+.nav-tabs{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.nav-tabs .nav-item {
+	flex-grow: 1;
+}
+
+/**
+	MEMBERS
+*/
+
+div#add_user {
+	display: flex;
+	justify-content: space-between;
+	grid-row: 1;
+	width: auto;
+	margin: 2em 2em;
+}
+
+div#add_user label {
+	margin: auto;
+}
+
+div#add_user input.form-control {
+	margin: 0 0 0 1em;
+	width: 50%;
+	flex-grow: 1;
+}
+
+div#add_user button.btn {
+	margin: 0;
+}
+
+
+div#members {
+	background-color: #002527;
+	margin: 0;
+	min-height: 100vh;
+}
+
+div#members div.member:last-of-type {
+	margin-bottom: 2em;
+}
+
+div#members div.member {
+	margin: 1em 2em;
+	background-color: #3797A4;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 0 10px #002527;
+}
+
+div#members div.member > * {
+	margin: auto;
+}
+
+div#members div.member img {
+	max-width: 5em;
+	max-height: 5em;
+	border-radius: 50%;
+	margin: 1em 2em;
+}
+
+div#members div.member h3 {
+	margin: auto auto auto 0;
+}
+
+div#members div.member button {
+	margin: auto 3em auto auto;
+}
+
+/** 
+	REQUESTS
+*/
+
+div#requests {
+	background-color: #002527;
+	margin: 0;
+	padding: 1em 0;
+	
+}
+
+div#requests div.request:last-of-type {
+	margin-bottom: 2em;
+}
+
+div#requests div.request {
+	padding: 1em;
+	margin: 1em 2em;
+	background-color: #3797A4;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 0 10px #002527;
+}
+
+div#requests div.request > * {
+	margin: auto;
+}
+
+div#requests div.request p {
+	margin-left: 1em;
+	text-align: left;
+}
+
+div#requests div.request div.option_buttons {
+	margin: auto 3em auto auto;
+}
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #2B3E50;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+@media screen and (max-width: 500px){
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
+	nav input.form-control {
+		display: none;
+	}
+	div#mobile {
+		display: none;
+	}
+
+	div#members {
+		margin: 1em 1em;
+	}
+
+	div#members div.member {
+		margin: 1em 0;
+	}
+	div#members div.member img {
+		max-width: 3em;
+		max-height: 3em;
+		margin: 1em 1em;
+	}
+
+	div#members div.member h3 {
+		font-size: 16px;
+		margin-left: 0;
+	}
+
+	div#members div.member button{
+		font-size: 12px;
+		margin-right: 1em;
+	}
+
+	div#add_user {
+		display: block;
+		justify-content: space-between;
+		grid-row: 1;
+		width: auto;
+		margin: 2em 0;
+	}
+
+	div#add_user label {
+		margin: auto;
+		display: block;
+	}
+
+	div#add_user input.form-control {
+		margin: auto 0;
+		width: 60%;
+		display: inline-block;
+	}
+
+	div#add_user button.btn {
+		margin: auto 0;
+		display: inline-block;
+	}
+}
+
+@media screen and (max-width: 580px){
+	nav input.form-control {
+		display: none;
+	} 
+	div#mobile ul {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	
+	/**   USAR JAVASCRIPT  */
+	/*
+	nav div input:checked ~ div#mobile ul {
+		visibility: visible;
+		display: block;
+		width: 100%;
+		background-color: white;
+		transition-delay: 0s;
+	}*/
+	section.container-fluid {
+		margin: 2em 0;
+		padding: 0;
+		max-width: 100%;
+	}
+
+	div#add_user {
+		display: block;
+	}
+
+	div#add_user button{
+		vertical-align: inherit;
+	}
+
+	div#members {
+		margin: 0;
+	}
+
+	div#members div.member {
+		display: block;
+	}
+
+	div#members div.member button:last-of-type{
+		margin-right: 1em;
+	}
+	div#members div.member h3 {
+		font-size: 12px;
+		margin-left: 0.25em;
+	}
+	div#members div.member img {
+		max-width: 3em;
+		max-height: 3em;
+		margin: 1em 0;
+	}
+	div#members div.member button {
+		padding: 0 2px;
+		font-size: 12px;
+		margin: 1em 0.5em;
+	}
+
+	div#requests {
+		margin: 0;
+	}
+
+	div#requests div.request {
+		padding: 0.5em;
+	}
+
+	div#requests div.request p{
+		font-size: 12px;
+	}
+
+	div#requests div.request div.option_buttons {
+		margin: 0;
+	}
+
+	div#requests div.request div.option_buttons button{
+		font-size: 12px;
+		padding: 2px 6px;
+	}
+}
+
+@media screen and (max-width: 770px) and (min-width: 581px){
+	section.container-fluid {
+		min-height: 100vh;
+		margin: 2em auto;
+		max-width: 100%;
+	}
+	div#members div.member h3 {
+		font-size: 14px;
+		margin-left: 0;
+	}
+
+	div#members div.member img {
+		max-width: 3em;
+		max-height: 3em;
+		margin: 1em 0.5em;
+	}
+
+	div#members div.member button {
+		font-size: 12px;
+		margin: auto 0.5em;
+	}
+
+	div#members div.member button:last-of-type{
+		margin-right: 1em;
+	}
+
+	div#requests div.request p{
+		font-size: 14px;
+		margin-left: 0.5em;
+	}
+
+	div#requests div.request div.option_buttons {
+		margin-right: 1em;
+	}
+}
+
+@media screen and (max-width: 990px) and (min-width: 771px){
+	div#members div.member h3 {
+		font-size: 18px;
+	}
+
+	div#members div.member img {
+		margin: 1em 0.5em;
+	}
+
+	div#members div.member button{
+		font-size: 12px;
+	}
+
+	div#requests div.request p{
+		font-size: 14px;
+		margin-left: 0.5em;
+	}
+
+	div#requests div.request div.option_buttons {
+		margin-right: 1em;
+	}
+}

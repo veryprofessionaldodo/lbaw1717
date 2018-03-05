@@ -1,16 +1,19 @@
 body {
 	margin: 0;
 	background-color: #006064;
+	  min-height: 100%;
 }
-
- /**
+/**
 		NAV
  */
+
 nav {
 	background-color: #002527;
-	display: flex;
+	display: flex;	
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
+	z-index: 1;
 }
 
 nav > * {
@@ -22,12 +25,12 @@ nav a {
 	text-decoration: none;
 	font-size: 24px;
 	font-weight: bold;
-
+	
 }
 
 nav > form {
-	flex-grow: 2;
 	display: flex;
+	flex-grow: 1;
 	align-items:center;
 	justify-content: center;
 }
@@ -55,16 +58,11 @@ nav div input, nav div label {
 
 nav ul {
 	margin: 0;
-}
+} 
 
 nav ul li {
 	list-style: none;
-	display: inline-flex;
-}
-
-h2 {
-	text-align: center;
-	padding-top: 0.5em;
+	display: inline;
 }
 
 #user {
@@ -81,6 +79,71 @@ h2 {
 #user button {
 	background-color: inherit;
 	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
+}
+
+/*
+
+THREADS
+
+*/
+
+div#container {
+	min-height: 100vh;
+	z-index: auto;
+}
+
+div#container div#options {
+	display: flex;
+	justify-content: space-between;
+}
+
+div#container div#options ol.breadcrumb {
+	background-color: inherit;
+}
+
+div#container button.btn {
+	margin: auto 1em;
+}
+
+div#container h1 {
+	margin: 0 0 0.5em 0;
+}
+
+
+#overlay {
+	min-height: 100vh;
+	z-index: 200;
+	width: 75%;
+	margin: auto;
 }
 
 
@@ -111,50 +174,17 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
-
-/**
-	SECTION
-*/
-
-.container-fluid {
-	margin: 5em auto;
-	vertical-align: top;
-}
-
-
-div#users, div#comments {
-	background-color: #002E30;
-	padding: 1em 3em;
-	margin: 0 auto 3em auto;
-	box-shadow: 0 0 10px #1b323a;
-	height: auto;
-}
-
-div#users.col-lg-4, div#comments.col-lg-4 {
-	height: 100%;
-}
-
-div.user_notification, div.comment_notification {
-	color: #111;
-	cursor: pointer;
-	background-color: #deeded;
-	padding: 1em;
-	margin: 2em 0;
-}
-
-div.user_notification:hover, div.comment_notification:hover {
-	background-color: #c9dbdb;
-}
-
-div.user_notification p, div.comment_notification p{
-	margin: 0;
-	letter-spacing: 0.5px;
-}
-
-@media screen and (max-width: 580px){
+@media screen and (max-width: 550px) {
+	nav div input:checked ~ ul {
+		visibility: visible;
+		display: inline;
+		float: left;
+		padding-top: 0.5em;
+		transition-delay: 0s;
+	}
 	nav input.form-control {
 		display: none;
-	} 
+	}
 	div#mobile {
 		display: none;
 	}
@@ -172,7 +202,6 @@ div.user_notification p, div.comment_notification p{
 	nav div input:checked ~ label:before{
 		content: "\2715";
 	}
-	
 	/**   USAR JAVASCRIPT  */
 	/*
 	nav div input:checked ~ div#mobile ul {
@@ -182,4 +211,25 @@ div.user_notification p, div.comment_notification p{
 		background-color: white;
 		transition-delay: 0s;
 	}*/
+}
+
+
+@media screen and (max-width: 880px) {
+	div#mobile ul {
+		display: none;
+	}
+	
+	
+	div#overlay h3 {
+		font-size: 36px;
+		text-align: center;
+	}
+
+	label {
+		font-size: 14px;
+	}
+
+	p.lead a {
+		font-size: 14px;
+	}
 }
