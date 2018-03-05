@@ -182,6 +182,9 @@ section > div#sign > form > button:last-of-type {
 	background-color: #002E30;	
 }
 
+#sign_mobile {
+	display: none;
+}
 
 
 @media screen and (max-width: 1024px){
@@ -238,9 +241,9 @@ section > div#sign > form > button:last-of-type {
 	}*/
 
 	section {
-		display: block;
 		margin: 10% 10% 10% 10%;
 		height: auto;
+		display: block; 
 	}
 	section > div#text {
 		text-align: justify;
@@ -252,9 +255,20 @@ section > div#sign > form > button:last-of-type {
 		margin: 3em 0 0 0;
 		padding: 0 0 1em 0;
 		background-color: #2B3E50;
-		display: flex;
+		display: none;
 		flex-direction: column;
 	}
+
+	#sign_mobile {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	#sign_mobile div {
+		height: 20px;
+	}
+
 }
 
 @media screen and (max-width: 635px){
@@ -297,5 +311,11 @@ section > div#sign > form > button:last-of-type {
 
 	section > div#sign > form > button:last-of-type {
 		margin-bottom: 1.5em;
+	}
+}
+
+@media screen and (max-width:531px){
+	section {
+		display: block; 
 	}
 }
