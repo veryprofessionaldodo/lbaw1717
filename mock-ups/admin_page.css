@@ -103,42 +103,34 @@ nav > form > .form-control:hover::placeholder {
 
 
 /**
-		FOOTER
-*/
-footer {
-	background-color: #0A1827;
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
-
-footer > * {
-	margin: 2em auto;
-}
-
-footer a, footer p {
-	font-size: 14px;
-}
-
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
-}
-
-
-/**
 	SECTION
 */
 
 .container-fluid {
-	margin: 5em auto;
+	margin: 5em 0;
+	padding: 0;
 	vertical-align: top;
+	min-height: 100vh;
+	color: black;
 }
 
+aside > div#active {
+	background-color: #F6EDD3;
+}
+
+aside {
+	background-color: #CCD9CE;
+}
+
+aside.col-2#navbar {
+	padding-right: 0;
+	margin: 0;
+}
+
+aside.col-1#navbar h4{
+	font-size: 18px;
+	padding: 1em;
+}
 
 div#users, div#comments {
 	background-color: #9AC0BA;
@@ -168,6 +160,34 @@ div.user_notification:hover, div.comment_notification:hover {
 div.user_notification p, div.comment_notification p{
 	margin: 0;
 	letter-spacing: 0.5px;
+}
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #0A1827;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
 }
 
 @media screen and (max-width: 580px){

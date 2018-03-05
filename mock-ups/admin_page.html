@@ -11,20 +11,72 @@
 	<nav>
 		<a href="index.html">Proyekt</a>
 		<form>
-	  		<input class="form-control mr-sm-2" type="text" placeholder="Search">
-	  		<button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+			<button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
 		</form>
 		<div id="user">
 			<input type="checkbox" id="hamburger"> 
-      		<label class="hamburger" for="hamburger"></label>
-      		<div id="mobile">
+			<label class="hamburger" for="hamburger"></label>
+			<div id="mobile">
 				<img src="res/profile/profile-pic.png">
-      		</div>
+			</div>
 		</div>
 	</nav>
 
 	<div class="container-fluid" id="test">
 		<div class="row">
+			<aside class="col-2" id="navbar">
+				<div id="active">
+					<h4>User Reports</h4>
+				</div>
+				<div>
+					<h4>Comment Reports</h4>
+				</div>
+			</aside>
+
+			<section class="col-10">
+				<div id="search_bar">
+					<form> <!-- change styling of this input -->
+						<input class="form-control mr-sm-2" type="text" placeholder="Search">
+						<button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+					</form>
+				</div>
+				<div id="reports">
+					<div class="report">
+						<div class="report_principal_info">
+							<p>User <a href="#">letto_1998</a> has been reported</p>
+							<a href="#">More info</a>
+							<button class="btn">Delete Account</button>
+							<button class="btn">Dismiss Report</button>
+						</div>
+						<div class="report_details">
+							<p><span>1/3/2018</span> , by user <a href="#">john_doe_09</a></p>
+							<h4>Reason: </h4>
+							<p>Offensive language in a working environment</p>
+							<h4>Details: </h4>
+							<p>Nullam finibus sagittis elit, vel molestie felis efficitur sit amet. Vestibulum non placerat ipsum. Maecenas eu magna convallis eros tristique placerat. Duis malesuada malesuada malesuada. Phasellus vestibulum sagittis lacus, a consequat nisi porta a. Donec ante nulla, facilisis malesuada pharetra auctor, volutpat non velit. Vestibulum sagittis vitae sapien fringilla cursus. Curabitur bibendum tincidunt varius. Mauris ac mattis quam, nec ornare nulla. Cras et lorem porttitor, commodo tellus nec, egestas diam.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<footer>
+		<div id="contacts">
+			<h6>Contacts</h6>
+			<p>(+351)255255255</p>
+		</div>
+
+		<div id="info">
+			<a href="#">Terms of use</a>
+		</div>
+	</footer>
+</body>
+</html>
+
+<!--
+	<div class="row">
 			<div class="col-lg-5 offset-lg-1" id="users">
 				<h2>User Reports</h2>
 				<div class="user_notification">
@@ -50,16 +102,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
-<footer>
-		<div id="contacts">
-			<h6>Contacts</h6>
-			<p>(+351)255255255</p>
-		</div>
-
-		<div id="info">
-			<a href="#">Terms of use</a>
-		</div>
-	</footer>
-</body>
-</html>
+-->
