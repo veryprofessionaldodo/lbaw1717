@@ -1,13 +1,13 @@
 body {
 	margin: 0;
-	background-color: #006064;
+	background-color: #F6EDD3;
 }
 
  /**
 		NAV
  */
 nav {
-	background-color: #002527;
+	background-color: #0A1827;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -15,14 +15,15 @@ nav {
 
 nav > * {
 	display: inline;
-	margin: 1em;
+	margin: 0.5em;
+	margin-left:0.7em;
 }
 
 nav a {
 	text-decoration: none;
-	font-size: 24px;
-	font-weight: bold;
-
+	font-size: 27px;
+	letter-spacing: 4px;
+	color: #CCD9CE;
 }
 
 nav > form {
@@ -35,18 +36,19 @@ nav > form {
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #203c47;
-	color: #AAA;
+	background-color: #4F8082;
+	color: #0A1827;
+	transition: all 0.2s;
 }
 
 nav > form > .form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
+	background-color: #9AC0BA;
 }
 
 nav > form > .form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
+	background-color: #CCD9CE;
+	color: #0A1827;
+	outline: 5px auto -webkit-focus-ring-color;
 }
 
 nav div input, nav div label {
@@ -65,6 +67,7 @@ nav ul li {
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
+	color: #0A1827;
 }
 
 #user {
@@ -83,12 +86,27 @@ h2 {
 	border: 0;
 }
 
+nav > form > .form-control::-webkit-input-placeholder {
+  color: #FFF;
+  opacity: 1;
+}
+
+nav > form > .form-control::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
+nav > form > .form-control:hover::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
 
 /**
 		FOOTER
 */
 footer {
-	background-color: #002527;
+	background-color: #0A1827;
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
@@ -123,7 +141,7 @@ footer > div#info {
 
 
 div#users, div#comments {
-	background-color: #002E30;
+	background-color: #9AC0BA;
 	padding: 1em 3em;
 	margin: 0 auto 3em auto;
 	box-shadow: 0 0 10px #1b323a;
@@ -137,13 +155,14 @@ div#users.col-lg-4, div#comments.col-lg-4 {
 div.user_notification, div.comment_notification {
 	color: #111;
 	cursor: pointer;
-	background-color: #deeded;
+	background-color: #F0E7CE;
 	padding: 1em;
 	margin: 2em 0;
 }
 
 div.user_notification:hover, div.comment_notification:hover {
-	background-color: #c9dbdb;
+	outline: 1px solid #0A1827;
+	background-color: #F5F5F5;
 }
 
 div.user_notification p, div.comment_notification p{
