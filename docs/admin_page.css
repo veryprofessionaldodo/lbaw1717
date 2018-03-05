@@ -1,0 +1,204 @@
+body {
+	margin: 0;
+	background-color: #F6EDD3;
+}
+
+ /**
+		NAV
+ */
+nav {
+	background-color: #0A1827;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 0.5em;
+	margin-left:0.7em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 27px;
+	letter-spacing: 4px;
+	color: #CCD9CE;
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+	background-color: #4F8082;
+	color: #0A1827;
+	transition: all 0.2s;
+}
+
+nav > form > .form-control:hover {
+	background-color: #9AC0BA;
+}
+
+nav > form > .form-control:focus {
+	background-color: #CCD9CE;
+	color: #0A1827;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav ul li {
+	list-style: none;
+	display: inline-flex;
+}
+
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+	color: #0A1827;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+nav > form > .form-control::-webkit-input-placeholder {
+  color: #FFF;
+  opacity: 1;
+}
+
+nav > form > .form-control::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
+nav > form > .form-control:hover::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #0A1827;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+
+/**
+	SECTION
+*/
+
+.container-fluid {
+	margin: 5em auto;
+	vertical-align: top;
+}
+
+
+div#users, div#comments {
+	background-color: #9AC0BA;
+	padding: 1em 3em;
+	margin: 0 auto 3em auto;
+	box-shadow: 0 0 10px #1b323a;
+	height: auto;
+}
+
+div#users.col-lg-4, div#comments.col-lg-4 {
+	height: 100%;
+}
+
+div.user_notification, div.comment_notification {
+	color: #111;
+	cursor: pointer;
+	background-color: #F0E7CE;
+	padding: 1em;
+	margin: 2em 0;
+}
+
+div.user_notification:hover, div.comment_notification:hover {
+	outline: 1px solid #0A1827;
+	background-color: #F5F5F5;
+}
+
+div.user_notification p, div.comment_notification p{
+	margin: 0;
+	letter-spacing: 0.5px;
+}
+
+@media screen and (max-width: 580px){
+	nav input.form-control {
+		display: none;
+	} 
+	div#mobile {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	
+	/**   USAR JAVASCRIPT  */
+	/*
+	nav div input:checked ~ div#mobile ul {
+		visibility: visible;
+		display: block;
+		width: 100%;
+		background-color: white;
+		transition-delay: 0s;
+	}*/
+}
