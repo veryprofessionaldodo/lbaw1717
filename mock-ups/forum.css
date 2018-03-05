@@ -1,34 +1,36 @@
 body {
 	margin: 0;
-	background-color: #F6EDD3;
+	background-color: #006064;
+	  min-height: 100%;
 }
-
- /**
+/**
 		NAV
  */
+
 nav {
-	background-color: #0A1827;
-	display: flex;
+	background-color: #002527;
+	display: flex;	
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
+	z-index: 1;
 }
 
 nav > * {
 	display: inline;
-	margin: 0.5em;
-	margin-left:0.7em;
+	margin: 1em;
 }
 
 nav a {
 	text-decoration: none;
-	font-size: 27px;
-	letter-spacing: 4px;
-	color: #CCD9CE;
+	font-size: 24px;
+	font-weight: bold;
+	
 }
 
 nav > form {
-	flex-grow: 2;
 	display: flex;
+	flex-grow: 1;
 	align-items:center;
 	justify-content: center;
 }
@@ -36,19 +38,18 @@ nav > form {
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #4F8082;
-	color: #0A1827;
-	transition: all 0.2s;
+	background-color: #203c47;
+	color: #AAA;
 }
 
 nav > form > .form-control:hover {
-	background-color: #9AC0BA;
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav > form > .form-control:focus {
-	background-color: #CCD9CE;
-	color: #0A1827;
-	outline: 5px auto -webkit-focus-ring-color;
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav div input, nav div label {
@@ -57,17 +58,11 @@ nav div input, nav div label {
 
 nav ul {
 	margin: 0;
-}
+} 
 
 nav ul li {
 	list-style: none;
-	display: inline-flex;
-}
-
-h2 {
-	text-align: center;
-	padding-top: 0.5em;
-	color: #0A1827;
+	display: inline;
 }
 
 #user {
@@ -86,48 +81,34 @@ h2 {
 	border: 0;
 }
 
-nav > form > .form-control::-webkit-input-placeholder {
-  color: #FFF;
-  opacity: 1;
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
 }
 
-nav > form > .form-control::placeholder {
-  color: #333;
-  opacity: 1;
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-nav > form > .form-control:hover::placeholder {
-  color: #333;
-  opacity: 1;
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
 }
 
-/**
-		FOOTER
-*/
-footer {
-	background-color: #0A1827;
-	display: grid;
-	grid-template-columns: 50% 50%;
+#user button {
+	background-color: inherit;
+	border: 0;
 }
 
-footer > * {
-	margin: 2em auto;
+#user button#notification {
+	color: white;
+	font-size: 24px;
+	margin-right: 1em;
 }
-
-footer a, footer p {
-	font-size: 14px;
-}
-
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
-}
-
 
 /*
 
@@ -180,20 +161,6 @@ tr#descriptions_table{
 
 }
 
-input.form-control, textarea.form-control {
-	background-color: #4F8082;
-	color: #AAA;
-	transition: all 0.2s;
-}
-
-input.form-control:hover, textarea.form-control:hover {
-	background-color: #9AC0BA;
-}
-
-input.form-control:focus, textarea.form-control:focus {
-	background-color: #CCD9CE;
-	outline: 5px auto -webkit-focus-ring-color;
-}
 
 
 #header {
@@ -204,7 +171,7 @@ input.form-control:focus, textarea.form-control:focus {
 }
 
 #header h1{
-	color: #0A1827;
+	color: #E0F7FA;
 	margin: 1em;
 }
 
@@ -220,16 +187,8 @@ input.form-control:focus, textarea.form-control:focus {
 	padding-top: 0.1em;
 	padding-bottom: 0.1em;
 	vertical-align: middle;
-	background-color: #F0E7CE;
-}
+	background-color: #B2EBF2;
 
-#threads th:hover {
-	outline: 1px solid #0A1827;
-	background-color: #F5F5F5;
-}
-
-a:hover {
-	box-shadow: 0 0 0px #000;
 }
 
 #threads td {
@@ -238,12 +197,12 @@ a:hover {
 	padding-top: 0.1em;
 	padding-bottom: 0.1em;
 	vertical-align: middle;
-	background-color: #F0E7CE;
+	background-color: #B2EBF2;
 	text-align: center;
 }
 
 #threads th.desc {
-	background-color: #0A1827;
+	background-color: #002E30;
 }
 
 #thread_main_text {
@@ -254,7 +213,7 @@ a:hover {
 #threads a{
 	display: block;
 	text-decoration: none;
-	color: #0A1827;
+	color: rgb(71, 84, 97);
 }
 
 div#container {
@@ -266,6 +225,34 @@ div#container {
 	z-index: 200;
 	width: 75%;
 	margin: auto;
+}
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
 }
 
 

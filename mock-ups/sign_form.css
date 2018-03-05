@@ -109,7 +109,7 @@ input.form-control:focus {
 		FOOTER
 */
 footer {
-	background-color: #002527;
+	background-color: #2B3E50;
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
