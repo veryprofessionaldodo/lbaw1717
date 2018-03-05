@@ -178,8 +178,8 @@ a {
 }
 
 a:hover {
-  box-shadow: 0 0 10px #999;
-  
+  color: #9a4912;
+  text-decoration: underline;
 }
 
 a:not([href]):not([tabindex]) {
@@ -1992,29 +1992,29 @@ pre code {
 .form-control:focus {
   color: #dce0e8;
   background-color: #4f668c;
-  border-color: #344c63;
+  border-color: #f1b287;
   outline: 0;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(223, 105, 26, 0.25);
           box-shadow: 0 0 0 0.2rem rgba(223, 105, 26, 0.25);
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #FFF;
+  color: #868e96;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #FFF;
+  color: #868e96;
   opacity: 1;
 }
 
 .form-control::-ms-input-placeholder {
-  color: #FFF;
+  color: #868e96;
   opacity: 1;
 }
 
 .form-control::placeholder {
-  color: #555;
+  color: #868e96;
   opacity: 1;
 }
 
@@ -4992,7 +4992,7 @@ tbody.collapse.show {
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: #0A1827;
+  background-color: #4E5D6C;
   border-radius: 0;
 }
 

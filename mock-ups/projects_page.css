@@ -1,17 +1,12 @@
-
-
-/* CENAS */ 
-
 body {
 	margin: 0;
-	background-color: #F6EDD3;
+	background-color: #006064;
 }
-
- /**
+/**
 		NAV
  */
 nav {
-	background-color: #0A1827;
+	background-color: #002527;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -19,15 +14,13 @@ nav {
 
 nav > * {
 	display: inline;
-	margin: 0.5em;
-	margin-left:0.7em;
+	margin: 1em;
 }
 
 nav a {
 	text-decoration: none;
-	font-size: 27px;
-	letter-spacing: 4px;
-	color: #CCD9CE;
+	font-size: 24px;
+	font-weight: bold;
 }
 
 nav > form {
@@ -35,24 +28,24 @@ nav > form {
 	display: flex;
 	align-items:center;
 	justify-content: center;
+
 }
 
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #4F8082;
-	color: #0A1827;
-	transition: all 0.2s;
+	color: #AAA;
+	background-color: #203c47;
 }
 
 nav > form > .form-control:hover {
-	background-color: #9AC0BA;
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav > form > .form-control:focus {
-	background-color: #CCD9CE;
-	color: #0A1827;
-	outline: 5px auto -webkit-focus-ring-color;
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav div input, nav div label {
@@ -66,12 +59,6 @@ nav ul {
 nav ul li {
 	list-style: none;
 	display: inline-flex;
-}
-
-h2 {
-	text-align: center;
-	padding-top: 0.5em;
-	color: #0A1827;
 }
 
 #user {
@@ -94,62 +81,6 @@ h2 {
 	color: white;
 	font-size: 24px;
 	margin-right: 1em;
-}
-
-#notification {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0;
-    font-size: 16px;
-    border: none;
-}
-
-.dropdown {
-	display: none;
-	position: absolute;
-	right: 7%;
-	top: 2em;
-    /*position: relative;
-	display: inline-block;*/
-}
-
-.dropdown-content {
-	/*margin-left: auto;
-	margin-right: 0;*/
-	/*position: absolute;*/
-    /*background-color: #f1f1f1;*/
-    /*min-width: 200px;*/
-	position: relative;
-    background-color: inherit;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content .modal {
-    text-decoration: none;
-	display: block;
-	position: relative;
-	/*margin: auto;
-	padding: auto;*/
-}
-
-button#notification:hover ~ .dropdown {
-	display: block;
-
-}
-
-nav > form > .form-control::-webkit-input-placeholder {
-  color: #FFF;
-  opacity: 1;
-}
-
-nav > form > .form-control::placeholder {
-  color: #333;
-  opacity: 1;
-}
-
-nav > form > .form-control:hover::placeholder {
-  color: #333;
-  opacity: 1;
 }
 
 /*
