@@ -122,17 +122,13 @@ div.row {
 	min-height: 100vh;
 }
 
-aside > div#active {
+aside div#active {
 	background-color: #F6EDD3;
 	border-right: 0;
 	
 }
 
-aside {
-	
-}
-
-aside div {
+aside div div {
 	border-width: 0 2px 2px 0;
 	border-style: solid;
 	border-color: black;
@@ -140,7 +136,7 @@ aside div {
 	background-color: #CCD9CE;
 }
 
-aside.col-2#navbar {
+aside.col-md-2#navbar {
 	padding: 0;
 	margin: 0;
 	height: auto;
@@ -198,9 +194,7 @@ section div#reports div.report div.report_principal_info a{
 	margin: auto 0;
 	text-align: center;
 }
-section div#reports div.report div.report_principal_info a:hover {
-	box-shadow: none;
-}
+
 section div#reports div.report div.report_principal_info div.options{
 	grid-column-start: 3;
 	grid-column-end: 4;
@@ -212,6 +206,21 @@ section div#reports div.report div.report_details {
 	box-shadow: inset 0 0 5px;
 	background-color: white;
 	padding: 1em;
+}
+
+section div#reports div#pagination_section {
+	text-align: center;
+}
+
+section div#reports div#pagination_section ul.pagination{
+	margin: auto;
+	width: auto;
+	text-align: center;
+}
+
+
+section div#pagination_section li.page-item:hover {
+	background-color: grey;
 }
 
 /*
@@ -306,6 +315,15 @@ footer > div#info {
 	}*/
 }
 
+@media screen and (max-width: 1060px) {
+	aside h4 {
+		font-size: 20px;
+	}
+	aside.col-md-2 {
+		padding: 0;
+	}
+}
+
 @media screen and (max-width: 935px){
 	section div#reports div.report div.report_principal_info {
 		grid-template-columns: 40% 15% auto;
@@ -315,14 +333,9 @@ footer > div#info {
 		font-size: 22px;
 	}
 }
-
 @media screen and (max-width: 840px) {
 	section div#reports div.report p, section div#reports div.report a {
 		font-size: 14px;
-	}
-
-	aside h4 {
-		font-size: 18px;
 	}
 
 	section div#reports div.report div.report_principal_info div.options button.btn{
@@ -331,9 +344,20 @@ footer > div#info {
 	}
 }
 
+@media screen and (max-width: 767px) {
+	aside div div#active {
+		border-width: 0 2px 0 0;
+	}
+
+	aside div div {
+		border-width: 0 2px 2px 2px;
+	}
+}
+
+
 @media screen and (max-width: 671px) {
-	aside div{
-		padding: 4em 1em;
+	section div#reports div.report div.report_principal_info {
+		grid-template-columns: 50% 15% auto;
 	}
 
 	section div#reports div.report div.report_principal_info div.options button.btn{
@@ -347,5 +371,33 @@ footer > div#info {
 	section div#reports div.report div.report_principal_info div.options button.btn{
 		font-size: 12px;
 		width: 75%;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	section div#reports div.report div.report_principal_info {
+		display: block;
+	}
+
+	section div#reports div.report div.report_principal_info > * {
+		text-align: center;
+		display: block;
+	}
+
+	section div#reports div.report div.report_principal_info p {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report div.report_principal_info a {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report div.report_principal_info div.options button.btn {
+		display: block;
+		margin: 1em auto;
+	}
+
+	section div#reports div#pagination_section ul.pagination a{
+		font-size: 12px;
 	}
 }

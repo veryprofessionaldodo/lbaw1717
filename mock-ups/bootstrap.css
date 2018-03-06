@@ -178,8 +178,8 @@ a {
 }
 
 a:hover {
-  box-shadow: 0 0 10px #999;
-  
+  /*box-shadow: 0 0 10px #999;*/
+  color: #DF691A;
 }
 
 a:not([href]):not([tabindex]) {
