@@ -126,6 +126,33 @@ section.container-fluid .row .nav-tabs {
 	flex-grow: 1;
 }
 
+
+#buttons_nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 70px;
+	width: 100%;
+	padding-right: 0;
+	padding-left: 0;
+}
+
+#project_buttons:first-child:nth-last-child(2),
+#project_buttons:first-child:nth-last-child(2) ~ #project_buttons {
+	width: 50%;
+}
+
+#project_buttons {
+	height: 100%;
+	width: 33%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#mobile_nav {
+	display: none;
+}
+
 /**
 	COORDINATOR
 */
@@ -464,7 +491,7 @@ div.container.create_new {
 	background-color: #2B3E50;
 	padding: 1em;
 	max-width: 40em;
-	height: 25em;
+	height: 30em;
 	text-align: justify;
 }
 
@@ -479,12 +506,34 @@ div.container.create_new > button {
 
 div.container.create_new div.form_area {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	margin: 1em 0;
 }
 
+div.container.create_new div.form_area button {
+	width: 20%;
+	align-self: center;
+}
+
+div.container.create_new div.form_area #new_task {
+	display: flex;
+	flex-direction: row;
+	width: 95%;
+	align-self: center;
+}
+
+div.container.create_new div.form_area #new_task button {
+	width: 20%;
+}
+
+div.container.create_new #add_task_btn {
+	align-self: center;
+}
+
 div.container.create_new div.form_area_date {
-	display: block;
+	display: flex;
+	flex-direction: column;
 	margin: 1em 0;
 }
 
@@ -498,6 +547,8 @@ div.container.create_new label {
 div.container.create_new input.form-control {
 	flex-grow: 1;
 	width: auto;
+	align-self: center;
+	width: 95%;
 }
 
 div.container.create_new input[type="date"].form-control {
@@ -507,8 +558,11 @@ div.container.create_new input[type="date"].form-control {
 }
 
 div.container.create_new div#new_tasks {
+	display: block;
 	background-color: #4E5D6C;
 	padding: 1em;
+	width: 100%;
+	text-align: center;
 }
 
 div.container.create_new div.created_task {
@@ -529,6 +583,9 @@ div.container.create_new div#new_tasks div.created_task button.btn.delete {
 }
 
 div.container.create_new div#form_options {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-around;
 	text-align: center;
 	margin: 1em;
 }
@@ -732,10 +789,41 @@ footer > div#info {
 	div.comment {
 		padding: 2em;
 	}
+
+
 }
 
 @media screen and (max-width: 1070px) and (min-width: 820px) {
 	div.comment p {
 		font-size: 12px;
+	}
+
+
+}
+
+@media screen and (max-width:315px){
+	#buttons_nav {
+		display: none;
+	}
+
+	#row_mobile {
+		height: 80px;
+		width: 100%
+	}
+
+	#mobile_nav {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		background-color: #006064;
+		align-items: center;
+		height: 60px;
+	}
+
+	#project_buttons {
+		height: 100%;
+		width: 33%;
+		margin: 0px;
+		padding: 0px;
 	}
 }

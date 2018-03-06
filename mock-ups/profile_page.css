@@ -320,7 +320,7 @@ div.container.edit_profile {
 	background-color: #2B3E50;
 	padding: 1em;
 	max-width: 40em;
-	height: 25em;
+	height: 27em;
 	text-align: justify;
 }
 
@@ -335,6 +335,7 @@ div.container.edit_profile > button {
 
 div.container.edit_profile div.form_area {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	margin: 1em 0;
 }
@@ -351,12 +352,18 @@ div.container.edit_profile label {
     margin: auto 1em;
 }
 
+div.container.edit_profile input {
+	align-self: center;
+}
+
 div.container.edit_profile input.form-control {
-	flex-grow: 1;
-	width: auto;
+	width: 95%;
 }
 
 div.container.edit_profile div#form_options {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
 	text-align: center;
 	margin: 1em;
 }

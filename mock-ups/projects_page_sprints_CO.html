@@ -34,17 +34,47 @@
 	<section class="container-fluid">
 		<div class="row">
 			<div class="col-12">
-				<div id="info_buttons">
-					<button type="button" class="btn btn-primary"><i class="fas fa-comments"></i> Forum</button>
-					<button type="button" class="btn btn-secondary"><i class="fas fa-chart-line"></i> Statistics</button>
-					<button type="button" class="btn btn-success"><i class="fas fa-cog"></i> Settings</button>
-				</div>
+				<h1>Project's Name</h1>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<h4>
+					<i class="fas fa-angle-right"></i>&nbsp;&nbsp;Project about something about projects</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-comments"></i> Forum</button>
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-chart-line"></i> Statistics</button>
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-cog"></i> Settings</button>
+				</nav>
+			</div>
+
+			<div id="row_mobile">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mobile_nav">
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-comments"></i>
+					</button>
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-chart-line"></i>
+					</button>
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-cog"></i>
+					</button>
+				</nav>
+			</div>
+
 		</div>
 
 		<div class="row">
 			<div class="col-12 new_sprint">
-				<button class="btn btn-info"><i class="fas fa-plus"></i> Create New</button>
+				<button class="btn btn-info">
+					<i class="fas fa-plus"></i> Create New</button>
 			</div>
 		</div>
 
@@ -52,14 +82,17 @@
 			<div class="col-12">
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" data-toggle="tab" href="#Sprints"><i class="fas fa-bolt"></i>  Sprints</a>
+						<a class="nav-link active" data-toggle="tab" href="#Sprints">
+							<i class="fas fa-bolt"></i> Sprints</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="tab" href="#Tasks"><i class="far fa-sticky-note"></i>  Tasks</a>
+						<a class="nav-link" data-toggle="tab" href="#Tasks">
+							<i class="far fa-sticky-note"></i> Tasks</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" data-toggle="tab" href="#Members"><i class="fas fa-users"></i> Members</a>
-					</li> 
+						<a class="nav-link" data-toggle="tab" href="#Members">
+							<i class="fas fa-users"></i> Members</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -68,19 +101,26 @@
 			<div class="col-12" id="sprints">
 				<div class="list-group list-group-root well">
 					<!-- Sprint -->
-					<div class="list-group-item" >
-    					<a data-toggle="collapse" href="#sprint-1"><i class="fas fa-sort-down"></i>Weekly Sprint</a>
-  						<p>2 days until deadline</p>
-  						<button class="btn edit_sprint"><i class="fas fa-pencil-alt"></i></button>
+					<div class="list-group-item">
+						<a data-toggle="collapse" href="#sprint-1">
+							<i class="fas fa-sort-down"></i>Weekly Sprint</a>
+						<p>2 days until deadline</p>
+						<button class="btn edit_sprint">
+							<i class="fas fa-pencil-alt"></i>
+						</button>
 						<span class="badge badge-primary badge-pill">3</span>
 					</div>
 					<div class="list-group collapse" id="sprint-1">
 						<!-- Task -->
 						<div class="sprint-task">
-							<a data-toggle="collapse" href="#sprint-1-c-1"><i class="fas fa-sort-down"></i></a>
+							<a data-toggle="collapse" href="#sprint-1-c-1">
+								<i class="fas fa-sort-down"></i>
+							</a>
 							<p>Make front page</p>
 							<div class="coordinator_options">
-								<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
+								<button class="btn edit_task">
+									<i class="fas fa-pencil-alt"></i>
+								</button>
 								<button class="btn">Assign task</button>
 							</div>
 							<input type="checkbox">
@@ -120,20 +160,20 @@
 	</section>
 
 	<footer>
-        <div id="contacts">
-            <h6>Contacts</h6>
-            <p>(+351)255255255</p>
-        </div>
+		<div id="contacts">
+			<h6>Contacts</h6>
+			<p>(+351)255255255</p>
+		</div>
 
-        <div id="info">
-            <a href="#">Terms of use</a>
-        </div>
-    </footer>
+		<div id="info">
+			<a href="#">Terms of use</a>
+		</div>
+	</footer>
 
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>	
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+</body>
+
 </html>
