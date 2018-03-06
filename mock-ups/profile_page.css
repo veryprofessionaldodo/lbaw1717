@@ -486,8 +486,8 @@ div.container.edit_profile div#form_options {
 		box-shadow: 0 0 5px #000;
 		color: #000;
 		display: grid;
-		grid-template-columns: 20% auto 50%;
-		grid-template-rows: 50% auto;
+		grid-template-columns: 20% auto 20%;
+		grid-template-rows: 40% 20% auto;
 	}
 	/*
 	section div div.project > * {
@@ -495,30 +495,34 @@ div.container.edit_profile div#form_options {
 	}*/
 
 	section div.project > h5 {
-		grid-column-start: 1;
-		grid-column-end: 2;
+		grid-column-start: 2;
+		grid-row-start: 1;
+		grid-row-end: 2;
 		margin: auto;
-		font-size: 4vw;
+		font-size: 7vw;
 		text-align: center;
-		color: #d3eced;
+		color: black;
 	}
 
 	section div.project > p {
-		grid-column-start: 2;
+		grid-row-start: 2;
 		margin: auto 1em;
 		font-size: 3vw;
 		text-align: center;
 		grid-column-end: 3;
-		color: #FFF;
+		color: black;
 	}
 
 	section div.project .project_info{
-		grid-column-start: 3;
-		grid-column-end: 4;
+		grid-row-start: 3;
+		grid-row-end: 4;
+		grid-column-start:2;
+		grid-column-end: 3; 
 		margin: auto;
 		text-align: center;
+		align-items: center;
 		display: grid;
-		grid-template-columns: 50% auto;
+		grid-template-columns: auto;
 	}
 
 	section div.project .project_info > *{
@@ -530,9 +534,9 @@ div.container.edit_profile div#form_options {
 	}
 
 	section div.project .project_info > button {
-		grid-column-start: 2;
-		grid-row-start: 1;
-		grid-row-end: 3;
+		grid-column-start: 1;
+		grid-row-start: 3;
+		grid-row-end: 4;
 	}
 	section div.project .project_info > button.btn.btn-secondary{
 		font-size: 12px;
