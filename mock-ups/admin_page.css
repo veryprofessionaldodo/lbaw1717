@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #F6EDD3;
+	background-color: #ECE7F3;
 }
 
  /**
@@ -31,6 +31,9 @@ nav a {
 	text-align:center;
 }
 
+nav a:hover {
+	color: #DF691A;
+}
 
 nav > form {
 	flex-grow: 2;
@@ -140,17 +143,16 @@ div.row {
 }
 
 aside div#active {
-	background-color: #F6EDD3;
+	outline: 1px solid #558A8C;
+	background-color: #CCD9CE;
 	border-right: 0;
 	border-bottom: 0;
 }
 
 aside div div {
-	border-width: 2px 2px 2px 0;
-	border-style: solid;
-	border-color: black;
+	outline: 2px solid #508689;
 	padding: 4em 2em;
-	background-color: #CCD9CE;
+	background-color: #9AC0BA;
 }
 
 aside.col-md-2#navbar {
@@ -175,6 +177,13 @@ section {
 section div#search_bar input.form-control {
 	display: inline-block;
 	width: auto;
+	background-color: #CCD9CE;
+	color: #0A1827;
+	outline: 1px solid #558A8C;
+}
+
+section div#search_bar input.form-control:focus {
+	outline: 1px solid #508689;
 }
 
 
@@ -183,7 +192,14 @@ section div#search_bar button.btn {
 	vertical-align: inherit;
 }
 
+div > button {
+	background-color: #0A1827;
+	transition: all 0.2s;
+}
 
+div > button:hover {
+	background-color: #AA000C;
+}
 
 section div#reports {
 	margin: 2em 0;
@@ -194,7 +210,8 @@ section div#reports div.report {
 }
 
 section div#reports div.report div.report_principal_info {
-	background-color: white;
+	border-top: 1px solid #508689;
+	background-color: #ECE7F3;
 	padding: 1em;
 	display: grid;
 	grid-template-columns: 40% 10% auto;
@@ -217,12 +234,17 @@ section div#reports div.report div.report_principal_info div.options{
 	grid-column-end: 4;
 	text-align: right;
 	margin: auto 0;
+	display: block;
 }
 
 section div#reports div.report div.report_details {
-	box-shadow: inset 0 0 5px;
-	background-color: white;
+	outline: 1px solid #558A8C;
+	background-color: #CCD9CE;
 	padding: 1em;
+}
+
+section div#reports div.report div.report_details h4:first-of-type {
+	margin-top: 0.5em;
 }
 
 section div#reports div#pagination_section {
@@ -237,8 +259,30 @@ section div#reports div#pagination_section ul.pagination{
 
 
 section div#pagination_section li.page-item:hover {
-	background-color: grey;
+	background-color: #0A1827;
 }
+
+/**
+	Comments
+*/
+
+section div#reports div.report.report_comment div.report_principal_info {
+	background-color: white;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: 40% auto 20%;
+}
+
+section div#reports div.report.report_comment div.report_principal_info div.options {
+	margin: auto 0 auto auto;
+}
+
+section div#reports div.report.report_comment div.report_principal_info div.options button.btn {
+	display: block;
+	width: 100%;
+	margin: 1em 0;
+}
+
 
 /*
 div#users, div#comments {
@@ -348,7 +392,13 @@ footer > div#info {
 
 	aside h4 {
 		font-size: 22px;
+		color: #B05315;
 	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		grid-template-columns: 40% auto 25%;
+	}
+
 }
 @media screen and (max-width: 840px) {
 	section div#reports div.report p, section div#reports div.report a {
@@ -392,6 +442,10 @@ footer > div#info {
 		font-size: 12px;
 		width: 75%;
 	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		grid-template-columns: 40% auto 30%;
+	}
 }
 
 @media screen and (max-width: 590px) {
@@ -427,5 +481,23 @@ footer > div#info {
 
 	section div#reports div#pagination_section ul.pagination a{
 		font-size: 12px;
+	}
+
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		display: block;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info > * {
+		text-align: center;
+		display: block;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info p {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info a {
+		margin-bottom: 1em;
 	}
 }

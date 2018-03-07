@@ -205,9 +205,13 @@ footer > div#info {
 	DASHBOARD
 */
 
-div#dashboard {
-	display: grid;
-	grid-template-columns: 20% auto;
+div.container-fluid {
+	/*display: grid;
+	grid-template-columns: 20% auto;*/
+	min-height: 100vh;
+}
+
+div.container-fluid > div.row {
 	min-height: 100vh;
 }
 
@@ -216,16 +220,17 @@ div#dashboard {
 */
 
 aside {
-	min-width: 10em;
+	/*min-width: 10em;
 	grid-column-start: 1;
 	grid-column-end: 2;
-	background-color: #004649;
-	text-align: center;
-	color: #e3eaed;
 	display: grid;
 	grid-template-rows: 30% 50% auto;
+	min-height: 100vh;*/
+	text-align: center;
+	color: #e3eaed;
+	background-color: #004649;
 	box-shadow: 0 0px 5px 1px black;
-
+	padding: 0;
 }
 
 aside p {
@@ -237,9 +242,10 @@ aside > * {
 }
 
 aside div#info {
-	grid-row-start: 1;
-	grid-row-end: 2;
-	margin: 2em auto 0.5em auto;
+	/*grid-row-start: 1;
+	grid-row-end: 2;*/
+	padding: 0;
+	margin: 2em auto;
 }
 
 aside div#info p {
@@ -247,16 +253,17 @@ aside div#info p {
 }
 
 aside div#info img {
-	max-width:50%;
+
+	max-width:75%;
 	border-radius: 50%;
 	box-shadow: 0px 0px 10px;
 	margin-bottom: 1em;
 }
 
 aside div#statistics {
-	grid-row-start: 2;
-	grid-row-end: 3;
-	margin: auto;
+	/*grid-row-start: 2;
+	grid-row-end: 3;*/
+	margin: 3em auto;
 }
 
 /**
@@ -264,25 +271,45 @@ aside div#statistics {
 */
 
 div#options {
-	grid-column-start: 2;
-	grid-column-end: 3;
-	margin: 0 3em;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	margin: auto;
+}
+div#options button#new_project {
+	margin: 1em auto;
+}
+
+div#options div.col-md-12{
+	margin: auto;
+	text-align: center;
+}
+
+div#options div.col-md-6 {
+	text-align: center;
 }
 
 div#options form {
-	margin: 0 auto;
-	width: 50%;
+	margin: auto;
 	text-align: right;
 }
 
-div#options > form > input.form-control {
-	display: inline;
-	width: 50%;
-	background-color: #003638;
+div#options form.col-12 {
+	text-align: center;
 }
+
+div#options form > input.form-control {
+	background-color: #003638;
+	width: auto;
+	display: inline;
+}
+
+div#options form > button.btn.btn-primary {
+	vertical-align: inherit;
+}
+div#options div#role_button {
+	margin: auto;
+	text-align: center;
+}
+
+
 
 form#new_project_name {
 	margin: 0 3em;
@@ -294,17 +321,14 @@ form#new_project_name > input.form-control {
 	background-color: #003638;
 }
 
-div.btn-group {
-	margin: 0 0 0 1em;
-}
 
 .hide {
 	display: none;
 }
 
 section {
-	grid-column-start: 2;
-	grid-column-end: 3;
+	/*grid-column-start: 2;
+	grid-column-end: 3;*/
 }
 
 section p {
@@ -320,11 +344,11 @@ section button#new_project.btn.btn-primary {
 section div.project {
 	background-color: #B2DFDB;
 	margin: 1em 3em;
-	padding: 1em 0;
+	padding: 1em;
 	box-shadow: 0 0 5px #000;
 	color: #000;
 	display: grid;
-	grid-template-columns: 15% auto auto;
+	grid-template-columns: 20% auto auto;
 }
 /*
 section div div.project > * {
@@ -343,6 +367,7 @@ section div.project > h5 {
 section div.project > p {
 	grid-column-start: 2;
 	margin: auto;
+	text-align: center;
 	grid-column-end: 3;
 	color: #111;
 }
@@ -350,8 +375,8 @@ section div.project > p {
 section div.project .project_info{
 	grid-column-start: 3;
 	grid-column-end: 4;
-	margin: auto;
-	text-align: center;
+	margin: auto 0 auto auto;
+	text-align: right;
 	color: #111;
 }
 
@@ -435,9 +460,117 @@ div.container.edit_profile div#form_options {
 }
 
 
+@media screen and (max-width: 920px) {
+
+	section div.project {
+		margin: 1em 3em;
+		padding: 1em;
+		box-shadow: 0 0 5px #000;
+		color: #000;
+		display: grid;
+		grid-template-columns: 20% auto 20%;
+		grid-template-rows: 40% 20% auto;
+	}
+
+	section div.project > h5 {
+		grid-column-start: 2;
+		grid-row-start: 1;
+		grid-row-end: 2;
+		margin: 0.5em auto;
+		font-size: 32px;
+		text-align: center;
+	}
+
+	section div.project > p {
+		grid-row-start: 2;
+		margin: 0.5em auto;
+		font-size: 22px;
+		text-align: center;
+		grid-column-end: 3;
+		color: black;
+	}
+
+	section div.project .project_info{
+		grid-row-start: 3;
+		grid-row-end: 4;
+		grid-column-start:2;
+		grid-column-end: 3; 
+
+		margin: 1em auto 0 auto;
+		text-align: center;
+
+		display: grid;
+		grid-template-columns: auto;
+	}
+
+	section div.project .project_info > *{
+		font-size: 18px;
+		margin-bottom: 0.5em;
+	}
+
+	section div.project .project_info > span, section div.project .project_info > p {
+		grid-column-start: 1;	
+	}
+
+	section div.project .project_info > button {
+		grid-column-start: 1;
+		grid-row-start: 3;
+		grid-row-end: 4;
+	}
+	section div.project .project_info > button.btn.btn-secondary{
+		font-size: 12px;
+
+	}
+
+}
+
+@media screen and (max-width: 767px) {
+	aside {
+		text-align: center;
+		color: #e3eaed;
+		background-color: #004649;
+		box-shadow: 0 0px 5px 1px black;
+		padding: 0;
+	}
+
+	aside p {
+		font-size: 14px;
+	}
+
+	aside div#info {
+		padding: 0;
+		border-width: 0 1px 0 0;
+		border-style: solid;
+		border-color: white;
+	}
+
+	aside div#info p {
+		margin-bottom: 0.5em;
+	}
+
+	aside div#info img {
+		max-width:50%;
+		max-width: 5em;
+		border-radius: 50%;
+		box-shadow: 0px 0px 10px;
+		margin-bottom: 1em;
+	}
+
+	aside div#statistics {
+		margin: auto;
+	}
+
+	aside a {
+		margin: auto;
+	}
+}
+
+
+
+
 
 @media screen and (max-width: 500px){
-	nav div input:checked ~ ul {
+	/*nav div input:checked ~ ul {
 		visibility: visible;
 		display: inline;
 		float: left;
@@ -510,10 +643,6 @@ div.container.edit_profile div#form_options {
 		grid-template-columns: 20% auto 20%;
 		grid-template-rows: 40% 20% auto;
 	}
-	/*
-	section div div.project > * {
-		display: inline;
-	}*/
 
 	section div.project > h5 {
 		grid-column-start: 2;
@@ -590,12 +719,12 @@ div.container.edit_profile div#form_options {
 		display: block;
 		font-size: 12px;
 		text-align: center;
-	}
+	}*/
 }
 
 
 @media screen and (max-width: 720px) and (min-width: 501px){
-	div#dashboard {
+	/*div#dashboard {
 		display: block;
 	}
 	aside {
@@ -613,10 +742,6 @@ div.container.edit_profile div#form_options {
 	aside p {
 		font-size: 0.75em;
 	}
-
-	/*aside > * {
-		margin: 1em auto;
-	}*/
 
 	aside div#info {
 		grid-column-start: 1;
@@ -680,11 +805,11 @@ div.container.edit_profile div#form_options {
 	section button#new_project.btn.btn-primary {
 		margin: 1em auto;
 		padding: 1em;
-	}
+	}*/
 }
 
 @media screen and (min-height: 1024px) and (orientation:portrait){
-	div#dashboard {
+	/*div#dashboard {
 		display: block;
 	}
 	aside {
@@ -703,9 +828,6 @@ div.container.edit_profile div#form_options {
 		font-size: 0.75em;
 	}
 
-	/*aside > * {
-		margin: 1em auto;
-	}*/
 
 	aside div#info {
 		grid-column-start: 1;
@@ -769,5 +891,5 @@ div.container.edit_profile div#form_options {
 	section button#new_project.btn.btn-primary {
 		margin: 1em auto;
 		padding: 1em;
-	}
+	}*/
 }

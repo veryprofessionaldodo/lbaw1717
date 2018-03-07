@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #F6EDD3;
+	background-color: #ECE7F3;
 }
 
  /**
@@ -29,6 +29,10 @@ nav a {
 	grid-column-start:1;
 	grid-column-end: 2;
 	text-align:center;
+}
+
+nav a:hover {
+	color: #DF691A;
 }
 
 nav > form {
@@ -134,6 +138,7 @@ nav > form > .form-control:hover::placeholder {
   color: #333;
   opacity: 1;
 }
+
 
 
 /**
