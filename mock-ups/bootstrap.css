@@ -170,16 +170,18 @@ sup {
   top: -.5em;
 }
 
+
+
 a {
   color: #DF691A;
-  text-decoration: none;
+  text-decoration: underline;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-  /*box-shadow: 0 0 10px #999;*/
-  color: #DF691A;
+  transition: all 0.2s;
+  color: #893700;
 }
 
 a:not([href]):not([tabindex]) {
@@ -4794,7 +4796,7 @@ tbody.collapse.show {
   margin-left: -1px;
   line-height: 1.25;
   color: #fff;
-  background-color: #4E5D6C;
+  background-color: #0A1827;
   border: 1px solid transparent;
 }
 
@@ -4802,7 +4804,7 @@ tbody.collapse.show {
   color: #fff;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.4);
-  border-color: transparent;
+  background-color: #558A8C;
 }
 
 .page-link:focus {
@@ -4838,7 +4840,7 @@ tbody.collapse.show {
   color: rgba(255, 255, 255, 0.4);
   pointer-events: none;
   cursor: auto;
-  background-color: #4E5D6C;
+  background-color: #0A1827;
   border-color: transparent;
 }
 

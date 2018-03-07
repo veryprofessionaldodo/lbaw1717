@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #F6EDD3;
+	background-color: #ECE7F3;
 }
 
  /**
@@ -24,6 +24,10 @@ nav a {
 	font-size: 27px;
 	letter-spacing: 4px;
 	color: #CCD9CE;
+}
+
+nav a:hover {
+	color: #DF691A;
 }
 
 nav > form {
@@ -181,9 +185,10 @@ tr#descriptions_table{
 }
 
 input.form-control, textarea.form-control {
-	background-color: #4F8082;
-	color: #AAA;
 	transition: all 0.2s;
+	background-color: #558A8C;
+	color: #0A1827;
+	outline: 1px solid #558A8C;
 }
 
 input.form-control:hover, textarea.form-control:hover {
@@ -193,6 +198,7 @@ input.form-control:hover, textarea.form-control:hover {
 input.form-control:focus, textarea.form-control:focus {
 	background-color: #CCD9CE;
 	outline: 5px auto -webkit-focus-ring-color;
+	outline: 1px solid #CCD9CE;
 }
 
 
@@ -223,11 +229,6 @@ input.form-control:focus, textarea.form-control:focus {
 	background-color: #F0E7CE;
 }
 
-#threads th:hover {
-	outline: 1px solid #0A1827;
-	background-color: #F5F5F5;
-}
-
 a:hover {
 	box-shadow: 0 0 0px #000;
 }
@@ -242,6 +243,7 @@ a:hover {
 	text-align: center;
 }
 
+
 #threads th.desc {
 	background-color: #0A1827;
 }
@@ -253,8 +255,13 @@ a:hover {
 
 #threads a{
 	display: block;
-	text-decoration: none;
+	text-decoration: underline;
 	color: #0A1827;
+	cursor: pointer;
+}
+
+#threads a:hover {
+	color: #DF691A;
 }
 
 div#container {
@@ -267,7 +274,6 @@ div#container {
 	width: 75%;
 	margin: auto;
 }
-
 
 @media screen and (max-width: 635px){
 	nav div input:checked ~ ul {
