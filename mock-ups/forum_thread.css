@@ -71,7 +71,7 @@ nav ul li {
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
-	color: #0A1827;
+	color: #ECE7F3;
 }
 
 #user {
@@ -90,7 +90,7 @@ h2 {
 	border: 0;
 }
 
-nav > form > .form-control::-webkit-input-placeholder {
+nav > form > .form-control::placeholder {
   color: #FFF;
   opacity: 1;
 }
@@ -140,6 +140,14 @@ POST
 
 */
 
+.breadcrumb > .breadcrumb-item.active {
+	color:red;
+}
+
+.issue h2 {
+	color: red;
+}
+
 div#container ol.breadcrumb {
 	background-color: inherit;
 	padding: 0;
@@ -164,7 +172,7 @@ div#container ol.breadcrumb {
 }
 
 #thread div#header {
-	background-color: #182f35;
+	background-color: #0A1827;
 	border-width: 5px 5px 0 5px;
 	border-style: solid;
 	border-color: black;
@@ -209,43 +217,31 @@ div#container ol.breadcrumb {
 #thread div.comment {
 	padding: 1em;
 }
-/*
-#thread table {
-	margin: 0;
+
+.col-8 > p {
+	color:#0A1827;
 }
 
-table thead tr#thread_main_text {
-	background-color: #182f35;
+#thread .table-dark {
+	background-color: #CCD9CE;
 }
 
-#thread td {
-	font-size: 125%;
-}
-
-#thread td.date {
-	vertical-align: middle;	
-	text-align: center;
-	padding: 0 1em;
-}
-
-#thread tbody th {
-	text-align: center;
-}
-*/
 input.form-control {
 	margin-left: 0;
 	width: 90%;
-	background-color: #203c47;
+	background-color: #4F8082;
+	color: #0A1827;
+	transition: all 0.2s;
 }
 
 input.form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
+	background-color: #9AC0BA;
 }
 
 input.form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
+	background-color: #CCD9CE;
+	color: #0A1827;
+	outline: 5px auto -webkit-focus-ring-color;
 }
 
 #thread .comment a, #thread #header a{
@@ -431,11 +427,11 @@ input.form-control:focus {
 	}
 
 	#thread p {
-		font-size: 12px;
+		font-size: 16px;
 	}
 
 	#thread h2{
-		font-size: 20px;
+		font-size: 30px;
 	}
 	
 	/*#thread td p{

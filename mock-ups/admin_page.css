@@ -90,7 +90,7 @@ h2 {
 	border: 0;
 }
 
-nav > form > .form-control::-webkit-input-placeholder {
+nav > form > .form-control::placeholder {
   color: #FFF;
   opacity: 1;
 }

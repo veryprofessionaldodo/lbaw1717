@@ -90,19 +90,16 @@ h2 {
 	border: 0;
 }
 
-nav > form > .form-control::-webkit-input-placeholder {
+nav > form > .form-control::placeholder {
   color: #FFF;
-  opacity: 1;
 }
 
 nav > form > .form-control::placeholder {
   color: #333;
-  opacity: 1;
 }
 
 nav > form > .form-control:hover::placeholder {
   color: #333;
-  opacity: 1;
 }
 
 /**
@@ -184,9 +181,22 @@ tr#descriptions_table{
 
 }
 
+
+input.form-control::placeholder, textarea.form-control::placeholder {
+  color: #222;
+}
+
+input.form-control:hover::placeholder, textarea.form-control:hover::placeholder {
+  color: #222;
+}
+
+input.form-control:focus::placeholder, textarea.form-control:focus::placeholder {
+  color: #222;
+}
+
 input.form-control, textarea.form-control {
 	transition: all 0.2s;
-	background-color: #558A8C;
+	background-color: #4F8082;
 	color: #0A1827;
 	outline: 1px solid #558A8C;
 }
@@ -197,6 +207,7 @@ input.form-control:hover, textarea.form-control:hover {
 
 input.form-control:focus, textarea.form-control:focus {
 	background-color: #CCD9CE;
+	color: #0A1827;
 	outline: 5px auto -webkit-focus-ring-color;
 	outline: 1px solid #CCD9CE;
 }
