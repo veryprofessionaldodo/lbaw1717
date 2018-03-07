@@ -5,23 +5,29 @@ body {
  /**
 		NAV
  */
-nav {
-	background-color: #002527;
-	display: flex;	
-	justify-content: space-between;
+ nav {
+	background-color: #0A1827;
+	display: grid;
+	/*justify-content: space-between;*/
 	align-items: center;
+	display: grid;
+	grid-template-columns: 16% auto 13%;
 }
 
 nav > * {
 	display: inline;
-	margin: 1em;
+	margin: 0.5em;
+	margin-left:0.7em;
 }
 
 nav a {
 	text-decoration: none;
-	font-size: 24px;
-	font-weight: bold;
-	
+	font-size: 27px;
+	letter-spacing: 4px;
+	color: #CCD9CE;
+	grid-column-start:1;
+	grid-column-end: 2;
+	text-align:center;
 }
 
 nav > form {
@@ -29,6 +35,8 @@ nav > form {
 	display: flex;
 	align-items:center;
 	justify-content: center;
+	grid-column-start:2;
+	grid-column-end: 3;
 }
 
 nav > form > .form-control {

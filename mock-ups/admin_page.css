@@ -8,9 +8,11 @@ body {
  */
 nav {
 	background-color: #0A1827;
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	/*justify-content: space-between;*/
 	align-items: center;
+	display: grid;
+	grid-template-columns: 16% auto 13%;
 }
 
 nav > * {
@@ -24,13 +26,19 @@ nav a {
 	font-size: 27px;
 	letter-spacing: 4px;
 	color: #CCD9CE;
+	grid-column-start:1;
+	grid-column-end: 2;
+	text-align:center;
 }
+
 
 nav > form {
 	flex-grow: 2;
 	display: flex;
 	align-items:center;
 	justify-content: center;
+	grid-column-start:2;
+	grid-column-end: 3;
 }
 
 nav > form > .form-control {
@@ -71,14 +79,23 @@ h2 {
 }
 
 #user {
-	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+#mobile{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	padding-right: 20%;
 }
 
 #user img {
 	max-width: 3em;
 	border-radius: 50px;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin-left:0;
+	
 }
 
 #user button {
