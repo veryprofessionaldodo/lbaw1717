@@ -41,7 +41,7 @@ nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
 	background-color: #4F8082;
-	color: #0A1827;
+	color: #ECE7F3;
 	transition: all 0.2s;
 }
 
@@ -91,7 +91,7 @@ h2 {
 }
 
 nav > form > .form-control::placeholder {
-  color: #FFF;
+  color: #BBB;
   opacity: 1;
 }
 
@@ -140,8 +140,9 @@ POST
 
 */
 
-.breadcrumb > .breadcrumb-item.active {
-	color:red;
+.breadcrumb >.breadcrumb-item.active a{
+	color: #893700;
+	text-decoration: none;
 }
 
 .issue h2 {
@@ -160,10 +161,7 @@ div#container ol.breadcrumb {
 }
 
 #container {
-   /* margin: 5% 15% auto 15%;*/
    margin: 2em 10em;
-    /*grid-template-rows: [row0] 25% [row1] auto [row2];
-	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];*/
 }
 
 #thread {

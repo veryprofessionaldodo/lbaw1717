@@ -41,7 +41,7 @@ nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
 	background-color: #4F8082;
-	color: #0A1827;
+	color: #ECE7F3;
 	transition: all 0.2s;
 }
 
@@ -91,7 +91,7 @@ h2 {
 }
 
 nav > form > .form-control::placeholder {
-  color: #FFF;
+  color: #BBB;
 }
 
 nav > form > .form-control::placeholder {

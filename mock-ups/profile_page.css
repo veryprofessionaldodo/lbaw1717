@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-color: #F6EDD3;
+	background-color: #ECE7F3;
 }
 
  /**
@@ -26,6 +26,10 @@ nav a {
 	color: #CCD9CE;
 }
 
+nav a:hover {
+	color: #DF691A;
+}
+
 nav > form {
 	flex-grow: 2;
 	display: flex;
@@ -37,7 +41,7 @@ nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
 	background-color: #4F8082;
-	color: #0A1827;
+	color: #ECE7F3;
 	transition: all 0.2s;
 }
 
@@ -50,6 +54,22 @@ nav > form > .form-control:focus {
 	color: #0A1827;
 	outline: 5px auto -webkit-focus-ring-color;
 }
+
+nav > form > .form-control::placeholder {
+  color: #BBB;
+  opacity: 1;
+}
+
+nav > form > .form-control:hover::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
+nav > form > .form-control:focus::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
 
 nav div input, nav div label {
 	display: none;
@@ -203,7 +223,6 @@ aside {
 	color: #e3eaed;
 	display: grid;
 	grid-template-rows: 30% 50% auto;
-	box-shadow: 0 0px 5px 1px black;
 
 }
 
@@ -257,11 +276,41 @@ div#options form {
 	text-align: right;
 }
 
-div#options > form > input.form-control {
+div#options > form > input.form-control,
+  div.container.edit_profile input.form-control {
 	display: inline;
 	width: 50%;
-	background-color: #003638;
+	background-color: #4F8082;
+	color: #ECE7F3;
+	transition: all 0.2s;
 }
+
+div#options > form > input.form-control:hover,
+  div.container.edit_profile input.form-control:hover {
+	background-color: #9AC0BA;
+}
+
+div#options > form > input.form-control:focus,
+   div.container.edit_profile input.form-control:focus {
+	background-color: #CCD9CE;
+	color: #0A1827;
+	outline: 5px auto -webkit-focus-ring-color;
+
+}
+
+div#options > form > input.form-control::placeholder,
+  div.container.edit_profile input.form-control::placeholder {
+  color: #BBB;
+}
+
+div#options > form > input.form-control:hover::placeholder, 
+   div#options > form > input.form-control:focus::placeholder,
+   div.container.edit_profile input.form-control:hover::placeholder,
+   div.container.edit_profile input.form-control:focus::placeholder {
+  color: #333; 	
+}
+
+
 
 form#new_project_name {
 	margin: 0 3em;
@@ -297,7 +346,7 @@ section button#new_project.btn.btn-primary {
 }
 
 section div.project {
-	background-color: #B2DFDB;
+	background-color: #CCD9CE;
 	margin: 1em 3em;
 	padding: 1em 0;
 	box-shadow: 0 0 5px #000;
@@ -345,7 +394,7 @@ section div.project .project_info > button.btn.btn-secondary{
 }
 
 section div.project:hover {
-	background-color: #80DEEA;
+	background-color: #9AC0BA;
 	cursor: pointer;
 }
 
@@ -369,7 +418,7 @@ div.container.edit_profile {
 	position: absolute;
 	z-index: 1;
 	display: block;
-	background-color: #2B3E50;
+	background-color: #0A1827;
 	padding: 1em;
 	max-width: 40em;
 	height: 25em;
@@ -377,6 +426,7 @@ div.container.edit_profile {
 }
 
 div.container.edit_profile h2 {
+	color: #F0E7CE;
 	font-size: 24px;
 	text-align: center;
 }
@@ -412,6 +462,7 @@ div.container.edit_profile div#form_options {
 	text-align: center;
 	margin: 1em;
 }
+
 
 
 
