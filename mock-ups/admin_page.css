@@ -218,12 +218,17 @@ section div#reports div.report div.report_principal_info div.options{
 	grid-column-end: 4;
 	text-align: right;
 	margin: auto 0;
+	display: block;
 }
 
 section div#reports div.report div.report_details {
 	outline: 1px solid #558A8C;
 	background-color: #CCD9CE;
 	padding: 1em;
+}
+
+section div#reports div.report div.report_details h4:first-of-type {
+	margin-top: 0.5em;
 }
 
 section div#reports div#pagination_section {
@@ -240,6 +245,28 @@ section div#reports div#pagination_section ul.pagination{
 section div#pagination_section li.page-item:hover {
 	background-color: #0A1827;
 }
+
+/**
+	Comments
+*/
+
+section div#reports div.report.report_comment div.report_principal_info {
+	background-color: white;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: 40% auto 20%;
+}
+
+section div#reports div.report.report_comment div.report_principal_info div.options {
+	margin: auto 0 auto auto;
+}
+
+section div#reports div.report.report_comment div.report_principal_info div.options button.btn {
+	display: block;
+	width: 100%;
+	margin: 1em 0;
+}
+
 
 /*
 div#users, div#comments {
@@ -351,6 +378,11 @@ footer > div#info {
 		font-size: 22px;
 		color: #B05315;
 	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		grid-template-columns: 40% auto 25%;
+	}
+
 }
 @media screen and (max-width: 840px) {
 	section div#reports div.report p, section div#reports div.report a {
@@ -394,6 +426,10 @@ footer > div#info {
 		font-size: 12px;
 		width: 75%;
 	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		grid-template-columns: 40% auto 30%;
+	}
 }
 
 @media screen and (max-width: 590px) {
@@ -429,5 +465,23 @@ footer > div#info {
 
 	section div#reports div#pagination_section ul.pagination a{
 		font-size: 12px;
+	}
+
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		display: block;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info > * {
+		text-align: center;
+		display: block;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info p {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info a {
+		margin-bottom: 1em;
 	}
 }
