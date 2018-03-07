@@ -125,11 +125,11 @@ div.row {
 aside div#active {
 	background-color: #F6EDD3;
 	border-right: 0;
-	
+	border-bottom: 0;
 }
 
 aside div div {
-	border-width: 0 2px 2px 0;
+	border-width: 2px 2px 2px 0;
 	border-style: solid;
 	border-color: black;
 	padding: 4em 2em;
@@ -356,6 +356,17 @@ footer > div#info {
 
 
 @media screen and (max-width: 671px) {
+	aside div div{
+		padding: 1em;
+		margin: auto;
+	}
+
+	aside div div h4 {
+		font-size: 18px;
+		margin: auto;
+		text-align: center;
+	}
+	
 	section div#reports div.report div.report_principal_info {
 		grid-template-columns: 50% 15% auto;
 	}
