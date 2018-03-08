@@ -125,27 +125,32 @@ div#add_user {
 div#add_user label {
 	margin: auto;
 }
-/*
-nav > form > .form-control:hover {
+
+div#add_user input.form-control {
+	margin: 0 0 0 1em;
+	width: 50%;
+	flex-grow: 1;
 }
 
-nav > form > .form-control:focus {
-} 
-
-nav > form > .form-control::placeholder {
-  color: #BBB;
-  opacity: 1;
+div#add_user button.btn {
+	margin: 0;
 }
 
-nav > form > .form-control:hover::placeholder {
-  color: #333;
-  opacity: 1;
+/**
+	MEMBERS
+*/
+
+div#add_user {
+	display: flex;
+	justify-content: space-between;
+	grid-row: 1;
+	width: auto;
+	margin: 2em 2em;
 }
 
-nav > form > .form-control:focus::placeholder {
-  color: #333;
-  opacity: 1;
-} */
+div#add_user label {
+	margin: auto;
+}
 
 div#add_user input.form-control {
 	margin: 0 0 0 1em;
@@ -158,29 +163,25 @@ div#add_user button.btn {
 }
 
 
-/* MEMBERS */
-
 div#members {
 	background-color: #002527;
 	margin: 0;
 	min-height: 100vh;
 }
 
-div#members div.member:last-of-type,
- div#requests div.request:last-of-type {
+div#members div.member:last-of-type {
 	margin-bottom: 2em;
 }
 
-div#members div.member,{
+div#members div.member {
 	margin: 1em 2em;
 	background-color: #9AC0BA;
-	color: #0A1827;
 	display: flex;
 	justify-content: space-between;
-	box-shadow: 0 0 10px #002527;
+	box-shadow: 0 0 10px #001;
 }
 
-div#members div.member > *{
+div#members div.member > * {
 	margin: auto;
 }
 
@@ -192,10 +193,55 @@ div#members div.member img {
 }
 
 div#members div.member h3 {
+	color: #0A1827;
 	margin: auto auto auto 0;
 }
 
-/* REQUESTS */
+div#members div.member button {
+	margin: auto 3em auto auto;
+	padding: 1em;
+}
+
+/** 
+	REQUESTS
+*/
+
+div#requests {
+	background-color: #002527;
+	margin: 0;
+	padding: 1em 0;
+}
+
+div#requests div.request:last-of-type {
+	margin-bottom: 2em;
+}
+
+div#requests div.request {
+	padding: 1em;
+	margin: 1em 2em;
+	background-color: #9AC0BA;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 0 10px #002527;
+}
+
+div#requests div.request > * {
+	margin: auto;
+}
+
+div#requests div.request p {
+	margin-left: 1em;
+	text-align: left;
+	color: #001;
+}
+
+div#requests div.request div.option_buttons {
+	margin: auto 3em auto auto;
+}
+ 
+/*
+
+/* REQUESTS 
 
 
 div#requests {
@@ -237,7 +283,7 @@ div#members div.member button, div#requests div.request button {
 	background-color: #0A1827;
 	
 }
-
+ */
 
 @media screen and (max-width: 500px){
 	nav div input:checked ~ ul {

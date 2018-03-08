@@ -141,7 +141,7 @@ div.new_sprint {
 }
 
 div a {
-	color: #EEE;
+	color: #0A1827;
 }
 
 div.list-group-item svg{
@@ -413,7 +413,6 @@ div.comment div.form_comment button.btn {
 
 div.members {
 	margin: 0;
-	background-color: #558A8C;	
 }
 
 div.members .header{
@@ -443,6 +442,11 @@ div.members div.member a{
 	margin: 1em auto;
 	font-weight: bold;
 	display: block;
+	color: #DF691A;
+}
+
+a:hover{
+	color: #893700;
 }
 
 /**
@@ -464,7 +468,7 @@ div.container.create_new {
 	position: absolute;
 	z-index: 1;
 	display: block;
-	background-color: #2B3E50;
+	background-color: #0A1827;
 	padding: 1em;
 	max-width: 40em;
 	height: 25em;
@@ -474,6 +478,7 @@ div.container.create_new {
 div.container.create_new h2 {
 	font-size: 24px;
 	text-align: center;
+	color:#ECE7F3;
 }
 
 div.container.create_new > button {
@@ -510,7 +515,7 @@ div.container.create_new input[type="date"].form-control {
 }
 
 div.container.create_new div#new_tasks {
-	background-color: #4E5D6C;
+	background-color: #558A8C;
 	padding: 1em;
 }
 
@@ -533,7 +538,6 @@ div.container.create_new div#new_tasks div.created_task button.btn.delete {
 
 div.container.create_new div#form_options {
 	text-align: center;
-	margin: 1em;
 }
 
 /**

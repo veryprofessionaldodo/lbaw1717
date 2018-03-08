@@ -186,7 +186,7 @@ section button#new_project.btn.btn-primary {
 section div.project {
 	background-color: #CCD9CE;
 	margin: 1em 3em;
-	padding: 1em 0;
+	padding: 1em 1em;
 	box-shadow: 0 0 5px #000;
 	color: #000;
 	display: grid;
