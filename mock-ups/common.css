@@ -106,3 +106,57 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
+/** PROJECTS */
+
+#buttons_nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 70px;
+	width: 100%;
+	padding-right: 0;
+	padding-left: 0;
+}
+
+#project_buttons:first-child:nth-last-child(2),
+#project_buttons:first-child:nth-last-child(2) ~ #project_buttons {
+	width: 50%;
+}
+
+#project_buttons {
+	height: 100%;
+	width: 33%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#mobile_nav {
+	display: none;
+}
+
+@media screen and (max-width:315px){
+	#buttons_nav {
+		display: none;
+	}
+
+	#row_mobile {
+		height: 80px;
+		width: 100%
+	}
+
+	#mobile_nav {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		background-color: #006064;
+		align-items: center;
+		height: 60px;
+	}
+
+	#project_buttons {
+		height: 100%;
+		width: 33%;
+		margin: 0px;
+		padding: 0px;
+	}
+}
