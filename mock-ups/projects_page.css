@@ -203,7 +203,6 @@ div.sprint-task {
 	border-top: 2px solid #000;*/
 }
 
-
 div.sprint-task.create_task {
 	padding: 1em;
 	display: flex;
@@ -219,7 +218,6 @@ div.sprint-task.create_task button {
 	margin: auto;
 	display: inline;
 }
-
 
 div.sprint-task svg{
 	grid-column-start: 1;
@@ -457,42 +455,42 @@ div.row {
 	opacity: 1;
 }
 
-div.container.create_new {
-	/*left: 25%;
-	top: 50%;*/
-	left:0;
-	right:0;
-	top:5em;
-	bottom: 0;
-	margin: auto;
-	position: absolute;
-	z-index: 1;
-	display: block;
-	background-color: #0A1827;
-	padding: 1em;
-	max-width: 40em;
+#new_container {
 	height: 25em;
-	text-align: justify;
 }
 
 div.container.create_new h2 {
 	font-size: 24px;
 	text-align: center;
-	color:#ECE7F3;
 }
 
 div.container.create_new > button {
 	margin: 0.25em 0 0 0;
 }
 
-div.container.create_new div.form_area {
+div.container.create_new div.form_area button {
+	width: 20%;
+	align-self: center;
+}
+
+div.container.create_new div.form_area #new_task {
 	display: flex;
-	justify-content: space-between;
-	margin: 1em 0;
+	flex-direction: row;
+	width: 95%;
+	align-self: center;
+}
+
+div.container.create_new div.form_area #new_task button {
+	width: 20%;
+}
+
+div.container.create_new #add_task_btn {
+	align-self: center;
 }
 
 div.container.create_new div.form_area_date {
-	display: block;
+	display: flex;
+	flex-direction: column;
 	margin: 1em 0;
 }
 
@@ -506,6 +504,8 @@ div.container.create_new label {
 div.container.create_new input.form-control {
 	flex-grow: 1;
 	width: auto;
+	align-self: center;
+	width: 95%;
 }
 
 div.container.create_new input[type="date"].form-control {
@@ -515,8 +515,11 @@ div.container.create_new input[type="date"].form-control {
 }
 
 div.container.create_new div#new_tasks {
-	background-color: #558A8C;
+	display: block;
+	background-color: #4E5D6C;
 	padding: 1em;
+	width: 100%;
+	text-align: center;
 }
 
 div.container.create_new div.created_task {
@@ -537,34 +540,11 @@ div.container.create_new div#new_tasks div.created_task button.btn.delete {
 }
 
 div.container.create_new div#form_options {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-around;
 	text-align: center;
-}
-
-/**
-		FOOTER
-*/
-footer {
-	background-color: #2B3E50;
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
-
-footer > * {
-	margin: 2em auto;
-}
-
-footer a, footer p {
-	font-size: 14px;
-}
-
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
+	margin: 1em;
 }
 
 @media screen and (max-width: 600px){
