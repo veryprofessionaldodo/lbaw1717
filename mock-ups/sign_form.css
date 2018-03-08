@@ -1,56 +1,3 @@
-body {
-	margin: 0;
-	background-color: #006064;
-}
- /**
-		NAV
- */
-nav {
-	background-color: #002527;
-	display: flex;	
-	justify-content: space-between;
-	align-items: center;
-}
-
-nav > * {
-	display: inline;
-	margin: 1em;
-}
-
-nav a {
-	text-decoration: none;
-	font-size: 24px;
-	font-weight: bold;
-	
-}
-
-nav > form {
-	flex-grow: 2;
-	display: flex;
-	align-items:center;
-	justify-content: center;
-}
-
-nav > form > .form-control {
-	display: inline-block;
-	width: 50%;
-	background-color: #203c47;
-	color: #AAA;
-}
-
-nav > form > .form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-nav > form > .form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-
-
-
 /** 
 	SECTION
 */
@@ -87,49 +34,16 @@ section hr {
 	background-image: linear-gradient(to right, #2B3E50, #868e96, #2B3E50);
 }
 
+nav > form > input.form-control {
+	display: inline-block;
+	width: 50%;
+	background-color: #4F8082;
+	color: #ECE7F3;
+	transition: all 0.2s;
+}
+
 input.form-control {
-	background-color: #b1d1d3;
-	color: #868E96;
-}
-
-input.form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #c0dee0;
-}
-
-input.form-control:focus {
-	color: #001;
-	transition: background-color 0.2s;
-	background-color: #edfdff;
-}
-
-
-
-/**
-		FOOTER
-*/
-footer {
-	background-color: #002527;
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
-
-footer > * {
-	margin: 2em auto;
-}
-
-footer a, footer p {
-	font-size: 14px;
-}
-
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
+	width: 100%;
 }
 
 form > p {
