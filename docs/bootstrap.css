@@ -170,18 +170,16 @@ sup {
   top: -.5em;
 }
 
-
-
 a {
   color: #DF691A;
-  text-decoration: underline;
+  text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-  transition: all 0.2s;
-  color: #893700;
+  color: #9a4912;
+  text-decoration: underline;
 }
 
 a:not([href]):not([tabindex]) {
@@ -1994,29 +1992,29 @@ pre code {
 .form-control:focus {
   color: #dce0e8;
   background-color: #4f668c;
-  border-color: #344c63;
+  border-color: #f1b287;
   outline: 0;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(223, 105, 26, 0.25);
           box-shadow: 0 0 0 0.2rem rgba(223, 105, 26, 0.25);
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #FFF;
+  color: #868e96;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #FFF;
+  color: #868e96;
   opacity: 1;
 }
 
 .form-control::-ms-input-placeholder {
-  color: #FFF;
+  color: #868e96;
   opacity: 1;
 }
 
 .form-control::placeholder {
-  color: #555;
+  color: #868e96;
   opacity: 1;
 }
 
@@ -4796,7 +4794,7 @@ tbody.collapse.show {
   margin-left: -1px;
   line-height: 1.25;
   color: #fff;
-  background-color: #0A1827;
+  background-color: #4E5D6C;
   border: 1px solid transparent;
 }
 
@@ -4804,7 +4802,7 @@ tbody.collapse.show {
   color: #fff;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.4);
-  background-color: #558A8C;
+  border-color: transparent;
 }
 
 .page-link:focus {
@@ -4840,7 +4838,7 @@ tbody.collapse.show {
   color: rgba(255, 255, 255, 0.4);
   pointer-events: none;
   cursor: auto;
-  background-color: #0A1827;
+  background-color: #4E5D6C;
   border-color: transparent;
 }
 
@@ -4994,7 +4992,7 @@ tbody.collapse.show {
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: #0A1827;
+  background-color: #4E5D6C;
   border-radius: 0;
 }
 

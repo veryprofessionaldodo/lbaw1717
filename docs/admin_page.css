@@ -1,0 +1,185 @@
+body {
+	margin: 0;
+	background-color: #006064;
+}
+
+ /**
+		NAV
+ */
+nav {
+	background-color: #002527;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav > * {
+	display: inline;
+	margin: 1em;
+}
+
+nav a {
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+
+}
+
+nav > form {
+	flex-grow: 2;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+
+nav > form > .form-control {
+	display: inline-block;
+	width: 50%;
+	background-color: #203c47;
+	color: #AAA;
+}
+
+nav > form > .form-control:hover {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav > form > .form-control:focus {
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
+}
+
+nav div input, nav div label {
+	display: none;
+}
+
+nav ul {
+	margin: 0;
+}
+
+nav ul li {
+	list-style: none;
+	display: inline-flex;
+}
+
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+}
+
+#user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#user img {
+	max-width: 3em;
+	border-radius: 50px;
+}
+
+#user button {
+	background-color: inherit;
+	border: 0;
+}
+
+
+/**
+		FOOTER
+*/
+footer {
+	background-color: #002527;
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+footer > * {
+	margin: 2em auto;
+}
+
+footer a, footer p {
+	font-size: 14px;
+}
+
+footer > div#contacts {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+footer > div#info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+
+/**
+	SECTION
+*/
+
+.container-fluid {
+	margin: 5em auto;
+	vertical-align: top;
+}
+
+
+div#users, div#comments {
+	background-color: #002E30;
+	padding: 1em 3em;
+	margin: 0 auto 3em auto;
+	box-shadow: 0 0 10px #1b323a;
+	height: auto;
+}
+
+div#users.col-lg-4, div#comments.col-lg-4 {
+	height: 100%;
+}
+
+div.user_notification, div.comment_notification {
+	color: #111;
+	cursor: pointer;
+	background-color: #deeded;
+	padding: 1em;
+	margin: 2em 0;
+}
+
+div.user_notification:hover, div.comment_notification:hover {
+	background-color: #c9dbdb;
+}
+
+div.user_notification p, div.comment_notification p{
+	margin: 0;
+	letter-spacing: 0.5px;
+}
+
+@media screen and (max-width: 580px){
+	nav input.form-control {
+		display: none;
+	} 
+	div#mobile {
+		display: none;
+	}
+	nav div label {
+		background-color: inherit;
+		color: #DF691A;
+		margin: 0 0.5em;
+		display: inline;
+		font-size: 34px;
+		cursor: pointer;
+	}
+	nav div label:before {
+		content: "\2630";
+	}
+	nav div input:checked ~ label:before{
+		content: "\2715";
+	}
+	
+	/**   USAR JAVASCRIPT  */
+	/*
+	nav div input:checked ~ div#mobile ul {
+		visibility: visible;
+		display: block;
+		width: 100%;
+		background-color: white;
+		transition-delay: 0s;
+	}*/
+}

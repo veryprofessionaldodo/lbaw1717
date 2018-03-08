@@ -1,28 +1,38 @@
 body {
 	margin: 0;
-	background-color: #006064;
+	background-color: #ECE7F3;
 }
 
  /**
 		NAV
  */
 nav {
-	background-color: #002527;
-	display: flex;
-	justify-content: space-between;
+	background-color: #0A1827;
+	display: grid;
+	/*justify-content: space-between;*/
 	align-items: center;
+	display: grid;
+	grid-template-columns: 16% auto 13%;
 }
 
 nav > * {
 	display: inline;
-	margin: 1em;
+	margin: 0.5em;
+	margin-left:0.7em;
 }
 
 nav a {
 	text-decoration: none;
-	font-size: 24px;
-	font-weight: bold;
+	font-size: 27px;
+	letter-spacing: 4px;
+	color: #CCD9CE;
+	grid-column-start:1;
+	grid-column-end: 2;
+	text-align:center;
+}
 
+nav a:hover {
+	color: #DF691A;
 }
 
 nav > form {
@@ -30,23 +40,26 @@ nav > form {
 	display: flex;
 	align-items:center;
 	justify-content: center;
+	grid-column-start:2;
+	grid-column-end: 3;
 }
 
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #203c47;
-	color: #AAA;
+	background-color: #4F8082;
+	color: #0A1827;
+	transition: all 0.2s;
 }
 
 nav > form > .form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
+	background-color: #9AC0BA;
 }
 
 nav > form > .form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
+	background-color: #CCD9CE;
+	color: #0A1827;
+	outline: 5px auto -webkit-focus-ring-color;
 }
 
 nav div input, nav div label {
@@ -65,17 +78,27 @@ nav ul li {
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
+	color: #0A1827;
 }
 
 #user {
-	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+#mobile{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	padding-right: 20%;
 }
 
 #user img {
 	max-width: 3em;
 	border-radius: 50px;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin-left:0;
+	
 }
 
 #user button {
@@ -83,12 +106,221 @@ h2 {
 	border: 0;
 }
 
+nav > form > .form-control::-webkit-input-placeholder {
+  color: #FFF;
+  opacity: 1;
+}
+
+nav > form > .form-control::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
+nav > form > .form-control:hover::placeholder {
+  color: #333;
+  opacity: 1;
+}
+
+
+/**
+	SECTION
+*/
+
+.container-fluid {
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+	min-height: 100vh;
+	color: black;
+}
+
+div.row {
+	margin: 0;
+}
+
+.container-fluid > div.row {
+	min-height: 100vh;
+}
+
+aside div#active {
+	outline: 1px solid #558A8C;
+	background-color: #CCD9CE;
+	border-right: 0;
+	border-bottom: 0;
+}
+
+aside div div {
+	outline: 2px solid #508689;
+	padding: 4em 2em;
+	background-color: #9AC0BA;
+}
+
+aside.col-md-2#navbar {
+	padding: 0;
+	margin: 0;
+	height: auto;
+	text-align: center;
+}
+
+aside.col-1#navbar h4{
+	font-size: 18px;
+	padding: 3em;
+}
+
+
+section {
+	margin: 2em 0;
+	padding: 1em;
+}
+
+
+section div#search_bar input.form-control {
+	display: inline-block;
+	width: auto;
+	background-color: #CCD9CE;
+	color: #0A1827;
+	outline: 1px solid #558A8C;
+}
+
+section div#search_bar input.form-control:focus {
+	outline: 1px solid #508689;
+}
+
+
+section div#search_bar button.btn {
+	display: inline-block;
+	vertical-align: inherit;
+}
+
+div > button {
+	background-color: #0A1827;
+	transition: all 0.2s;
+}
+
+div > button:hover {
+	background-color: #AA000C;
+}
+
+section div#reports {
+	margin: 2em 0;
+}
+
+section div#reports div.report {
+	margin: 1em 0;
+}
+
+section div#reports div.report div.report_principal_info {
+	border-top: 1px solid #508689;
+	background-color: #ECE7F3;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: 40% 10% auto;
+}
+
+section div#reports div.report div.report_principal_info p{
+	grid-column-start: 1;
+	grid-column-end: 2;
+	margin: auto 0;
+}
+section div#reports div.report div.report_principal_info a{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin: auto 0;
+	text-align: center;
+}
+
+section div#reports div.report div.report_principal_info div.options{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	text-align: right;
+	margin: auto 0;
+	display: block;
+}
+
+section div#reports div.report div.report_details {
+	outline: 1px solid #558A8C;
+	background-color: #CCD9CE;
+	padding: 1em;
+}
+
+section div#reports div.report div.report_details h4:first-of-type {
+	margin-top: 0.5em;
+}
+
+section div#reports div#pagination_section {
+	text-align: center;
+}
+
+section div#reports div#pagination_section ul.pagination{
+	margin: auto;
+	width: auto;
+	text-align: center;
+}
+
+
+section div#pagination_section li.page-item:hover {
+	background-color: #0A1827;
+}
+
+/**
+	Comments
+*/
+
+section div#reports div.report.report_comment div.report_principal_info {
+	background-color: white;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: 40% auto 20%;
+}
+
+section div#reports div.report.report_comment div.report_principal_info div.options {
+	margin: auto 0 auto auto;
+}
+
+section div#reports div.report.report_comment div.report_principal_info div.options button.btn {
+	display: block;
+	width: 100%;
+	margin: 1em 0;
+}
+
+
+/*
+div#users, div#comments {
+	background-color: #9AC0BA;
+	padding: 1em 3em;
+	margin: 0 auto 3em auto;
+	box-shadow: 0 0 10px #1b323a;
+	height: auto;
+}
+
+div#users.col-lg-4, div#comments.col-lg-4 {
+	height: 100%;
+}
+
+div.user_notification, div.comment_notification {
+	color: #111;
+	cursor: pointer;
+	background-color: #F0E7CE;
+	padding: 1em;
+	margin: 2em 0;
+}
+
+div.user_notification:hover, div.comment_notification:hover {
+	outline: 1px solid #0A1827;
+	background-color: #F5F5F5;
+}
+
+div.user_notification p, div.comment_notification p{
+	margin: 0;
+	letter-spacing: 0.5px;
+}*/
+
 
 /**
 		FOOTER
 */
 footer {
-	background-color: #002527;
+	background-color: #0A1827;
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
@@ -109,46 +341,6 @@ footer > div#contacts {
 footer > div#info {
 	grid-column-start: 2;
 	grid-column-end: 3;
-}
-
-
-/**
-	SECTION
-*/
-
-.container-fluid {
-	margin: 5em auto;
-	vertical-align: top;
-}
-
-
-div#users, div#comments {
-	background-color: #002E30;
-	padding: 1em 3em;
-	margin: 0 auto 3em auto;
-	box-shadow: 0 0 10px #1b323a;
-	height: auto;
-}
-
-div#users.col-lg-4, div#comments.col-lg-4 {
-	height: 100%;
-}
-
-div.user_notification, div.comment_notification {
-	color: #111;
-	cursor: pointer;
-	background-color: #deeded;
-	padding: 1em;
-	margin: 2em 0;
-}
-
-div.user_notification:hover, div.comment_notification:hover {
-	background-color: #c9dbdb;
-}
-
-div.user_notification p, div.comment_notification p{
-	margin: 0;
-	letter-spacing: 0.5px;
 }
 
 @media screen and (max-width: 580px){
@@ -182,4 +374,130 @@ div.user_notification p, div.comment_notification p{
 		background-color: white;
 		transition-delay: 0s;
 	}*/
+}
+
+@media screen and (max-width: 1060px) {
+	aside h4 {
+		font-size: 20px;
+	}
+	aside.col-md-2 {
+		padding: 0;
+	}
+}
+
+@media screen and (max-width: 935px){
+	section div#reports div.report div.report_principal_info {
+		grid-template-columns: 40% 15% auto;
+	}
+
+	aside h4 {
+		font-size: 22px;
+		color: #B05315;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		grid-template-columns: 40% auto 25%;
+	}
+
+}
+@media screen and (max-width: 840px) {
+	section div#reports div.report p, section div#reports div.report a {
+		font-size: 14px;
+	}
+
+	section div#reports div.report div.report_principal_info div.options button.btn{
+		font-size: 14px;
+		padding: 0.5em;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	aside div div#active {
+		border-width: 0 2px 0 0;
+	}
+
+	aside div div {
+		border-width: 0 2px 2px 2px;
+	}
+}
+
+
+@media screen and (max-width: 671px) {
+	aside div div{
+		padding: 1em;
+		margin: auto;
+	}
+
+	aside div div h4 {
+		font-size: 18px;
+		margin: auto;
+		text-align: center;
+	}
+	
+	section div#reports div.report div.report_principal_info {
+		grid-template-columns: 50% 15% auto;
+	}
+
+	section div#reports div.report div.report_principal_info div.options button.btn{
+		font-size: 12px;
+		width: 75%;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		grid-template-columns: 40% auto 30%;
+	}
+}
+
+@media screen and (max-width: 590px) {
+
+	section div#reports div.report div.report_principal_info div.options button.btn{
+		font-size: 12px;
+		width: 75%;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	section div#reports div.report div.report_principal_info {
+		display: block;
+	}
+
+	section div#reports div.report div.report_principal_info > * {
+		text-align: center;
+		display: block;
+	}
+
+	section div#reports div.report div.report_principal_info p {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report div.report_principal_info a {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report div.report_principal_info div.options button.btn {
+		display: block;
+		margin: 1em auto;
+	}
+
+	section div#reports div#pagination_section ul.pagination a{
+		font-size: 12px;
+	}
+
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		display: block;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info > * {
+		text-align: center;
+		display: block;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info p {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info a {
+		margin-bottom: 1em;
+	}
 }

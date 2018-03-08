@@ -1,65 +1,53 @@
-
-
-/* CENAS */ 
-
 body {
 	margin: 0;
-	background-color: #F6EDD3;
+	background-color: #006064;
 }
-
  /**
 		NAV
  */
- nav {
-	background-color: #0A1827;
-	display: grid;
-	/*justify-content: space-between;*/
+nav {
+	background-color: #002527;
+	display: flex;	
+	justify-content: space-between;
 	align-items: center;
-	display: grid;
-	grid-template-columns: 16% auto 13%;
+	position: relative;
+	z-index: 1;
 }
 
 nav > * {
 	display: inline;
-	margin: 0.5em;
-	margin-left:0.7em;
+	margin: 1em;
 }
 
 nav a {
 	text-decoration: none;
-	font-size: 27px;
-	letter-spacing: 4px;
-	color: #CCD9CE;
-	grid-column-start:1;
-	grid-column-end: 2;
-	text-align:center;
+	font-size: 24px;
+	font-weight: bold;
+	
 }
 
 nav > form {
-	flex-grow: 2;
 	display: flex;
+	flex-grow: 1;
 	align-items:center;
 	justify-content: center;
-	grid-column-start:2;
-	grid-column-end: 3;
 }
 
 nav > form > .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #4F8082;
-	color: #0A1827;
-	transition: all 0.2s;
+	background-color: #203c47;
+	color: #AAA;
 }
 
 nav > form > .form-control:hover {
-	background-color: #9AC0BA;
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav > form > .form-control:focus {
-	background-color: #CCD9CE;
-	color: #0A1827;
-	outline: 5px auto -webkit-focus-ring-color;
+	transition: background-color 0.2s;
+	background-color: #2b4e5b;
 }
 
 nav div input, nav div label {
@@ -68,17 +56,11 @@ nav div input, nav div label {
 
 nav ul {
 	margin: 0;
-}
+} 
 
 nav ul li {
 	list-style: none;
-	display: inline-flex;
-}
-
-h2 {
-	text-align: center;
-	padding-top: 0.5em;
-	color: #0A1827;
+	display: inline;
 }
 
 #user {
@@ -141,22 +123,6 @@ h2 {
 
 button#notification:hover ~ .dropdown {
 	display: block;
-
-}
-
-nav > form > .form-control::-webkit-input-placeholder {
-  color: #FFF;
-  opacity: 1;
-}
-
-nav > form > .form-control::placeholder {
-  color: #333;
-  opacity: 1;
-}
-
-nav > form > .form-control:hover::placeholder {
-  color: #333;
-  opacity: 1;
 }
 
 /**

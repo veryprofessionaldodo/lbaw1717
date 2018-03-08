@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>User Profile</title>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="profile_page_logged_in_visitor.css">
+</head>
+<body>
+	<nav>
+		<a href="index.html">Proyekt</a>
+		<form>
+			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+			<button class="btn btn-primary my-2 my-sm-0" type="submit">
+				<i class="fas fa-search"></i>
+			</button>
+		</form>
+		<div id="user">
+			<input type="checkbox" id="hamburger">
+			<label class="hamburger" for="hamburger"></label>
+			<div id="mobile">
+				<button id="notification">
+					<i class="fas fa-bell"></i>
+				</button>
+				<div class="dropdown">
+					<div class="dropdown-content">
+						<div class="modal">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Notifications</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p><i class="far fa-paper-plane"></i>&nbsp; &nbsp;jotacl has invited you to project Management App</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success">Accept</button>
+										<button type="button" class="btn btn-danger" data-dismiss="modal">Decline</button>
+									</div>
+									<div class="modal-body">
+										<p><i class="far fa-paper-plane"></i>&nbsp; &nbsp;jotacl has promoted you to Project Coordinator of the project Management App</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<img src="res/profile/profile-pic.png">
+			</div>
+		</div>
+	</nav>
+
+	<div id="dashboard">
+
+		<aside>
+			<div id="info">
+				<img src="res/profile/profile-pic.png">
+				<div id="info_text">
+					<h3>John Doe</h3>
+					<p>john_doe_93</p>
+					<p>johndoe@gmail.com</p>
+				</div>
+			</div>
+
+			<div id="statistics">
+				<h5>Statistics</h5>
+				<p>10 tasks completed this week</p>
+				<p>29 tasks completed this month</p>
+				<p>4 sprints contributed to</p>
+			</div>
+
+			<button class="btn" title="Report"><i class="fas fa-flag"></i></button>
+		</aside>
+
+		<section>
+			<div id="options">
+				<form>
+					<input type="text" name="search" placeholder="Search" class="form-control mr-sm-4">
+					<button class="btn btn-primary my-2 my-sm-0" type="submit">
+						<i class="fas fa-search"></i>
+					</button>
+				</form>
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+					<button type="button" class="btn btn-primary">Role</button>
+					<div class="btn-group" role="group">
+						<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"></button>
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
+							<a class="dropdown-item" href="#">Coordinator</a>
+							<a class="dropdown-item" href="#">Team Member</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="project">
+				<h5>LBAW</h5>
+				<p>Coordinator</p>
+				<div class="project_info">
+					<p>26 Members</p>
+				</div>
+			</div>
+			<div class="project">
+				<h5>LBAW</h5>
+				<p>Coordinator</p>
+				<div class="project_info">
+					<p>26 Members</p>
+				</div>
+			</div>
+			<div class="project">
+				<h5>LBAW</h5>
+				<p>Coordinator</p>
+				<div class="project_info">
+					<p>26 Members</p>
+				</div>
+			</div>
+			<div class="project">
+				<h5>IART</h5>
+				<p>Team Member</p>
+				<div class="project_info">
+					<p>14 Members</p>
+				</div>
+			</div>
+
+		</section>
+	</div>
+
+	<footer>
+		<div id="contacts">
+			<h6>Contacts</h6>
+			<p>(+351)255255255</p>
+		</div>
+
+		<div id="info">
+			<a href="#">Terms of use</a>
+		</div>
+	</footer>
+
+</body>
+</html>
