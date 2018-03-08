@@ -189,6 +189,14 @@ section.container-fluid {
 	NAVTABS
 */
 
+section.container-fluid div.row{
+	margin: 0;
+	padding: 0;
+}
+
+section.container-fluid div.row div.col-12 {
+	padding: 0;
+}
 
 section.container-fluid .row .nav-tabs {
 	margin-top: 1em;
@@ -210,7 +218,7 @@ section.container-fluid .row .nav-tabs {
 	MEMBERS
 */
 
-div#add_user {
+div.user_search {
 	display: flex;
 	justify-content: space-between;
 	grid-row: 1;
@@ -218,17 +226,17 @@ div#add_user {
 	margin: 2em 2em;
 }
 
-div#add_user label {
+div.user_search  label {
 	margin: auto;
 }
 
-div#add_user input.form-control {
+div.user_search input.form-control {
 	margin: 0 0 0 1em;
 	width: 50%;
 	flex-grow: 1;
 }
 
-div#add_user button.btn {
+div.user_search button.btn {
 	margin: 0;
 }
 
@@ -239,35 +247,37 @@ div#members {
 	min-height: 100vh;
 }
 
+div#members.row {
+	margin: 0;
+}
+
 div#members div.member:last-of-type {
 	margin-bottom: 2em;
 }
 
 div#members div.member {
+	text-align: left;
 	margin: 1em 2em;
 	background-color: #3797A4;
-	display: flex;
-	justify-content: space-between;
 	box-shadow: 0 0 10px #002527;
 }
 
-div#members div.member > * {
-	margin: auto;
-}
 
 div#members div.member img {
 	max-width: 5em;
 	max-height: 5em;
 	border-radius: 50%;
-	margin: 1em 2em;
+	margin: 1em 1em;
 }
 
 div#members div.member h3 {
-	margin: auto auto auto 0;
+	display: inline;
+	font-size: 20px;
 }
 
-div#members div.member button {
-	margin: auto 3em auto auto;
+div#members div.member div.buttons {
+	text-align: right;
+	margin: auto;
 }
 
 /** 
@@ -286,26 +296,29 @@ div#requests div.request:last-of-type {
 }
 
 div#requests div.request {
-	padding: 1em;
 	margin: 1em 2em;
+	padding: 1em;
 	background-color: #3797A4;
-	display: flex;
-	justify-content: space-between;
-	box-shadow: 0 0 10px #002527;
 }
 
 div#requests div.request > * {
-	margin: auto;
+	/*margin: auto;*/
 }
 
 div#requests div.request p {
-	margin-left: 1em;
+	margin: auto;
 	text-align: left;
 }
 
 div#requests div.request div.option_buttons {
-	margin: auto 3em auto auto;
+	text-align: right;
+	/*margin: auto 3em auto auto;*/
 }
+
+div.pagination_div {
+	text-align: center;
+}
+
 
 /**
 		FOOTER
@@ -334,80 +347,55 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
-@media screen and (max-width: 500px){
-	nav div input:checked ~ ul {
-		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
-		transition-delay: 0s;
-	}
-	nav input.form-control {
-		display: none;
-	}
-	div#mobile {
-		display: none;
-	}
-
-	div#members {
-		margin: 1em 1em;
-	}
-
+@media screen and (max-width: 991px) {
 	div#members div.member {
-		margin: 1em 0;
-	}
-	div#members div.member img {
-		max-width: 3em;
-		max-height: 3em;
-		margin: 1em 1em;
+		text-align: center;
 	}
 
 	div#members div.member h3 {
-		font-size: 16px;
-		margin-left: 0;
-	}
-
-	div#members div.member button{
-		font-size: 12px;
-		margin-right: 1em;
-	}
-
-	div#add_user {
 		display: block;
-		justify-content: space-between;
-		grid-row: 1;
-		width: auto;
-		margin: 2em 0;
 	}
 
-	div#add_user label {
+	div#members div.member div.buttons {
+		text-align: center;
+		margin: 1em 0;
+	}
+}
+
+
+@media screen and (max-width: 767px) {
+	div#requests div.request p {
+		text-align: center;
+		margin-bottom: 1em;
+	}
+	div#requests div.request div.option_buttons {
+		text-align: center;
+	}
+
+	div#pagination_section {
 		margin: auto;
-		display: block;
-	}
-
-	div#add_user input.form-control {
-		margin: auto 0;
-		width: 60%;
-		display: inline-block;
-	}
-
-	div#add_user button.btn {
-		margin: auto 0;
-		display: inline-block;
 	}
 }
 
 @media screen and (max-width: 580px){
+	nav {
+		grid-template-columns: 50% 20% auto;
+		text-align: right;
+	}
+
+	nav a {
+		text-align: left;
+	}
 	nav input.form-control {
 		display: none;
 	} 
-	div#mobile ul {
+	div#mobile {
 		display: none;
 	}
 	nav div label {
 		background-color: inherit;
 		color: #DF691A;
-		margin: 0 0.5em;
+		margin: 0;
 		display: inline;
 		font-size: 34px;
 		cursor: pointer;
@@ -428,123 +416,43 @@ footer > div#info {
 		background-color: white;
 		transition-delay: 0s;
 	}*/
+
 	section.container-fluid {
-		margin: 2em 0;
-		padding: 0;
-		max-width: 100%;
+		margin: 2em auto;
+		max-width: 85%;
 	}
+}
 
-	div#add_user {
-		display: block;
-	}
 
-	div#add_user button{
-		vertical-align: inherit;
-	}
-
+@media screen and (max-width: 500px){
 	div#members {
-		margin: 0;
+		margin: 1em 1em;
 	}
 
-	div#members div.member {
-		display: block;
-	}
-
-	div#members div.member button:last-of-type{
-		margin-right: 1em;
-	}
-	div#members div.member h3 {
+	div#members div.member div.buttons button.btn {
 		font-size: 12px;
-		margin-left: 0.25em;
-	}
-	div#members div.member img {
-		max-width: 3em;
-		max-height: 3em;
-		margin: 1em 0;
-	}
-	div#members div.member button {
-		padding: 0 2px;
-		font-size: 12px;
-		margin: 1em 0.5em;
-	}
-
-	div#requests {
-		margin: 0;
-	}
-
-	div#requests div.request {
 		padding: 0.5em;
 	}
 
-	div#requests div.request p{
-		font-size: 12px;
+	div.user_search {
+		display: block;
+		width: auto;
+		margin: 1em 0 0 0;
 	}
 
-	div#requests div.request div.option_buttons {
-		margin: 0;
+	div.user_search input.form-control {
+		margin: 0.5em auto;
+		width: 50%;	
 	}
 
-	div#requests div.request div.option_buttons button{
-		font-size: 12px;
-		padding: 2px 6px;
-	}
-}
-
-@media screen and (max-width: 770px) and (min-width: 581px){
 	section.container-fluid {
-		min-height: 100vh;
-		margin: 2em auto;
-		max-width: 100%;
-	}
-	div#members div.member h3 {
-		font-size: 14px;
-		margin-left: 0;
+		margin: 1em auto;
+		padding: 0;
 	}
 
-	div#members div.member img {
-		max-width: 3em;
-		max-height: 3em;
-		margin: 1em 0.5em;
+	div#pagination_section {
+		margin: auto;
+		font-size: 10px;
 	}
 
-	div#members div.member button {
-		font-size: 12px;
-		margin: auto 0.5em;
-	}
-
-	div#members div.member button:last-of-type{
-		margin-right: 1em;
-	}
-
-	div#requests div.request p{
-		font-size: 14px;
-		margin-left: 0.5em;
-	}
-
-	div#requests div.request div.option_buttons {
-		margin-right: 1em;
-	}
-}
-
-@media screen and (max-width: 990px) and (min-width: 771px){
-	div#members div.member h3 {
-		font-size: 18px;
-	}
-
-	div#members div.member img {
-		margin: 1em 0.5em;
-	}
-
-	div#members div.member button{
-		font-size: 12px;
-	}
-
-	div#requests div.request p{
-		font-size: 14px;
-		margin-left: 0.5em;
-	}
-
-	div#requests div.request div.option_buttons {
-		margin-right: 1em;
-	}
 }
