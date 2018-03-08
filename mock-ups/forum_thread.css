@@ -1,67 +1,3 @@
-body {
-	margin: 0;
-	background-color: #ECE7F3;
-}
-
- /**
-		NAV
- */
- nav {
-	background-color: #0A1827;
-	display: grid;
-	/*justify-content: space-between;*/
-	align-items: center;
-	display: grid;
-	grid-template-columns: 16% auto 13%;
-}
-
-nav > * {
-	display: inline;
-	margin: 0.5em;
-	margin-left:0.7em;
-}
-
-nav a {
-	text-decoration: none;
-	font-size: 27px;
-	letter-spacing: 4px;
-	color: #CCD9CE;
-	grid-column-start:1;
-	grid-column-end: 2;
-	text-align:center;
-}
-
-nav a:hover {
-	color: #DF691A;
-}
-
-nav > form {
-	flex-grow: 2;
-	display: flex;
-	align-items:center;
-	justify-content: center;
-	grid-column-start:2;
-	grid-column-end: 3;
-}
-
-nav > form > .form-control {
-	display: inline-block;
-	width: 50%;
-	background-color: #4F8082;
-	color: #0A1827;
-	transition: all 0.2s;
-}
-
-nav > form > .form-control:hover {
-	background-color: #9AC0BA;
-}
-
-nav > form > .form-control:focus {
-	background-color: #CCD9CE;
-	color: #0A1827;
-	outline: 5px auto -webkit-focus-ring-color;
-}
-
 nav div input, nav div label {
 	display: none;
 }
@@ -78,27 +14,18 @@ nav ul li {
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
-	color: #0A1827;
+	color: #ECE7F3;
 }
 
 #user {
+	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
-
-#mobile{
-	display: grid;
-	grid-template-columns: 50% 50%;
-	padding-right: 20%;
 }
 
 #user img {
 	max-width: 3em;
 	border-radius: 50px;
-	grid-column-start: 2;
-	grid-column-end: 3;
-	margin-left:0;
-	
 }
 
 #user button {
@@ -106,73 +33,20 @@ h2 {
 	border: 0;
 }
 
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	/*margin-right: 1em;*/
-	grid-column-start: 1;
-	grid-column-end: 2;
-	padding-right:20%;
-
-}
-
-#notification {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0;
-    font-size: 16px;
-    border: none;
-}
-
-nav > form > .form-control::-webkit-input-placeholder {
-  color: #FFF;
-  opacity: 1;
-}
-
-nav > form > .form-control::placeholder {
-  color: #333;
-  opacity: 1;
-}
-
-nav > form > .form-control:hover::placeholder {
-  color: #333;
-  opacity: 1;
-}
-
-
-
-/**
-		FOOTER
-*/
-footer {
-	background-color: #0A1827;
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
-
-footer > * {
-	margin: 2em auto;
-}
-
-footer a, footer p {
-	font-size: 14px;
-}
-
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
-}
-
 /*
 
 POST
 
 */
+
+.breadcrumb >.breadcrumb-item.active a{
+	color: #893700;
+	text-decoration: none;
+}
+
+.issue h2 {
+	color: red;
+}
 
 div#container ol.breadcrumb {
 	background-color: inherit;
@@ -186,19 +60,16 @@ div#container ol.breadcrumb {
 }
 
 #container {
-   /* margin: 5% 15% auto 15%;*/
    margin: 2em 10em;
-    /*grid-template-rows: [row0] 25% [row1] auto [row2];
-	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];*/
 }
 
 #thread {
-	/*background-color: #2B3E50;*/
+	background-color: #2B3E50;
 	margin-bottom: 2em;
 }
 
 #thread div#header {
-	background-color: #182f35;
+	background-color: #0A1827;
 	border-width: 5px 5px 0 5px;
 	border-style: solid;
 	border-color: black;
@@ -223,24 +94,6 @@ div#container ol.breadcrumb {
 	margin: auto;
 }*/
 
-#thread #profile_pic {
-	width: 50px;
-	height: 50px;
-}
-/*
-#thread div.row:not(:first-child){
-	height: 100px;
-}
-*/
-
-div.date p {
-	margin-bottom: 0.2em;
-}
-
-div.date a{
-	padding-left: 25%;
-}
-
 #thread div.comment {
 	padding: 1em;
 	border-width: 0 5px 1px 5px;
@@ -259,50 +112,20 @@ div.date a{
 }
 
 #thread div.comment {
-	padding: 0.5em;
-}
-/*
-#thread table {
-	margin: 0;
+	padding: 1em;
 }
 
-table thead tr#thread_main_text {
-	background-color: #182f35;
+.col-8 > p {
+	color:#0A1827;
 }
 
-#thread td {
-	font-size: 125%;
+#thread .table-dark {
+	background-color: #CCD9CE;
 }
 
-#thread td.date {
-	vertical-align: middle;	
-	text-align: center;
-	padding: 0 1em;
-}
-
-#thread tbody th {
-	text-align: center;
-}
-*/
-
-div.col-8 button {
-	margin-left: 88%;
-}
-
-input.form-control {
-	margin-left: 0;
+div input.form-control {
+	display: inline;
 	width: 100%;
-	background-color: #203c47;
-}
-
-input.form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-input.form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
 }
 
 #thread .comment a, #thread #header a{
@@ -408,7 +231,6 @@ input.form-control:focus {
 	div.row > div.col-2{
 		max-width: 100%;
 		flex: 0 0 100%;
-		height: 100px;
 	}
 
 	div.row > div.col-8 {
@@ -424,6 +246,9 @@ input.form-control:focus {
 	#thread img {
 		max-width: 75%;
     	height: auto;
+    	margin-left: auto;
+    	margin-right: auto;
+    	align-self: center;
     }
 
 	#thread #issue p {
@@ -489,11 +314,11 @@ input.form-control:focus {
 	}
 
 	#thread p {
-		font-size: 12px;
+		font-size: 16px;
 	}
 
 	#thread h2{
-		font-size: 20px;
+		font-size: 30px;
 	}
 	
 	/*#thread td p{
@@ -520,10 +345,4 @@ input.form-control:focus {
 	#thread label {
 		font-size:2.5vw;
 	}*/
-}
-
-@media screen and (max-width: 531px){
-	div.col-8 button {
-		margin-left: 70%;
-	}
 }
