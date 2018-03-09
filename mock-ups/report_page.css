@@ -18,14 +18,23 @@ h2 {
 }
 
 #user {
-	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+#mobile{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	padding-right: 20%;
 }
 
 #user img {
 	max-width: 3em;
 	border-radius: 50px;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin-left:0;
+	
 }
 
 #user button {
@@ -36,7 +45,11 @@ h2 {
 #user button#notification {
 	color: white;
 	font-size: 24px;
-	margin-right: 1em;
+	/*margin-right: 1em;*/
+	grid-column-start: 1;
+	grid-column-end: 2;
+	padding-right:20%;
+
 }
 
 #notification {
