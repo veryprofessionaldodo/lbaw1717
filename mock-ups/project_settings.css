@@ -313,9 +313,32 @@ div.pagination_div {
 		transition-delay: 0s;
 	}*/
 
+
+	div.user_search {
+		display: block;
+		width: auto;
+		margin: 1em 0;
+	}
+
+	div.user_search  label {
+		margin: auto;
+	}
+
+	div.user_search input.form-control {
+		margin: 0.5em auto;
+		width: 50%;
+		display: block;
+	}
+	
 	section.container-fluid {
 		margin: 2em auto;
 		max-width: 85%;
+	}
+
+	div#members div.member div.buttons {
+		text-align: center;
+		margin: auto;
+		padding: 1em 0;
 	}
 }
 
@@ -349,6 +372,11 @@ div.pagination_div {
 	div#pagination_section {
 		margin: auto;
 		font-size: 10px;
+	}
+
+	div#pagination_section ul.pagination {
+		width: 50%;
+		margin: 1em auto;	
 	}
 
 }

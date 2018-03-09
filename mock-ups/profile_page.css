@@ -281,6 +281,8 @@ section div.project .project_info > *{
 section div.project .project_info > button.btn.btn-secondary{
 	background-color: #004649;
 	font-size: 14px;
+	margin: 0.5em auto;
+	padding: 0.5em 1em;
 }
 
 section div.project:hover {
@@ -470,7 +472,7 @@ div.container.edit_profile div#form_options {
 
 
 @media screen and (max-width: 500px){
-	/*nav div input:checked ~ ul {
+	nav div input:checked ~ ul {
 		visibility: visible;
 		display: inline;
 		float: left;
@@ -486,7 +488,7 @@ div.container.edit_profile div#form_options {
 	nav div label {
 		background-color: inherit;
 		color: #DF691A;
-		margin: 0 0.5em;
+		margin: 0;
 		display: inline;
 		font-size: 34px;
 		cursor: pointer;
@@ -497,8 +499,42 @@ div.container.edit_profile div#form_options {
 	nav div input:checked ~ label:before{
 		content: "\2715";
 	}
+
+	section div.project {
+		margin: 1em;
+		display: block;
+	}
+		
+	section div.project > h5 {
+		font-size: 26px;
+	}
+
+	section div.project > p {
+		font-size: 18px;
+	}
+
+	section div.project .project_info{
+		font-size: 14px;
+	}
+
+	section div.project .project_info > *{
+		display: inline-block;
+		margin: auto 1em;
+	}
+
+	section div.project .project_info > button.btn.btn-secondary{
+		font-size: 12px;
+		margin: 0.5em auto;
+		padding: 0.5em 1em;
+	}
+
+	section div.project:hover {
+		background-color: #80DEEA;
+		cursor: pointer;
+	}
+
  
-	div#dashboard {
+	/*div#dashboard {
 		display: block;
 	}
 	aside {

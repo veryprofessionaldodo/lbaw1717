@@ -86,13 +86,75 @@ button#notification:hover ~ .dropdown {
 
 
 div#dashboard {
-	margin: 1em;
-	display: grid;
-	grid-template-columns: 40% auto;
 	min-height: 100vh;
 	text-align: center;
 }
 
+div#dashboard div#join_project {
+	width: auto;
+	margin: 1em auto;
+}
+
+div#dashboard div#join_project button.btn {
+	color: white;
+}
+
+div#dashboard aside#description {
+	margin: 1em auto;
+	background-color: inherit;
+	color: #001;
+	text-align: justify;
+}
+
+div#dashboard aside#description h2 {
+	text-align: center;
+	margin-bottom: 0.5em;
+}
+
+
+
+section#members {
+	background-color: #002527;
+	margin: 0 auto 1em auto;
+	min-height: 100vh;
+}
+
+section#members.row {
+	margin: 0;
+}
+
+section#members div.member:last-of-type {
+	margin-bottom: 2em;
+}
+
+section#members div.member {
+	text-align: center;
+	margin: 2em;
+	padding: 1em;
+	color: #001;
+	background-color: #9AC0BA;
+	box-shadow: 0 0 10px #002527;
+}
+
+
+section#members div.member img {
+	max-width: 5em;
+	max-height: 5em;
+	border-radius: 50%;
+	margin: 1em auto;
+	display: block;
+}
+
+section#members div.member h3 {
+	display: inline;
+	font-size: 20px;
+}
+
+section#members div.member p {
+	margin: 1em auto 0 auto;
+	display: block;
+}
+/*
 div#dashboard button.btn {
 	background-color: #0A1827;
 	display: block;
@@ -148,7 +210,6 @@ div.members div.member {
 }
 
 div.members div.member img{
-	/*margin: auto;*/
 	max-width: 75%;
 	max-height: 75%;
 	border-radius: 50%;
@@ -158,7 +219,7 @@ div.members div.member a{
 	margin: 1em auto;
 	font-weight: bold;
 	display: block;
-}
+}*/
 
 @media screen and (max-width: 800px){
 	nav input.form-control {
@@ -170,7 +231,7 @@ div.members div.member a{
 	nav div label {
 		background-color: inherit;
 		color: #DF691A;
-		margin: 0 0.5em;
+		margin: 0;
 		display: inline;
 		font-size: 34px;
 		cursor: pointer;
@@ -191,7 +252,7 @@ div.members div.member a{
 		transition-delay: 0s;
 	}*/
 
-	div#dashboard {
+	/*div#dashboard {
 		display: block;
 	}
 
@@ -201,8 +262,14 @@ div.members div.member a{
 
 	div#dashboard section {
 		margin-left: 0;
-	}
+	}*/
 
+}
+
+@media screen and (max-width: 767px) {
+	div#pagination_section {
+		margin: auto;
+	}
 }
 
 @media screen and (max-width: 635px){
@@ -213,16 +280,15 @@ div.members div.member a{
 		padding-top: 0.5em;
 		transition-delay: 0s;
 	}
-
 }
 
-@media screen and (max-width: 420px){
-	nav div input:checked ~ ul {
-		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
-		transition-delay: 0s;
+@media screen and (max-width: 500px) {
+	div#pagination_section {
+		margin: auto;
+		font-size: 10px;
 	}
-
+	div#pagination_section ul.pagination {
+		width: 50%;
+		margin: 1em auto;	
+	}
 }
