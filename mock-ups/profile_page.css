@@ -234,21 +234,73 @@ section button#new_project.btn.btn-primary {
 	padding: 1em;
 }
 
+/* PROJECTS TAB */
+
 section div.project {
-	background-color: #B2DFDB;
+	background-color: #CCD9CE;
 	margin: 1em 3em;
 	padding: 1em;
-	box-shadow: 0 0 5px #000;
+	outline: 1px solid #666;
 	color: #000;
 	display: grid;
 	grid-template-columns: 20% auto auto;
 }
+
+section div.project:hover {
+	background-color: #9AC0BA;
+	outline: 1px solid #333;
+}
+
+section div.project > h5 {
+	text-decoration: underline;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	margin: auto;
+	font-weight: bold;
+	text-align: center;
+	color: #111;
+	transition: all 0.2s;
+}
+
+section div.project > h5:hover {
+	color: #DF691A;
+}
+
+section div.project > p {
+	grid-column-start: 2;
+	margin: auto;
+	text-align: center;
+	grid-column-end: 3;
+	color: #111;
+}
+
+section div.project .project_info{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	margin: auto 0 auto auto;
+	text-align: right;
+	color: #111;
+}
+
+section div.project .project_info > *{
+	display: inline-block;
+	margin: auto 1em;
+}
+
+section div.project .project_info > button.btn.btn-secondary{
+	background-color: #004649;
+	font-size: 14px;
+	margin: 0.5em auto;
+	padding: 0.5em 1em;
+}
+
+
 /*
 section div div.project > * {
 	display: inline;
 }*/
 
-section div.project > h5 {
+/*section div.project > h5 {
 	grid-column-start: 1;
 	grid-column-end: 2;
 	margin: auto;
@@ -285,12 +337,6 @@ section div.project .project_info > button.btn.btn-secondary{
 	padding: 0.5em 1em;
 }
 
-section div.project:hover {
-	background-color: #80DEEA;
-	cursor: pointer;
-}
-
-
 /**
 	EDIT PROFILE
 */
@@ -310,7 +356,8 @@ div.container.edit_profile {
 	position: absolute;
 	z-index: 1;
 	display: block;
-	background-color: #2B3E50;
+	background-color: #0A1827;
+
 	padding: 1em;
 	max-width: 40em;
 	height: 27em;
@@ -320,6 +367,7 @@ div.container.edit_profile {
 div.container.edit_profile h2 {
 	font-size: 24px;
 	text-align: center;
+	color: #ECE7F3;
 }
 
 div.container.edit_profile > button {
@@ -361,76 +409,9 @@ div.container.edit_profile div#form_options {
 	margin: 1em;
 }
 
-
-@media screen and (max-width: 920px) {
-
-	section div.project {
-		margin: 1em 3em;
-		padding: 1em;
-		box-shadow: 0 0 5px #000;
-		color: #000;
-		display: grid;
-		grid-template-columns: 20% auto 20%;
-		grid-template-rows: 40% 20% auto;
-	}
-
-	section div.project > h5 {
-		grid-column-start: 2;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		margin: 0.5em auto;
-		font-size: 32px;
-		text-align: center;
-	}
-
-	section div.project > p {
-		grid-row-start: 2;
-		margin: 0.5em auto;
-		font-size: 22px;
-		text-align: center;
-		grid-column-end: 3;
-		color: black;
-	}
-
-	section div.project .project_info{
-		grid-row-start: 3;
-		grid-row-end: 4;
-		grid-column-start:2;
-		grid-column-end: 3; 
-
-		margin: 1em auto 0 auto;
-		text-align: center;
-
-		display: grid;
-		grid-template-columns: auto;
-	}
-
-	section div.project .project_info > *{
-		font-size: 18px;
-		margin-bottom: 0.5em;
-	}
-
-	section div.project .project_info > span, section div.project .project_info > p {
-		grid-column-start: 1;	
-	}
-
-	section div.project .project_info > button {
-		grid-column-start: 1;
-		grid-row-start: 3;
-		grid-row-end: 4;
-	}
-	section div.project .project_info > button.btn.btn-secondary{
-		font-size: 12px;
-
-	}
-
-}
-
 @media screen and (max-width: 767px) {
 	aside {
 		text-align: center;
-		color: #e3eaed;
-		background-color: #004649;
 		box-shadow: 0 0px 5px 1px black;
 		padding: 0;
 	}
@@ -467,10 +448,6 @@ div.container.edit_profile div#form_options {
 	}
 }
 
-
-
-
-
 @media screen and (max-width: 500px){
 	nav div input:checked ~ ul {
 		visibility: visible;
@@ -486,8 +463,6 @@ div.container.edit_profile div#form_options {
 		display: none;
 	}
 	nav div label {
-		background-color: inherit;
-		color: #DF691A;
 		margin: 0;
 		display: inline;
 		font-size: 34px;
@@ -500,7 +475,9 @@ div.container.edit_profile div#form_options {
 		content: "\2715";
 	}
 
-	section div.project {
+/* PROJECTS */
+
+		section div.project {
 		margin: 1em;
 		display: block;
 	}
@@ -527,13 +504,7 @@ div.container.edit_profile div#form_options {
 		margin: 0.5em auto;
 		padding: 0.5em 1em;
 	}
-
-	section div.project:hover {
-		background-color: #80DEEA;
-		cursor: pointer;
-	}
-
- 
+	
 	/*div#dashboard {
 		display: block;
 	}

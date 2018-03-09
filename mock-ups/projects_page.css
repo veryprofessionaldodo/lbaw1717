@@ -99,6 +99,15 @@ button#notification:hover ~ .dropdown {
 
 section {
 	text-align: center;
+	color: #001;
+}
+
+.col-12 h4 {
+	margin-bottom: 1rem;
+}
+
+.col-12 h1 {
+	margin-top: 0;
 }
 
 section.container-fluid {
@@ -141,6 +150,7 @@ section.container-fluid .row .nav-tabs {
 */
 
 div.new_sprint {
+
 	margin: 1em auto;
 }
 
@@ -424,7 +434,6 @@ div.comment div.form_comment button.btn {
 
 div#members {
 	margin: 0;
-	background-color: #4E5D6C;	
 	padding: 0 2em;
 }
 
@@ -451,9 +460,8 @@ div#members div#user_search button.btn{
 
 div#members div.member {
 	margin: 1em 0;
-	background-color: #3797A4;
 	padding: 1em;
-	box-shadow: 0 0 10px #002527;
+	border-top: 1px solid #001;
 }
 
 div#members div.member div.info {
@@ -502,6 +510,7 @@ div.row {
 
 div.row {
 	opacity: 1;
+
 }
 
 div.container.create_new label{
@@ -522,7 +531,7 @@ div.container.create_new {
 	position: absolute;
 	z-index: 1;
 	display: block;
-	background-color: #2B3E50;
+	background-color: #0A1827;
 	padding: 1em;
 	max-width: 40em;
 	height: 30em;
@@ -538,6 +547,7 @@ div.container.create_new #add_task_btn {
 }
 
 div.container.create_new h2 {
+	color: #ECE7F3;
 	font-size: 24px;
 	text-align: center;
 }
@@ -581,6 +591,7 @@ div.container.create_new div.form_area_date {
 
 div.container.create_new label {
 	display: inline;
+	color: #ECE7F3;
 	text-align: left;
 	clear: both;
     margin: auto 1em;
@@ -588,9 +599,12 @@ div.container.create_new label {
 
 div.container.create_new input.form-control {
 	flex-grow: 1;
-	width: auto;
 	align-self: center;
-	width: 95%;
+	width: 100%;
+}
+
+.col-12 h1 {
+	color: #001;
 }
 
 div.container.create_new input[type="date"].form-control {
@@ -614,6 +628,7 @@ div.container.create_new div.created_task {
 }
 
 div.container.create_new div#new_tasks p {
+	color: #ECE7F3;
 	display: inline;
 	margin: auto auto auto 0;
 }
@@ -630,6 +645,10 @@ div.container.create_new div#form_options {
 	justify-content: space-around;
 	text-align: center;
 	margin: 1em;
+}
+
+.comment h6, .comment span {
+	color: #ECE7F3;
 }
 
 @media screen and (max-width: 575px) {
@@ -805,7 +824,7 @@ div.container.create_new div#form_options {
 
 	div.container div.form_area button.btn {
 		margin: 0;
-		padding: 0 0.5em;
+		padding: 0.375rem 0.75rem;
 		font-size: 12px;
 	}
 

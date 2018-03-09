@@ -133,13 +133,6 @@ div.date a{
 	padding-left: 25%;
 }
 
-#thread div.comment {
-	padding: 1em;
-	border-width: 0 5px 1px 5px;
-	border-style: solid;
-	border-color: black;
-}
-
 #thread div.comment .col-lg-8:nth-child(2) {
 	padding: 0 1em;
 }
@@ -152,8 +145,21 @@ div.date a{
 
 #thread div.comment {
 	padding: 0.5em;
+	background-color: #CCD9CE;
+	padding: 1em;
+	border-width: 0 5px 1px 5px;
+	border-style: solid;
+	border-color: black;
+	color: #001;
 }
+
+#issue h2 {
+	color: #ECE7F3;
+}
+
 /*
+
+
 #thread table {
 	margin: 0;
 }
@@ -191,6 +197,17 @@ div.col-8 button {
 	text-align: center;
 	transition: background-color 0s;
 }
+
+#title.form-control {
+	display: block;
+}
+
+#description.form-control {
+	display: block;
+}
+
+
+
 
 /*@media screen and (max-width: 990px) {
 	nav input.form-control {

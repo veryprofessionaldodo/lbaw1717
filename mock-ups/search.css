@@ -107,11 +107,16 @@ div#all_projects.container div.row {
 }
 
 .project {
+	background-color: #CCD9CE;
+	outline: 1px solid #666;
 	padding: 1em;
-	background-color: #B2DFDB;
 	color: #001;
-	box-shadow: 0 0 5px #000;
 	margin: 1em 0;
+}
+
+.project:hover {
+	background-color: #9AC0BA;
+	outline: 1px solid #333;
 }
 
 .project div.row {
@@ -124,11 +129,11 @@ div#all_projects.container div.row {
 
 .project a.project_title{
 	margin: auto;
+	transition: color 0.2s;
 }
 
 .project a.project_title:hover{
-	color: #8f9193;
-	text-decoration: none;
+	color: #DF691A;
 }
 
 .project  p.project_description {
@@ -198,8 +203,6 @@ div.pagination_div {
 		display: none;
 	}
 	nav div label {
-		background-color: inherit;
-		color: #DF691A;
 		display: inline;
 		
 		font-size: 34px;

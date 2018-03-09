@@ -85,10 +85,6 @@ nav > form {
   FOOTER
 */
 
-
-/**
-		FOOTER
-*/
 footer {
 	background-color: #0A1827;
 	display: grid;
@@ -114,6 +110,14 @@ footer > div#info {
 }
 
 /** PROJECTS */
+
+h1 {
+	color: #001;
+}
+
+.col-12 h4 {
+	color: #001;
+}
 
 #buttons_nav {
 	display: flex;
@@ -141,6 +145,11 @@ footer > div#info {
 	display: none;
 }
 
+
+@media screen and (max-width: 500px){
+	
+}
+
 @media screen and (max-width:315px){
 	#buttons_nav {
 		display: none;
@@ -166,4 +175,10 @@ footer > div#info {
 		margin: 0px;
 		padding: 0px;
 	}
+}
+
+
+@media screen and (max-width: 920px) {
+	
+
 }

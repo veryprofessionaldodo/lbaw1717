@@ -118,14 +118,10 @@ input.form-control, textarea.form-control {
 	outline: 1px solid #558A8C;
 }
 
-input.form-control:hover, textarea.form-control:hover {
-	background-color: #9AC0BA;
-}
 
-input.form-control:focus, textarea.form-control:focus {
-	background-color: #CCD9CE;
-	outline: 5px auto -webkit-focus-ring-color;
-	outline: 1px solid #CCD9CE;
+#title.form-control, #description.form-control, textarea.form-control {
+	width: 100%;
+	display: block;
 }
 
 #header {

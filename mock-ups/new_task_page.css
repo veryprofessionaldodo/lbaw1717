@@ -296,15 +296,12 @@ a:hover {
 
 div.buttons{
     display:grid;
-	grid-template-columns: 10% auto 10%;
-	grid-template-rows: 20% 10%;
+	grid-template-columns: 20% auto 20%;
 }
 
 div.buttons :first-child{
     grid-column-start: 1;
 	grid-column-end: 2;
-	grid-row-start: 1;
-	grid-row-end: 2;
 	position: relative;
 	overflow: hidden;
 }
@@ -320,10 +317,8 @@ div.buttons :first-child input {
 div.buttons :last-child{
     grid-column-start: 3;
 	grid-column-end: 4;
-	
-	grid-row-start: 2;
-	grid-row-end: 3;
 	margin: auto;
+	margin-right: 0;
 }
 
 #threads a:hover {

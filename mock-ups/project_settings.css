@@ -118,6 +118,7 @@ section.container-fluid div.row{
 
 section.container-fluid div.row div.col-12 {
 	padding: 0;
+	
 }
 
 section.container-fluid .row .nav-tabs {
@@ -149,7 +150,18 @@ div.user_search {
 }
 
 div.user_search  label {
+	color: #001;
 	margin: auto;
+}
+
+
+.member.row{
+	border-top: 1px solid #001;
+	background-color: #CCD9CE;
+}
+
+.member.row .col-12 {
+	padding-top:10em;
 }
 
 div.user_search input.form-control {
@@ -164,7 +176,7 @@ div.user_search button.btn {
 
 
 div#members {
-	background-color: #002527;
+	background-color: #ECE7F3;
 	margin: 0;
 	min-height: 100vh;
 }
@@ -181,8 +193,7 @@ div#members div.member {
 	text-align: left;
 	margin: 1em 2em;
 	color: #001;
-	background-color: #9AC0BA;
-	box-shadow: 0 0 10px #002527;
+	box-shadow: 0 0 10px #ECE7F3;
 }
 
 
@@ -191,6 +202,8 @@ div#members div.member img {
 	max-height: 5em;
 	border-radius: 50%;
 	margin: 1em 1em;
+	box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+
 }
 
 div#members div.member h3 {
@@ -209,9 +222,8 @@ div#members div.member div.buttons {
 */
 
 div#requests {
-	background-color: #002527;
+	background-color: #ECE7F3;
 	margin: 0;
-	padding: 1em 0;
 	
 }
 
@@ -220,9 +232,11 @@ div#requests div.request:last-of-type {
 }
 
 div#requests div.request {
-	margin: 1em 2em;
+	width: 100%;
 	padding: 1em;
-	background-color: #3797A4;
+	background-color: #ECE7F3;
+	color: #001;
+	border-top: 1px solid #001;
 }
 
 div#requests div.request > * {

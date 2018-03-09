@@ -196,37 +196,42 @@ section button#new_project.btn.btn-primary {
 	padding: 1em;
 }
 
+/* PROJECTS TAB */
+
 section div.project {
 	background-color: #CCD9CE;
 	margin: 1em 3em;
-	padding: 1em 1em;
-	box-shadow: 0 0 5px #000;
+	padding: 1em;
+	outline: 1px solid #666;
 	color: #000;
 	display: grid;
-	grid-template-columns: 15% auto auto;
+	grid-template-columns: 20% auto auto;
 }
 
 section div.project:hover {
 	background-color: #9AC0BA;
-	cursor: pointer;
+	outline: 1px solid #333;
 }
-/*
-section div div.project > * {
-	display: inline;
-}*/
 
 section div.project > h5 {
+	text-decoration: underline;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	margin: auto;
 	font-weight: bold;
 	text-align: center;
 	color: #111;
+	transition: all 0.2s;
+}
+
+section div.project > h5:hover {
+	color: #DF691A;
 }
 
 section div.project > p {
 	grid-column-start: 2;
 	margin: auto;
+	text-align: center;
 	grid-column-end: 3;
 	color: #111;
 }
@@ -234,8 +239,8 @@ section div.project > p {
 section div.project .project_info{
 	grid-column-start: 3;
 	grid-column-end: 4;
-	margin: auto;
-	text-align: center;
+	margin: auto 0 auto auto;
+	text-align: right;
 	color: #111;
 }
 
@@ -244,32 +249,13 @@ section div.project .project_info > *{
 	margin: auto 1em;
 }
 
-/**
-		FOOTER
-*/
-footer {
-	background-color: #002527;
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
-
-footer > * {
-	margin: 2em auto;
-}
-
-footer a, footer p {
+section div.project .project_info > button.btn.btn-secondary{
+	background-color: #004649;
 	font-size: 14px;
+	margin: 0.5em auto;
+	padding: 0.5em 1em;
 }
 
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
-}
 
 @media screen and (max-width: 500px){
 	nav div input:checked ~ ul {
@@ -335,7 +321,37 @@ footer > div#info {
 		margin: 0 0 0 1em;
 	}
 
-	section div.project:hover {
+	/* PROJECTS */
+
+	section div.project {
+		margin: 1em;
+		display: block;
+	}
+		
+	section div.project > h5 {
+		font-size: 26px;
+	}
+
+	section div.project > p {
+		font-size: 18px;
+	}
+
+	section div.project .project_info{
+		font-size: 14px;
+	}
+
+	section div.project .project_info > *{
+		display: inline-block;
+		margin: auto 1em;
+	}
+
+	section div.project .project_info > button.btn.btn-secondary{
+		font-size: 12px;
+		margin: 0.5em auto;
+		padding: 0.5em 1em;
+	}
+
+/*	section div.project:hover {
 		color: #FFF;
 	}
 
@@ -347,11 +363,7 @@ footer > div#info {
 		grid-template-columns: 20% auto 20%;
 		grid-template-rows: 50% auto;
 	}
-	/*
-	section div div.project > * {
-		display: inline;
-	}*/
-
+	
 	section div.project > h5 {
 		grid-column-start: 2;
 		grid-row-start: 1;
@@ -390,7 +402,7 @@ footer > div#info {
 	section div.project .project_info > span, section div.project .project_info > p {
 		grid-column-start: 1;	
 	}
-
+*/
 }
 
 
