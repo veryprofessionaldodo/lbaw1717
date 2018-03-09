@@ -422,8 +422,14 @@ div.comment div.form_comment button.btn {
 	MEMBERS
 */
 
-div.members {
+div#members {
 	margin: 0;
+	background-color: #4E5D6C;	
+	padding: 0 2em;
+}
+
+div#members div#user_search {
+	margin: 1em 0;
 }
 
 div.members .header{
@@ -433,25 +439,47 @@ div.members .header{
 	background-color: #ECE7F3; 
 }
 
-div.members .header h4 {
+div#members div#user_search input.form-control{
 	margin: auto;
-	padding: 1em;
+	width: auto;
+	display: inline;
 }
 
+div#members div#user_search button.btn{
+	display: inline;
+}
+
+div#members div.member {
+	margin: 1em 0;
+	background-color: #3797A4;
+	padding: 1em;
+	box-shadow: 0 0 10px #002527;
+}
+
+div#members div.member div.info {
+	text-align: left;
+}
 div.members div.member {
 	margin: 1em auto;
 }
 
-div.members div.member img{
+div#members div.member div.info img{
 	margin: auto;
-	max-width: 75%;
-	max-height: 75%;
+	max-width: 5em;
+	max-height: 5em;
 	border-radius: 50%;
+	margin: 0 1em;
 }
 
-div.members div.member a{
+div#members div.member div.info a{
 	margin: 1em auto;
 	font-weight: bold;
+	display: inline;
+	font-size: 18px;
+}
+
+div#members div.member p {
+	margin: auto;
 	display: block;
 	color: #DF691A;
 }
@@ -560,6 +588,28 @@ div.container.create_new div#form_options {
 	margin: 1em;
 }
 
+@media screen and (max-width: 575px) {
+
+	div#members div.member div.info {
+		text-align: center;
+	}
+
+	div#members div.member div.info a{
+		display: block;
+	}
+	div#members div.member p {
+		margin: auto;
+	}
+	div#pagination_section {
+		margin: auto;
+		font-size: 12px;
+	}
+	div#pagination_section ul.pagination {
+		width: 50%;
+		margin: 1em;	
+	}
+}
+
 @media screen and (max-width: 600px){
 	nav div input:checked ~ ul {
 		visibility: visible;
@@ -577,7 +627,7 @@ div.container.create_new div#form_options {
 	nav div label {
 		background-color: inherit;
 		color: #DF691A;
-		margin: 0 0.5em;
+		margin: 0;
 		display: inline;
 		font-size: 34px;
 		cursor: pointer;
@@ -731,6 +781,27 @@ div.container.create_new div#form_options {
 	}
 	div.comment {
 		padding: 2em;
+	}
+}
+
+
+@media screen and (max-width: 738px){
+
+	div#members div#user_search {
+		text-align: center;
+	}
+
+	div#members div#user_search input.form-control{
+		display: block;
+		width: 100%;
+	}
+
+	div#members div#user_search button.btn{
+		margin: auto;
+	}
+
+	div#pagination_section {
+		margin: auto;
 	}
 }
 
