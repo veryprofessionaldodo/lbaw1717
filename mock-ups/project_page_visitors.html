@@ -29,76 +29,113 @@
 		</div>
 	</nav>
 
-	<div id="dashboard">
-
-		<button class="btn">Join Project</button>
-
-		<aside>
-			<h2>Project Tardis</h2>
-			<p>Bacon ipsum dolor amet pork loin burgdoggen porchetta buffalo jowl. Alcatra landjaeger pancetta swine ground round flank ball tip sirloin tail. Bresaola leberkas shoulder capicola. T-bone ham hock leberkas tri-tip shank jowl rump meatloaf salami pork loin andouille chuck. Venison pork loin corned beef pork chop capicola.</p>
-			<p>Corned beef pork drumstick, chicken sausage meatloaf shoulder strip steak alcatra. Shankle chuck pancetta, shoulder prosciutto leberkas cupim landjaeger meatball. Ball tip rump frankfurter beef, alcatra spare ribs shank. Beef ribs shankle biltong andouille kevin. Tail brisket pastrami turducken beef chicken short loin.</p>
-		</aside>
-
-		<section>
-			<div class="row members">
-				<div class="col-12 header">
-					<h4>Coordinators</h4>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
+	<div id="dashboard" class="container-fluid">
+		<div class="row">
+			
+			<div class="col-12" id="join_project">
+				<button class="btn">Join Project</button>
 			</div>
-			<div class="row members">
-				<div class="col-12 header">
-					<h4>Team Members</h4>
+		</div>
+		<div class="row">
+			<aside class="col-md-6 col-12" id="description">
+				<h2>Project Tardis</h2>
+				<p>Bacon ipsum dolor amet pork loin burgdoggen porchetta buffalo jowl. Alcatra landjaeger pancetta swine ground round flank ball tip sirloin tail. Bresaola leberkas shoulder capicola. T-bone ham hock leberkas tri-tip shank jowl rump meatloaf salami pork loin andouille chuck. Venison pork loin corned beef pork chop capicola.</p>
+				<p>Corned beef pork drumstick, chicken sausage meatloaf shoulder strip steak alcatra. Shankle chuck pancetta, shoulder prosciutto leberkas cupim landjaeger meatball. Ball tip rump frankfurter beef, alcatra spare ribs shank. Beef ribs shankle biltong andouille kevin. Tail brisket pastrami turducken beef chicken short loin.</p>
+			</aside>
+		</div>
+		<div class="row">
+			<section class="col-md-6 col-12" id="members">
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>john_doe</h3>
+			    		<p>Coordinator</p>
+		    		</div>
+		    	</div>
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>emmet_92</h3>
+			    		<p>Coordinator</p>
+		    		</div>
+		    	</div>
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>teddy_bear_90</h3>
+			    		<p>Team Member</p>
+		    		</div>
+		    	</div>
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>i_like_trains</h3>
+			    		<p>Coordinator</p>
+		    		</div>
+		    	</div>
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>JohnSmith91</h3>
+			    		<p>Team Member</p>
+		    		</div>
+		    	</div>
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>PhantomMenace92</h3>
+			    		<p>Team Member</p>
+		    		</div>
+		    	</div>
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>eric_surfer</h3>
+			    		<p>Coordinator</p>
+		    		</div>
+		    	</div>
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>halo_92</h3>
+			    		<p>Team Member</p>
+		    		</div>
+		    	</div>
+		    	<div class="member row">
+		    		<div class="col-12">
+			    		<img src="res/profile/profile-pic.png">
+			    		<h3>geralt_of_nivea</h3>
+			    		<p>Team Member</p>
+		    		</div>
+		    	</div>
+
+		    	<div id="pagination_section" class="offset-lg-4 col-lg-6 offset-md-4 col-md-8 offset-sm-4 col-sm-8 col-12">
+				  <ul class="pagination">
+				    <li class="page-item disabled">
+				      <a class="page-link" href="#">&laquo;</a>
+				    </li>
+				    <li class="page-item active">
+				      <a class="page-link" href="#">1</a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" href="#">2</a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" href="#">3</a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" href="#">4</a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" href="#">5</a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" href="#">&raquo;</a>
+				    </li>
+				  </ul>
 				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-				<div class="col-4 member">
-					<img src="res/profile/profile-pic.png">
-					<a href="#">John Doe</a>
-				</div>
-			</div>
-		</section>
+			</section>
+		</div>
 	</div>
 
 	<footer>
