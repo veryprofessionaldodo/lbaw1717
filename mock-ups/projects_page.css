@@ -500,6 +500,43 @@ div.row {
 	height: 25em;
 }
 
+div.row {
+	opacity: 1;
+}
+
+div.container.create_new label{
+	display: block;
+	font-size: 12px;
+}
+
+div.container.create_new {
+	/*left: 25%;
+	top: 50%;*/
+	left:0;
+	right:0;
+	top:5em;
+	bottom: 0;
+	margin: auto;
+	width: 100vw;
+	height: 100vh;	
+	position: absolute;
+	z-index: 1;
+	display: block;
+	background-color: #2B3E50;
+	padding: 1em;
+	max-width: 40em;
+	height: 30em;
+	text-align: justify;
+}
+
+#new_container {
+	height: 25em;
+}
+
+div.container.create_new #add_task_btn {
+    align-self: center;
+}
+
 div.container.create_new h2 {
 	font-size: 24px;
 	text-align: center;
@@ -507,6 +544,13 @@ div.container.create_new h2 {
 
 div.container.create_new > button {
 	margin: 0.25em 0 0 0;
+}
+
+div.container.create_new div.form_area {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 1em 0;
 }
 
 div.container.create_new div.form_area button {

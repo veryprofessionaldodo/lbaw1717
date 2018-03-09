@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Proyekt Management</title>
@@ -9,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="forum_thread.css">
     <link rel="stylesheet" type="text/css" href="common.css">
 </head>
-
 <body>
     <nav>
         <a href="index.html">Proyekt</a>
@@ -33,10 +31,15 @@
     <div id="container">
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Project</a></li>            
-            <li class="breadcrumb-item active"><a href="#">Forum</a></li>            
+            <li class="breadcrumb-item">
+                <a href="#">Project</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">Forum</a>
+            </li>
+            <li class="breadcrumb-item active">I need help with css grid.</li>
         </ol>
-        
+
         <div id="thread">
             <div class="row" id="header">
                 <div class="col-3">
@@ -45,23 +48,27 @@
                 </div>
                 <div class="col-7">
                     <div id="issue">
-                            <h2>I need help with css grid.</h2>
-                        <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis
-                            dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                        <h2>I need help with css grid.</h2>
+                        <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
+                            parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
                     </div>
                 </div>
                 <div class="col-2">
                     <div class="date">
-                        <p>22:25</p>
+                        <p>22:25
+                            <a class="btn" href="report_page.html">
+                                <i class="fas fa-flag"></i>
+                            </a>
+                        </p>
                         <p>20/02/2018</p>
                     </div>
-                    <a class="btn" href="report_page.html"><i class="fas fa-flag"></i></a>
+
                 </div>
             </div>
 
             <div class="row comment table-dark">
                 <div class="col-2">
-                    <img src="res/forum/bee.jpg" height="100px" width="100px">
+                    <img src="res/forum/bee.jpg" id="profile_pic">
                     <figcaption>BeeMargarida</figcaption>
                 </div>
                 <div class="col-8">
@@ -69,43 +76,96 @@
                 </div>
                 <div class="col-2">
                     <div class="date">
-                        <p>22:31</p>
+                        <p>22:31
+                            <a class="btn" href="report_page.html">
+                                <i class="fas fa-flag"></i>
+                            </a>
+                        </p>
                         <p>20/02/2018</p>
+
                     </div>
-                    <a class="btn" href="report_page.html"><i class="fas fa-flag"></i></a>
                 </div>
             </div>
 
             <div class="row comment table-dark">
                 <div class="col-2">
-                    <img src="res/forum/dodo.jpg" height="100px" width="100px">
+                    <img src="res/forum/dodo.jpg" id="profile_pic">
                     <figcaption>ragingdodo</figcaption>
                 </div>
                 <div class="col-8">
-                    <p><strong>@Sportelona</strong>, come on, you really should now grids by now... Just ignore him, <strong>@BeeMargarida!</strong></p>
+                    <p>
+                        <strong>@Sportelona</strong>, come on, you really should know grids by now... Just ignore him,
+                        <strong>@BeeMargarida!</strong>
+                    </p>
                 </div>
                 <div class="col-2">
                     <div class="date">
-                        <p>22:35</p>
+                        <p>22:35
+                            <a class="btn" href="report_page.html">
+                                <i class="fas fa-flag"></i>
+                            </a>
+                        </p>
                         <p>20/02/2018</p>
                     </div>
-                    <a class="btn" href="report_page.html"><i class="fas fa-flag"></i></a>
                 </div>
             </div>
 
             <div class="row comment table-dark">
                 <div class="col-2">
-                    <img src="res/forum/squirtle.jpeg" height="100px" width="100px">
+                    <img src="res/forum/css_master.jpg" id="profile_pic">
+                    <figcaption>designing101</figcaption>
+                </div>
+                <div class="col-8">
+                    <p>I know some tricks I can teach you.</p>
+                </div>
+                <div class="col-2">
+                    <div class="date">
+                        <p>22:48
+                            <a class="btn" href="report_page.html">
+                                <i class="fas fa-flag"></i>
+                            </a>
+                        </p>
+                        <p>20/02/2018</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row comment table-dark">
+                    <div class="col-2">
+                        <img src="res/forum/sloth.jpg" id="profile_pic">
+                        <figcaption>slacker404</figcaption>
+                    </div>
+                    <div class="col-8">
+                        <p>Sorry, I'm late to this issue... Still need help?</p>
+                    </div>
+                    <div class="col-2">
+                        <div class="date">
+                            <p>02:48
+                                <a class="btn" href="report_page.html">
+                                    <i class="fas fa-flag"></i>
+                                </a>
+                            </p>
+                            <p>21/02/2018</p>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="row comment table-dark">
+                <div class="col-2">
+                    <img src="res/forum/squirtle.jpeg" id="profile_pic">
                     <figcaption>lues</figcaption>
                 </div>
                 <div class="col-8">
                     <label>Your post:</label>
-                    <input type="text" class="form-control" placeholder="Write here...">
+                    <input type="text" class="form-control" placeholder="Write here...">    
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-secondary">Submit</button>
                 </div>
                 <div class="offset-2"></div>
             </div>
         </div>
-    
+
 
         <!--<div id="thread" class="table-responsive">
             <table class="table table-hover" width="700px" height="200%">
