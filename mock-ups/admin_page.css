@@ -68,7 +68,7 @@ section {
 
 section div#search_bar input.form-control {
 	display: inline-block;
-	width: auto;
+	width: flex;
 	
 }
 
