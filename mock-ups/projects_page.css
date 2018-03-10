@@ -61,7 +61,10 @@ section.container-fluid .row .nav-tabs {
 */
 
 div.new_sprint {
+	margin: 1em auto;
+}
 
+div.new_task {
 	margin: 1em auto;
 }
 

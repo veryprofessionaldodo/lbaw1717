@@ -90,7 +90,6 @@ div#options form.col-12 {
 }
 
 div#options form > input.form-control {
-	background-color: #003638;
 	width: auto;
 	display: inline;
 }
@@ -112,7 +111,6 @@ form#new_project_name {
 form#new_project_name > input.form-control {
 	display: inline;
 	width: 50%;
-	background-color: #003638;
 }
 
 
