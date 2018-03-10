@@ -9,15 +9,15 @@
 	<link rel="stylesheet" type="text/css" href="common.css">
 </head>
 <body>
-	<nav>
-		<a href="index.html">Proyekt</a>
-		<form>
-			<input class="form-control mr-sm-2" type="text" placeholder="Search">
-			<button class="btn btn-primary my-2 my-sm-0" type="submit">
+	<nav class="row">
+		<a class="col-3" href="index.html">Proyekt</a>
+		<form class="col-6">
+			<input class="form-control" type="text" placeholder="Search">
+			<button class="btn btn-primary" type="submit">
 				<i class="fas fa-search"></i>
 			</button>
 		</form>
-		<div id="user">
+		<div id="user" class="col-3">
 			<input type="checkbox" id="hamburger">
 			<label class="hamburger" for="hamburger"></label>
 			<div id="mobile">
@@ -74,14 +74,14 @@
 				<p>4 sprints contributed to</p>
 			</div>
 
-			<button class="btn" title="Report"><i class="fas fa-flag"></i></button>
+			<button class="btn" title="Report">Report <i class="fas fa-flag"></i></button>
 		</aside>
 
 		<section>
 			<div id="options">
 				<form>
-					<input type="text" name="search" placeholder="Search" class="form-control mr-sm-4">
-					<button class="btn btn-primary my-2 my-sm-0" type="submit">
+					<input type="text" name="search" placeholder="Search" class="form-control">
+					<button class="btn btn-primary" type="submit">
 						<i class="fas fa-search"></i>
 					</button>
 				</form>
@@ -124,6 +124,32 @@
 				<div class="project_info">
 					<p>14 Members</p>
 				</div>
+			</div>
+
+			<div id="pagination_section" class="col-12">
+			  <ul class="pagination">
+			    <li class="page-item disabled">
+			      <a class="page-link" href="#">&laquo;</a>
+			    </li>
+			    <li class="page-item active">
+			      <a class="page-link" href="#">1</a>
+			    </li>
+			    <li class="page-item">
+			      <a class="page-link" href="#">2</a>
+			    </li>
+			    <li class="page-item">
+			      <a class="page-link" href="#">3</a>
+			    </li>
+			    <li class="page-item">
+			      <a class="page-link" href="#">4</a>
+			    </li>
+			    <li class="page-item">
+			      <a class="page-link" href="#">5</a>
+			    </li>
+			    <li class="page-item">
+			      <a class="page-link" href="#">&raquo;</a>
+			    </li>
+			  </ul>
 			</div>
 
 		</section>

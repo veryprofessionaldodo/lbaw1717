@@ -1,98 +1,9 @@
-
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-}
-
-nav ul li {
-	list-style: none;
-	display: inline-flex;
-}
-
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
 	color: #0A1827;
 }
 
-#user {
-	align-items: center;
-	justify-content: space-between;
-}
-
-#mobile{
-	display: grid;
-	grid-template-columns: 50% 50%;
-	padding-right: 20%;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-	grid-column-start: 2;
-	grid-column-end: 3;
-	margin-left:0;
-	
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	/*margin-right: 1em;*/
-	grid-column-start: 1;
-	grid-column-end: 2;
-	padding-right:20%;
-
-}
-
-#notification {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0;
-    font-size: 16px;
-    border: none;
-}
-
-.dropdown {
-	display: none;
-	position: absolute;
-	right: 7%;
-	top: 2em;
-    /*position: relative;
-	display: inline-block;*/
-}
-
-.dropdown-content {
-	/*margin-left: auto;
-	margin-right: 0;*/
-	/*position: absolute;*/
-    /*background-color: #f1f1f1;*/
-    /*min-width: 200px;*/
-	position: relative;
-    background-color: inherit;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content .modal {
-    text-decoration: none;
-	display: block;
-	position: relative;
-	/*margin: auto;
-	padding: auto;*/
-}
-
-button#notification:hover ~ .dropdown {
-	display: block;
-
-}
 
 /**
 	DASHBOARD
@@ -113,12 +24,6 @@ div.container-fluid > div.row {
 */
 
 aside {
-	/*min-width: 10em;
-	grid-column-start: 1;
-	grid-column-end: 2;
-	display: grid;
-	grid-template-rows: 30% 50% auto;
-	min-height: 100vh;*/
 	text-align: center;
 	color: #e3eaed;
 	background-color: #004649;
@@ -135,8 +40,6 @@ aside > * {
 }
 
 aside div#info {
-	/*grid-row-start: 1;
-	grid-row-end: 2;*/
 	padding: 0;
 	margin: 2em auto;
 }
@@ -154,8 +57,6 @@ aside div#info img {
 }
 
 aside div#statistics {
-	/*grid-row-start: 2;
-	grid-row-end: 3;*/
 	margin: 3em auto;
 }
 
@@ -217,6 +118,10 @@ form#new_project_name > input.form-control {
 
 .hide {
 	display: none;
+}
+
+div.container-fluid {
+	margin-bottom: 2em;
 }
 
 section {
@@ -294,49 +199,6 @@ section div.project .project_info > button.btn.btn-secondary{
 	padding: 0.5em 1em;
 }
 
-
-/*
-section div div.project > * {
-	display: inline;
-}*/
-
-/*section div.project > h5 {
-	grid-column-start: 1;
-	grid-column-end: 2;
-	margin: auto;
-	font-weight: bold;
-	text-align: center;
-	color: #111;
-}
-
-section div.project > p {
-	grid-column-start: 2;
-	margin: auto;
-	text-align: center;
-	grid-column-end: 3;
-	color: #111;
-}
-
-section div.project .project_info{
-	grid-column-start: 3;
-	grid-column-end: 4;
-	margin: auto 0 auto auto;
-	text-align: right;
-	color: #111;
-}
-
-section div.project .project_info > *{
-	display: inline-block;
-	margin: auto 1em;
-}
-
-section div.project .project_info > button.btn.btn-secondary{
-	background-color: #004649;
-	font-size: 14px;
-	margin: 0.5em auto;
-	padding: 0.5em 1em;
-}
-
 /**
 	EDIT PROFILE
 */
@@ -346,8 +208,6 @@ div#dashboard {
 }
 
 div.container.edit_profile {
-	/*left: 25%;
-	top: 50%;*/
 	left:0;
 	right:0;
 	top:5em;
@@ -446,38 +306,35 @@ div.container.edit_profile div#form_options {
 	aside a {
 		margin: auto;
 	}
+
+
+	section div.project {
+		display: block;
+	}
+
+	section div.project > h5:hover {
+		color: #DF691A;
+	}
+
+	section div.project .project_info{
+		margin: 1em 0 0 0;
+		text-align: center;
+	}
+
+	section div.project .project_info > button.btn.btn-secondary{
+		font-size: 12px;
+		display: block;
+		margin: 1em auto 0 auto;
+		padding: auto;
+	}
+
 }
 
 @media screen and (max-width: 500px){
-	nav div input:checked ~ ul {
-		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
-		transition-delay: 0s;
-	}
-	nav input.form-control {
-		display: none;
-	}
-	div#mobile {
-		display: none;
-	}
-	nav div label {
-		margin: 0;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
-	}
-	nav div label:before {
-		content: "\2630";
-	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
-	}
 
-/* PROJECTS */
+	/* PROJECTS */
 
-		section div.project {
+	section div.project {
 		margin: 1em;
 		display: block;
 	}
@@ -504,299 +361,4 @@ div.container.edit_profile div#form_options {
 		margin: 0.5em auto;
 		padding: 0.5em 1em;
 	}
-	
-	/*div#dashboard {
-		display: block;
-	}
-	aside {
-		display: none;
-	}
-
-	div#options {
-		display: block;
-		text-align: center;
-	}
-	div#options > button.btn.btn-primary {
-		display: block;
-	}
-
-	div#options form {
-		display: inline;
-		text-align: center;	
-	}
-	.btn {
-		vertical-align: inherit;
-	}
-
-	div.btn-group {
-		margin: 0 0 0 1em;
-	}
-
-	section button#new_project.btn.btn-primary {
-		margin: 1em auto;
-		padding: 1em;
-	}
-
-	section div.project:hover {
-		color: #FFF;
-	}
-
-	section div.project {
-		margin: 1em 3em;
-		padding: 1em;
-		box-shadow: 0 0 5px #000;
-		color: #000;
-		display: grid;
-		grid-template-columns: 20% auto 20%;
-		grid-template-rows: 40% 20% auto;
-	}
-
-	section div.project > h5 {
-		grid-column-start: 2;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		margin: auto;
-		font-size: 7vw;
-		text-align: center;
-		color: black;
-	}
-
-	section div.project > p {
-		grid-row-start: 2;
-		margin: auto 1em;
-		font-size: 3vw;
-		text-align: center;
-		grid-column-end: 3;
-		color: black;
-	}
-
-	section div.project .project_info{
-		grid-row-start: 3;
-		grid-row-end: 4;
-		grid-column-start:2;
-		grid-column-end: 3; 
-		margin: auto;
-		text-align: center;
-		align-items: center;
-		display: grid;
-		grid-template-columns: auto;
-	}
-
-	section div.project .project_info > *{
-		font-size: 2.5vw;
-	}
-
-	section div.project .project_info > span, section div.project .project_info > p {
-		grid-column-start: 1;	
-	}
-
-	section div.project .project_info > button {
-		grid-column-start: 1;
-		grid-row-start: 3;
-		grid-row-end: 4;
-	}
-	section div.project .project_info > button.btn.btn-secondary{
-		font-size: 12px;
-		padding: 2px 6px;
-	}
-
-
-	div.container.edit_profile {
-		width: 100%;
-		height: 100vh;	
-		margin: 1em 0;
-	}
-
-	div.container.edit_profile div.form_area {
-		display: block;
-		margin: 1em 2em;
-	}
-
-	div.container.edit_profile div.form_area input.form-control{
-		margin: 0 auto;
-	}
-
-	div.container div.form_area button.btn {
-		margin: 0;
-		padding: 0 0.5em;
-		font-size: 12px;
-	}
-
-	div.container.edit_profile label{
-		display: block;
-		font-size: 12px;
-		text-align: center;
-	}*/
-}
-
-
-@media screen and (max-width: 720px) and (min-width: 501px){
-	/*div#dashboard {
-		display: block;
-	}
-	aside {
-		background-color: #1b323a;
-		color: #e3eaed;
-		box-shadow: 0 0 20px black;
-		display: grid;
-		grid-template-columns: 60% auto;
-		max-height: 15em;
-		min-width: 0;
-		padding: 1em;
-		margin-bottom: 2em;
-	}
-
-	aside p {
-		font-size: 0.75em;
-	}
-
-	aside div#info {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		display: grid;
-		grid-template-columns: 60% 40%;
-		margin: 1em;
-	}
-
-	aside div#info #info_text {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: auto;
-	}
-
-	aside div#info img {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		margin: auto;
-		max-width:75%;
-		max-height: 75%;
-		border-radius: 50%;
-		box-shadow: 0px 0px 10px;
-	}
-
-	aside div#statistics {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		margin: auto;
-	}
-
-	aside > a {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: 0;
-	}
-
-
-	div#options {
-		display: block;
-		text-align: center;
-	}
-	div#options > button.btn.btn-primary {
-		display: block;
-	}
-
-	div#options form {
-		display: inline;
-		margin: auto;
-		text-align: center;	
-	}
-	.btn {
-		vertical-align: inherit;
-	}
-
-	div.btn-group {
-		margin: 0 0 0 1em;
-	}
-	section button#new_project.btn.btn-primary {
-		margin: 1em auto;
-		padding: 1em;
-	}*/
-}
-
-@media screen and (min-height: 1024px) and (orientation:portrait){
-	/*div#dashboard {
-		display: block;
-	}
-	aside {
-		background-color: #1b323a;
-		color: #e3eaed;
-		box-shadow: 0 0 20px black;
-		display: grid;
-		grid-template-columns: 60% auto;
-		max-height: 15em;
-		padding: 1em;
-		min-width: 0;
-		margin-bottom: 2em;
-	}
-
-	aside p {
-		font-size: 0.75em;
-	}
-
-
-	aside div#info {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		display: grid;
-		grid-template-columns: 60% 40%;
-		margin: 1em;
-	}
-
-	aside div#info #info_text {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: auto;
-	}
-
-	aside div#info img {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		margin: auto;
-		max-width:100%;
-		max-height: 100%;
-		border-radius: 50%;
-		box-shadow: 0px 0px 10px;
-	}
-
-	aside div#statistics {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		margin: auto;
-	}
-
-	aside > a {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: 0;
-	}
-
-
-	div#options {
-		display: block;
-		text-align: center;
-	}
-	div#options > button.btn.btn-primary {
-		display: block;
-	}
-
-	div#options form {
-		display: inline;
-		margin: auto;
-		text-align: center;	
-	}
-	.btn {
-		vertical-align: inherit;
-	}
-
-	div.btn-group {
-		margin: 0 0 0 1em;
-	}
-	section button#new_project.btn.btn-primary {
-		margin: 1em auto;
-		padding: 1em;
-	}*/
 }

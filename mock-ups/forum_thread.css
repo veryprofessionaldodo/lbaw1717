@@ -1,65 +1,8 @@
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-}
-
-nav ul li {
-	list-style: none;
-	display: inline-flex;
-}
-
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
 	color: #0A1827;
 }
-
-#user {
-	align-items: center;
-	justify-content: space-between;
-}
-
-#mobile{
-	display: grid;
-	grid-template-columns: 50% 50%;
-	padding-right: 20%;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-	grid-column-start: 2;
-	grid-column-end: 3;
-	margin-left:0;
-	
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	/*margin-right: 1em;*/
-	grid-column-start: 1;
-	grid-column-end: 2;
-	padding-right:20%;
-
-}
-
-#notification {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0;
-    font-size: 16px;
-    border: none;
-}
-
 /*
 
 POST
@@ -130,7 +73,11 @@ div.date p {
 }
 
 div.date a{
-	padding-left: 25%;
+	padding-left: 0;
+}
+
+.date a {
+	text-decoration: none;
 }
 
 #thread div.comment .col-lg-8:nth-child(2) {
@@ -157,31 +104,6 @@ div.date a{
 	color: #ECE7F3;
 }
 
-/*
-
-
-#thread table {
-	margin: 0;
-}
-
-table thead tr#thread_main_text {
-	background-color: #182f35;
-}
-
-#thread td {
-	font-size: 125%;
-}
-
-#thread td.date {
-	vertical-align: middle;	
-	text-align: center;
-	padding: 0 1em;
-}
-
-#thread tbody th {
-	text-align: center;
-}
-*/
 
 div.col-8 button {
 	margin-left: 88%;
@@ -207,78 +129,7 @@ div.col-8 button {
 }
 
 
-
-
-/*@media screen and (max-width: 990px) {
-	nav input.form-control {
-		display: none;
-	} 
-
-	#container {
-	    margin: 5% 5% auto 5%;
-	}
-
-
-	#thread #header{
-		display: block;
-	}
-
-	#thread div div {
-		margin: auto;
-		width: auto;
-	}
-
-	#thread figcaption {
-		font-size: 12px;
-	}
-
-	#thread img {
-		max-width: 75%;
-    	height: auto;
-	}
-
-	#thread #issue p {
-		font-size: 14px;
-	}
-
-	#thread p {
-		font-size: 12px;
-	}
-
-	#thread h2{
-		font-size: 20px;
-	}
-}*/
-
 @media screen and (max-width: 635px){
-	nav div input:checked ~ ul {
-		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
-		transition-delay: 0s;
-	}
-	nav input.form-control {
-		display: none;
-	}
-	div#mobile {
-		display: none;
-	}
-	nav div label {
-		background-color: inherit;
-		color: #DF691A;
-		margin: 0 0.5em;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
-	}
-	nav div label:before {
-		content: "\2630";
-	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
-	} 
-
 	#container {
 	    margin: 5% 5% auto 5%;
 	}
@@ -330,36 +181,6 @@ div.col-8 button {
 	#thread h2{
 		font-size: 20px;
 	}
-	
-	/*
-	#thread td p{
-		font-size: 2vw;
-	}
-
-	#thread td h2{
-		font-size: 4.5vw;
-	}
-
-	#thread th p{
-		font-size: 3.5vw;
-	}
-
-	#thread th img {
-		max-width: 75%;
-    	height: auto;
-	}
-
-	#thread label {
-		font-size:3.5vw;
-	}
-
-	#thread div input.form-control {
-		max-height: 50%;
-	}
-
-	#thread td.user_options a {
-
-	}*/
 }
 
 @media screen and (max-width: 950px) and (min-width: 636px) {
@@ -389,30 +210,6 @@ div.col-8 button {
 		font-size: 20px;
 	}
 	
-	/*#thread td p{
-		font-size: 2vw;
-	}
-
-	#thread th {
-		vertical-align: middle;
-	}
-
-	#thread th p{
-		font-size: 2.5vw;
-	}
-
-	#thread td h2{
-		font-size: 3.5vw;
-	}
-
-	#thread th img {
-		max-width: 100%;
-    	height: auto;
-	}
-
-	#thread label {
-		font-size:2.5vw;
-	}*/
 }
 
 @media screen and (max-width: 531px){

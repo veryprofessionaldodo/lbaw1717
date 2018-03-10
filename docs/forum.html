@@ -6,16 +6,17 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
     <link rel="stylesheet" type="text/css" href="forum.css">
+    <link rel="stylesheet" type="text/css" href="common.css">
 </head>
 
 <body>
-    <nav>
-        <a href="index.html">Proyekt</a>
-        <form>
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+    <nav class="row">
+        <a class="col-3" href="index.html">Proyekt</a>
+        <form class="col-6">
+              <input class="form-control" type="text" placeholder="Search">
+              <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
         </form>
-        <div id="user">
+        <div id="user" class="col-3">
             <input type="checkbox" id="hamburger"> 
             <label class="hamburger" for="hamburger"></label>
             <div id="mobile">
@@ -30,15 +31,12 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Project</a></li>            
                 <li class="breadcrumb-item active">Forum</li>            
-            </ol>
-
-            <button class="btn btn-info">New Thread</button>       
+            </ol>     
         </div>
 
         <div id="header">
-            <center>
-                    <h1>Forum</h1>            
-             </center>
+            <h1>Forum</h1>
+            <button class="btn btn-info"><i class="fas fa-plus"></i> New Thread</button>               
         </div>
         
         <div id="threads">
@@ -53,25 +51,51 @@
                 <tbody>
                     <tr class="table-dark">
                         <th scope="row"><a href="forum_thread.html">I need help with css grid.</a></th>
-                        <td>sportelona</td>
+                        <td><a>sportelona</a> </td>
                         <td>20/02/2018</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr class="table-dark">
                         <th scope="row"><a href="#">Promoting some members.</a></th>
-                        <td>jotajota</td>
+                        <td> <a>jotajota</a> </td>
                         <td>14/02/2018</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr class="table-dark">
                         <th scope="row"><a href="#">Problems creating the forum page.</a></th>
-                        <td>ragingdodo</td>
+                        <td> <a>ragingdodo</a> </td>
                         <td>11/02/2018</td>
                     </tr>
                 </tbody>
             </table>
+            
+            <div id="pagination_section" class="col-12">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">&laquo;</a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">4</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">5</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">&raquo;</a>
+                </li>
+              </ul>
+            </div>
         </div>
 
     </div>

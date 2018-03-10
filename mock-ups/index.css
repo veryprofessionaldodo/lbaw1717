@@ -1,36 +1,7 @@
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-}
-
-nav ul li {
-	list-style: none;
-	display: inline-flex;
-}
-
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
 	color: #0A1827;
-}
-
-#user {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
 }
 
 /**
@@ -173,37 +144,6 @@ section > div#sign > form > button:last-of-type {
 }
 
 @media screen and (max-width: 900px){
-	nav input.form-control {
-		display: none;
-	} 
-	div#mobile ul {
-		display: none;
-	}
-	nav div label {
-		background-color: inherit;
-		color: #DF691A;
-		margin: 0 0.5em;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
-	}
-	nav div label:before {
-		content: "\2630";
-	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
-	}
-	
-	/**   USAR JAVASCRIPT  */
-	/*
-	nav div input:checked ~ div#mobile ul {
-		visibility: visible;
-		display: block;
-		width: 100%;
-		background-color: white;
-		transition-delay: 0s;
-	}*/
-
 	section {
 		margin: 10% 10% 10% 10%;
 		height: auto;
@@ -236,14 +176,6 @@ section > div#sign > form > button:last-of-type {
 }
 
 @media screen and (max-width: 635px){
-	nav div input:checked ~ ul {
-		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
-		transition-delay: 0s;
-	}
-
 	h2 {
 		font-size: 20px;
 		text-align: center;
