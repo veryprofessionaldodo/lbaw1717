@@ -13,6 +13,11 @@ nav {
 	grid-template-columns: 16% auto 13%;*/
 }
 
+nav.row{
+	margin-right: 0;
+	margin-left: 0;
+}
+
 nav > * {
 	display: inline;
 	margin: 0.5em 0;
