@@ -20,14 +20,15 @@ nav > * {
 	margin-left:0.7em;*/
 }
 
-nav a {
+nav a.col-3 {
 	text-decoration: none;
 	font-size: 27px;
 	letter-spacing: 4px;
 	color: #CCD9CE;
 	/*grid-column-start:1;
 	grid-column-end: 2;*/
-	text-align:center;
+	text-align:left;
+	padding-left: 1em;
 }
 
 nav a:hover {
@@ -269,6 +270,10 @@ h1 {
 	}
 	nav input.form-control {
 		display: none;
+	}
+
+	nav form {
+		justify-content: flex-end;
 	}
 	div#mobile {
 		display: none;
