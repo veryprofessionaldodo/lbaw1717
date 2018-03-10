@@ -1,116 +1,8 @@
-body {
-	margin: 0;
-	background-color: #006064;
-	height: 100%;
-	width: 100%
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+	color: #0A1827;
 }
-/**
-		NAV
- */
-nav {
-	background-color: #002527;
-	display: flex;	
-	justify-content: space-between;
-	align-items: center;
-	position: relative;
-	z-index: 1;
-}
-
-nav > * {
-	display: inline;
-	margin: 1em;
-}
-
-nav a {
-	text-decoration: none;
-	font-size: 24px;
-	font-weight: bold;
-	
-}
-
-nav > form {
-	display: flex;
-	flex-grow: 1;
-	align-items:center;
-	justify-content: center;
-}
-
-nav > form > .form-control {
-	display: inline-block;
-	width: 50%;
-	background-color: #203c47;
-	color: #AAA;
-}
-
-nav > form > .form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-nav > form > .form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-} 
-
-nav ul li {
-	list-style: none;
-	display: inline;
-}
-
-#user {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	margin-right: 1em;
-}
-
-
-#user {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	margin-right: 1em;
-}
-
-
 /*
 
 POST
@@ -136,7 +28,7 @@ div#container ol.breadcrumb {
 }
 
 #thread {
-	background-color: #2B3E50;
+	/*background-color: #2B3E50;*/
 	margin-bottom: 2em;
 }
 
@@ -166,11 +58,26 @@ div#container ol.breadcrumb {
 	margin: auto;
 }*/
 
-#thread div.comment {
-	padding: 1em;
-	border-width: 0 5px 1px 5px;
-	border-style: solid;
-	border-color: black;
+#thread #profile_pic {
+	width: 50px;
+	height: 50px;
+}
+/*
+#thread div.row:not(:first-child){
+	height: 100px;
+}
+*/
+
+div.date p {
+	margin-bottom: 0.2em;
+}
+
+div.date a{
+	padding-left: 0;
+}
+
+.date a {
+	text-decoration: none;
 }
 
 #thread div.comment .col-lg-8:nth-child(2) {
@@ -184,45 +91,22 @@ div#container ol.breadcrumb {
 }
 
 #thread div.comment {
+	padding: 0.5em;
+	background-color: #CCD9CE;
 	padding: 1em;
-}
-/*
-#thread table {
-	margin: 0;
-}
-
-table thead tr#thread_main_text {
-	background-color: #182f35;
+	border-width: 0 5px 1px 5px;
+	border-style: solid;
+	border-color: black;
+	color: #001;
 }
 
-#thread td {
-	font-size: 125%;
+#issue h2 {
+	color: #ECE7F3;
 }
 
-#thread td.date {
-	vertical-align: middle;	
-	text-align: center;
-	padding: 0 1em;
-}
 
-#thread tbody th {
-	text-align: center;
-}
-*/
-input.form-control {
-	margin-left: 0;
-	width: 90%;
-	background-color: #203c47;
-}
-
-input.form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-input.form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
+div.col-8 button {
+	margin-left: 88%;
 }
 
 #thread .comment a, #thread #header a{
@@ -236,103 +120,16 @@ input.form-control:focus {
 	transition: background-color 0s;
 }
 
-/**
-		FOOTER
-*/
-footer {
-	background-color: #002527;
-	display: grid;
-	grid-template-columns: 50% 50%;
+#title.form-control {
+	display: block;
 }
 
-footer > * {
-	margin: 2em auto;
+#description.form-control {
+	display: block;
 }
 
-footer a, footer p {
-	font-size: 14px;
-}
-
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
-}
-
-/*@media screen and (max-width: 990px) {
-	nav input.form-control {
-		display: none;
-	} 
-
-	#container {
-	    margin: 5% 5% auto 5%;
-	}
-
-
-	#thread #header{
-		display: block;
-	}
-
-	#thread div div {
-		margin: auto;
-		width: auto;
-	}
-
-	#thread figcaption {
-		font-size: 12px;
-	}
-
-	#thread img {
-		max-width: 75%;
-    	height: auto;
-	}
-
-	#thread #issue p {
-		font-size: 14px;
-	}
-
-	#thread p {
-		font-size: 12px;
-	}
-
-	#thread h2{
-		font-size: 20px;
-	}
-}*/
 
 @media screen and (max-width: 635px){
-	nav div input:checked ~ ul {
-		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
-		transition-delay: 0s;
-	}
-	nav input.form-control {
-		display: none;
-	}
-	div#mobile {
-		display: none;
-	}
-	nav div label {
-		background-color: inherit;
-		color: #DF691A;
-		margin: 0 0.5em;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
-	}
-	nav div label:before {
-		content: "\2630";
-	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
-	} 
-
 	#container {
 	    margin: 5% 5% auto 5%;
 	}
@@ -355,6 +152,7 @@ footer > div#info {
 	div.row > div.col-2{
 		max-width: 100%;
 		flex: 0 0 100%;
+		height: 100px;
 	}
 
 	div.row > div.col-8 {
@@ -383,36 +181,6 @@ footer > div#info {
 	#thread h2{
 		font-size: 20px;
 	}
-	
-	/*
-	#thread td p{
-		font-size: 2vw;
-	}
-
-	#thread td h2{
-		font-size: 4.5vw;
-	}
-
-	#thread th p{
-		font-size: 3.5vw;
-	}
-
-	#thread th img {
-		max-width: 75%;
-    	height: auto;
-	}
-
-	#thread label {
-		font-size:3.5vw;
-	}
-
-	#thread div input.form-control {
-		max-height: 50%;
-	}
-
-	#thread td.user_options a {
-
-	}*/
 }
 
 @media screen and (max-width: 950px) and (min-width: 636px) {
@@ -442,28 +210,10 @@ footer > div#info {
 		font-size: 20px;
 	}
 	
-	/*#thread td p{
-		font-size: 2vw;
-	}
+}
 
-	#thread th {
-		vertical-align: middle;
+@media screen and (max-width: 531px){
+	div.col-8 button {
+		margin-left: 70%;
 	}
-
-	#thread th p{
-		font-size: 2.5vw;
-	}
-
-	#thread td h2{
-		font-size: 3.5vw;
-	}
-
-	#thread th img {
-		max-width: 100%;
-    	height: auto;
-	}
-
-	#thread label {
-		font-size:2.5vw;
-	}*/
 }

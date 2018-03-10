@@ -12,20 +12,25 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
     <link rel="stylesheet" type="text/css" href="report_page.css">
+    <link rel="stylesheet" type="text/css" href="common.css">
 </head>
 
 <body>
-    <nav>
-        <a href="index.html">Proyekt</a>
-        <form>
+    <nav class="row">
+        <a class="col-3" href="">Proyekt</a>
+        <form class="col-6">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
         </form>
-        <div id="user">
-            <input type="checkbox" id="hamburger"> 
+        <div class="col-3" id="user">
+            <input type="checkbox" id="hamburger">
             <label class="hamburger" for="hamburger"></label>
             <div id="mobile">
-                <button id="notification"><i class="fas fa-bell"></i></button>
+                <button id="notification">
+                    <i class="fas fa-bell"></i>
+                </button>
                 <img src="res/profile/profile-pic.png">
             </div>
         </div>
@@ -46,16 +51,16 @@
                 <h3 class="display-3">Report a Comment</h3>
                 <hr class="my-4">
                 <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">Summarize the reason of the report: </label>
-                    <input type="text" class="form-control" placeholder="Reason..." id="inputDefault">
+                    <label class="col-form-label" for="title">Summarize the reason of the report: </label>
+                    <input type="text" class="form-control" placeholder="Reason..." id="title">
                 </div>
                 <div class="form-group">
-                    <label class="col-form-label" for="inputDefault">Add a message to further explain the problem: </label>
-                    <textarea class="form-control" id="exampleTextarea" placeholder ="Description..." rows="5"></textarea>
+                    <label class="col-form-label" for="description">Add a message to further explain the problem: </label>
+                    <textarea class="form-control" id="description" placeholder ="Description..." rows="5"></textarea>
                 </div>
-                <p class="lead">
+                <div id="lead">
                   <a class="btn btn-primary btn-lg" href="#" role="button">Report</a>
-                </p>
+                </div>
             </div>   
         </div>
     </div>

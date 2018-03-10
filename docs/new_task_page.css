@@ -1,3 +1,4 @@
+
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
@@ -55,27 +56,30 @@ tr#descriptions_table{
 
 }
 
-input.form-control, textarea.form-control {
+div#container input.form-control, textarea.form-control {
 	transition: all 0.2s;
 	background-color: #558A8C;
 	color: #0A1827;
 	outline: 1px solid #558A8C;
-}
-
-
-#title.form-control, #description.form-control, textarea.form-control {
 	width: 100%;
-	display: block;
 }
+
+div#container input.form-control:hover, textarea.form-control:hover {
+	background-color: #9AC0BA;
+}
+
+div#container input.form-control:focus, textarea.form-control:focus {
+	background-color: #CCD9CE;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline: 1px solid #CCD9CE;
+}
+
 
 #header {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
+	grid-row: 1;
+	grid-column: 2;
 	color:  #2B3E50;
-	padding-right: 15%;
-	padding-left: 45%;
+	align-items: center;
 }
 
 #header h1{
@@ -122,12 +126,25 @@ a:hover {
 }
 
 
-#threads td a, #threads th a{
+#threads a{
 	display: block;
 	text-decoration: underline;
 	color: #0A1827;
 	cursor: pointer;
 }
+
+div.buttons{
+    display:flex;
+    justify-content: space-between;
+}
+
+div.buttons > *{
+   	padding: 1em;
+}
+
+div.buttons div:first-of-type input {
+	display: none;
+ }
 
 #threads a:hover {
 	color: #DF691A;
@@ -145,23 +162,6 @@ div#container {
 }
 
 @media screen and (max-width: 635px){
-
-	#header{
-		flex-direction: column;
-		padding: 0;
-		padding-bottom: 10px;
-		width: 90%;
-		margin: auto;
-	}
-
-	div#container #header button.btn {
-		margin: 0;
-	}
-
-	#header button.btn {
-		font-size: 0.7em;
-		align-self: flex-end;
-	}
 
 	.table {
 		width: 90%;
@@ -181,6 +181,10 @@ div#container {
 	#overlay h3{
 		font-size: 32px;
 		text-align: center;
+	}
+
+	div.buttons a, div.buttons div{
+		font-size: 14px;
 	}
 }
 

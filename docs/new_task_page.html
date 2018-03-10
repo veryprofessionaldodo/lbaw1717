@@ -5,7 +5,7 @@
     <title>Proyekt Forum</title>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="forum.css">
+    <link rel="stylesheet" type="text/css" href="new_task_page.css">
     <link rel="stylesheet" type="text/css" href="common.css">
 </head>
 
@@ -30,28 +30,30 @@
 
         <div id="options">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Project</a></li>            
-                <li class="breadcrumb-item"><a href="#">Forum</a></li>            
-                <li class="breadcrumb-item active">New Thread</li>            
+                <li class="breadcrumb-item"><a href="#">Project</a></li>                                 
             </ol>
         </div>
 
         <div id="overlay">
             <div class="jumbotron">
-                <h3 class="display-3">New thread</h3>
+                <h3 class="display-3">New Task</h3>
                 <p class="lead"></p>
                 <hr class="my-4">
                 <div class="form-group">
-                    <label class="col-form-label" for="title">Insert the title of the new issue: </label>
-                    <input type="text" class="form-control" placeholder="Title..." id="title">
+                    <label class="col-form-label" for="inputDefault">Insert the title of the new Task: </label>
+                    <input type="text" class="form-control" placeholder="Title..." id="inputDefault">
                 </div>
                 <div class="form-group">
-                    <label class="col-form-label" for="description">Insert the description of the issue: </label>
-                    <textarea class="form-control" id="description" placeholder ="Description..." rows="5"></textarea>
+                    <label class="col-form-label" for="inputDefault">Insert the description of the Task: </label>
+                    <textarea class="form-control" id="exampleTextarea" placeholder ="Description..." rows="5"></textarea>
                 </div>
-                <p class="lead">
-                  <a class="btn btn-primary btn-lg" href="#" role="button">Create</a>
-                </p>
+                <div class="buttons">
+                    <div class="btn btn-lg btn-primary">
+                        Add Image
+                        <input type="file" name="file"/>
+                    </div>
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Create</a>
+                </div>
             </div>   
         </div>
     </div>
