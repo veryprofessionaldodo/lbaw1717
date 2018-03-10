@@ -1,140 +1,21 @@
-body {
-	margin: 0;
-	background-color: #006064;
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+	color: #0A1827;
 }
- /**
-		NAV
- */
-nav {
-	background-color: #002527;
-	display: flex;	
-	justify-content: space-between;
-	align-items: center;
-	position: relative;
-	z-index: 1;
-}
-
-nav > * {
-	display: inline;
-	margin: 1em;
-}
-
-nav a {
-	text-decoration: none;
-	font-size: 24px;
-	font-weight: bold;
-	
-}
-
-nav > form {
-	display: flex;
-	flex-grow: 1;
-	align-items:center;
-	justify-content: center;
-}
-
-nav > form > .form-control {
-	display: inline-block;
-	width: 50%;
-	color: #AAA;
-	background-color: #203c47;
-}
-
-nav > form > .form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-nav > form > .form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-} 
-
-nav ul li {
-	list-style: none;
-	display: inline;
-}
-
-#user {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	margin-right: 1em;
-}
-
-#notification {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0;
-    font-size: 16px;
-    border: none;
-}
-
-.dropdown {
-	display: none;
-	position: absolute;
-	right: 7%;
-	top: 2em;
-    /*position: relative;
-	display: inline-block;*/
-}
-
-.dropdown-content {
-	/*margin-left: auto;
-	margin-right: 0;*/
-	/*position: absolute;*/
-    /*background-color: #f1f1f1;*/
-    /*min-width: 200px;*/
-	position: relative;
-    background-color: inherit;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content .modal {
-    text-decoration: none;
-	display: block;
-	position: relative;
-	/*margin: auto;
-	padding: auto;*/
-}
-
-button#notification:hover ~ .dropdown {
-	display: block;
-}
-
-
 
 
 /**
 	DASHBOARD
 */
 
-div#dashboard {
-	display: grid;
-	grid-template-columns: 20% auto;
+div.container-fluid {
+	/*display: grid;
+	grid-template-columns: 20% auto;*/
+	min-height: 100vh;
+}
+
+div.container-fluid > div.row {
 	min-height: 100vh;
 }
 
@@ -143,16 +24,11 @@ div#dashboard {
 */
 
 aside {
-	min-width: 10em;
-	grid-column-start: 1;
-	grid-column-end: 2;
-	background-color: #004649;
 	text-align: center;
 	color: #e3eaed;
-	display: grid;
-	grid-template-rows: 30% 50% auto;
+	background-color: #004649;
 	box-shadow: 0 0px 5px 1px black;
-
+	padding: 0;
 }
 
 aside p {
@@ -164,9 +40,8 @@ aside > * {
 }
 
 aside div#info {
-	grid-row-start: 1;
-	grid-row-end: 2;
-	margin: 2em auto 0.5em auto;
+	padding: 0;
+	margin: 2em auto;
 }
 
 aside div#info p {
@@ -174,16 +49,15 @@ aside div#info p {
 }
 
 aside div#info img {
-	max-width:50%;
+
+	max-width:75%;
 	border-radius: 50%;
 	box-shadow: 0px 0px 10px;
 	margin-bottom: 1em;
 }
 
 aside div#statistics {
-	grid-row-start: 2;
-	grid-row-end: 3;
-	margin: auto;
+	margin: 3em auto;
 }
 
 /**
@@ -191,25 +65,45 @@ aside div#statistics {
 */
 
 div#options {
-	grid-column-start: 2;
-	grid-column-end: 3;
-	margin: 0 3em;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	margin: auto;
+}
+div#options button#new_project {
+	margin: 1em auto;
+}
+
+div#options div.col-md-12{
+	margin: auto;
+	text-align: center;
+}
+
+div#options div.col-md-6 {
+	text-align: center;
 }
 
 div#options form {
-	margin: 0 auto;
-	width: 50%;
+	margin: auto;
 	text-align: right;
 }
 
-div#options > form > input.form-control {
-	display: inline;
-	width: 50%;
-	background-color: #003638;
+div#options form.col-12 {
+	text-align: center;
 }
+
+div#options form > input.form-control {
+	background-color: #003638;
+	width: auto;
+	display: inline;
+}
+
+div#options form > button.btn.btn-primary {
+	vertical-align: inherit;
+}
+div#options div#role_button {
+	margin: auto;
+	text-align: center;
+}
+
+
 
 form#new_project_name {
 	margin: 0 3em;
@@ -221,17 +115,18 @@ form#new_project_name > input.form-control {
 	background-color: #003638;
 }
 
-div.btn-group {
-	margin: 0 0 0 1em;
-}
 
 .hide {
 	display: none;
 }
 
+div.container-fluid {
+	margin-bottom: 2em;
+}
+
 section {
-	grid-column-start: 2;
-	grid-column-end: 3;
+	/*grid-column-start: 2;
+	grid-column-end: 3;*/
 }
 
 section p {
@@ -244,32 +139,42 @@ section button#new_project.btn.btn-primary {
 	padding: 1em;
 }
 
+/* PROJECTS TAB */
+
 section div.project {
-	background-color: #B2DFDB;
+	background-color: #CCD9CE;
 	margin: 1em 3em;
-	padding: 1em 0;
-	box-shadow: 0 0 5px #000;
+	padding: 1em;
+	outline: 1px solid #666;
 	color: #000;
 	display: grid;
-	grid-template-columns: 15% auto auto;
+	grid-template-columns: 20% auto auto;
 }
-/*
-section div div.project > * {
-	display: inline;
-}*/
+
+section div.project:hover {
+	background-color: #9AC0BA;
+	outline: 1px solid #333;
+}
 
 section div.project > h5 {
+	text-decoration: underline;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	margin: auto;
 	font-weight: bold;
 	text-align: center;
 	color: #111;
+	transition: all 0.2s;
+}
+
+section div.project > h5:hover {
+	color: #DF691A;
 }
 
 section div.project > p {
 	grid-column-start: 2;
 	margin: auto;
+	text-align: center;
 	grid-column-end: 3;
 	color: #111;
 }
@@ -277,8 +182,8 @@ section div.project > p {
 section div.project .project_info{
 	grid-column-start: 3;
 	grid-column-end: 4;
-	margin: auto;
-	text-align: center;
+	margin: auto 0 auto auto;
+	text-align: right;
 	color: #111;
 }
 
@@ -290,25 +195,19 @@ section div.project .project_info > *{
 section div.project .project_info > button.btn.btn-secondary{
 	background-color: #004649;
 	font-size: 14px;
+	margin: 0.5em auto;
+	padding: 0.5em 1em;
 }
-
-section div.project:hover {
-	background-color: #80DEEA;
-	cursor: pointer;
-}
-
 
 /**
 	EDIT PROFILE
 */
 
 div#dashboard {
-	opacity: 0.3;
+	opacity: 1;
 }
 
 div.container.edit_profile {
-	/*left: 25%;
-	top: 50%;*/
 	left:0;
 	right:0;
 	top:5em;
@@ -317,16 +216,18 @@ div.container.edit_profile {
 	position: absolute;
 	z-index: 1;
 	display: block;
-	background-color: #2B3E50;
+	background-color: #0A1827;
+
 	padding: 1em;
 	max-width: 40em;
-	height: 25em;
+	height: 27em;
 	text-align: justify;
 }
 
 div.container.edit_profile h2 {
 	font-size: 24px;
 	text-align: center;
+	color: #ECE7F3;
 }
 
 div.container.edit_profile > button {
@@ -335,6 +236,7 @@ div.container.edit_profile > button {
 
 div.container.edit_profile div.form_area {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	margin: 1em 0;
 }
@@ -351,346 +253,112 @@ div.container.edit_profile label {
     margin: auto 1em;
 }
 
+div.container.edit_profile input {
+	align-self: center;
+}
+
 div.container.edit_profile input.form-control {
-	flex-grow: 1;
-	width: auto;
+	width: 95%;
 }
 
 div.container.edit_profile div#form_options {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
 	text-align: center;
 	margin: 1em;
 }
 
-
-
-@media screen and (max-width: 500px){
-	nav div input:checked ~ ul {
-		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
-		transition-delay: 0s;
-	}
-	nav input.form-control {
-		display: none;
-	}
-	div#mobile {
-		display: none;
-	}
-	nav div label {
-		background-color: inherit;
-		color: #DF691A;
-		margin: 0 0.5em;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
-	}
-	nav div label:before {
-		content: "\2630";
-	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
-	}
- 
-	div#dashboard {
-		display: block;
-	}
+@media screen and (max-width: 767px) {
 	aside {
-		display: none;
-	}
-
-	div#options {
-		display: block;
 		text-align: center;
-	}
-	div#options > button.btn.btn-primary {
-		display: block;
-	}
-
-	div#options form {
-		display: inline;
-		text-align: center;	
-	}
-	.btn {
-		vertical-align: inherit;
+		box-shadow: 0 0px 5px 1px black;
+		padding: 0;
 	}
 
-	div.btn-group {
-		margin: 0 0 0 1em;
+	aside p {
+		font-size: 14px;
 	}
 
-	section button#new_project.btn.btn-primary {
-		margin: 1em auto;
-		padding: 1em;
+	aside div#info {
+		padding: 0;
+		border-width: 0 1px 0 0;
+		border-style: solid;
+		border-color: white;
 	}
 
-	section div.project:hover {
-		color: #FFF;
+	aside div#info p {
+		margin-bottom: 0.5em;
 	}
+
+	aside div#info img {
+		max-width:50%;
+		max-width: 5em;
+		border-radius: 50%;
+		box-shadow: 0px 0px 10px;
+		margin-bottom: 1em;
+	}
+
+	aside div#statistics {
+		margin: auto;
+	}
+
+	aside a {
+		margin: auto;
+	}
+
 
 	section div.project {
-		margin: 1em 3em;
-		padding: 1em;
-		box-shadow: 0 0 5px #000;
-		color: #000;
-		display: grid;
-		grid-template-columns: 20% auto 50%;
-		grid-template-rows: 50% auto;
-	}
-	/*
-	section div div.project > * {
-		display: inline;
-	}*/
-
-	section div.project > h5 {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		margin: auto;
-		font-size: 4vw;
-		text-align: center;
-		color: #d3eced;
+		display: block;
 	}
 
-	section div.project > p {
-		grid-column-start: 2;
-		margin: auto 1em;
-		font-size: 3vw;
-		text-align: center;
-		grid-column-end: 3;
-		color: #FFF;
+	section div.project > h5:hover {
+		color: #DF691A;
 	}
 
 	section div.project .project_info{
-		grid-column-start: 3;
-		grid-column-end: 4;
-		margin: auto;
+		margin: 1em 0 0 0;
 		text-align: center;
-		display: grid;
-		grid-template-columns: 50% auto;
+	}
+
+	section div.project .project_info > button.btn.btn-secondary{
+		font-size: 12px;
+		display: block;
+		margin: 1em auto 0 auto;
+		padding: auto;
+	}
+
+}
+
+@media screen and (max-width: 500px){
+
+	/* PROJECTS */
+
+	section div.project {
+		margin: 1em;
+		display: block;
+	}
+		
+	section div.project > h5 {
+		font-size: 26px;
+	}
+
+	section div.project > p {
+		font-size: 18px;
+	}
+
+	section div.project .project_info{
+		font-size: 14px;
 	}
 
 	section div.project .project_info > *{
-		font-size: 2.5vw;
+		display: inline-block;
+		margin: auto 1em;
 	}
 
-	section div.project .project_info > span, section div.project .project_info > p {
-		grid-column-start: 1;	
-	}
-
-	section div.project .project_info > button {
-		grid-column-start: 2;
-		grid-row-start: 1;
-		grid-row-end: 3;
-	}
 	section div.project .project_info > button.btn.btn-secondary{
 		font-size: 12px;
-		padding: 2px 6px;
-	}
-
-
-	div.container.edit_profile {
-		width: 100%;
-		height: 100vh;	
-		margin: 1em 0;
-	}
-
-	div.container.edit_profile div.form_area {
-		display: block;
-		margin: 1em 2em;
-	}
-
-	div.container.edit_profile div.form_area input.form-control{
-		margin: 0 auto;
-	}
-
-	div.container div.form_area button.btn {
-		margin: 0;
-		padding: 0 0.5em;
-		font-size: 12px;
-	}
-
-	div.container.edit_profile label{
-		display: block;
-		font-size: 12px;
-		text-align: center;
-	}
-}
-
-
-@media screen and (max-width: 720px) and (min-width: 501px){
-	div#dashboard {
-		display: block;
-	}
-	aside {
-		background-color: #1b323a;
-		color: #e3eaed;
-		box-shadow: 0 0 20px black;
-		display: grid;
-		grid-template-columns: 60% auto;
-		max-height: 15em;
-		min-width: 0;
-		padding: 1em;
-		margin-bottom: 2em;
-	}
-
-	aside p {
-		font-size: 0.75em;
-	}
-
-	/*aside > * {
-		margin: 1em auto;
-	}*/
-
-	aside div#info {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		display: grid;
-		grid-template-columns: 60% 40%;
-		margin: 1em;
-	}
-
-	aside div#info #info_text {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: auto;
-	}
-
-	aside div#info img {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		margin: auto;
-		max-width:75%;
-		max-height: 75%;
-		border-radius: 50%;
-		box-shadow: 0px 0px 10px;
-	}
-
-	aside div#statistics {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		margin: auto;
-	}
-
-	aside > a {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: 0;
-	}
-
-
-	div#options {
-		display: block;
-		text-align: center;
-	}
-	div#options > button.btn.btn-primary {
-		display: block;
-	}
-
-	div#options form {
-		display: inline;
-		margin: auto;
-		text-align: center;	
-	}
-	.btn {
-		vertical-align: inherit;
-	}
-
-	div.btn-group {
-		margin: 0 0 0 1em;
-	}
-	section button#new_project.btn.btn-primary {
-		margin: 1em auto;
-		padding: 1em;
-	}
-}
-
-@media screen and (min-height: 1024px) and (orientation:portrait){
-	div#dashboard {
-		display: block;
-	}
-	aside {
-		background-color: #1b323a;
-		color: #e3eaed;
-		box-shadow: 0 0 20px black;
-		display: grid;
-		grid-template-columns: 60% auto;
-		max-height: 15em;
-		padding: 1em;
-		min-width: 0;
-		margin-bottom: 2em;
-	}
-
-	aside p {
-		font-size: 0.75em;
-	}
-
-	/*aside > * {
-		margin: 1em auto;
-	}*/
-
-	aside div#info {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		display: grid;
-		grid-template-columns: 60% 40%;
-		margin: 1em;
-	}
-
-	aside div#info #info_text {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: auto;
-	}
-
-	aside div#info img {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		margin: auto;
-		max-width:100%;
-		max-height: 100%;
-		border-radius: 50%;
-		box-shadow: 0px 0px 10px;
-	}
-
-	aside div#statistics {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		margin: auto;
-	}
-
-	aside > a {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		margin: 0;
-	}
-
-
-	div#options {
-		display: block;
-		text-align: center;
-	}
-	div#options > button.btn.btn-primary {
-		display: block;
-	}
-
-	div#options form {
-		display: inline;
-		margin: auto;
-		text-align: center;	
-	}
-	.btn {
-		vertical-align: inherit;
-	}
-
-	div.btn-group {
-		margin: 0 0 0 1em;
-	}
-	section button#new_project.btn.btn-primary {
-		margin: 1em auto;
-		padding: 1em;
+		margin: 0.5em auto;
+		padding: 0.5em 1em;
 	}
 }

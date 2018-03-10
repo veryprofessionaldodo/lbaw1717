@@ -7,80 +7,102 @@
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<link rel="stylesheet" type="text/css" href="bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="projects_page.css">
+	<link rel="stylesheet" type="text/css" href="common.css">
 </head>
 
 <body>
-	<nav>
-		<a href="">Proyekt</a>
-		<form>
+	<nav class="row">
+		<a class="col-3" href="">Proyekt</a>
+		<form class="col-6">
 			<input class="form-control mr-sm-2" type="text" placeholder="Search">
 			<button class="btn btn-primary my-2 my-sm-0" type="submit">
 				<i class="fas fa-search"></i>
 			</button>
 		</form>
-		<div>
-			<div id="user">
-				<input type="checkbox" id="hamburger">
-				<label class="hamburger" for="hamburger"></label>
-				<div id="mobile">
-					<button id="notification">
-						<i class="fas fa-bell"></i>
-					</button>
-					<img src="res/profile/profile-pic.png">
-				</div>
+		<div class="col-3" id="user">
+			<input type="checkbox" id="hamburger">
+			<label class="hamburger" for="hamburger"></label>
+			<div id="mobile">
+				<button id="notification">
+					<i class="fas fa-bell"></i>
+				</button>
+				<img src="res/profile/profile-pic.png">
 			</div>
 		</div>
 	</nav>
 	<section class="container-fluid">
-		<div class="row">
-			<div class="col-12">
-				<div id="info_buttons">
-					<button type="button" class="btn btn-primary"><i class="fas fa-comments"></i> Forum</button>
-					<button type="button" class="btn btn-secondary"><i class="fas fa-chart-line"></i> Statistics</button>
-					<button type="button" class="btn btn-success"><i class="fas fa-cog"></i> Settings</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-12 new_sprint">
-				<button class="btn btn-info"><i class="fas fa-plus"></i> Create New</button>
-			</div>
-		</div>
+		<!-- rows iniciais das project pages -->
 
 		<div class="row">
 			<div class="col-12">
-				<ul class="nav nav-tabs">
-					<li class="nav-item">
-						<a class="nav-link" data-toggle="tab" href="#Sprints"><i class="fas fa-bolt"></i>  Sprints</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link active" data-toggle="tab" href="#Tasks"><i class="far fa-sticky-note"></i>  Tasks</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" data-toggle="tab" href="#Members"><i class="fas fa-users"></i> Members</a>
-					</li> 
-				</ul>
+				<h1>Project's Name</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<h4>
+					<i class="fas fa-angle-right"></i>&nbsp;&nbsp;Project about something about projects</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-comments"></i> Forum</button>
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-chart-line"></i> Statistics</button>
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-cog"></i> Settings</button>
+				</nav>
+			</div>
+
+			<div id="row_mobile">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mobile_nav">
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-comments"></i>
+					</button>
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-chart-line"></i>
+					</button>
+					<button type="button" class="btn btn-secondary" id="project_buttons">
+						<i class="fas fa-cog"></i>
+					</button>
+				</nav>
 			</div>
 		</div>
 
-		<div class="container create_new">
-			<h2>New Tasks</h2>
+				<div class="container create_new">
+			<h2>New Sprint</h2>
 			<div class="form_area">
 				<label>Name: </label>
-				<input type="text" class="form-control" name="task_name">
-				<button class="btn btn-primary" type="submit">Enter</button>
+				<input type="text" class="form-control" name="sprint_name">
 			</div>
+			<div class="form_area_date">
+				<label>Deadline date: </label>
+				<input type="date" class="form-control" name="sprint_deadline">
+			</div>
+
 			<div id="new_tasks">
 				<div class="created_task">
 					<p>Make responsive design</p>
-					<button class="btn delete"><i class="fas fa-trash"></i></button>
+					<button class="btn delete">
+						<i class="fas fa-trash"></i>
+					</button>
 				</div>
 			</div>
-			<button class="btn btn-info">Add task</button>
+			<div class="form_area">
+				<label>New task: </label>
+				<div id="new_task">
+					<input type="text" class="form-control" name="task_name">
+					<button class="btn btn-primary" type="submit">Enter</button>
+				</div>
+			</div>
+			<center>
+				<button class="btn btn-info" id="add_task_btn">Add task</button>
+			</center>
 			<div id="form_options">
 				<button class="btn btn-success">Submit</button>
-				<button class="btn">Cancel</button>
+				<button class="btn btn-danger">Cancel</button>
 			</div>
 		</div>
 

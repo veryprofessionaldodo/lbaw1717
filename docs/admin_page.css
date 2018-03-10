@@ -1,94 +1,184 @@
-body {
-	margin: 0;
-	background-color: #006064;
-}
-
- /**
-		NAV
- */
-nav {
-	background-color: #002527;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-nav > * {
-	display: inline;
-	margin: 1em;
-}
-
-nav a {
-	text-decoration: none;
-	font-size: 24px;
-	font-weight: bold;
-
-}
-
-nav > form {
-	flex-grow: 2;
-	display: flex;
-	align-items:center;
-	justify-content: center;
-}
-
-nav > form > .form-control {
-	display: inline-block;
-	width: 50%;
-	background-color: #203c47;
-	color: #AAA;
-}
-
-nav > form > .form-control:hover {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-nav > form > .form-control:focus {
-	transition: background-color 0.2s;
-	background-color: #2b4e5b;
-}
-
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-}
-
-nav ul li {
-	list-style: none;
-	display: inline-flex;
-}
-
+/**
+	SECTION
+*/
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
+	color: #0A1827;
 }
 
-#user {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+.container-fluid {
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+	min-height: 100vh;
+	color: black;
 }
 
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
+div.row {
+	margin: 0;
 }
 
-#user button {
-	background-color: inherit;
+.container-fluid > div.row {
+	min-height: 100vh;
+}
+
+aside.col-12 {
+	padding: 0;
+}
+
+aside div#active {
+	/*outline: 1px solid #558A8C;*/
 	border: 0;
+	background-color: inherit;
+	border-right: 0;
+	border-bottom: 0;
 }
+
+aside div div {
+	/*outline: 2px solid #508689;*/
+	padding: 1em;
+	background-color: #9AC0BA;
+	text-align: center;
+}
+
+aside.col-6 {
+	text-align: center;
+}
+
+
+section {
+	margin: 2em 0;
+	padding: 1em;
+}
+
+
+section div#search_bar input.form-control {
+	display: inline-block;
+	width: auto;
+	
+}
+
+section div#search_bar button.btn {
+	display: inline-block;
+	vertical-align: inherit;
+}
+
+div > button {
+	background-color: #0A1827;
+	transition: all 0.2s;
+}
+
+div > button:hover {
+	background-color: #AA000C;
+}
+
+section div#reports {
+	margin: 2em 0;
+}
+
+section div#reports div.report {
+	margin: 1em 0;
+}
+
+section div#reports div.report div.report_principal_info {
+	border-top: 1px solid #508689;
+	background-color: #ECE7F3;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: 40% 10% auto;
+}
+
+section div#reports div.report div.report_principal_info p{
+	grid-column-start: 1;
+	grid-column-end: 2;
+	margin: auto 0;
+}
+section div#reports div.report div.report_principal_info a{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin: auto 0;
+	text-align: center;
+}
+
+section div#reports div.report div.report_principal_info div.options{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	text-align: right;
+	margin: auto 0;
+	display: block;
+}
+
+section div#reports div.report div.report_details {
+	outline: 1px solid #558A8C;
+	background-color: #CCD9CE;
+	padding: 1em;
+}
+
+section div#reports div.report div.report_details h4:first-of-type {
+	margin-top: 0.5em;
+}
+
+
+/**
+	Comments
+*/
+
+section div#reports div.report.report_comment div.report_principal_info {
+	background-color: #ECE7F3;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: 40% auto 20%;
+}
+
+section div#reports div.report.report_comment div.report_principal_info div.options {
+	margin: auto 0 auto auto;
+}
+
+section div#reports div.report.report_comment div.report_principal_info div.options button.btn {
+	display: block;
+	width: 100%;
+	margin: 1em 0;
+}
+
+
+/*
+div#users, div#comments {
+	background-color: #9AC0BA;
+	padding: 1em 3em;
+	margin: 0 auto 3em auto;
+	box-shadow: 0 0 10px #1b323a;
+	height: auto;
+}
+
+div#users.col-lg-4, div#comments.col-lg-4 {
+	height: 100%;
+}
+
+div.user_notification, div.comment_notification {
+	color: #111;
+	cursor: pointer;
+	background-color: #F0E7CE;
+	padding: 1em;
+	margin: 2em 0;
+}
+
+div.user_notification:hover, div.comment_notification:hover {
+	outline: 1px solid #0A1827;
+	background-color: #F5F5F5;
+}
+
+div.user_notification p, div.comment_notification p{
+	margin: 0;
+	letter-spacing: 0.5px;
+}*/
 
 
 /**
 		FOOTER
 */
 footer {
-	background-color: #002527;
+	background-color: #0A1827;
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
@@ -111,75 +201,123 @@ footer > div#info {
 	grid-column-end: 3;
 }
 
-
-/**
-	SECTION
-*/
-
-.container-fluid {
-	margin: 5em auto;
-	vertical-align: top;
-}
-
-
-div#users, div#comments {
-	background-color: #002E30;
-	padding: 1em 3em;
-	margin: 0 auto 3em auto;
-	box-shadow: 0 0 10px #1b323a;
-	height: auto;
-}
-
-div#users.col-lg-4, div#comments.col-lg-4 {
-	height: 100%;
-}
-
-div.user_notification, div.comment_notification {
-	color: #111;
-	cursor: pointer;
-	background-color: #deeded;
-	padding: 1em;
-	margin: 2em 0;
-}
-
-div.user_notification:hover, div.comment_notification:hover {
-	background-color: #c9dbdb;
-}
-
-div.user_notification p, div.comment_notification p{
-	margin: 0;
-	letter-spacing: 0.5px;
-}
-
-@media screen and (max-width: 580px){
-	nav input.form-control {
-		display: none;
-	} 
-	div#mobile {
-		display: none;
+@media screen and (max-width: 1060px) {
+	aside h4 {
+		font-size: 20px;
 	}
-	nav div label {
-		background-color: inherit;
-		color: #DF691A;
-		margin: 0 0.5em;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
+	aside.col-md-2 {
+		padding: 0;
 	}
-	nav div label:before {
-		content: "\2630";
+}
+
+@media screen and (max-width: 935px){
+	section div#reports div.report div.report_principal_info {
+		grid-template-columns: 40% 15% auto;
 	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
+
+	aside h4 {
+		font-size: 22px;
+		color: #B05315;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		grid-template-columns: 40% auto 25%;
+	}
+
+}
+@media screen and (max-width: 840px) {
+	section div#reports div.report p, section div#reports div.report a {
+		font-size: 14px;
+	}
+
+	section div#reports div.report div.report_principal_info div.options button.btn{
+		font-size: 14px;
+		padding: 0.5em;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	aside div div#active {
+		border-width: 0 2px 0 0;
+	}
+
+	aside div div {
+		border-width: 0 2px 2px 2px;
+	}
+}
+
+
+@media screen and (max-width: 671px) {
+	aside div div{
+		padding: 1em;
+		margin: auto;
+	}
+
+	aside div div h4 {
+		font-size: 18px;
+		margin: auto;
+		text-align: center;
 	}
 	
-	/**   USAR JAVASCRIPT  */
-	/*
-	nav div input:checked ~ div#mobile ul {
-		visibility: visible;
+	section div#reports div.report div.report_principal_info {
+		grid-template-columns: 50% 15% auto;
+	}
+
+	section div#reports div.report div.report_principal_info div.options button.btn{
+		font-size: 12px;
+		width: 75%;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		grid-template-columns: 40% auto 30%;
+	}
+}
+
+@media screen and (max-width: 590px) {
+
+	section div#reports div.report div.report_principal_info div.options button.btn{
+		font-size: 12px;
+		width: 75%;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	section div#reports div.report div.report_principal_info {
 		display: block;
-		width: 100%;
-		background-color: white;
-		transition-delay: 0s;
-	}*/
+	}
+
+	section div#reports div.report div.report_principal_info > * {
+		text-align: center;
+		display: block;
+	}
+
+	section div#reports div.report div.report_principal_info p {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report div.report_principal_info a {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report div.report_principal_info div.options button.btn {
+		display: block;
+		margin: 1em auto;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info {
+		display: block;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info > * {
+		text-align: center;
+		display: block;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info p {
+		margin-bottom: 1em;
+	}
+
+	section div#reports div.report.report_comment div.report_principal_info a {
+		margin-bottom: 1em;
+	}
 }
