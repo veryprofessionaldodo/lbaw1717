@@ -16,7 +16,7 @@ h2 {
 }
 
 div.row {
-	margin: 0;
+	margin: 0 1em;
 }
 
 .container-fluid > div.row {
@@ -28,11 +28,23 @@ aside.col-12 {
 }
 
 aside div#active {
-	/*outline: 1px solid #558A8C;*/
-	border: 0;
-	background-color: inherit;
-	border-right: 0;
-	border-bottom: 0;
+	margin-top: 1em;
+	background-color: #002325;
+}
+
+aside div#active a{
+	font-size: 1.1em;
+	color: #FFF;
+}
+
+.col-6 a{
+	font-size: 1.1em;
+	color: #aaa;
+}
+
+div.row div.col-6 {
+	background-color: #00494C;
+	margin-top: 1em;
 }
 
 aside div div {
@@ -41,6 +53,7 @@ aside div div {
 	background-color: #9AC0BA;
 	text-align: center;
 }
+
 
 aside.col-6 {
 	text-align: center;
