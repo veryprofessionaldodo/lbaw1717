@@ -77,6 +77,15 @@ CONTAINER
 	border: 1px solid black;
 }
 
+div#graphics {
+	margin: 1em 4em;
+}
+
+div#graphics h4 {
+	color: black;
+	text-align: center;
+}
+
 @media screen and (max-width: 430px){
 	#container {
 	   	margin: auto 1em;
