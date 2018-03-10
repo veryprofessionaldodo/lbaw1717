@@ -11,24 +11,22 @@
 </head>
 
 <body>
-	<nav>
-		<a href="">Proyekt</a>
-		<form>
-			<input class="form-control mr-sm-2" type="text" placeholder="Search">
-			<button class="btn btn-primary my-2 my-sm-0" type="submit">
+	<nav class="row">
+		<a class="col-3" href="">Proyekt</a>
+		<form class="col-6">
+			<input class="form-control" type="text" placeholder="Search">
+			<button class="btn btn-primary" type="submit">
 				<i class="fas fa-search"></i>
 			</button>
 		</form>
-		<div>
-			<div id="user">
-				<input type="checkbox" id="hamburger">
-				<label class="hamburger" for="hamburger"></label>
-				<div id="mobile">
-					<button id="notification">
-						<i class="fas fa-bell"></i>
-					</button>
-					<img src="res/profile/profile-pic.png">
-				</div>
+		<div id="user" class="col-3">
+			<input type="checkbox" id="hamburger">
+			<label class="hamburger" for="hamburger"></label>
+			<div id="mobile">
+				<button id="notification">
+					<i class="fas fa-bell"></i>
+				</button>
+				<img src="res/profile/profile-pic.png">
 			</div>
 		</div>
 	</nav>

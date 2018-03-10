@@ -1,171 +1,9 @@
-body {
-	margin: 0;
-	background-color: #ECE7F3;
-}
-
- /**
-		NAV
- */
- nav {
-	background-color: #0A1827;
-	display: grid;
-	/*justify-content: space-between;*/
-	align-items: center;
-	display: grid;
-	grid-template-columns: 16% auto 13%;
-}
-
-nav > * {
-	display: inline;
-	margin: 0.5em;
-	margin-left:0.7em;
-}
-
-nav a {
-	text-decoration: none;
-	font-size: 27px;
-	letter-spacing: 4px;
-	color: #CCD9CE;
-	grid-column-start:1;
-	grid-column-end: 2;
-	text-align:center;
-}
-
-nav a:hover {
-	color: #DF691A;
-}
-
-nav > form {
-	flex-grow: 2;
-	display: flex;
-	align-items:center;
-	justify-content: center;
-	grid-column-start:2;
-	grid-column-end: 3;
-}
-
-nav > form > .form-control {
-	display: inline-block;
-	width: 50%;
-	background-color: #4F8082;
-	color: #0A1827;
-	transition: all 0.2s;
-}
-
-nav > form > .form-control:hover {
-	background-color: #9AC0BA;
-}
-
-nav > form > .form-control:focus {
-	background-color: #CCD9CE;
-	color: #0A1827;
-	outline: 5px auto -webkit-focus-ring-color;
-}
-
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-}
-
-nav ul li {
-	list-style: none;
-	display: inline-flex;
-}
 
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
 	color: #0A1827;
 }
-
-#user {
-	align-items: center;
-	justify-content: space-between;
-}
-
-#mobile{
-	display: grid;
-	grid-template-columns: 50% 50%;
-	padding-right: 20%;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-	grid-column-start: 2;
-	grid-column-end: 3;
-	margin-left:0;
-	
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	/*margin-right: 1em;*/
-	grid-column-start: 1;
-	grid-column-end: 2;
-	padding-right:20%;
-
-}
-
-#notification {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0;
-    font-size: 16px;
-    border: none;
-}
-
-nav > form > .form-control::-webkit-input-placeholder {
-  color: #FFF;
-  opacity: 1;
-}
-
-nav > form > .form-control::placeholder {
-  color: #333;
-  opacity: 1;
-}
-
-nav > form > .form-control:hover::placeholder {
-  color: #333;
-  opacity: 1;
-}
-
-/**
-		FOOTER
-*/
-footer {
-	background-color: #0A1827;
-	display: grid;
-	grid-template-columns: 50% 50%;
-}
-
-footer > * {
-	margin: 2em auto;
-}
-
-footer a, footer p {
-	font-size: 14px;
-}
-
-footer > div#contacts {
-	grid-column-start: 1;
-	grid-column-end: 2;
-}
-
-footer > div#info {
-	grid-column-start: 2;
-	grid-column-end: 3;
-}
-
 
 /*
 
@@ -218,18 +56,19 @@ tr#descriptions_table{
 
 }
 
-input.form-control, textarea.form-control {
+div#container input.form-control, textarea.form-control {
 	transition: all 0.2s;
 	background-color: #558A8C;
 	color: #0A1827;
 	outline: 1px solid #558A8C;
+	width: 100%;
 }
 
-input.form-control:hover, textarea.form-control:hover {
+div#container input.form-control:hover, textarea.form-control:hover {
 	background-color: #9AC0BA;
 }
 
-input.form-control:focus, textarea.form-control:focus {
+div#container input.form-control:focus, textarea.form-control:focus {
 	background-color: #CCD9CE;
 	outline: 5px auto -webkit-focus-ring-color;
 	outline: 1px solid #CCD9CE;
@@ -295,31 +134,17 @@ a:hover {
 }
 
 div.buttons{
-    display:grid;
-	grid-template-columns: 20% auto 20%;
+    display:flex;
+    justify-content: space-between;
 }
 
-div.buttons :first-child{
-    grid-column-start: 1;
-	grid-column-end: 2;
-	position: relative;
-	overflow: hidden;
+div.buttons > *{
+   	padding: 1em;
 }
 
-div.buttons :first-child input {
-	position: absolute;
-	font-size: 50px;
-	opacity: 0;
-	right: 0;
-	top: 0;
-  }
-
-div.buttons :last-child{
-    grid-column-start: 3;
-	grid-column-end: 4;
-	margin: auto;
-	margin-right: 0;
-}
+div.buttons div:first-of-type input {
+	display: none;
+ }
 
 #threads a:hover {
 	color: #DF691A;
@@ -337,33 +162,6 @@ div#container {
 }
 
 @media screen and (max-width: 635px){
-	nav div input:checked ~ ul {
-		visibility: visible;
-		display: inline;
-		float: left;
-		padding-top: 0.5em;
-		transition-delay: 0s;
-	}
-	nav input.form-control {
-		display: none;
-	}
-	div#mobile {
-		display: none;
-	}
-	nav div label {
-		background-color: inherit;
-		color: #DF691A;
-		margin: 0 0.5em;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
-	}
-	nav div label:before {
-		content: "\2630";
-	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
-	}
 
 	.table {
 		width: 90%;
@@ -383,6 +181,10 @@ div#container {
 	#overlay h3{
 		font-size: 32px;
 		text-align: center;
+	}
+
+	div.buttons a, div.buttons div{
+		font-size: 14px;
 	}
 }
 

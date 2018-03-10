@@ -16,17 +16,21 @@
 </head>
 
 <body>
-    <nav>
-        <a href="index.html">Proyekt</a>
-        <form>
+    <nav class="row">
+        <a class="col-3" href="">Proyekt</a>
+        <form class="col-6">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
         </form>
-        <div id="user">
-            <input type="checkbox" id="hamburger"> 
+        <div class="col-3" id="user">
+            <input type="checkbox" id="hamburger">
             <label class="hamburger" for="hamburger"></label>
             <div id="mobile">
-                <button id="notification"><i class="fas fa-bell"></i></button>
+                <button id="notification">
+                    <i class="fas fa-bell"></i>
+                </button>
                 <img src="res/profile/profile-pic.png">
             </div>
         </div>
@@ -54,9 +58,9 @@
                     <label class="col-form-label" for="description">Add a message to further explain the problem: </label>
                     <textarea class="form-control" id="description" placeholder ="Description..." rows="5"></textarea>
                 </div>
-                <p class="lead">
+                <div id="lead">
                   <a class="btn btn-primary btn-lg" href="#" role="button">Report</a>
-                </p>
+                </div>
             </div>   
         </div>
     </div>

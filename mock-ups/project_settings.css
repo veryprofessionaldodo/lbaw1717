@@ -1,97 +1,7 @@
-
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-}
-
-nav ul li {
-	list-style: none;
-	display: inline-flex;
-}
-
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
 	color: #0A1827;
-}
-
-#user {
-	align-items: center;
-	justify-content: space-between;
-}
-
-#mobile{
-	display: grid;
-	grid-template-columns: 50% 50%;
-	padding-right: 20%;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-	grid-column-start: 2;
-	grid-column-end: 3;
-	margin-left:0;
-	
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	/*margin-right: 1em;*/
-	grid-column-start: 1;
-	grid-column-end: 2;
-	padding-right:20%;
-
-}
-
-#notification {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0;
-    font-size: 16px;
-    border: none;
-}
-
-.dropdown {
-	display: none;
-	position: absolute;
-	right: 7%;
-	top: 2em;
-    /*position: relative;
-	display: inline-block;*/
-}
-
-.dropdown-content {
-	/*margin-left: auto;
-	margin-right: 0;*/
-	/*position: absolute;*/
-    /*background-color: #f1f1f1;*/
-    /*min-width: 200px;*/
-	position: relative;
-    background-color: inherit;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content .modal {
-    text-decoration: none;
-	display: block;
-	position: relative;
-	/*margin: auto;
-	padding: auto;*/
-}
-
-button#notification:hover ~ .dropdown {
-	display: block;
-
 }
 /**
 	CONTENT
@@ -253,9 +163,6 @@ div#requests div.request div.option_buttons {
 	/*margin: auto 3em auto auto;*/
 }
 
-div.pagination_div {
-	text-align: center;
-}
 
 @media screen and (max-width: 991px) {
 	div#members div.member {
@@ -281,53 +188,9 @@ div.pagination_div {
 	div#requests div.request div.option_buttons {
 		text-align: center;
 	}
-
-	div#pagination_section {
-		margin: auto;
-	}
 }
 
 @media screen and (max-width: 580px){
-	nav {
-		grid-template-columns: 50% 20% auto;
-		text-align: right;
-	}
-
-	nav a {
-		text-align: left;
-	}
-	nav input.form-control {
-		display: none;
-	} 
-	div#mobile {
-		display: none;
-	}
-	nav div label {
-		background-color: inherit;
-		color: #DF691A;
-		margin: 0;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
-	}
-	nav div label:before {
-		content: "\2630";
-	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
-	}
-	
-	/**   USAR JAVASCRIPT  */
-	/*
-	nav div input:checked ~ div#mobile ul {
-		visibility: visible;
-		display: block;
-		width: 100%;
-		background-color: white;
-		transition-delay: 0s;
-	}*/
-
-
 	div.user_search {
 		display: block;
 		width: auto;
@@ -381,16 +244,6 @@ div.pagination_div {
 	section.container-fluid {
 		margin: 1em auto;
 		padding: 0;
-	}
-
-	div#pagination_section {
-		margin: auto;
-		font-size: 10px;
-	}
-
-	div#pagination_section ul.pagination {
-		width: 50%;
-		margin: 1em auto;	
 	}
 
 }

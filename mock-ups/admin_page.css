@@ -1,61 +1,11 @@
-nav div input, nav div label {
-	display: none;
-}
-
-nav ul {
-	margin: 0;
-}
-
-nav ul li {
-	list-style: none;
-	display: inline-flex;
-}
-
+/**
+	SECTION
+*/
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
 	color: #0A1827;
 }
-
-#user {
-	align-items: center;
-	justify-content: space-between;
-}
-
-#mobile{
-	display: grid;
-	grid-template-columns: 50% 50%;
-	padding-right: 20%;
-}
-
-#user img {
-	max-width: 3em;
-	border-radius: 50px;
-	grid-column-start: 2;
-	grid-column-end: 3;
-	margin-left:0;
-	
-}
-
-#user button {
-	background-color: inherit;
-	border: 0;
-}
-
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	/*margin-right: 1em;*/
-	grid-column-start: 1;
-	grid-column-end: 2;
-	padding-right:20%;
-
-}
-
-
-/**
-	SECTION
-*/
 
 .container-fluid {
 	margin: 0;
@@ -73,29 +23,27 @@ div.row {
 	min-height: 100vh;
 }
 
+aside.col-12 {
+	padding: 0;
+}
+
 aside div#active {
-	outline: 1px solid #558A8C;
-	background-color: #CCD9CE;
+	/*outline: 1px solid #558A8C;*/
+	border: 0;
+	background-color: inherit;
 	border-right: 0;
 	border-bottom: 0;
 }
 
 aside div div {
-	outline: 2px solid #508689;
-	padding: 4em 2em;
+	/*outline: 2px solid #508689;*/
+	padding: 1em;
 	background-color: #9AC0BA;
-}
-
-aside.col-md-2#navbar {
-	padding: 0;
-	margin: 0;
-	height: auto;
 	text-align: center;
 }
 
-aside.col-1#navbar h4{
-	font-size: 18px;
-	padding: 3em;
+aside.col-6 {
+	text-align: center;
 }
 
 
@@ -171,20 +119,6 @@ section div#reports div.report div.report_details h4:first-of-type {
 	margin-top: 0.5em;
 }
 
-section div#reports div#pagination_section {
-	text-align: center;
-}
-
-section div#reports div#pagination_section ul.pagination{
-	margin: auto;
-	width: auto;
-	text-align: center;
-}
-
-
-section div#pagination_section li.page-item:hover {
-	background-color: #0A1827;
-}
 
 /**
 	Comments
@@ -265,39 +199,6 @@ footer > div#contacts {
 footer > div#info {
 	grid-column-start: 2;
 	grid-column-end: 3;
-}
-
-@media screen and (max-width: 580px){
-	nav input.form-control {
-		display: none;
-	} 
-	div#mobile {
-		display: none;
-	}
-	nav div label {
-		background-color: inherit;
-		color: #DF691A;
-		margin: 0 0.5em;
-		display: inline;
-		font-size: 34px;
-		cursor: pointer;
-	}
-	nav div label:before {
-		content: "\2630";
-	}
-	nav div input:checked ~ label:before{
-		content: "\2715";
-	}
-	
-	/**   USAR JAVASCRIPT  */
-	/*
-	nav div input:checked ~ div#mobile ul {
-		visibility: visible;
-		display: block;
-		width: 100%;
-		background-color: white;
-		transition-delay: 0s;
-	}*/
 }
 
 @media screen and (max-width: 1060px) {
@@ -402,11 +303,6 @@ footer > div#info {
 		display: block;
 		margin: 1em auto;
 	}
-
-	section div#reports div#pagination_section ul.pagination a{
-		font-size: 12px;
-	}
-
 
 	section div#reports div.report.report_comment div.report_principal_info {
 		display: block;
