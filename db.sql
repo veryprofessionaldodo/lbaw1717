@@ -56,8 +56,9 @@ CREATE TABLE Category (
 	name text NOT NULL
 );
 
-CREATE TABLE Role (
-	id SERIAL NOT NULL,
+CREATE TABLE Project_members (
+	user_id INTEGER NOT NULL,
+	project_id INTEGER NOT NULL,
 	name text NOT NULL,
 	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	CONSTRAINT name CHECK ((name = ANY(ARRAY['Team Member'::text, 'Coordinator'::text])))
@@ -129,28 +130,8 @@ CREATE TABLE Project_categories (
 	category_id INTEGER NOT NULL
 );
 
-CREATE TABLE Project_sprints (
-	project_id INTEGER NOT NULL,
-	sprint_id INTEGER NOT NULL
-);
-
 CREATE TABLE Project_tasks (
 	project_id INTEGER NOT NULL,
-	task_id INTEGER NOT NULL
-);
-
-CREATE TABLE Project_members(
-	project_id INTEGER NOT NULL,
-	user_id INTEGER NOT NULL
-);
-
-CREATE TABLE Project_threads (
-	project_id INTEGER NOT NULL,
-	thread_id INTEGER NOT NULL
-);
-
-CREATE TABLE User_assigned_tasks (
-	user_id INTEGER NOT NULL,
 	task_id INTEGER NOT NULL
 );
 
@@ -205,8 +186,8 @@ ALTER TABLE ONLY Comment
 ALTER TABLE ONLY Category
 	ADD CONSTRAINT category_pkey PRIMARY KEY (id);
 
-ALTER TABLE ONLY Role
-	ADD CONSTRAINT role_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY Project_members
+	ADD CONSTRAINT project_members_pkey PRIMARY KEY (user_id, project_id);
 
 ALTER TABLE ONLY Administrator
 	ADD CONSTRAINT administrator_pkey PRIMARY KEY (id);
@@ -232,20 +213,8 @@ ALTER TABLE ONLY SprintStateRecord
 ALTER TABLE ONLY Project_categories
 	ADD CONSTRAINT project_categories_pkey PRIMARY KEY (project_id, category_id);
 
-ALTER TABLE ONLY Project_sprints
-	ADD CONSTRAINT project_sprints_pkey PRIMARY KEY (project_id);
-
 ALTER TABLE ONLY Project_tasks
 	ADD CONSTRAINT project_tasks_pkey PRIMARY KEY (project_id, task_id);
-
-ALTER TABLE ONLY Project_members
-	ADD CONSTRAINT project_members_pkey PRIMARY KEY (project_id, user_id);
-
-ALTER TABLE ONLY Project_threads
-	ADD CONSTRAINT project_threads_pkey PRIMARY KEY (project_id);
-
-ALTER TABLE ONLY User_assigned_tasks
-	ADD CONSTRAINT user_assigned_tasks_pkey PRIMARY KEY (user_id, task_id);
 
 ALTER TABLE ONLY Sprint_tasks
 	ADD CONSTRAINT sprint_tasks_pkey PRIMARY KEY (sprint_id, task_id);
@@ -276,6 +245,12 @@ ALTER TABLE ONLY Thread
 
 ALTER TABLE ONLY Comment
 	ADD CONSTRAINT comment_id_user_fkey FOREIGN KEY (user_id) REFERENCES User(id) ON UPDATE CASCADE;
+
+ALTER TABLE ONLY Project_members
+	ADD CONSTRAINT members_id_user_fkey FOREIGN KEY (user_id) REFERENCES User(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE ONLY Project_members
+	ADD CONSTRAINT members_id_project_fkey FOREIGN KEY (project_id) REFERENCES Project(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY Report
 	ADD CONSTRAINT report_id_user_fkey FOREIGN KEY (user_id) REFERENCES User(id) ON UPDATE CASCADE;
@@ -316,35 +291,11 @@ ALTER TABLE ONLY Project_categories
 ALTER TABLE ONLY Project_categories
 	ADD CONSTRAINT project_categories_id_category_fkey FOREIGN KEY (category_id) REFERENCES Category(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE ONLY Project_sprints
-	ADD CONSTRAINT project_sprints_id_project_fkey FOREIGN KEY (project_id) REFERENCES Project(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY Project_sprints
-	ADD CONSTRAINT project_sprints_id_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES Sprint(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
 ALTER TABLE ONLY Project_tasks
 	ADD CONSTRAINT project_tasks_id_project_fkey FOREIGN KEY (project_id) REFERENCES Project(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY Project_tasks
 	ADD CONSTRAINT project_tasks_id_task_fkey FOREIGN KEY (task_id) REFERENCES Task(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY Project_members
-	ADD CONSTRAINT project_members_id_project_fkey FOREIGN KEY (project_id) REFERENCES Project(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY Project_members
-	ADD CONSTRAINT project_members_id_user_fkey FOREIGN KEY (user_id) REFERENCES User(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY Project_threads
-	ADD CONSTRAINT project_threads_id_project_fkey FOREIGN KEY (project_id) REFERENCES Project(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY Project_threads
-	ADD CONSTRAINT project_threads_id_thread_fkey FOREIGN KEY (thread_id) REFERENCES Thread(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY User_assigned_tasks
-	ADD CONSTRAINT user_tasks_id_user_fkey FOREIGN KEY (user_id) REFERENCES User(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-ALTER TABLE ONLY User_assigned_tasks
-	ADD CONSTRAINT user_tasks_id_task_fkey FOREIGN KEY (task_id) REFERENCES Task(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY Sprint_tasks
 	ADD CONSTRAINT sprint_tasks_id_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES Sprint(id) ON UPDATE CASCADE ON DELETE CASCADE;
