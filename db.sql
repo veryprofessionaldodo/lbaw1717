@@ -5,7 +5,7 @@ CREATE TABLE User (
 	email text NOT NULL,
 	image text,
 	password text NOT NULL,
-	CONSTRAINT username CHECK ((username != 'admin'))
+	CONSTRAINT usernameCheck CHECK ((username != 'admin'))
 );
 
 CREATE TABLE Project (
@@ -14,13 +14,12 @@ CREATE TABLE Project (
 	description text NOT NULL,
 	access text NOT NULL,
 	CONSTRAINT access CHECK ((access = ANY(ARRAY['Private'::text, 'Public'::text])))
-	/* Falta mais coisas*/
 );
 
 CREATE TABLE Sprint (
 	id SERIAL NOT NULL,
 	name text NOT NULL,
-	deadline TIMESTAMP NOT NULL,
+	deadline TIMESTAMP WITH TIME zone NOT NULL,
 	effort text NOT NULL,
 	project_id INTEGER NOT NULL,
 	user_creator_id INTEGER NOT NULL,
@@ -32,7 +31,7 @@ CREATE TABLE Task (
 	id SERIAL NOT NULL,
 	name text NOT NULL,
 	description text,
-	effort text NOT NULL, /* adicionar trigger para isto depois .... */
+	effort text NOT NULL,
 	CONSTRAINT effort CHECK ((effort = ANY(ARRAY['Low'::text, 'Medium'::text, 'High'::text])))
 );
 
@@ -40,7 +39,7 @@ CREATE TABLE Thread (
 	id SERIAL NOT NULL,
 	name text NOT NULL,
 	description text,
-	"date" TIMESTAMP DEFAULT now() NOT NULL,
+	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	project_id INTEGER NOT NULL,
 	user_creator_id INTEGER NOT NULL 
 );
@@ -48,7 +47,7 @@ CREATE TABLE Thread (
 CREATE TABLE Comment (
 	id SERIAL NOT NULL,
 	content text NOT NULL,
-	"date" TIMESTAMP DEFAULT now() NOT NULL,
+	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	user_id INTEGER NOT NULL
 );
 
@@ -60,12 +59,12 @@ CREATE TABLE Category (
 CREATE TABLE Role (
 	id SERIAL NOT NULL,
 	name text NOT NULL,
-	"date" TIMESTAMP DEFAULT now() NOT NULL,
+	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	CONSTRAINT name CHECK ((name = ANY(ARRAY['Team Member'::text, 'Coordinator'::text])))
 );
 
 CREATE TABLE Administrator (
-	id SERIAL NOT NULL, /* is it really needed? */
+	id SERIAL NOT NULL,
 	username text NOT NULL,
 	password text NOT NULL
 );
@@ -77,32 +76,32 @@ CREATE TABLE Image(
 
 CREATE TABLE Report (
 	id SERIAL NOT NULL,
-	"date" TIMESTAMP DEFAULT now() NOT NULL,
+	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	summary text NOT NULL,
 	content text NOT NULL,
-	user_id INTEGER
+	user_id INTEGER NOT NULL
 );
 
-CREATE TABLE Notification ( /* ADD CONSTRAINTS TO DIFFERENT TYPES */
+CREATE TABLE Notification (
 	id SERIAL NOT NULL,
-	"date" TIMESTAMP DEFAULT now() NOT NULL,
-	notificationType text NOT NULL,
+	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
+	notification_type text NOT NULL,
 	user_id INTEGER NOT NULL,
 	project_id INTEGER,
 	comment_id INTEGER,
 	user_action_id INTEGER,
-	CONSTRAINT notificationType CHECK ((notificationType = ANY(ARRAY['Comment'::text, 'CommentReported'::text, 'Promotion'::text, 'RemovedFromProject'::text, 'Invite'::text, 'Request'::text]))),
-	CONSTRAINT notificationConstraint CHECK ((notificationType == 'Comment' AND comment_id NOT NULL) OR
-											(notificationType == 'CommentReported' AND comment_id NOT NULL) OR
-											(notificationType == 'Promotion' AND project_id NOT NULL AND user_action_id NOT NULL) OR
-											(notificationType == 'RemovedFromProject' AND project_id NOT NULL) OR
-											(notificationType == 'Invite' AND project_id NOT NULL AND user_action_id NOT NULL) OR
-											(notificationType == 'Request' AND project_id NOT NULL))
+	CONSTRAINT notificationType CHECK ((notification_type = ANY(ARRAY['Comment'::text, 'CommentReported'::text, 'Promotion'::text, 'RemovedFromProject'::text, 'Invite'::text, 'Request'::text]))),
+	CONSTRAINT notificationConstraint CHECK ((notification_type = 'Comment' AND comment_id != NULL) OR
+											(notification_type = 'CommentReported' AND comment_id != NULL) OR
+											(notification_type = 'Promotion' AND project_id != NULL AND user_action_id != NULL) OR
+											(notification_type = 'RemovedFromProject' AND project_id != NULL) OR
+											(notification_type = 'Invite' AND project_id != NULL AND user_action_id != NULL) OR
+											(notification_type = 'Request' AND project_id != NULL))
 );
 
 CREATE TABLE Invite (
 	id SERIAL NOT NULL,
-	"date" TIMESTAMP DEFAULT now() NOT NULL,
+	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	user_invited_id INTEGER NOT NULL,
 	project_id INTEGER NOT NULL,
 	user_who_invited_id INTEGER NOT NULL,
@@ -110,7 +109,7 @@ CREATE TABLE Invite (
 
 CREATE TABLE TaskStateRecord(
 	id SERIAL NOT NULL,
-	"date" TIMESTAMP DEFAULT now() NOT NULL,
+	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	state text NOT NULL,
 	user_completed_id INTEGER NOT NULL,
 	task_id INTEGER NOT NULL,
@@ -119,7 +118,7 @@ CREATE TABLE TaskStateRecord(
 
 CREATE TABLE SprintStateRecord(
 	id SERIAL NOT NULL,
-	"date" TIMESTAMP DEFAULT now() NOT NULL,
+	"date" TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	state text NOT NULL,
 	sprint_id INTEGER NOT NULL,
 	CONSTRAINT state CHECK ((state = ANY(ARRAY['Completed'::text, 'Outdated'::text, 'Created'::text])))
@@ -259,8 +258,6 @@ ALTER TABLE ONLY Thread_comments
 
 ALTER TABLE ONLY Contains_image
 	ADD CONSTRAINT contains_image_pkey PRIMARY KEY (task_id, image_id);
-/* ADD THE REST */
-
 
 
 /* Foreign Keys */
@@ -366,42 +363,3 @@ ALTER TABLE ONLY Contains_image
 
 ALTER TABLE ONLY Task_comments
 	ADD CONSTRAINT task_comments_id_image_fkey FOREIGN KEY (image_id) REFERENCES Image(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-/* ADD THE REST */
-
-
-
-
-
-/*
-CREATE TABLE PromotionNotification(
-	id INTEGER NOT NULL, 
-	coordinator_user_id INTEGER NOT NULL,
-	user_id INTEGER NOT NULL, 
-	project_id INTEGER NOT NULL 
-);
-
-CREATE TABLE RemovedNotification(
-	id INTEGER NOT NULL, 
-	user_id INTEGER NOT NULL, 
-	project_id INTEGER NOT NULL 
-);
-
-CREATE TABLE InviteNotification(
-	id INTEGER NOT NULL, 
-	coordinator_user_id INTEGER NOT NULL, 
-	user_id INTEGER NOT NULL, 
-	project_id INTEGER NOT NULL 
-);
-
-CREATE TABLE CommentNotification(
-	id INTEGER NOT NULL, 
-	thread_id INTEGER NOT NULL, 
-	creator_user_id INTEGER NOT NULL 
-);
-
-CREATE TABLE ReportCommentNotification(
-	id INTEGER NOT NULL, 
-	admin_id INTEGER NOT NULL, 
-	comment_id INTEGER NOT NULL 
-);*/
