@@ -266,7 +266,61 @@ ALTER TABLE ONLY Project_categories
 	ADD CONSTRAINT project_categories_id_category_fkey FOREIGN KEY (category_id) REFERENCES Category(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
+
 /* TRIGGERS */
+-- Checks if the effort of a sprint tasks exceeds the sprint effort
+CREATE FUNCTION check_effort() RETURN TRIGGER AS
+$BODY$
+BEGIN
+	IF ((SELECT SUM(effort) FROM Task WHERE NEW.sprint_id = Task.sprint_id) > 
+		(SELECT effort FROM Sprint WHERE id = NEW.sprint_id))
+	THEN RAISE EXCEPTION 'This task exceeds the limit effort of the sprint.';
+	END IF;
+	RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER check_effort
+	BEFORE INSERT OR UPDATE ON Task
+	FOR EACH ROW
+		EXECUTE PROCEDURE check_effort();
+
+-- Create a Notification when a report is created
+CREATE FUNCTION add_notification_report() RETURN TRIGGER AS
+$BODY$
+BEGIN
+	IF(NEW.type = 'CommentReported')
+	THEN INSERT INTO Notification (date,notification_type,user_id,comment_id) 
+			VALUES (now(),'CommentReported',NEW.user_reported_id,NEW.comment_reported_id);
+	END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER add_notification_report
+	AFTER INSERT ON Report
+	FOR EACH ROW
+		EXECUTE PROCEDURE add_notification_report();
+
+-- Create a Notification when an invite is created (not a request)
+CREATE FUNCTION add_notification_invite() RETURN TRIGGER AS
+$BODY$
+BEGIN
+	IF(NEW.user_who_invited_id != NULL)
+	THEN INSERT INTO Notification (date,notification_type,user_id,project_id,user_action_id) 
+			VALUES (now(),'Invite',NEW.user_invited_id,NEW.project_id,NEW.user_who_invited_id);
+	END IF;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER add_notification_invite
+	AFTER INSERT ON Invite
+	FOR EACH ROW
+		EXECUTE PROCEDURE add_notification_invite();
+
+
 
 /* INSERTS */
 INSERT INTO Administrator (id, username, password) VALUES (1, 'admin', '1234Admin-');
