@@ -1,7 +1,26 @@
 /* Queries */
 
+/* INDEX PAGE AND SEARCH BAR */
+
+-- Search project by name 
+SELECT "name", description FROM project
+WHERE "name" LIKE '%$search%' OR description LIKE '%$search%'
+ORDER BY name
+LIMIT 10 OFFSET $n;
+
+-- Search project by category 
+SELECT project.name, project.description, category.name FROM project, category, project_categories
+WHERE category.name LIKE '%$search%' AND category.id = project_categories.category_id 
+AND project_categories.project_id = project.id
+ORDER BY project.name
+LIMIT 10 OFFSET $n;
+
+/* AUTHENTICATION */
+
 /* Check if user exists and password is valid */ 
 SELECT * FROM "user" WHERE username = $username AND password = $password;
+
+/* ADMIN PAGE */
 
 /* List user reports - Admin Page*/
 SELECT * FROM report WHERE type = 'userReported';
@@ -9,110 +28,108 @@ SELECT * FROM report WHERE type = 'userReported';
 /* List comment reports - Admin Page*/
 SELECT * FROM report WHERE type = 'commentReported';
 
-/* List all threads of one specific project */
-SELECT * FROM thread WHERE project_id = $project_id;
+
+/* PROFILE PAGE */
 
 /* List all notification of logged in user */
 SELECT * from notification WHERE user_id = $user_id;
 
-/* List all comments of a specific thread */
-SELECT * FROM comment WHERE thread_id = $thread_id; /* ? */
-
 /* List all projects of a specific user */
 SELECT project.name, project.description FROM project_members, project, "user"
-WHERE "user".username = 'partelinuxes' AND "user".id = project_members.user_id 
+WHERE "user".username = $username AND "user".id = project_members.user_id 
 AND project_members.project_id = project.id;
 
 /* Show user information */
-SELECT * FROM user WHERE username = $username;
+SELECT * FROM "user" WHERE username = $username;
 /* ADICIONAR ESTATISTICA E AFINS */
 
-/* show project info with all his team members and coordenators - Visitor Page */
-SELECT project.name, project.description, user.username, user.image, project_members.isCoordinator 
-FROM project_members 
-	LEFT JOIN project ON project.id = project_members.project_id 
-	LEFT JOIN user ON user.id = project_members.user_id; /* ? */
-/* Get project categories */
+/* PROJECT PAGE */
+
+-- VISITOR PAGE 
+-- show project info with all his team members and coordenators and categories - Visitor Page 
+SELECT name, description FROM project WHERE id = $project_id;
+
+SELECT "user".username, "user".image, project_members.isCoordinator
+FROM project_members, "user"
+WHERE project_members.project_id = $project_id AND project_members.user_id = "user".id;
+
 SELECT category.name FROM category, project_categories
 WHERE category.id = project_categories.category_id AND project_categories.project_id = $project_id;
 
-/* List all requests to participate in a specific project */
-SELECT project.name, user.username FROM invite WHERE user_invited_id = $user_id AND project_id = $project_id 
-	LEFT JOIN user ON user.id = invite.user_invited_id
-	LEFT JOIN project ON project.id = invite.project_id; /* ? */
+-- MEMBERS PAGE AS WELL
+-- PROJECT MEMBERS  (similar to above)
+SELECT "user".username, "user".image, project_members.isCoordinator
+FROM project_members, "user"
+WHERE project_members.project_id = $project_id AND project_members.user_id = "user".id;
 
-/* List members of a specific project - project Page members*/
-SELECT user.username, user.image, project_members.isCoordinator 
-FROM project_members 
-	LEFT JOIN project ON project.id = project_members.project_id 
-	LEFT JOIN user ON user.id = project_members.user_id;
+-- REQUESTS 
+-- List all requests to participate in a specific project
+SELECT "user".username FROM invite, "user" 
+WHERE project_id = $project_id AND invite.user_who_invited_id IS NULL 
+AND invite.user_invited_id = "user".id; 
+	
 
-/* List all tasks of a specific project - project tasks Page */
-SELECT task.name FROM task
-WHERE task.project_id = $project_id;
-/* state of task */ 
-SELECT task_state_record.state FROM task_state_record
-WHERE task_state_record.state = "Completed"; 					/* ? */ 
-/* users assigned*/
-SELECT user.username, user.image FROM task, user, task_state_record
-WHERE task.id = task_state_record.task_id AND task_state_record.state = "Assigned" 
-AND task_state_record.user_completed_id = user.id;
+-- TASK PAGE IN PROJECT
+-- get state and task info 
+SELECT task.name, task_state_record.state FROM task, task_state_record
+WHERE task.project_id = $project_id AND task_state_record.task_id = task.id
+AND task_state_record.state = 
+(SELECT "state" FROM task_state_record WHERE task_id = task.id GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY task.name, task_state_record.state;
+-- users assigned
+SELECT "user".username, "user".image FROM task, "user", task_state_record
+WHERE task.id = $task_id AND task.id = task_state_record.task_id AND task_state_record.state = 'Assigned' 
+AND task_state_record.user_completed_id = "user".id;
+-- comments of task
+SELECT "comment".content, "comment".date, "user".username, "user".image
+FROM "comment", task, "user"
+WHERE task.id = $task_id AND "comment".task_id = task.id AND "comment".user_id = "user".id;
+
+-- SPRINT PAGE
+-- List all sprints of project and their current state
+-- List all comments of a task - project sprints Page 
+SELECT sprint.id, sprint.name, sprint.deadline, sprint_state_record.state FROM sprint, sprint_state_record
+WHERE sprint.project_id = $project_id AND sprint_state_record.sprint_id = sprint.id
+AND sprint_state_record.state = 
+(SELECT "state" FROM sprint_state_record WHERE sprint_id = sprint.id 
+	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY sprint.id, sprint.name, sprint.deadline, sprint_state_record.state;
+-- List all tasks of a sprint
+SELECT task.name, task_state_record.state FROM task, task_state_record
+WHERE task.sprint_id = $sprint_id AND task_state_record.task_id = task.id
+AND task_state_record.state = (SELECT "state" FROM task_state_record WHERE task_id = task.id
+	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY task.name, task_state_record.state;
+-- (SIMILAR TO ABOVE)
+-- users assigned to task
+SELECT "user".username, "user".image FROM task, "user", task_state_record
+WHERE task.id = $task_id AND task.id = task_state_record.task_id AND task_state_record.state = 'Assigned' 
+AND task_state_record.user_completed_id = "user".id;
 /* comments of task */
-SELECT comment.content, comment.date, user.username, user.image
-FROM comment, task, user,
-WHERE comment.task_id = task.id AND comment.user_id = user.id;
+SELECT "comment".content, "comment".date, "user".username, "user".image
+FROM "comment", task, "user"
+WHERE task.id = $task_id AND "comment".task_id = task.id AND "comment".user_id = "user".id;
 
-
-/* List all sprints of project - project sprints Page */
-/* List all tasks of a sprint - project sprints Page */
-/* List all comments of a task - project sprints Page */
-SELECT sprint.id, sprint.name, sprint.deadline /* ? */
-FROM sprint 
-WHERE sprint.project_id = $project_id;
-/* Get current state of sprint */ 
-SELECT sprint_state_record.state FROM sprint_state_record
-ORDER BY sprint_state_record.date DESC 
-LIMIT 1;				/* ? */ 
-/* Get tasks names */
-SELECT task.name FROM task
-WHERE task.sprint_id = $sprint_id;
-/* state of task */ 
-SELECT task_state_record.state FROM task_state_record
-WHERE task_state_record.state = "Completed"; 					/* ? */ 
-/* users assigned*/
-SELECT user.username, user.image FROM task, user, task_state_record
-WHERE task.id = task_state_record.task_id AND task_state_record.state = "Assigned" 
-AND task_state_record.user_completed_id = user.id;
-/* comments of task */
-SELECT comment.content, comment.date, user.username, user.image
-FROM comment, task, user,
-WHERE comment.task_id = task.id AND comment.user_id = user.id;
-
-/* Search project by name */
-SELECT name, description FROM project
-WHERE name LIKE %$search% OR description LIKE %$search%
-ORDER BY name;
-
-/* Search project by category */
-SELECT project.name, project.description FROM project, category, project_categories
-WHERE category.name LIKE %$search% AND category.id = project_categories.category_id 
-AND project_categories.project_id = project.id
-ORDER BY project.name;
-
-/* Get information about one specific task */
+-- TASK PAGE INFO
+-- Get information about one specific task
 SELECT name, description, effort
 FROM task
 WHERE task.id = $task_id;
-/* users assigned */
-SELECT user.image, user.name FROM task, user, task_state_record
-WHERE task.id = task_state_record.task_id AND task_state_record.state = "Assigned"
-AND task_state_record.user_id = user.user_id;
 
 
+/* FORUM PAGE */
+-- List all threads of one specific project
+SELECT * FROM thread 
+WHERE project_id = $project_id
+LIMIT 10 OFFSET $n;
+
+-- List all comments of a specific thread
+SELECT * FROM comment 
+WHERE thread_id = $thread_id
+LIMIT 10 OFFSET $n;
 
 
 /* INSERTS*/
-
 /* Create new user */ 
 INSERT INTO user (name, username, email, image, password)
 VALUES ($name, $username, $email, $image, $password);

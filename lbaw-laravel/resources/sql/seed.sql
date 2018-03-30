@@ -110,8 +110,8 @@ CREATE TABLE notification (
 	CONSTRAINT notificationType CHECK ((notification_type = ANY(ARRAY['comment'::text, 'commentReported'::text, 'Promotion'::text, 'RemovedFromproject'::text, 'invite'::text, 'Request'::text]))),
 	CONSTRAINT notificationConstraint CHECK ((notification_type = 'comment' AND comment_id != NULL) OR
 											(notification_type = 'commentReported' AND comment_id != NULL) OR
-											(notification_type = 'Promotion' AND project_id != NULL AND user_action_id != NULL) OR
-											(notification_type = 'RemovedFromproject' AND project_id != NULL) OR
+											(notification_type = 'Promotion' AND project_id != NULL) OR
+											(notification_type = 'RemovedFromProject' AND project_id != NULL) OR
 											(notification_type = 'Invite' AND project_id != NULL AND user_action_id != NULL) OR
 											(notification_type = 'Request' AND project_id != NULL))
 );
@@ -415,6 +415,71 @@ CREATE TRIGGER check_user_member
 	FOR EACH ROW
 		EXECUTE PROCEDURE check_user_member();
 
+-- Insert into Notification of the user who wrote the thread, when a comment is made on it
+DROP FUNCTION IF EXISTS add_notification_comment();
+CREATE FUNCTION add_notification_comment() RETURNS TRIGGER AS
+$BODY$
+DECLARE 
+	user_thread_id "thread".user_creator_id%TYPE;
+BEGIN
+	IF(NEW.thread_id != NULL) THEN
+		SELECT thread.user_creator_id INTO user_thread_id 
+			FROM thread WHERE thread.id = NEW.thread_id;
+		INSERT INTO notification (date,user_id,project_id,comment_id,user_action_id)
+			VALUES (NEW.date,user_thread_id,NULL,NEW.id,NULL);
+	END IF;
+	RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS add_notification_comment ON comment;
+CREATE TRIGGER add_notification_comment
+	AFTER INSERT ON comment
+	FOR EACH ROW
+		EXECUTE PROCEDURE add_notification_comment();
+
+-- Insert into Notification if user as been updated to Coordenator
+DROP FUNCTION IF EXISTS add_notification_promotion();
+CREATE FUNCTION add_notification_promotion() RETURNS TRIGGER AS
+$BODY$
+DECLARE 
+BEGIN
+	IF(OLD.role != NEW.role) THEN
+		INSERT INTO Notification (date,user_id,project_id,comment_id,user_action_id)
+			VALUES (now(),NEW.user_id,NEW.project_id,NULL,NULL);
+	END IF;
+	RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS add_notification_promotion ON project_members;
+CREATE TRIGGER add_notification_promotion
+	AFTER UPDATE ON project_members
+	FOR EACH ROW
+		EXECUTE PROCEDURE add_notification_promotion();
+
+-- Insert into Notification if user as been expelled from a project
+DROP FUNCTION IF EXISTS add_notification_remove();
+CREATE FUNCTION add_notification_remove() RETURNS TRIGGER AS
+$BODY$
+DECLARE 
+BEGIN
+	INSERT INTO Notification (date,user_id,project_id,comment_id,user_action_id)
+		VALUES (now(),OLD.user_id,OLD.project_id,NULL,NULL);
+	RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS add_notification_remove ON project_members;
+CREATE TRIGGER add_notification_remove
+	AFTER DELETE ON project_members
+	FOR EACH ROW
+		EXECUTE PROCEDURE add_notification_remove();
+/* INDEXES */
+
 
 /* INSERTS */
 
@@ -536,6 +601,7 @@ INSERT INTO thread (id,name,description,date,project_id,user_creator_id) VALUES 
 INSERT INTO thread (id,name,description,date,project_id,user_creator_id) VALUES (4,'I don''t know...will this really work?','Will it be really possible to make this game? It is HL3 and, well, is open source. By the way, isn''t it kinda illegal? Doesn''t Valve has the rights to this?\nJust saying...', now(),9,18);
 INSERT INTO thread (id,name,description,date,project_id,user_creator_id) VALUES (5,'I have a great idea!','Let''s make the character like Geralt of Witcher 3 and the dragons will be Roach! Ah, hilarious!\nMy name''s Jeff!', now(),10,20);
 INSERT INTO thread (id,name,description,date,project_id,user_creator_id) VALUES (6,'Did you know?','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn''t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!', now(),12,9);
+INSERT INTO thread (id,name,description,date,project_id,user_creator_id) VALUES (7,'I believe the mock ups are kinda ugly...','We should do it again',now(),4,18);
 
 INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (2,'Mock-Ups','2018-05-20 00:00:00+01',1,2,5);
 INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (3,'Database structure','2018-05-20 00:00:00+01',1,2,3);
@@ -735,7 +801,7 @@ INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_report
 INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (15,now(),'It''s clearly spam, and it should be removed, as well as the user',8,'commentReported',31,NULL);
 INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (16,now(),'Clearly a Nazi, it''s what J.K.Rowling and the WSJ says...',20,'userReported',NULL,18);
 
-INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (5,now(),7,9,1);
-INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (7,now(),4,12,NULL);
-INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (8,now(),4,12,NULL);
-INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (9,now(),6,8,11);
+INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (DEFAULT,now(),7,9,1);
+INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (DEFAULT,now(),4,12,NULL);
+INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (DEFAULT,now(),4,11,NULL);
+INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (DEFAULT,now(),6,8,11);
