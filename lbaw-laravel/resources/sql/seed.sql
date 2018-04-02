@@ -128,7 +128,7 @@ CREATE TABLE task_state_record(
 	id SERIAL NOT NULL,
 	date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	state text NOT NULL,
-	user_completed_id INTEGER NOT NULL,
+	user_completed_id INTEGER,
 	task_id INTEGER NOT NULL,
 	CONSTRAINT state CHECK ((state = ANY(ARRAY['Completed'::text, 'Assigned'::text, 'Unnassigned'::text, 'Created'::text])))
 );
@@ -305,7 +305,7 @@ CREATE TRIGGER check_effort
 		EXECUTE PROCEDURE check_effort();
 
 -- Create a notification when a report is created
-DROP FUNCTION add_notification_report();
+DROP FUNCTION IF EXISTS add_notification_report();
 CREATE FUNCTION add_notification_report() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -325,7 +325,7 @@ CREATE TRIGGER add_notification_report
 		EXECUTE PROCEDURE add_notification_report();
 
 -- Create a notification when an invite is created (not a request)
-DROP FUNCTION add_notification_invite();
+DROP FUNCTION IF EXISTS add_notification_invite();
 CREATE FUNCTION add_notification_invite() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -345,7 +345,7 @@ CREATE TRIGGER add_notification_invite
 		EXECUTE PROCEDURE add_notification_invite();
 
 -- Change sprint Status when the deadline is passed
-DROP FUNCTION check_deadline();
+DROP FUNCTION IF EXISTS check_deadline();
 CREATE FUNCTION check_deadline() RETURNS TRIGGER AS    -- CHECK IF LEGIT
 $BODY$
 DECLARE 
@@ -363,7 +363,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 -- Complete a sprint when its tasks are completed
-DROP FUNCTION check_completed_sprint();
+DROP FUNCTION IF EXISTS check_completed_sprint();
 CREATE FUNCTION check_completed_sprint() RETURNS TRIGGER AS
 $BODY$
 DECLARE 
@@ -396,7 +396,7 @@ CREATE TRIGGER check_completed_sprint
 		EXECUTE PROCEDURE check_completed_sprint();
 
 -- Check if a user invited isn't already on the project
-DROP FUNCTION check_user_member();
+DROP FUNCTION IF EXISTS check_user_member();
 CREATE FUNCTION check_user_member() RETURNS TRIGGER AS
 $BODY$
 BEGIN
@@ -443,7 +443,6 @@ CREATE TRIGGER add_notification_comment
 DROP FUNCTION IF EXISTS add_notification_promotion();
 CREATE FUNCTION add_notification_promotion() RETURNS TRIGGER AS
 $BODY$
-DECLARE 
 BEGIN
 	IF(OLD.role != NEW.role) THEN
 		INSERT INTO Notification (date,user_id,project_id,comment_id,user_action_id)
@@ -463,8 +462,7 @@ CREATE TRIGGER add_notification_promotion
 -- Insert into Notification if user as been expelled from a project
 DROP FUNCTION IF EXISTS add_notification_remove();
 CREATE FUNCTION add_notification_remove() RETURNS TRIGGER AS
-$BODY$
-DECLARE 
+$BODY$ 
 BEGIN
 	INSERT INTO Notification (date,user_id,project_id,comment_id,user_action_id)
 		VALUES (now(),OLD.user_id,OLD.project_id,NULL,NULL);
@@ -478,8 +476,125 @@ CREATE TRIGGER add_notification_remove
 	AFTER DELETE ON project_members
 	FOR EACH ROW
 		EXECUTE PROCEDURE add_notification_remove();
+
+
+-- Check if a sprint is completed and revoke that if a task is added to it
+DROP FUNCTION IF EXISTS change_sprint_state();
+CREATE FUNCTION change_sprint_state() RETURNS TRIGGER AS
+$BODY$
+DECLARE
+	temprow RECORD;
+BEGIN
+	IF(NEW.sprint_id <> NULL) THEN
+		FOR temprow IN 
+			SELECT state FROM sprint_state_record WHERE NEW.sprint_id = sprint_state_record.sprint_id
+			ORDER BY date
+		LOOP 
+			IF(temprow.state = 'Created' OR temprow.state = 'Outdated') THEN
+				RETURN NULL;
+			ELSE 
+				IF(temprow.state = 'Completed') THEN
+					INSERT INTO sprint_state_record (date,state,sprint_id) 
+						VALUES (now(), 'Created', NEW.sprint_id);
+				END IF;
+			END IF;
+		END LOOP;
+	END IF;
+	RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS change_sprint_state ON task;
+CREATE TRIGGER change_sprint_state
+	AFTER INSERT ON task
+	FOR EACH ROW
+		EXECUTE PROCEDURE change_sprint_state();
+
+-- Change state of sprint if a sprint's deadline is updated
+DROP FUNCTION IF EXISTS update_sprint_state_deadline();
+CREATE FUNCTION update_sprint_state_deadline() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+	IF(NEW.deadline <> OLD.deadline) THEN
+		IF((SELECT state FROM sprint_state_record WHERE NEW.id = sprint_state_record.sprint_id
+			ORDER BY date LIMIT 1) = 'Outdated')
+		THEN 
+			INSERT INTO sprint_state_record (date,state,sprint_id) 
+						VALUES (now(), 'Created', NEW.id);
+		END IF;
+	END IF;
+	RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS update_sprint_state_deadline ON task;
+CREATE TRIGGER update_sprint_state_deadline
+	AFTER UPDATE ON sprint
+	FOR EACH ROW
+		EXECUTE PROCEDURE update_sprint_state_deadline();
+
+-- When a task is created, add an entry to the task_state_record
+DROP FUNCTION IF EXISTS task_created();
+CREATE FUNCTION task_created() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+	INSERT INTO task_state_record (date,state,user_completed_id,task_id) 
+		VALUES (now(), 'Created', NULL, NEW.id);
+	RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS task_created ON task;
+CREATE TRIGGER task_created
+	AFTER INSERT ON task
+	FOR EACH ROW
+		EXECUTE PROCEDURE task_created();
+
+-- When a sprint is created, add an entry to the sprint_state_record
+DROP FUNCTION IF EXISTS sprint_created();
+CREATE FUNCTION sprint_created() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+	INSERT INTO sprint_state_record (date,state,sprint_id) 
+		VALUES (now(), 'Created', NEW.id);
+	RETURN NULL;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS sprint_created ON task;
+CREATE TRIGGER sprint_created
+	AFTER INSERT ON sprint
+	FOR EACH ROW
+		EXECUTE PROCEDURE sprint_created();
+
 /* INDEXES */
 
+CREATE INDEX username_user ON "user" USING hash(username);
+CREATE INDEX task_project ON task USING hash(project_id);
+CREATE INDEX task_sprint ON task USING hash(sprint_id);
+CREATE INDEX sprint_project ON sprint USING hash(project_id);
+CREATE INDEX sprint_creator ON sprint USING hash(user_creator_id);
+CREATE INDEX comment_creator ON comment USING hash(user_id);
+CREATE INDEX comment_task ON comment USING hash(task_id);
+CREATE INDEX comment_thread ON comment USING hash(thread_id);
+CREATE INDEX thread_project ON thread USING hash(project_id);
+CREATE INDEX notification_user ON notification USING hash(user_id);
+CREATE INDEX task_state_task ON task_state_record USING hash(task_id);
+CREATE INDEX task_state_user ON task_state_record USING hash(user_completed_id);
+CREATE INDEX task_record_state ON task_state_record USING hash(state);
+CREATE INDEX sprint_state_sprint ON sprint_state_record USING hash(sprint_id);
+CREATE INDEX sprint_record_state ON sprint_state_record USING hash(state);
+
+CREATE INDEX task_state_record_date ON task_state_record USING btree(date);
+CREATE INDEX sprint_state_record_date ON sprint_state_record USING btree(date);
+CREATE INDEX sprint_deadline ON sprint USING btree(deadline);
+
+CREATE INDEX project_text_search_name ON project USING GIST(to_tsvector('english',name));
+CREATE INDEX project_text_search_description ON project USING GIST(to_tsvector('english',description));
 
 /* INSERTS */
 
@@ -609,7 +724,7 @@ INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (
 INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (5,'Build Security','2018-05-20 08:00:00+01',2,16,5);
 INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (6,'Draw Mock-up','2018-04-12 23:59:00+01',3,11,3);
 INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (7,'Design with blender','2018-04-20 22:59:00+01',3,1,7);
-INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (8,'Database','2018-04-01 23:00:00+01',4,3,7);
+INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (8,'Database','2018-04-20 23:00:00+01',4,3,7);
 INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (9,'Make Website','2018-05-21 23:00:00+01',4,2,10);
 INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (10,'Mobile App','2018-05-20 23:00:00+01',6,6,10);
 INSERT INTO sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (11,'Security Verifications','2018-05-25 23:00:00+01',6,6,8);
@@ -706,100 +821,100 @@ INSERT INTO comment (id,content,date,user_id,task_id,thread_id) VALUES (32,'SPAM
 
 INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',2);
 INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',3);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (5,now(),'Created',4);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (6,now(),'Created',5);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (7,now(),'Completed',6);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (8,now(),'Created',7);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (9,now(),'Created',8);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (10,now(),'Created',9);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (11,now(),'Created',10);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (12,now(),'Created',11);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (13,now(),'Created',12);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (14,now(),'Created',13);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (15,now(),'Completed',14);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (16,now(),'Created',15);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (17,now(),'Created',16);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (18,now(),'Created',17);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (19,now(),'Created',18);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (20,now(),'Created',19);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (21,now(),'Created',20);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (22,now(),'Created',21);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (23,now(),'Completed',22);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (25,now(),'Created',23);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (27,now(),'Created',22);
-INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (28,now(),'Completed',22);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',4);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',5);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Completed',6);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',7);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',8);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',9);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',10);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',11);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',12);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',13);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Completed',14);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',15);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',16);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',17);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',18);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',19);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',20);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',21);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Completed',22);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',23);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Created',22);
+INSERT INTO sprint_state_record (id,date,state,sprint_id) VALUES (DEFAULT,now(),'Completed',22);
 
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (1,now(),'Created',2,1);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (2,now(),'Created',2,2);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (3,now(),'Created',2,3);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (4,now(),'Created',2,4);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (5,now(),'Created',16,5);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (6,now(),'Created',16,6);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (7,now(),'Created',16,7);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (8,now(),'Created',16,8);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (9,now(),'Created',11,9);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (10,now(),'Created',1,10);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (11,now(),'Created',11,11);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (12,now(),'Created',1,12);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (13,now(),'Created',11,13);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (14,now(),'Created',3,14);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (15,now(),'Created',4,15);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (16,now(),'Created',2,16);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (17,now(),'Created',1,17);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (18,now(),'Created',2,18);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (19,now(),'Created',6,19);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (20,now(),'Created',6,20);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (21,now(),'Created',6,21);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (22,now(),'Created',6,22);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (23,now(),'Created',6,23);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (24,now(),'Created',6,24);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (25,now(),'Created',6,25);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (26,now(),'Created',6,26);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (27,now(),'Created',6,27);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (28,now(),'Created',11,28);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (29,now(),'Created',11,29);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (30,now(),'Created',11,30);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (31,now(),'Created',11,31);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (32,now(),'Created',1,32);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (33,now(),'Created',1,33);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (34,now(),'Created',1,34);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (35,now(),'Created',1,35);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (36,now(),'Created',17,36);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (37,now(),'Created',18,37);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (38,now(),'Created',18,38);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (39,now(),'Created',17,39);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (40,now(),'Created',17,40);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (41,now(),'Created',17,41);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (42,now(),'Created',17,42);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (43,now(),'Created',8,43);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (44,now(),'Created',8,44);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (45,now(),'Assigned',1,1);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (46,now(),'Assigned',1,3);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (47,now(),'Assigned',2,6);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (48,now(),'Assigned',3,9);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (49,now(),'Assigned',4,9);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (51,now(),'Assigned',3,10);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (52,now(),'Unnassigned',3,10);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (53,now(),'Assigned',4,10);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (54,now(),'Completed',3,9);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (55,now(),'Completed',4,10);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (56,now(),'Assigned',4,11);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (57,now(),'Completed',4,11);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (58,now(),'Assigned',7,14);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (59,now(),'Completed',15,16);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (60,now(),'Assigned',14,28);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (61,now(),'Completed',14,28);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (62,now(),'Assigned',15,29);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (63,now(),'Assigned',14,29);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (64,now(),'Completed',14,29);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (65,now(),'Completed',8,43);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (66,now(),'Created',9,43);
-INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (67,now(),'Completed',9,43);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',2,1);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',2,2);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',2,3);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',2,4);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',16,5);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',16,6);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',16,7);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',16,8);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',11,9);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',1,10);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',11,11);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',1,12);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',11,13);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',3,14);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',4,15);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',2,16);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',1,17);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',2,18);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,19);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,20);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,21);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,22);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,23);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,24);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,25);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,26);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',6,27);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',11,28);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',11,29);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',11,30);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',11,31);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',1,32);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',1,33);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',1,34);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',1,35);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',17,36);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',18,37);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',18,38);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',17,39);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',17,40);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',17,41);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',17,42);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',8,43);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',8,44);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',1,1);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',1,3);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',2,6);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',3,9);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',4,9);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',3,10);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Unnassigned',3,10);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',4,10);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Completed',3,9);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Completed',4,10);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',4,11);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Completed',4,11);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',7,14);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Completed',15,16);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',14,28);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Completed',14,28);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',15,29);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Assigned',14,29);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Completed',14,29);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Completed',8,43);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Created',9,43);
+INSERT INTO task_state_record (id,date,state,user_completed_id,task_id) VALUES (DEFAULT,now(),'Completed',9,43);
 
-INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (13,now(),'It is an offensive comment and totally out of place',3,'commentReported',30,NULL);
-INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (14,now(),'comment extremely offensive',18,'commentReported',32,NULL);
-INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (15,now(),'It''s clearly spam, and it should be removed, as well as the user',8,'commentReported',31,NULL);
-INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (16,now(),'Clearly a Nazi, it''s what J.K.Rowling and the WSJ says...',20,'userReported',NULL,18);
+INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (DEFAULT, now(),'It is an offensive comment and totally out of place',3,'commentReported',30,NULL);
+INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (DEFAULT,now(),'comment extremely offensive',18,'commentReported',32,NULL);
+INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (DEFAULT,now(),'It''s clearly spam, and it should be removed, as well as the user',8,'commentReported',31,NULL);
+INSERT INTO report (id,date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES (DEFAULT,now(),'Clearly a Nazi, it''s what J.K.Rowling and the WSJ says...',20,'userReported',NULL,18);
 
 INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (DEFAULT,now(),7,9,1);
 INSERT INTO invite (id,date,user_invited_id,project_id,user_who_invited_id) VALUES (DEFAULT,now(),4,12,NULL);
