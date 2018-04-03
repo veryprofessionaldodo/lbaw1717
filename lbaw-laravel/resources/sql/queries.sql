@@ -48,7 +48,7 @@ FROM "user", project_members, project
 	(SELECT project_id, COUNT(*) AS sprints_num FROM sprint
 	GROUP BY project_id) sprints 
 	ON project.id = sprints.project_id
-WHERE "user".id = $user_id AND project_members.user_id = "user".id 
+WHERE "user".username = $username AND project_members.user_id = "user".id 
 AND project_members.project_id = project.id AND num.project_id = project.id
 LIMIT 5 OFFSET $n;
 
@@ -59,7 +59,7 @@ FROM "user", project_members, project
 	(SELECT project_id, COUNT(project_id) AS num_members
 	FROM project_members GROUP BY project_members.project_id) num 
 	ON project.id = num.project_id
-WHERE "user".id = $user_id AND project_members.user_id = "user".id 
+WHERE "user".username = $username AND project_members.user_id = "user".id 
 AND project_members.project_id = project.id AND num.project_id = project.id
 LIMIT 5 OFFSET $n;
 
@@ -207,7 +207,8 @@ WHERE sprint.project_id = $project_id AND sprint_state_record.sprint_id = sprint
 AND sprint_state_record.state = 
 (SELECT "state" FROM sprint_state_record WHERE sprint_id = sprint.id 
 	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
-GROUP BY sprint.id, sprint.name, sprint.deadline, sprint_state_record.state;
+GROUP BY sprint.id, sprint.name, sprint.deadline, sprint_state_record.state
+ORDER BY deadline ASC;
 -- List all tasks of a sprint
 SELECT task.name, task_state_record.state FROM task, task_state_record
 WHERE task.sprint_id = $sprint_id AND task_state_record.task_id = task.id

@@ -346,7 +346,7 @@ CREATE TRIGGER add_notification_invite
 
 -- Change sprint Status when the deadline is passed
 DROP FUNCTION IF EXISTS check_deadline();
-CREATE FUNCTION check_deadline() RETURNS TRIGGER AS    -- CHECK IF LEGIT
+CREATE FUNCTION check_deadline() RETURNS TRIGGER AS
 $BODY$
 DECLARE 
    deadline "sprint"%rowtype;
@@ -574,20 +574,26 @@ CREATE TRIGGER sprint_created
 /* INDEXES */
 
 CREATE INDEX username_user ON "user" USING hash(username);
-CREATE INDEX task_project ON task USING hash(project_id);
-CREATE INDEX task_sprint ON task USING hash(sprint_id);
-CREATE INDEX sprint_project ON sprint USING hash(project_id);
-CREATE INDEX sprint_creator ON sprint USING hash(user_creator_id);
-CREATE INDEX comment_creator ON comment USING hash(user_id);
-CREATE INDEX comment_task ON comment USING hash(task_id);
-CREATE INDEX comment_thread ON comment USING hash(thread_id);
-CREATE INDEX thread_project ON thread USING hash(project_id);
-CREATE INDEX notification_user ON notification USING hash(user_id);
-CREATE INDEX task_state_task ON task_state_record USING hash(task_id);
-CREATE INDEX task_state_user ON task_state_record USING hash(user_completed_id);
-CREATE INDEX task_record_state ON task_state_record USING hash(state);
-CREATE INDEX sprint_state_sprint ON sprint_state_record USING hash(sprint_id);
-CREATE INDEX sprint_record_state ON sprint_state_record USING hash(state);
+
+CREATE INDEX task_project ON task USING btree(project_id);
+CREATE INDEX task_sprint ON task USING btree(sprint_id);
+
+CREATE INDEX sprint_project ON sprint USING btree(project_id);
+
+CREATE INDEX comment_creator ON comment USING btree(user_id);
+CREATE INDEX comment_task ON comment USING btree(task_id);
+CREATE INDEX comment_thread ON comment USING btree(thread_id);
+
+CREATE INDEX thread_project ON thread USING btree(project_id);
+
+CREATE INDEX notification_user ON notification USING btree(user_id);
+
+CREATE INDEX task_state_task ON task_state_record USING btree(task_id);
+CREATE INDEX task_state_user ON task_state_record USING btree(user_completed_id);
+CREATE INDEX task_record_state ON task_state_record USING btree(state);
+
+CREATE INDEX sprint_state_sprint ON sprint_state_record USING btree(sprint_id);
+CREATE INDEX sprint_record_state ON sprint_state_record USING btree(state);
 
 CREATE INDEX task_state_record_date ON task_state_record USING btree(date);
 CREATE INDEX sprint_state_record_date ON sprint_state_record USING btree(date);
