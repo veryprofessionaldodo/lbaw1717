@@ -16,12 +16,12 @@ SELECT * FROM Thread WHERE project_id = $project_id;
 SELECT * from Notification WHERE user_id = $user_id;
 
 /* List all comments of a specific thread */
-SELECT * FROM Comment WHERE thread_id = $thread_id; /* ? */
+SELECT * FROM Comment WHERE thread_id = $thread_id;
 
 /* List all projects of a specific user */
 SELECT Project.name, Project.description FROM Project_members 
 	LEFT JOIN Project ON Project.id = Project_members.project_id 
-	LEFT JOIN User ON User.id = Project_members.user_id; /* ? */
+	LEFT JOIN User ON User.id = Project_members.user_id;
 
 /* Show User information */
 SELECT * FROM User WHERE username = $username;
@@ -31,7 +31,7 @@ SELECT * FROM User WHERE username = $username;
 SELECT Project.name, Project.description, User.username, User.image, Project_members.isCoordinator 
 FROM Project_members 
 	LEFT JOIN Project ON Project.id = Project_members.project_id 
-	LEFT JOIN User ON User.id = Project_members.user_id; /* ? */
+	LEFT JOIN User ON User.id = Project_members.user_id;
 /* Get project categories */
 SELECT Category.name FROM Category, Project_categories
 WHERE Category.id = Project_categories.category_id AND Project_categories.project_id = $project_id;
@@ -39,7 +39,7 @@ WHERE Category.id = Project_categories.category_id AND Project_categories.projec
 /* List all requests to participate in a specific project */
 SELECT Project.name, User.username FROM Invite WHERE user_invited_id = $user_id AND project_id = $project_id 
 	LEFT JOIN User ON User.id = Invite.user_invited_id
-	LEFT JOIN Project ON Project.id = Invite.project_id; /* ? */
+	LEFT JOIN Project ON Project.id = Invite.project_id;
 
 /* List members of a specific project - Project Page members*/
 SELECT User.username, User.image, Project_members.isCoordinator 
@@ -52,7 +52,7 @@ SELECT Task.name FROM Task
 WHERE Task.project_id = $project_id;
 /* state of task */ 
 SELECT TaskStateRecord.state FROM TaskStateRecord
-WHERE TaskStateRecord.state = "Completed"; 					/* ? */ 
+WHERE TaskStateRecord.state = "Completed"; 					
 /* users assigned*/
 SELECT User.username, User.image FROM Task, User, TaskStateRecord
 WHERE Task.id = TaskStateRecord.task_id AND TaskStateRecord.state = "Assigned" 
@@ -66,7 +66,7 @@ WHERE Comment.task_id = Task.id AND Comment.user_id = User.id;
 /* List all sprints of project - Project Sprints Page */
 /* List all tasks of a sprint - Project Sprints Page */
 /* List all comments of a task - Project Sprints Page */
-SELECT Sprint.id, Sprint.name, Sprint.deadline /* ? */
+SELECT Sprint.id, Sprint.name, Sprint.deadline 
 FROM Sprint 
 WHERE Sprint.project_id = $project_id;
 /* Get current state of sprint */ 
@@ -78,7 +78,7 @@ SELECT Task.name FROM Task
 WHERE Task.sprint_id = $sprint_id;
 /* state of task */ 
 SELECT TaskStateRecord.state FROM TaskStateRecord
-WHERE TaskStateRecord.state = "Completed"; 					/* ? */ 
+WHERE TaskStateRecord.state = "Completed"; 
 /* users assigned*/
 SELECT User.username, User.image FROM Task, User, TaskStateRecord
 WHERE Task.id = TaskStateRecord.task_id AND TaskStateRecord.state = "Assigned" 
@@ -154,6 +154,10 @@ VALUES ($content, $user_id, $task_id);
 -- ELSE comment is a Thread comment
 INSERT INTO Comment (content, user_id, thread_id)
 VALUES ($content, $user_id, $thread_id);
+
+/* Create new Category */	
+INSERT INTO Category (name)
+VALUES ($name);
 
 
 
