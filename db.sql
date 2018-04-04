@@ -607,8 +607,6 @@ INSERT INTO Project_categories (project_id, category_id) VALUES (100,10);
 
 
 
-
-
 INSERT INTO Project_members (user_id, 'date', project_id, isCoordinator) VALUES (1, now(), 1, FALSE);
 INSERT INTO Project_members (user_id, 'date', project_id, isCoordinator) VALUES (2, now(), 1, TRUE);
 INSERT INTO Project_members (user_id, 'date', project_id, isCoordinator) VALUES (2, now(), 2, FALSE);
@@ -747,20 +745,20 @@ INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUE
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (4,'I don\'t know...will this really work?','Will it be really possible to make this game? It is HL3 and, well, is open source. By the way, isn\'t it kinda illegal? Doesn\'t Valve has the rights to this?\nJust saying...', now(),9,18);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (5,'I have a great idea!','Let\'s make the character like Geralt of Witcher 3 and the dragons will be Roach! Ah, hilarious!\nMy name\'s Jeff!	', now(),10,20);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (6,'Did you know?	','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn\'t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!	', now(),12,9);
-INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (7,'Witcher 3 quest!',Could someone give some hints about where i can find cedaline in witcher 3?', now(),67,12);
+INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (7,'Witcher 3 quest!','Could someone give some hints about where i can find cedaline in witcher 3?', now(),67,12);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (8,'I have a great idea!','Let\'s make the character like Geralt of Witcher 3 and the dragons will be Roach! Ah, hilarious!\nMy name\'s Jeff!	', now(),10,20);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (9,'Did you know?	','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn\'t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!	', now(),12,9);
-INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (10,'Witcher 3 quest!',Could someone give some hints about where i can find cedaline in witcher 3?', now(),90,2);
+INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (10,'Witcher 3 quest!','Could someone give some hints about where i can find cedaline in witcher 3?', now(),90,2);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (11,'Could there be a section about Programming?','I think we are focusing more on mathematics and programming is being left out. It is an interesting subject and very useful these days!', now(),1,2);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (12,'I think I broke the project....oopsie!','Ah...guys, it ain\'t working! Could someone fix this please!?\n*screeching*', now(),4,18);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (13,'Another game with a game with a female lead character....boring!','Guys, come on! Not again! I know it is a trend, but why not vary and make, for example, a game with several principal characters, where you can play with different characters, both in gender but also in race. This game could do it, the story allows it!', now(),3,4);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (14,'I don\'t know...will this really work?','Will it be really possible to make this game? It is HL3 and, well, is open source. By the way, isn\'t it kinda illegal? Doesn\'t Valve has the rights to this?\nJust saying...', now(),9,18);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (15,'I have a great idea!','Let\'s make the character like Geralt of Witcher 3 and the dragons will be Roach! Ah, hilarious!\nMy name\'s Jeff!	', now(),10,20);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (16,'Did you know?	','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn\'t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!	', now(),12,9);
-INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (17,'Witcher 3 quest!',Could someone give some hints about where i can find cedaline in witcher 3?', now(),33,3);
+INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (17,'Witcher 3 quest!','Could someone give some hints about where i can find cedaline in witcher 3?', now(),33,3);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (18,'I have a great idea!','Let\'s make the character like Geralt of Witcher 3 and the dragons will be Roach! Ah, hilarious!\nMy name\'s Jeff!	', now(),10,20);
 INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (19,'Did you know?	','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn\'t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!	', now(),12,9);
-INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (20,'Witcher 3 quest!',Could someone give some hints about where i can find cedaline in witcher 3?', now(),78,1);
+INSERT INTO Thread (id,name,description,'date',project_id,user_creator_id) VALUES (20,'Witcher 3 quest!','Could someone give some hints about where i can find cedaline in witcher 3?', now(),78,1);
 
 
 INSERT INTO Sprint (id,name,deadline,project_id,user_creator_id,effort) VALUES (2,'Mock-Ups','2018-05-20 00:00:00+01',1,2,5);
