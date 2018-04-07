@@ -2,9 +2,10 @@
 
 /* INDEX PAGE AND SEARCH BAR */
 
--- Search project by name 
+-- Search project by name or description
 SELECT "name", description FROM project
-WHERE "name" LIKE '%$search%' OR description LIKE '%$search%'
+WHERE (to_tsvector('english', project.name || ' ' || project.description) 
+	@@ plainto_tsquery('english', $search))
 AND isPublic = TRUE
 ORDER BY name
 LIMIT 10 OFFSET $n;
@@ -26,16 +27,18 @@ SELECT * FROM "user" WHERE username = $username AND password = $password;
 /* ADMIN PAGE */
 
 /* List user reports - Admin Page*/
-SELECT * FROM report WHERE type = 'userReported';
+SELECT * FROM report WHERE type = 'userReported'
+LIMIT 10 OFFSET $n;
 
 /* List comment reports - Admin Page*/
-SELECT * FROM report WHERE type = 'commentReported';
-
+SELECT * FROM report WHERE type = 'commentReported'
+LIMIT 10 OFFSET $n;
 
 /* PROFILE PAGE */
 
 -- List all notification of logged in user 
-SELECT * from notification WHERE user_id = $user_id;
+SELECT * from notification WHERE user_id = $user_id
+LIMIT 10 OFFSET $n;
 
 -- List all projects of a specific user, with their info, nº of members and nº of sprints and role
 SELECT project.name, project.description, project_members.isCoordinator, num.num_members, sprints.sprints_num
@@ -108,17 +111,18 @@ LIMIT 5 OFFSET $n;
 -- by project name or description
 SELECT project.name, project.description, project_members.isCoordinator, num.num_members, sprints.sprints_num
 FROM "user", project_members, project
-	INNER JOIN 
+	LEFT JOIN 
 	(SELECT project_id, COUNT(project_id) AS num_members
 	FROM project_members GROUP BY project_members.project_id) num 
 	ON project.id = num.project_id
-	INNER JOIN
+	LEFT JOIN
 	(SELECT project_id, COUNT(*) AS sprints_num FROM sprint
 	GROUP BY project_id) sprints 
 	ON project.id = sprints.project_id
 WHERE "user".id = $user_id AND project_members.user_id = "user".id 
 AND project_members.project_id = project.id AND num.project_id = project.id
-AND (project.name LIKE '%$search%' OR project.description LIKE '%$search%')
+AND (to_tsvector('english', project.name || ' ' || project.description) 
+	@@ plainto_tsquery('english', $search))
 LIMIT 5 OFFSET $n;
 
 -- by category
@@ -152,7 +156,8 @@ WHERE project_members.project_id = $project_id AND project_members.user_id = "us
 LIMIT 10 OFFSET $n;
 
 SELECT category.name FROM category, project_categories
-WHERE category.id = project_categories.category_id AND project_categories.project_id = $project_id;
+WHERE category.id = project_categories.category_id AND project_categories.project_id = $project_id
+LIMIT 10 OFFSET $n;
 
 -- PROJECT SETTINGS
 -- Search (team member)
@@ -165,7 +170,8 @@ LIMIT 10 OFFSET $n;
 -- Search users to invite (OPTIONAL)
 SELECT "user".username 
 FROM "user" 
-WHERE "user".username LIKE '%$search%';
+WHERE "user".username LIKE '%$search%'
+LIMIT 10 OFFSET $n;
 
 -- Requests 
 -- List all requests to participate in a specific project
@@ -190,14 +196,20 @@ WHERE task.project_id = $project_id AND task_state_record.task_id = task.id
 AND task_state_record.state = 
 (SELECT "state" FROM task_state_record WHERE task_id = task.id GROUP BY "state", date ORDER BY date DESC LIMIT 1)
 GROUP BY task.name, task_state_record.state;
--- users assigned - NEEDS TO BE IMPROVED
-SELECT "user".username, "user".image FROM task, "user", task_state_record
-WHERE task.id = $task_id AND task.id = task_state_record.task_id AND task_state_record.state = 'Assigned' 
-AND task_state_record.user_completed_id = "user".id;
+-- users assigned
+SELECT "user".username, "user".image, FROM task, "user", task_state_record
+WHERE task.id = $task_id AND task.id = task_state_record.task_id 
+AND task_state_record.state = 'Assigned' 
+AND task_state_record.user_completed_id = "user".id
+AND NOT EXISTS (SELECT * FROM task_state_record a WHERE a.task_id = task.id 
+				AND a.user_completed_id = "user".id
+				AND a.state = 'Unassigned' AND a.date > task_state_record.date)
+LIMIT 10 OFFSET $n;
 -- comments of task
 SELECT "comment".content, "comment".date, "user".username, "user".image
 FROM "comment", task, "user"
-WHERE task.id = $task_id AND "comment".task_id = task.id AND "comment".user_id = "user".id;
+WHERE task.id = $task_id AND "comment".task_id = task.id AND "comment".user_id = "user".id
+LIMIT 10 OFFSET $n;
 
 -- SPRINT PAGE
 -- List all sprints of project and their current state
@@ -208,22 +220,30 @@ AND sprint_state_record.state =
 (SELECT "state" FROM sprint_state_record WHERE sprint_id = sprint.id 
 	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
 GROUP BY sprint.id, sprint.name, sprint.deadline, sprint_state_record.state
-ORDER BY deadline ASC;
+ORDER BY deadline ASC
+LIMIT 10 OFFSET $n;
 -- List all tasks of a sprint
 SELECT task.name, task_state_record.state FROM task, task_state_record
 WHERE task.sprint_id = $sprint_id AND task_state_record.task_id = task.id
 AND task_state_record.state = (SELECT "state" FROM task_state_record WHERE task_id = task.id
 	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
-GROUP BY task.name, task_state_record.state;
+GROUP BY task.name, task_state_record.state
+LIMIT 10 OFFSET $n;
 -- (SIMILAR TO ABOVE)
--- users assigned to task - NEEDS TO BE IMPROVED
-SELECT "user".username, "user".image FROM task, "user", task_state_record
-WHERE task.id = $task_id AND task.id = task_state_record.task_id AND task_state_record.state = 'Assigned' 
-AND task_state_record.user_completed_id = "user".id;
+-- users assigned to task
+SELECT "user".username, "user".image, FROM task, "user", task_state_record
+WHERE task.id = $task_id AND task.id = task_state_record.task_id 
+AND task_state_record.state = 'Assigned' 
+AND task_state_record.user_completed_id = "user".id
+AND NOT EXISTS (SELECT * FROM task_state_record a WHERE a.task_id = task.id 
+				AND a.user_completed_id = "user".id
+				AND a.state = 'Unassigned' AND a.date > task_state_record.date)
+LIMIT 10 OFFSET $n;
 /* comments of task */
 SELECT "comment".content, "comment".date, "user".username, "user".image
 FROM "comment", task, "user"
-WHERE task.id = $task_id AND "comment".task_id = task.id AND "comment".user_id = "user".id;
+WHERE task.id = $task_id AND "comment".task_id = task.id AND "comment".user_id = "user".id
+LIMIT 10 OFFSET $n;
 
 -- TASK PAGE INFO
 -- Get information about one specific task
@@ -233,51 +253,73 @@ WHERE task.id = $task_id;
 -- users assigned to the task (similar to above)
 SELECT "user".username, "user".image FROM task, "user", task_state_record
 WHERE task.id = $task_id AND task.id = task_state_record.task_id AND task_state_record.state = 'Assigned' 
-AND task_state_record.user_completed_id = "user".id;
-
-/* 
-SELECT "user".id, "user".username, "user".image 
-FROM "user", task_state_record, task
-JOIN
-	(SELECT user_completed_id AS user_id, task_id, date FROM task_state_record WHERE 
-	task_state_record.state = 'Unnassigned' ) unnassigned 
-	ON unnassigned.task_id = task.id
-WHERE task.id = 9 AND task.id = task_state_record.task_id AND task_state_record.state = 'Assigned' 
 AND task_state_record.user_completed_id = "user".id
-AND unnassigned.user_id = "user".id AND unnassigned.date < task_state_record.date;
-*/
+AND task_state_record.state = (SELECT "state" FROM task_state_record WHERE task_id = task.id
+	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY task.name, task_state_record.state
+LIMIT 10 OFFSET $n;
 
-/*
-SELECT "user".id, "user".username, "user".image
-FROM task, task_state_record, "user"
-INNER JOIN 
-	(SELECT user_completed_id AS user_id, state 
-	 FROM task_state_record
-	WHERE (state = 'Assigned' OR state = 'Unnassigned')
-	GROUP BY user_completed_id, state, date
-	ORDER BY date DESC) states ON states.user_id = "user".id
-WHERE task.id = 10 AND task_state_record.task_id = task.id 
-AND "user".id = task_state_record.user_completed_id AND task_state_record.state = 'Assigned';
-*/
 
-/*
-DROP VIEW IF EXISTS users_assigned;
-CREATE VIEW users_assigned AS
-	SELECT user_completed_id AS user_id, task_id, state, task_state_record.date 
-	FROM task_state_record
-	LEFT JOIN
-		(SELECT user_completed_id AS user_id, task_state_record.date 
-		FROM task_state_record 
-		WHERE state = 'Assigned'
-		GROUP BY user_id, date) assigned 
-		ON (assigned.user_id = user_id AND assigned.date > task_state_record.date)
-	WHERE (state = 'Assigned' OR state = 'Unnassigned')
-	GROUP BY user_completed_id, state, task_state_record.date, task_id
-	ORDER BY date DESC;
-	
- SELECT * FROM users_assigned;
- */
+/****************************************************************************/
+/*								NEW 										*/
+/****************************************************************************/
 
+
+-- List all tasks of project, independently of sprints
+SELECT task.name, task_state_record.state FROM task, task_state_record
+WHERE task.project_id = $project_id AND task_state_record.task_id = task.id
+AND task_state_record.state = (SELECT "state" FROM task_state_record WHERE task_id = task.id
+	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY task.name, task_state_record.state
+LIMIT 10 OFFSET $n;
+
+-- List all tasks assigned to certain user
+SELECT task.id, task.name, task_state_record.state FROM task, task_state_record
+WHERE task.project_id = $project_id AND task_state_record.task_id = task.id
+AND EXISTS (SELECT * FROM task_state_record a WHERE a.user_completed_id = $user_id
+AND a.state = 'Assigned' AND a.task_id = task.id
+AND NOT EXISTS(SELECT * FROM task_state_record b 
+				WHERE b.user_completed_id = $user_id AND b.task_id = task.id
+				AND b.state = 'Unassigned' AND a.date < b.date))
+AND task_state_record.state = (SELECT "state" FROM task_state_record WHERE task_id = task.id
+	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY task.id, task.name, task_state_record.state
+LIMIT 10 OFFSET $n;
+
+-- List all tasks not assigned
+SELECT task.id, task.name, task_state_record.state FROM task, task_state_record
+WHERE task.project_id = $project_id AND task_state_record.task_id = task.id
+AND NOT EXISTS(SELECT * FROM task_state_record a
+				WHERE a.task_id = task.id AND state = 'Assigned')
+AND task_state_record.state = (SELECT "state" FROM task_state_record WHERE task_id = task.id
+	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY task.id, task.name, task_state_record.state
+LIMIT 10 OFFSET $n;
+
+
+-- Search tasks by name or description
+SELECT task.id, task.name, task.description, task_state_record.state FROM task, task_state_record
+WHERE task_state_record.task_id = task.id 
+AND task.project_id = $project_id
+AND (to_tsvector('english',task.name|| ' ' || task.description) 
+	 	@@ plainto_tsquery('english',$search))
+AND task_state_record.state = (SELECT "state" FROM task_state_record WHERE task_id = task.id
+	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY task.id, task.name, task.description, task_state_record.state
+LIMIT 10 OFFSET $n;
+
+-- Search sprints by name
+SELECT sprint.id, sprint.name, sprint.deadline, sprint_state_record.state
+FROM sprint, sprint_state_record
+WHERE sprint.project_id = $project_id
+AND sprint_state_record.sprint_id = sprint.id
+AND (to_tsvector('english', sprint.name) @@ plainto_tsquery('english', $search))
+AND sprint_state_record.state = 
+(SELECT "state" FROM sprint_state_record WHERE sprint_id = sprint.id 
+	GROUP BY "state", date ORDER BY date DESC LIMIT 1)
+GROUP BY sprint.id, sprint.name, sprint.deadline, sprint_state_record.state
+ORDER BY deadline ASC
+LIMIT 10 OFFSET $n;
 
 /* FORUM PAGE */
 
@@ -411,6 +453,14 @@ VALUES ($name);
 /* UPDATES */
 
 /* Update user info */
+UPDATE "user"
+SET disable = TRUE
+WHERE id = $user_id;
+
+UPDATE "user"
+SET disable = FALSE
+WHERE id = $user_id;
+
 UPDATE user
 SET name = $name, username = $username, email = $email, password = $password, image = $image
 WHERE id = $user_id;
@@ -462,6 +512,5 @@ DELETE FROM report WHERE id = $report_id;
 DELETE FROM invite WHERE id = $invite_id;
 
 /* Remove category from project */
-
-DELETE 
+DELETE FROM project_categories WHERE project_id = $project_id AND category_id = $cat_id;
 
