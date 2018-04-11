@@ -17,7 +17,10 @@ class UserController extends Controller {
 
         //$this->authorize('list', Project::class);
 
-        $projects = Auth::user()->projects()->orderBy('id')->get(); 
+        $projects = Auth::user()->projects()->get(); 
+        foreach($projects as $project){
+        	echo $project;
+        }
 
 		return view('pages/user_profile', ['projects' => $projects]);
 	}

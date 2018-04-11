@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -38,4 +40,8 @@ class User extends Authenticatable
     public function projects() {
       return $this->belongsToMany(Project::class, 'project_members');
     }
+
+    /*public function role() {
+        return $this->belongsToMany(ProjectMembers::la)
+    }*/
 }

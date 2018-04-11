@@ -4,23 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Sprint extends Model
 {
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
 
-  protected $table = 'project';
+  protected $table = 'sprint';
 
 
-  public function user() {
-    return $this->hasMany('App\User', 'project_members');
-    
+  public function project() {
+    return $this->belongsTo('App\Project');
   }
-
-  public function sprints() {
-    return $this->hasMany('App\Sprint');
-  }
-
 
   /**
    * The user this card belongs to
