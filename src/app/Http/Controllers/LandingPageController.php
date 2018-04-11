@@ -17,7 +17,7 @@ class LandingPageController extends Controller {
      *
      * @var string
      */
-    protected $redirectTo = '/api/users' + + $request->session('username');
+    //protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -29,6 +29,11 @@ class LandingPageController extends Controller {
         $this->middleware('guest')->except('logout');
     }
 
+    public function redirect() {
+        if(Auth::check()){
+            return redirect()->action('User\UserController@showProfile', Auth::user()->username);
+        }
+    }
 }
 
 ?>

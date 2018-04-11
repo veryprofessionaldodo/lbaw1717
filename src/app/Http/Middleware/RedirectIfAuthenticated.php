@@ -18,7 +18,8 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/api/users' + $request->session('username'));
+            //return redirect('/api/users' + $request->session()->get('username'));
+            return redirect()->action('User\UserController@showProfile', Auth::user()->username);
         }
 
         return $next($request);

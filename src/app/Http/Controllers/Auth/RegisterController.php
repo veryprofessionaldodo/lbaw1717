@@ -19,7 +19,6 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
 
     /**
@@ -27,7 +26,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo;
+    //protected $redirectTo = '/api/users/' + Auth::user()->username;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -51,7 +51,6 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255|unique:user',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:user',
-            'image' => 'required|string',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -64,13 +63,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
-        $redirectTo = '/api/users/' + $data['username'];
+        //$redirectTo = '/api/users/' + $data['username'];
 
         return User::create([
             'username' => $data['username'],
             'name' => $data['name'],
             'email' => $data['email'],
-            'image' => $data['image'],
             'password' => bcrypt($data['password']),
         ]);
     }

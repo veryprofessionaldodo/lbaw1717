@@ -12,13 +12,15 @@ class User extends Authenticatable
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 
+    public $table = "user";
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'image', 'email', 'password',
+        'username', 'name', 'email', 'image', 'password',
     ];
 
     /**
@@ -27,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',/* 'remember_token',*/
     ];
 
     /**

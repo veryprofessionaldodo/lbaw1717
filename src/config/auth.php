@@ -70,9 +70,9 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
+        // 'user' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'user',
         // ],
     ],
 

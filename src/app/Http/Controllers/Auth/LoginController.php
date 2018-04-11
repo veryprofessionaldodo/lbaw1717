@@ -25,7 +25,12 @@ class LoginController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = '/api/users' + Session::get('username');
+    protected $redirectTo = '/api/users';
+    //protected $redirectTo = '/';
+
+    public function username() {
+        return 'username';
+    }
 
     /**
      * Create a new controller instance.
@@ -36,4 +41,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
 }
