@@ -1,0 +1,217 @@
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+	color: #0A1827;
+}
+
+/**
+	SECTION
+*/
+section {
+	display: grid;
+	grid-template-columns: 55% 45%;
+	grid-template-rows: 5% 75% auto;
+	min-height: 100vh;
+}
+
+section > * {
+	margin: 3em;
+}
+
+/**
+		Description
+*/
+section > div#text {
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	text-align: justify;
+	padding: 4em;
+	color: #E0F7FA;
+}
+
+section > div#text h2 {
+	padding-bottom: 0.5em;
+	text-align: left;
+}
+
+section > div#text p {
+	padding-bottom: 1em;
+	color:#0A1827;
+}
+
+section > div#sign {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	background-color: #0A1827;
+	display: flex;
+	flex-direction: column;
+}
+
+/**
+	FORMS
+*/
+section > div#sign > form {
+	text-align: center;
+	margin: auto 5em;
+	width: auto;
+}
+
+
+#signup > input.form-control {
+	width: 100%;
+}
+
+section > div#sign > form.hide {
+	display: none;
+}
+
+section > div#sign > form > * {
+	margin: 0.5em 0;
+	width: 100%;
+}
+
+section > div#sign > form > button {
+
+	display: block;
+	width: 15em;
+	margin: 0.5em auto;
+}
+
+section > div#sign > form > button:first-of-type {
+	margin: 1.5em auto 0 auto;
+}
+
+section > div#sign > form > button:last-of-type {
+	margin-bottom: 1.5em;
+}
+
+#sign_buttons {
+	display: flex;
+	width: 100%;
+}
+#sign_buttons a{
+	text-decoration: none;
+	text-align: center;
+	background-color: #004144;
+	border: 0;
+	padding: 1em;
+	width: 50%;
+	color: #999;
+	font-size: 20px;
+}
+
+#sign_buttons a:first-child {
+	border-right: 1px solid #EBEBEB;
+}
+
+#sign_buttons a:hover {
+	background-color: #4b9eb7;
+}
+
+#sign_buttons a#selected {
+	color: #EBEBEB;
+	background-color: #0A1827;	
+}
+
+#sign_mobile {
+	display: none;
+}
+
+
+@media screen and (max-width: 1024px){
+	section {
+		display: block;
+		margin: 10vh 15% 0 15%;
+	}
+
+	section > div#text {
+		text-align: justify;
+		padding: 0;
+		margin: 0;
+	}
+
+	section > div#sign {
+		margin: 3em 0 0 0;
+		padding: 0 0 1em 0;
+		background-color: #002E30;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media screen and (max-width: 900px){
+	section {
+		margin: 10% 10% 10% 10%;
+		height: auto;
+		display: block; 
+	}
+	section > div#text {
+		text-align: justify;
+		padding: 0;
+		margin: 0;
+	}
+
+	section > div#sign {
+		margin: 3em 0 0 0;
+		padding: 0 0 1em 0;
+		background-color: #2B3E50;
+		display: none;
+		flex-direction: column;
+	}
+
+	#sign_mobile {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	#sign_mobile div {
+		height: 20px;
+	}
+
+}
+
+@media screen and (max-width: 635px){
+	h2 {
+		font-size: 20px;
+		text-align: center;
+	}
+
+	p {
+		font-size: 14px;
+	}
+
+	h3 {
+		font-size: 20px;
+	}
+
+	section > div#sign > form {
+		text-align: center;
+		margin: auto 2em;
+		width: auto;
+	}
+
+	section > div#sign > form > button {
+		display: block;
+		width: 100%;
+		margin: 0.5em auto;
+	}
+
+	section > div#sign > form > button:first-of-type {
+		margin: 1.5em auto 0 auto;
+	}
+
+	section > div#sign > form > button:last-of-type {
+		margin-bottom: 1.5em;
+	}
+}
+
+@media screen and (max-width:531px){
+	section {
+		display: block; 
+	}
+}

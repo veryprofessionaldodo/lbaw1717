@@ -1,0 +1,61 @@
+/** 
+	SECTION
+*/
+
+section {
+	margin: auto;
+	min-height: 100vh;
+}
+
+section form {
+	margin: 3em auto;
+	width: 40%;
+	text-align: center;
+	background-color: #0A1827;
+	padding: 1em 3em;
+	box-shadow: 0px 0px 10px #2B3E50;
+}
+
+section form > * {
+	margin: 1em auto;
+}
+
+section form button.btn.btn-primary {
+	display: block;
+}
+section form button.btn.btn-info {
+	
+}
+
+section hr {
+	border: 0; 
+	height: 1px; 
+	background: #868e96; 
+	background-image: linear-gradient(to right, #2B3E50, #868e96, #2B3E50);
+}
+
+input.form-control {
+	width: 100%;
+}
+
+form > p {
+	display: inline-block;
+}
+
+form > a {
+	display: inline;
+}
+
+@media screen and (max-width: 410px) {
+	section form {
+		margin: 3em 1em;
+		width: auto;
+	}
+}
+
+@media screen and (max-width: 670px) and (min-width: 411px) {
+	section form {
+		margin: 3em 4em;
+		width: auto;
+	}
+}
