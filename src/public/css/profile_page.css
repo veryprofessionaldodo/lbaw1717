@@ -1,0 +1,362 @@
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+	color: #0A1827;
+}
+
+
+/**
+	DASHBOARD
+*/
+
+div.container-fluid {
+	/*display: grid;
+	grid-template-columns: 20% auto;*/
+	min-height: 100vh;
+}
+
+div.container-fluid > div.row {
+	min-height: 100vh;
+}
+
+/**
+	ASIDE
+*/
+
+aside {
+	text-align: center;
+	color: #e3eaed;
+	background-color: #004649;
+	box-shadow: 0 0px 5px 1px black;
+	padding: 0;
+}
+
+aside p {
+	font-size: 1vw;
+}
+
+aside > * {
+	margin: 1em auto;
+}
+
+aside div#info {
+	padding: 0;
+	margin: 2em auto;
+}
+
+aside div#info p {
+	margin-bottom: 0.5em;
+}
+
+aside div#info img {
+
+	max-width:75%;
+	border-radius: 50%;
+	box-shadow: 0px 0px 10px;
+	margin-bottom: 1em;
+}
+
+aside div#statistics {
+	margin: 3em auto;
+}
+
+/**
+	SECTION
+*/
+
+div#options {
+	margin: auto;
+}
+div#options button#new_project {
+	margin: 1em auto;
+}
+
+div#options div.col-md-12{
+	margin: auto;
+	text-align: center;
+}
+
+div#options div.col-md-6 {
+	text-align: center;
+}
+
+div#options form {
+	margin: auto;
+	text-align: right;
+}
+
+div#options form.col-12 {
+	text-align: center;
+}
+
+div#options form > input.form-control {
+	width: auto;
+	display: inline;
+}
+
+div#options form > button.btn.btn-primary {
+	vertical-align: inherit;
+}
+div#options div#role_button {
+	margin: auto;
+	text-align: center;
+}
+
+
+
+form#new_project_name {
+	margin: 0 3em;
+}
+
+form#new_project_name > input.form-control {
+	display: inline;
+	width: 50%;
+}
+
+
+.hide {
+	display: none;
+}
+
+div.container-fluid {
+	margin-bottom: 2em;
+}
+
+section {
+	/*grid-column-start: 2;
+	grid-column-end: 3;*/
+}
+
+section p {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+section button#new_project.btn.btn-primary {
+	margin: 2em 1em;
+	padding: 1em;
+}
+
+/* PROJECTS TAB */
+
+section div.project {
+	background-color: #CCD9CE;
+	margin: 1em 3em;
+	padding: 1em;
+	outline: 1px solid #666;
+	color: #000;
+	display: grid;
+	grid-template-columns: 20% auto auto;
+}
+
+section div.project:hover {
+	background-color: #9AC0BA;
+	outline: 1px solid #333;
+}
+
+section div.project > h5 {
+	text-decoration: underline;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	margin: auto;
+	font-weight: bold;
+	text-align: center;
+	color: #111;
+	transition: all 0.2s;
+}
+
+section div.project > h5:hover {
+	color: #DF691A;
+}
+
+section div.project > p {
+	grid-column-start: 2;
+	margin: auto;
+	text-align: center;
+	grid-column-end: 3;
+	color: #111;
+}
+
+section div.project .project_info{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	margin: auto 0 auto auto;
+	text-align: right;
+	color: #111;
+}
+
+section div.project .project_info > *{
+	display: inline-block;
+	margin: auto 1em;
+}
+
+section div.project .project_info > button.btn.btn-secondary{
+	background-color: #004649;
+	font-size: 14px;
+	margin: 0.5em auto;
+	padding: 0.5em 1em;
+}
+
+/**
+	EDIT PROFILE
+*/
+
+div#dashboard {
+	opacity: 1;
+}
+
+div.container.edit_profile {
+	left:0;
+	right:0;
+	top:5em;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	z-index: 1;
+	display: block;
+	background-color: #0A1827;
+
+	padding: 1em;
+	max-width: 40em;
+	height: 27em;
+	text-align: justify;
+}
+
+div.container.edit_profile h2 {
+	font-size: 24px;
+	text-align: center;
+	color: #ECE7F3;
+}
+
+div.container.edit_profile > button {
+	margin: 0.25em 0 0 0;
+}
+
+div.container.edit_profile div.form_area {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 1em 0;
+}
+
+div.container.edit_profile div.form_area_date {
+	display: block;
+	margin: 1em 0;
+}
+
+div.container.edit_profile label {
+	display: inline;
+	text-align: left;
+	clear: both;
+    margin: auto 1em;
+}
+
+div.container.edit_profile input {
+	align-self: center;
+}
+
+div.container.edit_profile input.form-control {
+	width: 95%;
+}
+
+div.container.edit_profile div#form_options {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	text-align: center;
+	margin: 1em;
+}
+
+@media screen and (max-width: 767px) {
+	aside {
+		text-align: center;
+		box-shadow: 0 0px 5px 1px black;
+		padding: 0;
+	}
+
+	aside p {
+		font-size: 14px;
+	}
+
+	aside div#info {
+		padding: 0;
+		border-width: 0 1px 0 0;
+		border-style: solid;
+		border-color: white;
+	}
+
+	aside div#info p {
+		margin-bottom: 0.5em;
+	}
+
+	aside div#info img {
+		max-width:50%;
+		max-width: 5em;
+		border-radius: 50%;
+		box-shadow: 0px 0px 10px;
+		margin-bottom: 1em;
+	}
+
+	aside div#statistics {
+		margin: auto;
+	}
+
+	aside a {
+		margin: auto;
+	}
+
+
+	section div.project {
+		display: block;
+	}
+
+	section div.project > h5:hover {
+		color: #DF691A;
+	}
+
+	section div.project .project_info{
+		margin: 1em 0 0 0;
+		text-align: center;
+	}
+
+	section div.project .project_info > button.btn.btn-secondary{
+		font-size: 12px;
+		display: block;
+		margin: 1em auto 0 auto;
+		padding: auto;
+	}
+
+}
+
+@media screen and (max-width: 500px){
+
+	/* PROJECTS */
+
+	section div.project {
+		margin: 1em;
+		display: block;
+	}
+		
+	section div.project > h5 {
+		font-size: 26px;
+	}
+
+	section div.project > p {
+		font-size: 18px;
+	}
+
+	section div.project .project_info{
+		font-size: 14px;
+	}
+
+	section div.project .project_info > *{
+		display: inline-block;
+		margin: auto 1em;
+	}
+
+	section div.project .project_info > button.btn.btn-secondary{
+		font-size: 12px;
+		margin: 0.5em auto;
+		padding: 0.5em 1em;
+	}
+}
