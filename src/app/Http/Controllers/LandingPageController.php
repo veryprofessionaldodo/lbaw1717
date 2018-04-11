@@ -9,6 +9,7 @@ class LandingPageController extends Controller {
 	use AuthenticatesUsers;
 
 	public function showLandingPage() {
+
 		return view('pages/landing_page');
 	}
 

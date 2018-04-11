@@ -69,10 +69,10 @@
           </div>
         </div>  
         @if (Auth::check())
-          @if (Auth::user()->image == NULL)
-            <img src="res/profile/profile-pic.png">
-          @else
+          @if (Auth::user()->image != NULL)
             <img src="{{url(Auth::user()->image)}}">
+          @else
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
           @endif
         @endif
       </div>

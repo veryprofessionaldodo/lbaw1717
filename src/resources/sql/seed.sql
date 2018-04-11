@@ -661,36 +661,36 @@ CREATE INDEX sprint_text_search_name ON sprint USING GIST(to_tsvector('english',
 
 INSERT INTO administrator (id, username, password) VALUES (1, 'admin', '1234Admin-');
 
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Pedro Reis','partelinuxes','pedroreis@gmail.com',NULL,'eunaverdadegostodewindows');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Ana Margarida','PortugueseCountryFan','just2playgg@gmail.com',NULL,'asdasdparecemeseguro123');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Luis Correia','luigi_darkside','luigi_mei<3@gmail.com',NULL,'passwordprofissional123');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Vicente Espinha','vespinha','sdds_do_liedson@gmail.com','http://i.dailymail.co.uk/i/pix/2008/04/01/article-1004361-00A0672B00000578-20_468x321_popup.jpg','queroverosportingcampeao');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Marco Silva','Marcus_97','marcus_silva_97@gmail.com',NULL,'1234Marcus-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('André Ribeiro','programmer_rib','andre_ribeiro@gmail.com',NULL,'1234Andre-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Diana Salgado','dianne_sal','diana_salgado_2@hotmail.com',NULL,'1234Diana-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Andrew Tanenbaum','minix_lover','tanenbaum@gmail.com','https://pt.wikipedia.org/wiki/Andrew_Stuart_Tanenbaum','1234Andrew-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Linus Torvalds','linux_lover_52','linus_torvalds@gmail.com','https://en.wikipedia.org/wiki/Linus_Torvalds','1234Linus-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Susana Torres','susana_torres_92','susana_torres_92@gmail.com',NULL,'1234Susana-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Diogo Mateus','diogo_76','diogo.mateus@gmail.com',NULL,'1234Diogo-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Adelino Bastos','adele_boy_67','adelino.bastos@gmail.com',NULL,'1234Adelino-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Analisa Correia','anacruza_dacapo','analisa_correia.93@gmail.com',NULL,'1234Analisa-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Madalena Soares','madalena_muffin','madalena_muffin@gmail.com',NULL,'1234Madalena-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Pedro Batista','batista_89','pedro.batista@gmail.com',NULL,'1234Pedro-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Raul Vidal','sejam_felizes','raul.vidal@gmail.com',NULL,'1234Vidal-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Elliot Alderson','Mr_Robot','im_not_mr_robot@gmail.com','https://shiiftyshift.deviantart.com/art/Hackerman-643435212','1234Elliot-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Felix Kjellberg','Pewdiepie','meme_review@gmail.com','https://gfycat.com/gifs/detail/hilariouseagerarmednylonshrimp','1234Pewdiepie-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Helga Smith','helga_93','helga_legit@gmail.com',NULL,'1234Helga-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Jeff Sessions','my_name_jeff','my_name_jeff@gmail.com',NULL,'1234Jeff-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Diogo Dores','d_pain','fortnite@gmail.com',NULL,'fortniteisluv');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Ventura Pereira','fcparasempre','vp@gmail.com',NULL,'mourossucc');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Miguel Mano','blunky','fantano<3@gmail.com',NULL,'headwasclean');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Ze Borges','nbamaster','shaquille@gmail.com',NULL,'memes');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Joao Seixas','seixano','seixo@gmail.com',NULL,'-seixas-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Joao Conde','saltyaf','lol@gmail.com',NULL,'iactuallyhatelol');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Sofia Silva','aesthetic','blogger@gmail.com',NULL,'sofs');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Lil Pump','eskeeetit','gucci_gang@gmail.com',NULL,'fantanolovesme');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Jaden Smith','eyes','im_an_icon@gmail.com',NULL,'seriously_im_an_icon-');
-INSERT INTO "user" (name,username,email,image,password) VALUES ('Mac DeMarco','pepperoni_playboy','blueboy@gmail.com',NULL,'freaking-');
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Pedro Reis','partelinuxes','pedroreis@gmail.com',NULL,'$2a$04$A8A9VFFpZQzrL3tECqVeY..wCpv8Mi3RLqhNy7rmgb9z32obgQBQy'); --eunaverdadegostodewindows
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Ana Margarida','PortugueseCountryFan','just2playgg@gmail.com',NULL,'$2a$04$gtmJyF/vHKCyie9/95zs5.fNhyiST2QLIo7RPipzbw7gASx/2ogU6'); --asdasdparecemeseguro123
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Luis Correia','luigi_darkside','luigi_mei<3@gmail.com',NULL,'$2a$04$p8mMBaGAuVd9WykkcgEwVe8k8r2fAwURfUyC0SNA22mhiVjL/XtXi'); --passwordprofissional123
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Vicente Espinha','vespinha','sdds_do_liedson@gmail.com','http://i.dailymail.co.uk/i/pix/2008/04/01/article-1004361-00A0672B00000578-20_468x321_popup.jpg','$2a$04$0l7NUZaVkLggU/zvUfZcHu2YZFlmuH6pnyN35/ptVKyfCmNihEarS'); --queroverosportingcampeao
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Marco Silva','Marcus_97','marcus_silva_97@gmail.com',NULL,'$2a$04$.mPl.hlwqbD.tX/ulwLfR.ocprsbpfeEhwZnRC8UbnHzhZsxGTKI.'); --1234Marcus-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('André Ribeiro','programmer_rib','andre_ribeiro@gmail.com',NULL,'$2a$04$UvVGqhkYDhuj4n3OvglI3efBw5jfNi70r2ujTP9knwB56lvQcMdOW'); --1234Andre-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Diana Salgado','dianne_sal','diana_salgado_2@hotmail.com',NULL,'$2a$04$8rnLzQsMvPSpCgdPZq4OsezYmnHSMtrg0hsTlyxVbZ/yuXQTa6cf.'); --1234Diana-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Andrew Tanenbaum','minix_lover','tanenbaum@gmail.com','https://pt.wikipedia.org/wiki/Andrew_Stuart_Tanenbaum','$2a$04$JvOpczD9Mmh.y90ZC4V5/uFXbcgJRgkx2KByJE9v7oBpE/D5h7tpG'); --1234Andrew-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Linus Torvalds','linux_lover_52','linus_torvalds@gmail.com','https://en.wikipedia.org/wiki/Linus_Torvalds','$2a$04$P/Nd2IZSWTFtXUGFKIfRdetcEsonPMQ0zWMd1gFJAn2lXU.Gkk.Eu'); --1234Linus-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Susana Torres','susana_torres_92','susana_torres_92@gmail.com',NULL,'$2a$04$MGNQLACkm1H1E7UPyg5sJe7pEAc9dNwnH0YyCd3HMC9JoyixCuimq');--1234Susana-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Diogo Mateus','diogo_76','diogo.mateus@gmail.com',NULL,'$2a$04$N/dq9RimubASPdNEnZAMkuVXFxaifT2tcpSavQVfIVMMoewze3Bwa'); --1234Diogo-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Adelino Bastos','adele_boy_67','adelino.bastos@gmail.com',NULL,'$2a$04$o9HPoqIJlqfbW20qj3YcR.xH8hmuVSs0VcZ.ko2FNPtIdzcGUbXba'); --1234Adelino-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Analisa Correia','anacruza_dacapo','analisa_correia.93@gmail.com',NULL,'$2a$04$BPjI1NPjfHprFPOM.pKGVu.ugHsJ5r5/H/C1Ik0VeqFdle8jOB7de'); --1234Analisa-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Madalena Soares','madalena_muffin','madalena_muffin@gmail.com',NULL,'$2a$04$dSsohrJB0QpV.3bi5i5v.u.g0AZ8zGCbOhQVT1aqvGONXQxptaFau'); --1234Madalena-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Pedro Batista','batista_89','pedro.batista@gmail.com',NULL,'$2a$04$2N95FBUIfm.ThJCFAyeXA.W5yKnbA3ixW8kcfFAU/Pn1aK2mb16Ua'); --1234Pedro-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Raul Vidal','sejam_felizes','raul.vidal@gmail.com',NULL,'$2a$04$bZm3UQ2YoxzkmeVqc4JIPO3yXF9PZOSb7/haEZK5QeZPkHDPU1Oie');--1234Vidal-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Elliot Alderson','Mr_Robot','im_not_mr_robot@gmail.com','https://shiiftyshift.deviantart.com/art/Hackerman-643435212','$2a$04$pN01sGBVWCwf0bV8SeRiDecopFcctLcVRxDEy4BIzK3GXpAlN90pO');--1234Elliot-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Felix Kjellberg','Pewdiepie','meme_review@gmail.com','https://gfycat.com/gifs/detail/hilariouseagerarmednylonshrimp','$2a$04$hdUC2rQF4FLqngwja19JIeU0B9Wq/aHKKGG46TrS4jpxR/d4eBLP2'); --1234Pewdiepie-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Helga Smith','helga_93','helga_legit@gmail.com',NULL,'$2a$04$R3uIlr3HrNBkahguqeg0J.6g5kZhTYPh12Fv4RfDP0bTOcjaiCDXy');--1234Helga-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Jeff Sessions','my_name_jeff','my_name_jeff@gmail.com',NULL,'$2a$04$NIsrD.U6a2Wv62ytWFo1UOOAe3X3JugMEMlw4E5KlMu.3es.Mw.My');--1234Jeff-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Diogo Dores','d_pain','fortnite@gmail.com',NULL,'$2a$04$Xn6W/4qPjcTSbUgDyzR2VupuTw73TkthIJ6jt8TJMwVRLfqMSqRsS');--fortniteisluv
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Ventura Pereira','fcparasempre','vp@gmail.com',NULL,'$2a$04$gIR/Cw2wNl296flMetPMH.O8UCH0D6g/VQFOap7FRh3lJQJHhKfle');--mourossucc
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Miguel Mano','blunky','fantano<3@gmail.com',NULL,'$2a$04$q1DLyw50VjD/r/dcjsjdiOJ.i318WB8xi3yN8gOn2EgoSuq0saP46');--headwasclean
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Ze Borges','nbamaster','shaquille@gmail.com',NULL,'$2a$04$imBO52FcJXq2RC4VhdflTum4gSlP6vjUPLUBzzxiEuLtvSGmz0hgu');--memes
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Joao Seixas','seixano','seixo@gmail.com',NULL,'$2a$04$5og4RqLNWcp47iU26gYXAeDk0A569uqOQkkm70hbQZvGsZL20VrMW');-- -seixas-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Joao Conde','saltyaf','lol@gmail.com',NULL,'$2a$04$C26/7vANV0fJztQNYb/NKeGTwwjejbkoLaU33tC6q4Uwo4Gs9i1Y6'); --iactuallyhatelol
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Sofia Silva','aesthetic','blogger@gmail.com',NULL,'$2a$04$sX2MnJG5wKNY6KND9HjAtOxIBZ9JF78JPCuHAMql59ze1wdJBuHm.');-- sofs
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Lil Pump','eskeeetit','gucci_gang@gmail.com',NULL,'$2a$04$rTo1sMj3eFy80jYRQ7YOme/A1EiP8zo2oMFtncFNZYyALMZr4zn2K'); --fantanolovesme
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Jaden Smith','eyes','im_an_icon@gmail.com',NULL,'$2a$04$hAKgYV/Mm1/wXyL0uCg30e8eLiR6gERFkEjQATgMYI9kgUbK8/0Pi');--seriously_im_an_icon-
+INSERT INTO "user" (name,username,email,image,password) VALUES ('Mac DeMarco','pepperoni_playboy','blueboy@gmail.com',NULL,'$2a$04$MwvlQrfSfL7aY7nh4MsSJetQUvTW2IN.FoGf.1q.w0XgEI2vsQsc.');--freaking-
 
 INSERT INTO project (id,name,description,isPublic) VALUES (1,'Education Through the Web','A web page, made specifically to support students on their quest to learn more efficiently.', TRUE);
 INSERT INTO project (id,name,description,isPublic) VALUES (2,'Cryptocurrency applied to auction houses','The rise of cryptocurrency demands that such a profitable business such as online auction houses remain up to date with technology.', TRUE);

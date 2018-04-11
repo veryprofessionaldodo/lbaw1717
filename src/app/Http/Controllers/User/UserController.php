@@ -13,7 +13,13 @@ class UserController extends Controller {
 
 
 	public function showProfile(String $username) {
-		return view('pages/user_profile');
+		if (!Auth::check()) return redirect('/login');
+
+        //$this->authorize('list', Project::class);
+
+        $projects = Auth::user()->projects()->orderBy('id')->get(); 
+
+		return view('pages/user_profile', ['projects' => $projects]);
 	}
 
 	/**
