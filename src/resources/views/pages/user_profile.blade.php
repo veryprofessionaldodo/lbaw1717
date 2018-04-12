@@ -25,9 +25,9 @@
 
 					<div id="statistics" class="col-md-12 col-6">
 						<h5>Statistics</h5>
-						<p> tasks completed this week</p>
-						<p>29 tasks completed this month</p>
-						<p>4 sprints contributed to</p>
+						<p>{{ $taskCompletedWeek->count }} tasks completed this week</p>
+						<p>{{ $taskCompletedMonth->count }} tasks completed this month</p>
+						<p>{{ $sprintsContributedTo->count }} sprints contributed to</p>
 					</div>
 
 					<a href="#" class="col-md-12 col-12">Edit Profile</a>

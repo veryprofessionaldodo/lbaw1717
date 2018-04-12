@@ -87,7 +87,7 @@ AND (SELECT extract('month' FROM task_state_record.date)) = (select extract('mon
 );
 -- sprints contributed to, ever
 SELECT COUNT(task.sprint_id) FROM task_state_record, task
-WHERE task_state_record.user_completed_id = 4 
+WHERE task_state_record.user_completed_id = $user_id
 AND task_state_record.state != 'Created'
 AND task_state_record.task_id = task.id;
 

@@ -17,20 +17,18 @@ class UserController extends Controller {
 
         //$this->authorize('list', Project::class);
 
-        //$projects = Auth::user()->projects()->get(); 
+        $notifications = Auth::user()->userNotifications();
+        /*foreach($notifications as $notification){
+        	echo $notification->notification_type;
+        }*/ 
+
 		$projects = Auth::user()->userProjects(0);
-        foreach($projects as $project){
-        	echo $project->name;
-        }
 
-        $taskCompletedWeek = Auth::user()->taskCompletedThisWeek();
-        /*foreach($taskCompletedWeek as $task){
-        	echo $task;
-        }*/
-
-        //echo $taskCompletedWeek;
-
-		return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek]);
+        $taskCompletedWeek = Auth::user()->taskCompletedThisWeek()[0];
+        $taskCompletedMonth = Auth::user()->taskCompletedThisMonth()[0];
+        $sprintsContributedTo = Auth::user()->sprintsContributedTo()[0];
+      
+		return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 'sprintsContributedTo' => $sprintsContributedTo]);
 	}
 
 	/**
