@@ -25,7 +25,7 @@
 
 					<div id="statistics" class="col-md-12 col-6">
 						<h5>Statistics</h5>
-						<p>10 tasks completed this week</p>
+						<p> tasks completed this week</p>
 						<p>29 tasks completed this month</p>
 						<p>4 sprints contributed to</p>
 					</div>

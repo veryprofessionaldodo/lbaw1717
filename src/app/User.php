@@ -41,7 +41,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Project::class, 'project_members');
     }
 
-    public function userProjects(string $username, int $n) {
+    public function userProjects(int $n) {
         return DB::select(DB::raw('SELECT project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
                                     FROM "user", project_members, project
                                     INNER JOIN 
@@ -54,7 +54,21 @@ class User extends Authenticatable
                                     ON project.id = sprints.project_id
                                     WHERE "user".username = :username AND project_members.user_id = "user".id 
                                     AND project_members.project_id = project.id AND num.project_id = project.id
-                                    LIMIT 5 OFFSET :n'), array('username' => $username, 'n' => $n));
+                                    LIMIT 5 OFFSET :n'), array('username' => $this->username, 'n' => $n));
+    }
+
+    public function taskCompletedThisWeek() {
+        /*return DB::select(DB::raw('SELECT COUNT(id) FROM task_state_record
+                                    WHERE user_completed_id = :user_id AND state = :state
+                                    AND (SELECT extract(week FROM task_state_record.date)) = 
+                                    (select extract(week from current_date))'), array('user_id' => $this->id, 'state' => 'Completed'));*/
+        return DB::table('task_state_record')
+                                        ->select(DB::raw('extract(week FROM task_state_record) AS task_week'), 
+                                                    DB::raw('extract(week from CURDATE()) AS current_week'))
+                                        ->where('task_week', '=', 'current_week')
+                                        ->where('user_completed_id', '=', $this->id)
+                                        ->count()
+                                        ->get();
     }
 
     /*public function role() {

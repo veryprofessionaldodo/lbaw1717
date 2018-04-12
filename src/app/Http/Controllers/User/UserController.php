@@ -18,12 +18,19 @@ class UserController extends Controller {
         //$this->authorize('list', Project::class);
 
         //$projects = Auth::user()->projects()->get(); 
-		$projects = Auth::user()->userProjects($username, 0);
+		$projects = Auth::user()->userProjects(0);
         foreach($projects as $project){
         	echo $project->name;
         }
 
-		return view('pages/user_profile', ['projects' => $projects]);
+        $taskCompletedWeek = Auth::user()->taskCompletedThisWeek();
+        foreach($taskCompletedWeek as $task){
+        	echo $task;
+        }
+
+        //echo $taskCompletedWeek;
+
+		return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek]);
 	}
 
 	/**
