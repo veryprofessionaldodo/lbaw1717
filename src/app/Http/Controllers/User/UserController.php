@@ -18,10 +18,10 @@ class UserController extends Controller {
         //$this->authorize('list', Project::class);
 
         //$projects = Auth::user()->projects()->get(); 
-		$projects = Auth::user()->getUserProjects(Auth::user()->username, 0);
-        /*foreach($projects as $project){
-        	echo $project;
-        }*/
+		$projects = Auth::user()->userProjects($username, 0);
+        foreach($projects as $project){
+        	echo $project->name;
+        }
 
 		return view('pages/user_profile', ['projects' => $projects]);
 	}

@@ -38,7 +38,23 @@ class User extends Authenticatable
      * The cards this user owns.
      */
     public function projects() {
-      return $this->belongsToMany(Project::class, 'project_members');
+        return $this->belongsToMany(Project::class, 'project_members');
+    }
+
+    public function userProjects(string $username, int $n) {
+        return DB::select(DB::raw('SELECT project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
+                                    FROM "user", project_members, project
+                                    INNER JOIN 
+                                    (SELECT project_id, COUNT(project_id) AS num_members
+                                    FROM project_members GROUP BY project_members.project_id) num 
+                                    ON project.id = num.project_id
+                                    INNER JOIN
+                                    (SELECT project_id, COUNT(*) AS sprints_num FROM sprint
+                                    GROUP BY project_id) sprints 
+                                    ON project.id = sprints.project_id
+                                    WHERE "user".username = :username AND project_members.user_id = "user".id 
+                                    AND project_members.project_id = project.id AND num.project_id = project.id
+                                    LIMIT 5 OFFSET :n'), array('username' => $username, 'n' => $n));
     }
 
     public function getUserProjects(string $username, int $n){
