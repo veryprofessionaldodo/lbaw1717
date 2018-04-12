@@ -41,6 +41,21 @@ class User extends Authenticatable
       return $this->belongsToMany(Project::class, 'project_members');
     }
 
+    public function getUserProjects(string $username, int $n){
+        /*return DB::select('project.name', 'project.description', 'project_members.isCoordinator')
+                      ->from('project')
+                      ->from('project_members')
+                      ->from('user')
+                      ->where('user.username','=','username')
+                      ->where('project_members.user_id','=','user.id')
+                      ->where('project_members.project_id','=','project.id')
+                      ->take(5)
+                      ->skip('n')
+                      ->setBindings([$username,$n])
+                      ->get();*/
+        //return $query;
+    }
+
     /*public function role() {
         return $this->belongsToMany(ProjectMembers::la)
     }*/

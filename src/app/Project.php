@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
@@ -14,13 +15,11 @@ class Project extends Model
 
   public function user() {
     return $this->hasMany('App\User', 'project_members');
-    
   }
 
   public function sprints() {
     return $this->hasMany('App\Sprint');
   }
-
 
   /**
    * The user this card belongs to
