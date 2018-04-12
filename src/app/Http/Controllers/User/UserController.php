@@ -12,14 +12,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller {
 
 
-	public function showProfile(String $username) {
+	public function showProfile(string $username) {
 		if (!Auth::check()) return redirect('/login');
 
         //$this->authorize('list', Project::class);
 
-        $projects = Auth::user()->projects()->get(); 
+        //$projects = Auth::user()->projects()->get(); 
+		$projects = Auth::user()->userProjects($username, 0);
         foreach($projects as $project){
-        	echo $project;
+        	echo $project->name;
         }
 
 		return view('pages/user_profile', ['projects' => $projects]);
