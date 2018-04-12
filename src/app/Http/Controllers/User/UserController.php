@@ -24,9 +24,9 @@ class UserController extends Controller {
         }
 
         $taskCompletedWeek = Auth::user()->taskCompletedThisWeek();
-        foreach($taskCompletedWeek as $task){
+        /*foreach($taskCompletedWeek as $task){
         	echo $task;
-        }
+        }*/
 
         //echo $taskCompletedWeek;
 
