@@ -21,7 +21,6 @@ class RedirectIfAuthenticated
             //return redirect('/api/users' + $request->session()->get('username'));
             return redirect()->action('User\UserController@showProfile', Auth::user()->username);
         }
-
         return $next($request);
     }
 }

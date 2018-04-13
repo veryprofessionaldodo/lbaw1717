@@ -12,17 +12,17 @@
 */
 
 //Landing Page
-Route::get('/', 'LandingPageController@showLandingPage');
+Route::get('/', 'LandingPageController@showLandingPage'); //done
 
 // Authentication
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); //done
+Route::post('login', 'Auth\LoginController@login'); //done
+Route::get('logout', 'Auth\LoginController@logout')->name('logout'); //done
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register'); //done
+Route::post('register', 'Auth\RegisterController@register'); //done
 
 // User
-Route::get('api/users/{username}', 'User\UserController@showProfile');
+Route::get('api/users/{username}', 'User\UserController@showProfile'); //done - falta fazer parte do visitor TODO
 Route::get('api/users/{username}/edit', 'User\UserController@showEditProfileForm');
 Route::post('api/users/{username}/edit', 'User\UserController@editProfile');
 
@@ -32,7 +32,7 @@ Route::post('api/users/projects/search_project', 'User\UserController@searchUser
 
 Route::put('api/users/projects/new_project', 'User\UserController@newProject');
 
-/*
+
 // Project
 Route::get('projects/{id}/visitor', 'ProjectController@projectViewVisitor');
 Route::get('projects/{id}/members', 'ProjectController@projectMembersList');
@@ -45,7 +45,7 @@ Route::get('projects/{id}/statistics', 'ProjectController@projectStatisticsView'
 Route::post('projects/{id}/members', 'ProjectController@projectMembersSearch');
 Route::post('projects/{id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
 
-
+/*
 //Sprints and Tasks
 Route::get('projects/{id}/sprints', 'ProjectController@sprintsView');
 Route::get('projects/{id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEditForm');

@@ -25,8 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/api/users';
-    //protected $redirectTo = '/';
+    protected $redirectTo = '/';
 
     public function username() {
         return 'username';
@@ -41,5 +40,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /*public function redirectPath() {
+        if (Auth::check()) {
+            //return redirect()->action('User\UserController@showProfile', Auth::user()->username);
+            $this->redirectTo = '/api/users/' + Auth::user()->username;
+        }
+    }*/
 
 }
