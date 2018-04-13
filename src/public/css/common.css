@@ -9,8 +9,6 @@ body {
 nav {
 	background-color: #0A1827;
 	align-items: center;
-	/*display: grid;
-	grid-template-columns: 16% auto 13%;*/
 }
 
 nav.row{
@@ -30,8 +28,6 @@ nav a.col-3 {
 	font-size: 27px;
 	letter-spacing: 4px;
 	color: #CCD9CE;
-	/*grid-column-start:1;
-	grid-column-end: 2;*/
 	text-align:left;
 	padding-left: 1em;
 }
@@ -45,14 +41,8 @@ nav > form {
 	display: flex;
 	align-items:center;
 	justify-content: center;
-	/*grid-column-start:2;
-	grid-column-end: 3;*/
 }
-
-nav div input, nav div label {
-	display: none;
-}
-
+/*
 nav ul {
 	margin: 0;
 }
@@ -60,67 +50,170 @@ nav ul {
 nav ul li {
 	list-style: none;
 	display: inline-flex;
+}*/
+
+.user {
+	/*text-align: right;*/
+	text-align: center;
+	margin: auto;
 }
 
-#user {
-	text-align: right;
+.user > * {
+	vertical-align: middle;
 }
 
-#mobile{
-	padding-right: 0.5em;
-	/*display: grid;
-	grid-template-columns: 50% 50%;
-	padding-right: 20%;*/
-}
-
-#user img {
+.user img {
 	max-width: 3em;
 	border-radius: 50px;
-	/*grid-column-start: 2;
-	grid-column-end: 3;*/
+	float: right;
 }
 
-#user button {
+
+#notifications {
+	display: inline-block;
+}
+
+#notifications > * {
+	font-size: 25px;
+	color: white;
+}
+
+#notifications .hamburger {
+	margin-top: 0.2em;
+}
+
+#notifications #hamburger2 {
+	display: none;
+}
+
+#notifications .hamburger:before {
+	content: "\f0f3";
+	font-family: FontAwesome;
+}
+
+#notifications_box {
+	background-color: #CCD9CE;
+	color: black;
+	font-size: 14px;
+	font-family: 'Nunito', sans-serif;
+	/*visibility: collapse;*/
+	z-index: 1;
+	position: absolute;
+	width: 400px;
+	right: 2%;
+	padding: 1em;
+	box-shadow: 0 0 10px 1px black;
+	border-radius: 10px;
+	opacity: 0;
+	max-height: 0;
+	transition:opacity 0.1s ease-out;
+}
+
+#notifications_box ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#notifications_box li {
+	background-color: white;
+	padding: 1em;
+}
+
+#notifications #hamburger2:checked ~ #notifications_box{
+	/*visibility: visible;*/
+	opacity: 1;
+	max-height: 300px;
+}
+
+/*
+.mobile{
+	padding-right: 0.5em;
+
+}*/
+/*
+.user a.dropdown-toggle {
+	color: white;
+	font-size: 24px;
+	padding: auto 0;
+	vertical-align: middle;
 	background-color: inherit;
 	border: 0;
 }
 
-#user button#notification {
-	color: white;
-	font-size: 24px;
-	padding-right: 0.25em;
+div li.dropdown {
+	display: inline-block;
+	margin-top: 0.25em;
 	vertical-align: middle;
-	/*margin-right: 1em;*/
-	/*grid-column-start: 1;
-	grid-column-end: 2;
-	padding-right:20%;*/
-
 }
+
+nav ul.nav.nav-pills {
+	display: inline-block;
+	text-align: center;
+	font-size: 24px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+  	background-color: #17A2B8;
+}
+ul.dropdown-menu.notify-drop{
+  	top: 60px;
+  	right: 0px;
+  	position: absolute;
+  	width: 300px;
+  	padding-bottom: 0px;
+  	padding: 10px;
+}
+
+.dropdown-menu:before{
+	content: "";
+	position: absolute;
+	top: -20px;
+	right: 12px;
+	border:10px solid #343A40;
+	border-color: transparent transparent #343A40 transparent;
+}
+.head{
+  	padding:5px 15px;
+  	border-radius: 3px 3px 0px 0px;
+}
+.footer{
+  	padding:5px 15px;
+  	border-radius: 0px 0px 3px 3px; 
+}
+.notification-box{
+  	padding: 10px 0px; 
+}
+.bg-gray{
+  	background-color: #eee;
+}*/
 /*
-#notification {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0;
-    font-size: 16px;
-    border: none;
+@media (max-width: 640px) {
+    .dropdown-menu{
+      top: 50px;
+      left: -16px;  
+      width: 290px;
+    } 
+    .nav{
+      display: block;
+    }
+    .nav .nav-item,.nav .nav-item a{
+      padding-left: 0px;
+    }
+    .message{
+      font-size: 13px;
+    }
 }*/
 
-
+/*
 .dropdown {
 	display: none;
 	position: absolute;
 	right: 7%;
 	top: 2em;
-    /*position: relative;
-	display: inline-block;*/
 }
 
 .dropdown-content {
-	/*margin-left: auto;
-	margin-right: 0;*/
-	/*position: absolute;*/
-    /*background-color: #f1f1f1;*/
-    /*min-width: 200px;*/
 	position: relative;
     background-color: inherit;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -130,14 +223,12 @@ nav ul li {
     text-decoration: none;
 	display: block;
 	position: relative;
-	/*margin: auto;
-	padding: auto;*/
+
 }
 
 button#notification:hover ~ .dropdown {
 	display: block;
-
-}
+}*/
 
 /**
  FORMS
@@ -281,7 +372,7 @@ h1 {
 	nav form {
 		justify-content: flex-end;
 	}
-	div#mobile {
+	div.user {
 		display: none;
 	}
 	nav div label {

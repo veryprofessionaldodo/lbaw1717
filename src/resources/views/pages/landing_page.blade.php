@@ -7,7 +7,7 @@
 
     <title>Proyekt Index</title>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/landing_page.js') }} defer></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css')}}">

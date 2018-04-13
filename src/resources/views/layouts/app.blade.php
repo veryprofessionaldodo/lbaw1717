@@ -14,72 +14,122 @@
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <!--<script type="text/javascript" src={{ asset('js/app.js') }} defer></script> -->
+    <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" defer></script>-->
   </head>
   <body>
-    <nav class="row">
-    <a class="col-3" href="{{ url('/')}}">Proyekt</a>
+    <nav class="row nav">
+      <a class="col-3" href="{{ url('/')}}">Proyekt</a>
 
-    <!--  FAZER ESTE FORM ATIVO -->
-    <form class="col-6">
-      <input class="form-control" type="text" placeholder="Search">
-      <button class="btn btn-primary" type="submit">
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
-
-    <div id="user" class="col-3">
-      <input type="checkbox" id="hamburger">
-      <label class="hamburger" for="hamburger"></label>
-      <div id="mobile">
-        <button id="notification">
-          <i class="fas fa-bell"></i>
+      <!--  FAZER ESTE FORM ATIVO -->
+      <form class="col-6">
+        <input class="form-control" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-search"></i>
         </button>
-        <div class="dropdown">
-          <div class="dropdown-content">
-            <div class="modal">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Notifications</h5>
+      </form>
 
-                    <!-- FAZER ISTO -->
-                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                      <p><i class="far fa-paper-plane"></i>&nbsp; &nbsp;jotacl has invited you to project Management App</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-success">Accept</button>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Decline</button>
-                    </div>
-                    <div class="modal-body">
-                      <p><i class="far fa-paper-plane"></i>&nbsp; &nbsp;jotacl has promoted you to Project Coordinator of the project Management App</p>
-                    </div>-->
-                </div>
-              </div>
-            </div>
+      <div class="user col-3">  
+        <div id="notifications">
+          <input type="checkbox" id="hamburger2">
+          <label class="hamburger" for="hamburger2"></label>
+
+          <div id="notifications_box">
+            <ul>
+              @foreach($notifications as $notification)
+                @if($notification->notification_type == 'invite')
+                  <li>Invited to project <strong>{{ $notification->name }}</strong> by user <em>{{ $notification->username }}</em></li>
+                @endif
+                <!-- Add more different types of notifications -->
+              @endforeach
+            </ul>
           </div>
-        </div>  
-        @if (Auth::check())
-          @if (Auth::user()->image != NULL)
-            <img src="{{url(Auth::user()->image)}}">
-          @else
-            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
-          @endif
-        @endif
-      </div>
-    </div>
-  </nav>
+        </div>
+        
+        <!--<ul class="nav nav-pills">
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link text-light" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bell"></i>
+            </a>
+            <ul class="dropdown-menu .dropright">
+              <li class="head text-light bg-dark">
+                <div class="row">
+                  <div class="col-lg-12 col-sm-12 col-12">
+                    <span>Notifications (3)</span>
+                    <a href="" class="float-right text-light">Mark all as read</a>
+                  </div>
+              </li>
+              <li class="notification-box">
+                <div class="row">
+                  <div class="col-lg-8 col-sm-8 col-8">
+                    <strong class="text-info">David John</strong>
+                    <div>
+                      Lorem ipsum dolor sit amet, consectetur
+                    </div>
+                    <small class="text-warning">27.11.2015, 15:00</small>
+                  </div>  
+                  <div class="col-lg-3 col-sm-3 col-3 text-center">
+                    <button>Check</button>
+                    <button>Not</button>
+                  </div>  
+                </div>
+              </li>
+              <li class="notification-box bg-gray">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-3 col-3 text-center">
+                    <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
+                  </div>    
+                  <div class="col-lg-8 col-sm-8 col-8">
+                    <strong class="text-info">David John</strong>
+                    <div>
+                      Lorem ipsum dolor sit amet, consectetur
+                    </div>
+                    <small class="text-warning">27.11.2015, 15:00</small>
+                  </div>    
+                </div>
+              </li>
+              <li class="notification-box">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-3 col-3 text-center">
+                    <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
+                  </div>    
+                  <div class="col-lg-8 col-sm-8 col-8">
+                    <strong class="text-info">David John</strong>
+                    <div>
+                      Lorem ipsum dolor sit amet, consectetur
+                    </div>
+                    <small class="text-warning">27.11.2015, 15:00</small>
+                  </div>    
+                </div>
+              </li>
+              <li class="footer bg-dark text-center">
+                <a href="" class="text-light">View All</a>
+              </li>
+            </ul>
+          </li>
+        </ul>-->
 
-  @yield('content');
+
+         
+          @if (Auth::check())
+            @if (Auth::user()->image != NULL)
+              <img src="{{url(Auth::user()->image)}}">
+            @else
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+            @endif
+          @endif
+        
+      </nav>
+
+  @yield('content')
   
   </body>
 </html>
