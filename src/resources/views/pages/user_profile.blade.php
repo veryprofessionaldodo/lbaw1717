@@ -30,7 +30,7 @@
 						<p>{{ $sprintsContributedTo->count }} sprints contributed to</p>
 					</div>
 
-					<a href="{{'route(api/users/{"+Auth::user()->username}+"/edit)'}}" class="col-md-12 col-12">Edit Profile</a>
+					<a href="#" class="col-md-12 col-12">Edit Profile</a>
 				</div>
 			</aside>
 
