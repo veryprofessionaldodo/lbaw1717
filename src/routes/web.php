@@ -95,8 +95,8 @@ Route::delete('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThre
 Route::delete('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment');
 
 //Admin Administraton, Report and Static Pages
-Route::get('admin/reports/comments', 'AdminController@commentReportsView');
-Route::get('admin/reports/users', 'AdminController@userReportsView');
+*/Route::get('admin/reports/comments', 'AdminController@commentReportsView');
+/*Route::get('admin/reports/users', 'AdminController@userReportsView');
 Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView');
 Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportView');
 Route::delete('admin/reports/{report_id}', 'AdminController@deleteReport');
