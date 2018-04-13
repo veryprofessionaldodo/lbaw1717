@@ -22,13 +22,14 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register'); //done
 
 // User
-Route::get('api/users/{username}', 'User\UserController@showProfile'); //done - falta fazer parte do visitor TODO
-Route::get('api/users/{username}/edit', 'User\UserController@showEditProfileForm');
+Route::get('api/users/{username}', 'User\UserController@showProfile');
+Route::get('api/users/{username}/edit', 'User\UserController@showEditProfileForm')->name('api/users/{username}/edit');
 Route::post('api/users/{username}/edit', 'User\UserController@editProfile');
 
 Route::post('api/users/projects/accept_invite', 'User\UserController@acceptInvite');
 Route::post('api/users/projects/unsigned_project', 'User\UserController@unsignProject');
 Route::post('api/users/projects/search_project', 'User\UserController@searchUserProject');
+
 
 Route::put('api/users/projects/new_project', 'User\UserController@newProject');
 
