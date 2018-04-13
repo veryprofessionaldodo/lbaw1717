@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',/* 'remember_token',*/
+        'password', 'remember_token',
     ];
 
     /**
@@ -47,6 +47,7 @@ class User extends Authenticatable
     }*/
 
     public function userNotifications() {
+      // Add comments and reports as well
       return DB::table('notification')
               ->join('user','user.id','=','notification.user_id')
               ->join('project','project.id','=','notification.project_id')

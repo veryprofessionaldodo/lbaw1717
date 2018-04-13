@@ -21,7 +21,8 @@ CREATE TABLE "user" (
 	email text NOT NULL,
 	image text,
 	disable boolean NOT NULL DEFAULT FALSE,
-	password text NOT NULL
+	password text NOT NULL,
+	remember_token TEXT
 );
 
 CREATE TABLE project (
