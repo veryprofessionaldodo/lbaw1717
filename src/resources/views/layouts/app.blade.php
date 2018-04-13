@@ -14,15 +14,16 @@
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" defer></script>
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" defer></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" defer></script>-->
   </head>
   <body>
     <nav class="row nav">
@@ -36,17 +37,29 @@
         </button>
       </form>
 
-      <div id="user" class="col-3">
-        <input type="checkbox" id="hamburger">
-        <label class="hamburger" for="hamburger"></label>
-        <div id="mobile">
+      <div class="user col-3">  
+        <div id="notifications">
+          <input type="checkbox" id="hamburger2">
+          <label class="hamburger" for="hamburger2"></label>
+
+          <div id="notifications_box">
+            <ul>
+              @foreach($notifications as $notification)
+                @if($notification->notification_type == 'invite')
+                  <li>Invited to project <strong>{{ $notification->name }}</strong> by user <em>{{ $notification->username }}</em></li>
+                @endif
+                <!-- Add more different types of notifications -->
+              @endforeach
+            </ul>
+          </div>
+        </div>
         
-        <ul class="nav nav-pills">
+        <!--<ul class="nav nav-pills">
           <li class="nav-item dropdown">
             <a href="#" class="nav-link text-light" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-bell"></i>
             </a>
-            <ul class="dropdown-menu float-lg-left">
+            <ul class="dropdown-menu .dropright">
               <li class="head text-light bg-dark">
                 <div class="row">
                   <div class="col-lg-12 col-sm-12 col-12">
@@ -102,7 +115,7 @@
               </li>
             </ul>
           </li>
-        </ul>
+        </ul>-->
 
 
          
@@ -113,7 +126,7 @@
               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
             @endif
           @endif
-        </div>
+        
       </nav>
 
   @yield('content')

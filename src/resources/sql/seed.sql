@@ -1095,7 +1095,7 @@ INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mo
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database structure','2018-05-20 00:00:00+01',1,2,3);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Website','2018-04-20 12:00:00+01',2,16,5);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Build Security','2018-05-20 08:00:00+01',2,16,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw Mock-up','2018-04-12 23:59:00+01',3,11,3);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw Mock-up','2018-04-15 23:59:00+01',3,11,3);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design with blender','2018-04-20 22:59:00+01',3,1,7);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database','2018-04-20 23:00:00+01',4,3,7);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make Website','2018-05-21 23:00:00+01',4,2,10);

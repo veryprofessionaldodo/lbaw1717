@@ -47,7 +47,11 @@ class User extends Authenticatable
     }*/
 
     public function userNotifications() {
-      return DB::table('notification')->where('user_id','=',$this->id)->get();
+      return DB::table('notification')
+              ->join('user','user.id','=','notification.user_id')
+              ->join('project','project.id','=','notification.project_id')
+              ->where('user_id','=',$this->id)
+              ->select('user.username','project.name','notification.*')->get();
     }
 
     public function userProjects(int $n) {

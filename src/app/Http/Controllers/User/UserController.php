@@ -20,7 +20,9 @@ class UserController extends Controller {
         $notifications = Auth::user()->userNotifications();
         /*foreach($notifications as $notification){
         	echo $notification->notification_type;
-        }*/ 
+        	echo $notification->username;
+        	echo $notification->name;
+        }*/
 
 		$projects = Auth::user()->userProjects(0);
 
@@ -28,7 +30,7 @@ class UserController extends Controller {
         $taskCompletedMonth = Auth::user()->taskCompletedThisMonth()[0];
         $sprintsContributedTo = Auth::user()->sprintsContributedTo()[0];
       
-		return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 'sprintsContributedTo' => $sprintsContributedTo]);
+		return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications]);
 	}
 
 	/**
