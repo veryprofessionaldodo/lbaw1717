@@ -41,7 +41,7 @@ SELECT * from notification WHERE user_id = $user_id
 LIMIT 10 OFFSET $n;
 
 -- List all projects of a specific user, with their info, nº of members and nº of sprints and role
-SELECT project.name, project.description, project_members.isCoordinator, num.num_members, sprints.sprints_num
+SELECT project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
 FROM "user", project_members, project
 	INNER JOIN 
 	(SELECT project_id, COUNT(project_id) AS num_members
@@ -56,7 +56,7 @@ AND project_members.project_id = project.id AND num.project_id = project.id
 LIMIT 5 OFFSET $n;
 
 -- Visitor version 
-SELECT project.name, project.description, project_members.isCoordinator, num.num_members
+SELECT project.name, project.description, project_members.iscoordinator, num.num_members
 FROM "user", project_members, project
 	INNER JOIN 
 	(SELECT project_id, COUNT(project_id) AS num_members
@@ -93,7 +93,7 @@ AND task_state_record.task_id = task.id;
 
 -- Search user projects
 -- by ROLE
-SELECT project.name, project.description, project_members.isCoordinator, num.num_members, sprints.sprints_num
+SELECT project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
 FROM "user", project_members, project
 	INNER JOIN 
 	(SELECT project_id, COUNT(project_id) AS num_members
@@ -105,11 +105,11 @@ FROM "user", project_members, project
 	ON project.id = sprints.project_id
 WHERE "user".id = $user_id AND project_members.user_id = "user".id 
 AND project_members.project_id = project.id AND num.project_id = project.id
-AND project_members.isCoordinator = $isCoordinator
+AND project_members.iscoordinator = $iscoordinator
 LIMIT 5 OFFSET $n;
 
 -- by project name or description
-SELECT project.name, project.description, project_members.isCoordinator, num.num_members, sprints.sprints_num
+SELECT project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
 FROM "user", project_members, project
 	LEFT JOIN 
 	(SELECT project_id, COUNT(project_id) AS num_members
@@ -126,7 +126,7 @@ AND (to_tsvector('english', project.name || ' ' || project.description)
 LIMIT 5 OFFSET $n;
 
 -- by category
-SELECT project.name, project.description, project_members.isCoordinator, num.num_members, sprints.sprints_num
+SELECT project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
 FROM "user", project_members, project_categories, category, project
 	INNER JOIN 
 	(SELECT project_id, COUNT(project_id) AS num_members
@@ -150,7 +150,7 @@ LIMIT 5 OFFSET $n;
 -- show project info with all his team members and coordenators and categories - Visitor Page 
 SELECT name, description FROM project WHERE id = $project_id;
 
-SELECT "user".username, "user".image, project_members.isCoordinator
+SELECT "user".username, "user".image, project_members.iscoordinator
 FROM project_members, "user"
 WHERE project_members.project_id = $project_id AND project_members.user_id = "user".id
 LIMIT 10 OFFSET $n;
@@ -161,7 +161,7 @@ LIMIT 10 OFFSET $n;
 
 -- PROJECT SETTINGS
 -- Search (team member)
-SELECT "user".username, "user".image, project_members.isCoordinator
+SELECT "user".username, "user".image, project_members.iscoordinator
 FROM project_members, "user"
 WHERE project_members.project_id = $project_id AND project_members.user_id = "user".id
 AND "user".username LIKE '%$search%'
@@ -183,7 +183,7 @@ LIMIT 10 OFFSET $n;
 -- Members
 -- MEMBERS PAGE AS WELL
 -- PROJECT MEMBERS  (similar to above)
-SELECT "user".username, "user".image, project_members.isCoordinator
+SELECT "user".username, "user".image, project_members.iscoordinator
 FROM project_members, "user"
 WHERE project_members.project_id = $project_id AND project_members.user_id = "user".id
 LIMIT 10 OFFSET $n;

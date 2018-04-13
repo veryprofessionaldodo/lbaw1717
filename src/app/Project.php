@@ -14,10 +14,14 @@ class Project extends Model
 
 
   public function user() {
-    return $this->hasMany('App\User', 'project_members');
+    return $this->hasMany('App\User', 'project_members')->withPivot('iscoordinator');
   }
 
   public function sprints() {
+    return $this->hasMany('App\Sprint');
+  }
+
+  public function tasks() {
     return $this->hasMany('App\Sprint');
   }
 

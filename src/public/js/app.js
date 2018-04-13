@@ -6,7 +6,7 @@ function addEventListeners() {
 
 function dropUserOptions() {
 	let userDropdownMenu = document.querySelector("nav .user div#profile_options");
-	if(userDropdownMenu.style.height == "0px"){
+	if(userDropdownMenu.style.height == "0px" || userDropdownMenu.style.height == 0){
 		userDropdownMenu.style.height = "auto";
 		userDropdownMenu.style.opacity = "1";
 	}

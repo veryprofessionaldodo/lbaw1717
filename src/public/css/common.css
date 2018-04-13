@@ -80,6 +80,7 @@ nav ul li {
 	margin-top: 0.5em;
 	font-size: 18px;
 	color: white;
+	cursor: pointer;
 }
 
 #notifications #hamburger2 {
