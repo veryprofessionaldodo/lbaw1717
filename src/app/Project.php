@@ -22,7 +22,7 @@ class Project extends Model
   }
 
   public function tasks() {
-    return $this->hasMany('App\Sprint');
+    return $this->hasMany('App\Task');
   }
 
   /**

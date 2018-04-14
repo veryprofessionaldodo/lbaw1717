@@ -109,7 +109,7 @@ div.list-group-item a{
 	vertical-align: super;
 }
 
-div.list-group-item button.btn.edit_sprint {
+div.list-group-item a.btn.edit_sprint {
 	grid-column: 3;
 	grid-row: 1; 
 	background-color: inherit;
@@ -117,7 +117,7 @@ div.list-group-item button.btn.edit_sprint {
 	margin: auto 0 auto auto;
 }
 
-div.list-group-item button.btn.edit_sprint svg {
+div.list-group-item a.btn.edit_sprint svg {
 	font-size: 14px;
 	margin: auto 0;
 	color: #002;
@@ -645,7 +645,7 @@ div.col-12 div#task_images img {
 		font-size: 14px;
 	}
 
-	div.list-group-item button.btn.edit_sprint svg {
+	div.list-group-item a.btn.edit_sprint svg {
 		font-size: 12px;
 	}
 

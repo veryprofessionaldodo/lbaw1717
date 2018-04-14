@@ -1159,6 +1159,7 @@ INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Introdu
 INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Course mapping','Explain the different topics that will be covered, as well as their importance.',1,11,20);
 INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Write in the comments bellow your opinion','',1,12,21);
 INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Rewrite function about sound drivers','This function contains a bug with specific sound cards',4,12,22);
+INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Clean Code','Before delivering the project, the code has to be clean',2,3,NULL);
 
 INSERT INTO comment (content,date,user_id,task_id,thread_id) VALUES ('There will be a part of the website that will focus totally on Programming but, for now, it is more imperative that we finish the Mathematics chapters.',now(),1,NULL,1);
 INSERT INTO comment (content,date,user_id,task_id,thread_id) VALUES ('Ah, I didn''t know! Thank you!',now(),2,NULL,1);

@@ -59,16 +59,83 @@ class ProjectController extends Controller
       }
     }
 
-    /**
-     * Shows all cards.
-     *
-     * @return Response
-     */
-    public function list()
+    public function sprintsViewPartial($id)
     {
-      
+      if(Auth::check()){
+
+        $project = Project::find($id);
+        $role = null;
+        if(Auth::user()->projects()->get()->contains($project)){
+          //if user is member
+          $role = Auth::user()->projects()->find($project->id)->pivot->iscoordinator;
+          if($role == false)
+            $role = 'tm';
+          else
+            $role = 'co';
+        }
+        else if($project->ispublic){
+          //if project is public
+          $role = 'guest';
+        }
+        else
+          $this->authorize('not_authorized', $project);
+
+        $sprints = Project::find($id)->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
+        //TODO: get user assigned to task
+
+        /*foreach($sprints as $sprint){
+          //echo $sprint->name . '::';
+          foreach($sprint->tasks as $task){
+            //echo $task->name;
+            foreach($task->comments as $comment)
+              echo $comment;
+          }
+          //echo '\n';
+        }*/
+
+        //$notifications = Auth::user()->userNotifications();
+
+        $viewHTML = view('partials.sprints_view', ['sprints'=>$sprints, 'role' => $role])->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
+        
+      }
+      else {
+        // TODO: do the visitor view 
+      }
     }
 
+
+    public function taskView($id) {
+      if(Auth::check()){
+
+        $project = Project::find($id);
+        $role = null;
+        if(Auth::user()->projects()->get()->contains($project)){
+          //if user is member
+          $role = Auth::user()->projects()->find($project->id)->pivot->iscoordinator;
+          if($role == false)
+            $role = 'tm';
+          else
+            $role = 'co';
+        }
+        else if($project->ispublic){
+          //if project is public
+          $role = 'guest';
+        }
+        else
+          $this->authorize('not_authorized', $project);
+
+        $tasks = Project::find($id)->tasks()->where('task.sprint_id','=',null)->with('comments')->with('comments.user')->get();
+
+        $viewHTML = view('partials.tasks_view', ['tasks'=>$tasks, 'role' => $role])->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
+
+        //return view('partials.tasks_view', ['tasks'=>$tasks, 'role' => $role]);
+
+      }
+    }
+
+    
     /**
      * Creates a new card.
      *

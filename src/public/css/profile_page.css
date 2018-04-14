@@ -139,6 +139,10 @@ section button#new_project.btn.btn-primary {
 
 /* PROJECTS TAB */
 
+section > a {
+	text-decoration: none;
+}
+
 section div.project {
 	background-color: #CCD9CE;
 	margin: 1em 3em;
@@ -228,7 +232,7 @@ div.container.edit_profile h2 {
 	color: #ECE7F3;
 }
 
-div.container.edit_profile > button {
+div.container.edit_profile > a {
 	margin: 0.25em 0 0 0;
 }
 
