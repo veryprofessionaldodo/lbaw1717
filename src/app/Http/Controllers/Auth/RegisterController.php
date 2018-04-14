@@ -27,7 +27,7 @@ class RegisterController extends Controller
      * @var string
      */
     //protected $redirectTo = '/api/users/' + Auth::user()->username;
-    //protected $redirectTo = '/';
+    protected $redirectTo = '/';
 
     public function redirect() {
         if(Auth::check()){

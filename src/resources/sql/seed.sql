@@ -23,7 +23,7 @@ CREATE TABLE "user" (
 	disable boolean NOT NULL DEFAULT FALSE,
 	password text NOT NULL,
 	remember_token TEXT,
-	isAdmin boolean NOT NULL
+	isAdmin boolean NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE project (
