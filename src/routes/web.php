@@ -37,6 +37,9 @@ Route::post('api/users/projects/search_project', 'User\UserController@searchUser
 Route::put('api/users/projects/new_project', 'User\UserController@newProject');
 
 
+//Admin
+Route::get('api/admin/{username}', 'User\UserController@showAdminPage');
+
 // Project
 Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members'); //done
 Route::get('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersList');

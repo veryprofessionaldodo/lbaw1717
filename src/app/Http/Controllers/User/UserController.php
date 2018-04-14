@@ -31,6 +31,13 @@ class UserController extends Controller {
         $sprintsContributedTo = Auth::user()->sprintsContributedTo()[0];
   
 		return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'n' => (int)$n, 'numProjects' => $numProjects]);
+      
+	}
+
+	public function showAdminPage(string $username){
+		if (!Auth::check()) return redirect('/login');
+
+		return view('pages/admin_page');
 	}
 
     /**
