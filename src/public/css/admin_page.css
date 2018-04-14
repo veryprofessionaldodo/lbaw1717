@@ -3,148 +3,266 @@
   SECTION 
 */ 
 h2 { 
-    text-align: center; 
-    padding-top: 0.5em; 
-    color: #0A1827; 
-  } 
+  text-align: center; 
+  padding-top: 0.5em; 
+  color: #0A1827; 
+} 
+ 
+.container-fluid { 
+  margin: 0; 
+  padding: 0; 
+  vertical-align: top; 
+  min-height: 100vh; 
+  color: black; 
+} 
+ 
+div.row { 
+  margin: 0 1em; 
+} 
+ 
+.container-fluid > div.row { 
+  min-height: 100vh; 
+} 
+ 
+aside.col-12 { 
+  padding: 0; 
+} 
+ 
+aside a#active { 
+  margin-top: 1em; 
+  background-color: #002325; 
+} 
+ 
+.col-6 a{ 
+  font-size: 1.1em; 
+  color: #aaa; 
+} 
+ 
+div.row a.col-6 { 
+  background-color: #00494C; 
+  margin-top: 1em; 
+} 
+ 
+aside div a { 
+  /*outline: 2px solid #508689;*/ 
+  text-decoration: none;
+  color: white;
+  padding: 1em; 
+  background-color: #9AC0BA; 
+  text-align: center; 
+} 
+ 
+ 
+aside.col-6 { 
+  text-align: center; 
+} 
+ 
+ 
+section { 
+  margin: 0 0; 
+  padding: 1em; 
+} 
+ 
+ 
+section div#search_bar input.form-control { 
+  display: inline-block; 
+  width: flex; 
    
-  .container-fluid { 
-    margin: 0; 
-    padding: 0; 
-    vertical-align: top; 
-    min-height: 100vh; 
-    color: black; 
-  } 
-   
-  div.row { 
-    margin: 0 1em; 
-  } 
-   
-  .container-fluid > div.row { 
-    min-height: 100vh; 
-  } 
-   
-  aside.col-12 { 
-    padding: 0; 
-  } 
-   
-  aside div#active { 
-    margin-top: 1em; 
-    background-color: #002325; 
-  } 
-   
-  aside div#active a{ 
-    font-size: 1.1em; 
-    color: #FFF; 
-  } 
-   
-  .col-6 a{ 
-    font-size: 1.1em; 
-    color: #aaa; 
-  } 
-   
-  div.row div.col-6 { 
-    background-color: #00494C; 
-    margin-top: 1em; 
-  } 
-   
-  aside div div { 
-    /*outline: 2px solid #508689;*/ 
-    padding: 1em; 
-    background-color: #9AC0BA; 
-    text-align: center; 
-  } 
-   
-   
-  aside.col-6 { 
-    text-align: center; 
-  } 
-   
-   
-  section { 
-    margin: 2em 0; 
-    padding: 1em; 
-  } 
-   
-   
-  section div#search_bar input.form-control { 
-    display: inline-block; 
-    width: flex; 
-     
-  } 
-   
-  section div#search_bar button.btn { 
-    display: inline-block; 
-    vertical-align: inherit; 
-  } 
-   
-  div > button { 
-    background-color: #0A1827; 
-    transition: all 0.2s; 
-  } 
-   
-  div > button:hover { 
-    background-color: #AA000C; 
-  } 
-   
-  section div#reports { 
-    margin: 2em 0; 
-  } 
-   
-  section div#reports div.report { 
-    margin: 1em 0; 
-  } 
-   
-  section div#reports div.report div.report_principal_info { 
-    border-top: 1px solid #508689; 
-    background-color: #ECE7F3; 
-    padding: 1em; 
-    display: grid; 
-    grid-template-columns: 40% 10% auto; 
-  } 
-   
-  section div#reports div.report div.report_principal_info p{ 
-    grid-column-start: 1; 
-    grid-column-end: 2; 
-    margin: auto 0; 
-  } 
-  section div#reports div.report div.report_principal_info a{ 
-    grid-column-start: 2; 
-    grid-column-end: 3; 
-    margin: auto 0; 
-    text-align: center; 
-  } 
-   
-  section div#reports div.report div.report_principal_info div.options{ 
-    grid-column-start: 3; 
-    grid-column-end: 4; 
-    text-align: right; 
-    margin: auto 0; 
-    display: block; 
-  } 
-   
-  section div#reports div.report div.report_details { 
-    outline: 1px solid #558A8C; 
-    background-color: #CCD9CE; 
-    padding: 1em; 
-  } 
-   
-  section div#reports div.report div.report_details h4:first-of-type { 
-    margin-top: 0.5em; 
-  } 
-   
-   
-  /** 
-    Comments 
-  */ 
-   
-  section div#reports div.report.report_comment div.report_principal_info { 
-    background-color: #ECE7F3; 
-    padding: 1em; 
-    display: grid; 
-    grid-template-columns: 40% auto 20%; 
-  } 
-   
-  section div#reports div.report.report_comment div.report_principal_info div.options { 
-    margin: auto 0 auto auto; 
-  } 
+} 
+ 
+section div#search_bar button.btn { 
+  display: inline-block; 
+  vertical-align: inherit; 
+} 
+ 
+div > button { 
+  background-color: #0A1827; 
+  transition: all 0.2s; 
+} 
+ 
+div > button:hover { 
+  background-color: #AA000C; 
+} 
+ 
+section div#reports { 
+  margin: 2em 0; 
+} 
+ 
+section div#reports div.report { 
+  margin: 1em 0; 
+} 
+ 
+section div#reports div.report div.report_principal_info { 
+  border-top: 1px solid #508689; 
+  background-color: #ECE7F3; 
+  padding: 1em; 
+  display: grid; 
+  grid-template-columns: 40% 10% auto; 
+} 
+ 
+section div#reports div.report div.report_principal_info p{ 
+  grid-column-start: 1; 
+  grid-column-end: 2; 
+  margin: auto 0; 
+} 
+section div#reports div.report div.report_principal_info a{ 
+  grid-column-start: 2; 
+  grid-column-end: 3; 
+  margin: auto 0; 
+  text-align: center; 
+} 
+ 
+section div#reports div.report div.report_principal_info div.options{ 
+  grid-column-start: 3; 
+  grid-column-end: 4; 
+  text-align: right; 
+  margin: auto 0; 
+  display: block; 
+} 
+ 
+section div#reports div.report div.report_details { 
+  outline: 1px solid #558A8C; 
+  background-color: #CCD9CE; 
+  padding: 1em; 
+} 
+ 
+section div#reports div.report div.report_details h4:first-of-type { 
+  margin-top: 0.5em; 
+} 
+ 
+ 
+/** 
+  Comments 
+*/ 
+ 
+section div#reports div.report.report_comment div.report_principal_info { 
+  background-color: #ECE7F3; 
+  padding: 1em; 
+  display: grid; 
+  grid-template-columns: 40% auto 20%; 
+} 
+ 
+section div#reports div.report.report_comment div.report_principal_info div.options { 
+  margin: auto 0 auto auto; 
+} 
+
+@media screen and (max-width: 1060px) {
+  aside h4 {
+    font-size: 20px;
+  }
+  aside.col-md-2 {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 935px){
+  section div#reports div.report div.report_principal_info {
+    grid-template-columns: 40% 15% auto;
+  }
+
+  aside h4 {
+    font-size: 22px;
+    color: #B05315;
+  }
+
+  section div#reports div.report.report_comment div.report_principal_info {
+    grid-template-columns: 40% auto 25%;
+  }
+
+}
+@media screen and (max-width: 840px) {
+  section div#reports div.report p, section div#reports div.report a {
+    font-size: 14px;
+  }
+
+  section div#reports div.report div.report_principal_info div.options button.btn{
+    font-size: 14px;
+    padding: 0.5em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  aside div a#active {
+    border-width: 0 2px 0 0;
+  }
+
+  aside div div {
+    border-width: 0 2px 2px 2px;
+  }
+}
+
+
+@media screen and (max-width: 671px) {
+  aside div a{
+    padding: 1em;
+    margin: auto;
+  }
+
+  /*aside div div h4 {
+    font-size: 18px;
+    margin: auto;
+    text-align: center;
+  }*/
+  
+  section div#reports div.report div.report_principal_info {
+    grid-template-columns: 50% 15% auto;
+  }
+
+  section div#reports div.report div.report_principal_info div.options button.btn{
+    font-size: 12px;
+    width: 75%;
+  }
+
+  section div#reports div.report.report_comment div.report_principal_info {
+    grid-template-columns: 40% auto 30%;
+  }
+}
+
+@media screen and (max-width: 590px) {
+
+  section div#reports div.report div.report_principal_info div.options button.btn{
+    font-size: 12px;
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  section div#reports div.report div.report_principal_info {
+    display: block;
+  }
+
+  section div#reports div.report div.report_principal_info > * {
+    text-align: center;
+    display: block;
+  }
+
+  section div#reports div.report div.report_principal_info p {
+    margin-bottom: 1em;
+  }
+
+  section div#reports div.report div.report_principal_info a {
+    margin-bottom: 1em;
+  }
+
+  section div#reports div.report div.report_principal_info div.options button.btn {
+    display: block;
+    margin: 1em auto;
+  }
+
+  section div#reports div.report.report_comment div.report_principal_info {
+    display: block;
+  }
+
+  section div#reports div.report.report_comment div.report_principal_info > * {
+    text-align: center;
+    display: block;
+  }
+
+  section div#reports div.report.report_comment div.report_principal_info p {
+    margin-bottom: 1em;
+  }
+
+  section div#reports div.report.report_comment div.report_principal_info a {
+    margin-bottom: 1em;
+  }
+}

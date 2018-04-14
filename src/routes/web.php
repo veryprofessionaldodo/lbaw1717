@@ -37,9 +37,6 @@ Route::post('api/users/projects/search_project', 'User\UserController@searchUser
 Route::put('api/users/projects/new_project', 'User\UserController@newProject');
 
 
-//Admin
-Route::get('api/admin/{username}', 'User\UserController@showAdminPage');
-
 // Project
 Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members'); //done
 Route::get('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersList');
@@ -93,11 +90,14 @@ Route::get('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'Proj
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@threadCommentEditAction');
 Route::delete('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread');
 Route::delete('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment');
+*/
 
 //Admin Administraton, Report and Static Pages
-*/Route::get('admin/reports/comments', 'AdminController@commentReportsView');
-/*Route::get('admin/reports/users', 'AdminController@userReportsView');
-Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView');
+Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
+Route::get('api/admin/{username}/reports/comments', 'AdminController@commentReportsView')->name('admin_comments');
+Route::get('api/admin/{username}/reports/users', 'AdminController@userReportsView')->name('admin_users');
+
+/*Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView');
 Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportView');
 Route::delete('admin/reports/{report_id}', 'AdminController@deleteReport');
 Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser');

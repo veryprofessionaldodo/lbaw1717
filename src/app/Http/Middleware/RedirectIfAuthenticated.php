@@ -17,8 +17,8 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {   
-        if(Auth::check() && Auth::user()->isAdmin()){
-            return redirect()->action('User\UserController@showAdminPage', Auth::user()->username);
+        if(Auth::guard($guard)->check() && Auth::user()->isAdmin()){
+            return redirect()->action('AdminController@showAdminPage', Auth::user()->username);
         }
 
         if (Auth::guard($guard)->check()){
