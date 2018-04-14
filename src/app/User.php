@@ -41,6 +41,11 @@ class User extends Authenticatable
        return $this->belongsToMany(Project::class, 'project_members');
     }
 
+    public function isAdmin()
+    {
+        return $this->isadmin; // this looks for an admin column in your users table
+    }
+
     // nao funciona
     /*public function Notifications() {
       return $this->hasMany('App\Notification', 'user_id');
