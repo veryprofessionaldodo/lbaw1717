@@ -34,16 +34,6 @@ class ProjectController extends Controller
         $sprints = Project::find($id)->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
         //TODO: get user assigned to task
 
-        /*foreach($sprints as $sprint){
-          //echo $sprint->name . '::';
-          foreach($sprint->tasks as $task){
-            //echo $task->name;
-            foreach($task->comments as $comment)
-              echo $comment;
-          }
-          //echo '\n';
-        }*/
-
         $notifications = Auth::user()->userNotifications();
 
         return view('pages/project_page', ['project' => $project, 'sprints' => $sprints, 'notifications' => $notifications, 'role' => $role]);
@@ -76,18 +66,6 @@ class ProjectController extends Controller
 
         $sprints = Project::find($id)->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
         //TODO: get user assigned to task
-
-        /*foreach($sprints as $sprint){
-          //echo $sprint->name . '::';
-          foreach($sprint->tasks as $task){
-            //echo $task->name;
-            foreach($task->comments as $comment)
-              echo $comment;
-          }
-          //echo '\n';
-        }*/
-
-        //$notifications = Auth::user()->userNotifications();
 
         $viewHTML = view('partials.sprints_view', ['sprints'=>$sprints, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
@@ -136,19 +114,21 @@ class ProjectController extends Controller
       }
     }
 
-    
-    /**
-     * Creates a new card.
-     *
-     * @return Card The card created.
-     */
-    public function create(Request $request)
-    {
-      
+
+    public function searchProject(Request $request) {
+      /*SELECT "name", description FROM project
+      WHERE (to_tsvector('english', project.name || ' ' || project.description) 
+        @@ plainto_tsquery('english', $search))
+      AND isPublic = TRUE
+      ORDER BY name
+      LIMIT 10 OFFSET $n;*/
+
+      //return $request->input('search');
+      $notifications = Auth::user()->userNotifications();
+
+      $projects = Project::search($request->input('search'))->with('user')->take(10)->get();
+
+      return view('pages.result_search', ['projects' => $projects, 'notifications' => $notifications]);
     }
 
-    public function delete(Request $request, $id)
-    {
-      
-    }
 }
