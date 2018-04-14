@@ -69,7 +69,6 @@ function showSprintsView() {
 
 function showTasksView() {
 	let data = JSON.parse(this.responseText);
-	console.log(data);
 	
 	let content = document.querySelector("section.container-fluid div.row.content_view");
 	content.innerHTML = data.html;
@@ -77,7 +76,7 @@ function showTasksView() {
 
 function showMembersView() {
 	let data = JSON.parse(this.responseText);
-	console.log(window.innerHTML);
+
 	let content = document.querySelector("section.container-fluid div.row.content_view");
 	content.innerHTML = data.html;
 }

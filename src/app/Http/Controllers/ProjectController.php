@@ -34,16 +34,6 @@ class ProjectController extends Controller
         $sprints = Project::find($id)->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
         //TODO: get user assigned to task
 
-        /*foreach($sprints as $sprint){
-          //echo $sprint->name . '::';
-          foreach($sprint->tasks as $task){
-            //echo $task->name;
-            foreach($task->comments as $comment)
-              echo $comment;
-          }
-          //echo '\n';
-        }*/
-
         $notifications = Auth::user()->userNotifications();
 
         return view('pages/project_page', ['project' => $project, 'sprints' => $sprints, 'notifications' => $notifications, 'role' => $role]);
@@ -76,18 +66,6 @@ class ProjectController extends Controller
 
         $sprints = Project::find($id)->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
         //TODO: get user assigned to task
-
-        /*foreach($sprints as $sprint){
-          //echo $sprint->name . '::';
-          foreach($sprint->tasks as $task){
-            //echo $task->name;
-            foreach($task->comments as $comment)
-              echo $comment;
-          }
-          //echo '\n';
-        }*/
-
-        //$notifications = Auth::user()->userNotifications();
 
         $viewHTML = view('partials.sprints_view', ['sprints'=>$sprints, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
@@ -124,6 +102,8 @@ class ProjectController extends Controller
         $viewHTML = view('partials.tasks_view', ['tasks'=>$tasks, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
       }
+      else
+        return redirect('/login');
     }
 
     public function projectMembersView($id) {
@@ -134,6 +114,8 @@ class ProjectController extends Controller
         $viewHTML = view('partials.project_members', ['members' => $members])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
       }
+      else 
+        return redirect('/login');
     }
 
 
@@ -174,8 +156,12 @@ class ProjectController extends Controller
       
     }
 
-    public function delete(Request $request, $id)
-    {
-      
+    public function searchProject(Request $request) {
+      $notifications = Auth::user()->userNotifications();
+
+      $projects = Project::search($request->input('search'))->with('user')->take(10)->get();
+
+      return view('pages.result_search', ['projects' => $projects, 'notifications' => $notifications]);
     }
+
 }

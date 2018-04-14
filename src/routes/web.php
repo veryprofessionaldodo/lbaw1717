@@ -14,6 +14,9 @@
 //Landing Page
 Route::get('/', 'LandingPageController@showLandingPage'); //done
 
+//Search public projects
+Route::post('api/search', 'ProjectController@searchProject')->name('search'); //done
+
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); //done
 Route::post('login', 'Auth\LoginController@login'); //done
@@ -23,8 +26,8 @@ Route::post('register', 'Auth\RegisterController@register'); //done
 
 // User
 Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile');
-Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile');
-Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action');
+Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
+Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action'); // done
 
 Route::post('api/users/projects/accept_invite', 'User\UserController@acceptInvite');
 Route::post('api/users/projects/unsigned_project', 'User\UserController@unsignProject');
@@ -34,8 +37,11 @@ Route::post('api/users/projects/search_project', 'User\UserController@searchUser
 Route::put('api/users/projects/new_project', 'User\UserController@newProject');
 
 
+//Admin
+Route::get('api/admin/{username}', 'User\UserController@showAdminPage');
+
 // Project
-Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members');
+Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members'); //done
 Route::get('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersList');
 Route::delete('api/projects/{project_}/settings/members/{username}', 'ProjectController@projectSettingsMembersRemove');
 Route::get('api/projects/{project_id}/settings/requests', 'ProjectController@projectSettingsRequestsList');

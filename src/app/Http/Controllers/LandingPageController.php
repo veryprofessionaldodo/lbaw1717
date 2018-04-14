@@ -29,13 +29,6 @@ class LandingPageController extends Controller {
     {
         $this->middleware('guest')->except('logout');
     }
-
-    /*public function redirectPath() {
-        if (Auth::check()) {
-            //return redirect()->action('User\UserController@showProfile', Auth::user()->username);
-            $this->redirectTo = '/api/users/' + Auth::user()->username;
-        }
-    }*/
 }
 
 ?>

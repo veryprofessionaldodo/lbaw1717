@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/search.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/projects_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
@@ -32,8 +33,11 @@
       <a class="col-3" href="{{ url('/')}}">Proyekt</a>
 
       <!--  FAZER ESTE FORM ATIVO -->
-      <form class="col-6">
-        <input class="form-control" type="text" placeholder="Search">
+      <form class="col-6" method="POST" action="{{ route('search') }}">
+        {{ csrf_field() }}
+
+        <input class="form-control" name="search" type="text" placeholder="Search">
+
         <button class="btn btn-primary" type="submit">
           <i class="fas fa-search"></i>
         </button>
