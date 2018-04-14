@@ -25,6 +25,10 @@ class Project extends Model
     return $this->hasMany('App\Task');
   }
 
+  public function threads() {
+    return $this->hasMany('App\Thread');
+  }
+
   /**
    * The user this card belongs to
    */
