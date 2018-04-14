@@ -1,6 +1,5 @@
-<!-- Task -->
 <div class="sprint-task">
-	<a data-toggle="collapse" href="#sprint-1-c-1"><i class="fas fa-sort-down"></i></a>
+	<a data-toggle="collapse" href="{{$task->id}}"><i class="fas fa-sort-down"></i></a>
 	<p>{{$task->name}}</p>
 	@if($role == 'tm')
 		<button class="btn">Claim task</button>
@@ -12,8 +11,8 @@
 	@endif
 	<input type="checkbox">
 </div>
-<!-- Comments -->
-<div class="list-group collapse" id="sprint-1-c-1">
+
+<div class="list-group collapse" id="{{$task->id}}">
 
 	@each('partials.comment', $task->comments, 'comment')
 	

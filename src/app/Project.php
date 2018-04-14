@@ -14,7 +14,7 @@ class Project extends Model
 
 
   public function user() {
-    return $this->hasMany('App\User', 'project_members')->withPivot('iscoordinator');
+    return $this->belongsToMany('App\User', 'project_members')->withPivot('iscoordinator');
   }
 
   public function sprints() {

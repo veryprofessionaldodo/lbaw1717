@@ -1,6 +1,6 @@
 <!-- Sprint -->
 <div class="list-group-item">
-	<a data-toggle="collapse" href="#sprint-1"><i class="fas fa-sort-down"></i>{{$sprint->name}}</a>
+	<a data-toggle="collapse" href="{{$sprint->id}}"><i class="fas fa-sort-down"></i>{{$sprint->name}}</a>
 
 	<?php 
 		$a = new \DateTime('now'); 
@@ -16,7 +16,7 @@
 	<span class="badge badge-primary badge-pill">{{ sizeof($sprint->tasks)}}</span>
 </div>
 <!-- Tasks -->
-<div class="list-group collapse" id="sprint-1">
+<div class="list-group collapse" id="{{$sprint->id}}">
 
 	@foreach($sprint->tasks as $task)
 		@include('partials.task', ['task' => $task, 'role' => $role])

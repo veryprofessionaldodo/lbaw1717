@@ -353,9 +353,9 @@ div.comment div.form_comment button.btn {
 	MEMBERS
 */
 
-div#members {
+div#members div.row{
 	margin: 0;
-	padding: 0 2em;
+	background-color: #59738c; 
 }
 
 div#members div#user_search {
@@ -380,16 +380,13 @@ div#members div#user_search button.btn{
 }
 
 div#members div.member {
-	margin: 1em 0;
+	margin: 0 auto;
 	padding: 1em;
 	border-top: 1px solid #001;
 }
 
 div#members div.member div.info {
 	text-align: left;
-}
-div.members div.member {
-	margin: 1em auto;
 }
 
 div#members div.member div.info img{
@@ -410,7 +407,7 @@ div#members div.member div.info a{
 div#members div.member p {
 	margin: auto;
 	display: block;
-	color: #DF691A;
+	color: white;
 }
 
 a:hover{

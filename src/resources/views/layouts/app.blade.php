@@ -23,6 +23,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/profile.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/project.js') }} defer></script>
   </head>
   
   <body>

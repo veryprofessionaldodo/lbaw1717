@@ -9127,9 +9127,7 @@ label,
 }
 
 .nav-tabs .nav-link,
-.nav-tabs .nav-link:hover,
-.nav-pills .nav-link,
-.nav-pills .nav-link:hover {
+.nav-pills .nav-link {
   color: #aaa;
   background-color: #00494C;
 }

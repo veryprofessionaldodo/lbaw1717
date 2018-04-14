@@ -35,7 +35,7 @@ Route::put('api/users/projects/new_project', 'User\UserController@newProject');
 
 
 // Project
-Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersList')->name('project_members');
+Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members');
 Route::get('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersList');
 Route::delete('api/projects/{project_}/settings/members/{username}', 'ProjectController@projectSettingsMembersRemove');
 Route::get('api/projects/{project_id}/settings/requests', 'ProjectController@projectSettingsRequestsList');
@@ -46,9 +46,10 @@ Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectSta
 Route::post('api/projects/{project_id}/members', 'ProjectController@projectMembersSearch');
 Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
 
-Route::get('api/projects/{project_id}', function($id) {
+/*Route::get('api/projects/{project_id}', function($id) {
 	return redirect()->route('project_sprints', ['id' => $id]);
-})->name('project'); // done
+})->name('project'); // done*/
+Route::get('api/projects/{project_id}', 'ProjectController@project')->name('project');
 
 //Sprints and Tasks
 Route::get('api/projects/{project_id}/sprints', 'ProjectController@sprintsView')->name('project_sprints'); //done

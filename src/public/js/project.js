@@ -1,7 +1,8 @@
+let sprintButton = document.querySelector("li.nav-item a#sprint_btn");
+let taskButton = document.querySelector("li.nav-item a#task_btn");
+let memberButton = document.querySelector("li.nav-item a#member_btn");
+
 function addEventListeners() {
-	let sprintButton = document.querySelector("li.nav-item a#sprint_btn");
-	let taskButton = document.querySelector("li.nav-item a#task_btn");
-	let memberButton = document.querySelector("li.nav-item a#member_btn");
 
 	sprintButton.addEventListener('click', switchSprintsView);
 	taskButton.addEventListener('click', switchTasksView);
@@ -31,38 +32,54 @@ function sendAjaxRequest(method, url, data, handler) {
 
 function switchSprintsView(event) {
 	event.preventDefault();
+
+	sprintButton.classList.add('active');
+	taskButton.classList.remove('active');
+	memberButton.classList.remove('active');
+
 	sendAjaxRequest('get', event.target.href, null, showSprintsView);
 }
 
 function switchTasksView(event) {
 	event.preventDefault();
+
+	sprintButton.classList.remove('active');
+	taskButton.classList.add('active');
+	memberButton.classList.remove('active');
+
 	sendAjaxRequest('get', event.target.href, null, showTasksView);
 }
 
 function switchMembersView(event) {
 	event.preventDefault();
-	sendAjaxRequest('get', event.target.href, null, showmembersView);
+
+	sprintButton.classList.remove('active');
+	taskButton.classList.remove('active');
+	memberButton.classList.add('active');
+
+	sendAjaxRequest('get', event.target.href, null, showMembersView);
 }
 
 function showSprintsView() {
-	$data = JSON.parse(this.reponseText);
+	let data = JSON.parse(this.responseText);
 
-	let content = document.querySelector("div.row.content_view");
-	content.innerHTML = $data.html;
+	let content = document.querySelector("section.container-fluid div.row.content_view");
+	content.innerHTML = data.html;
 }
 
 function showTasksView() {
-	$data = JSON.parse(this.reponseText);
+	let data = JSON.parse(this.responseText);
+	console.log(data);
 	
-	let content = document.querySelector("div.row.content_view");
-	content.innerHTML = $data.html;
+	let content = document.querySelector("section.container-fluid div.row.content_view");
+	content.innerHTML = data.html;
 }
 
 function showMembersView() {
-	$data = JSON.parse(this.reponseText);
+	let data = JSON.parse(this.responseText);
 	console.log(window.innerHTML);
-	let content = document.querySelector("div.row.content_view");
-	content.innerHTML = $data.html;
+	let content = document.querySelector("section.container-fluid div.row.content_view");
+	content.innerHTML = data.html;
 }
 
 addEventListeners();

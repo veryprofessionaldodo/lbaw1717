@@ -10,13 +10,7 @@ use App\Project;
 
 class ProjectController extends Controller
 {
-    /**
-     * Shows the card for a given id.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function sprintsView($id)
+    public function project($id)
     {
       if(Auth::check()){
 
@@ -59,7 +53,7 @@ class ProjectController extends Controller
       }
     }
 
-    public function sprintsViewPartial($id)
+    public function sprintsView($id)
     {
       if(Auth::check()){
 
@@ -129,9 +123,16 @@ class ProjectController extends Controller
 
         $viewHTML = view('partials.tasks_view', ['tasks'=>$tasks, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
+      }
+    }
 
-        //return view('partials.tasks_view', ['tasks'=>$tasks, 'role' => $role]);
+    public function projectMembersView($id) {
+      if(Auth::check()) {
 
+        $members = Project::find($id)->user()->get();
+        
+        $viewHTML = view('partials.project_members', ['members' => $members])->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
       }
     }
 
