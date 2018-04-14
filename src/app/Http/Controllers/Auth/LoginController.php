@@ -38,7 +38,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout', 'getLogout');
     }
 
     /*public function redirectPath() {
@@ -47,5 +47,6 @@ class LoginController extends Controller
             $this->redirectTo = '/api/users/' + Auth::user()->username;
         }
     }*/
+
 
 }

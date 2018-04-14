@@ -1,0 +1,804 @@
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+	color: #0A1827;
+}
+
+/*
+		Container
+*/
+
+section {
+	text-align: center;
+	color: #001;
+}
+
+.col-12 h4 {
+	margin-bottom: 1rem;
+}
+
+.col-12 h1 {
+	margin-top: 0;
+}
+
+section.container-fluid {
+	min-height: 100vh;
+	margin: 2em auto;
+	max-width: 75%;
+}
+
+/*
+	DIV extra-buttons
+*/
+
+#info_buttons {
+	margin: auto;
+}
+
+#info_buttons button{
+	width: 8em;
+	margin: 0.5em 0;
+}
+
+section.container-fluid .row .nav-tabs {
+	margin-top: 1em;
+}
+
+.nav-tabs{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.nav-tabs .nav-item {
+	flex-grow: 1;
+}
+
+/**
+	COORDINATOR
+*/
+
+div.new_sprint {
+	margin: 1em auto;
+}
+
+div.new_task {
+	margin: 1em auto;
+}
+
+/**
+	SPRINTS
+*/
+
+#sprints {
+	grid-column: 2;
+	grid-row: 3;
+}
+
+div a {
+	color: #0A1827;
+}
+
+div.list-group-item svg{
+	margin-right: 0.5em;
+	font-size: 24px;
+}
+
+div.list-group-item {
+	padding: 1em;
+	display: grid;
+	border: 0;
+	background-color: #ECE7F3;
+	border-top: 2px solid #0A1827;
+	border-bottom: 2px solid #0A1827;
+	grid-template-columns: 50% auto auto auto;
+}
+
+div.list-group-item p{
+	vertical-align: inherit;
+	margin: auto 0;
+	color: #002;
+}
+
+div.list-group-item a{
+	color: #002;
+	cursor: pointer;
+	text-align: left;
+	vertical-align: super;
+}
+
+div.list-group-item a.btn.edit_sprint {
+	grid-column: 3;
+	grid-row: 1; 
+	background-color: inherit;
+	padding: 0;
+	margin: auto 0 auto auto;
+}
+
+div.list-group-item a.btn.edit_sprint svg {
+	font-size: 14px;
+	margin: auto 0;
+	color: #002;
+}
+
+div.list-group-item span {
+	grid-column: 4;
+	grid-row: 1; 
+	margin: auto 0 auto auto;
+}
+
+div.sprint-task {
+	background-color: #CCD9CE;
+	padding: 0 1em 0 3em;
+	display: grid;
+	grid-template-columns: 5% auto auto auto 5%;
+	border-bottom: 1px solid #0A1827;
+	/*border-left: 2px solid #000;
+	border-right: 2px solid #000;
+	border-top: 2px solid #000;*/
+}
+
+div.sprint-task.create_task {
+	padding: 1em;
+	display: flex;
+	justify-content: flex-start;
+}
+
+div.sprint-task.create_task input {
+	width: 100%;
+	margin: auto 1em;
+}
+
+div.sprint-task.create_task button {
+	margin: auto;
+	display: inline;
+}
+
+div.sprint-task svg{
+	grid-column-start: 1;
+	grid-column-end: 2;
+	font-size: 18px;
+	margin: 1em 0;
+	color: #002;
+}
+
+div.sprint-task p{
+	color: #002;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	margin: auto 0;
+	text-align: left;
+}
+
+div.sprint-task div.coordinator_options {
+	grid-column-start: 4;
+	grid-column-end: 5;
+	display: flex;
+	justify-content: flex-end;
+}
+
+div.sprint-task div.coordinator_options button.edit_task.btn {
+	background-color: inherit;
+	padding: 0;
+	grid-column-start: 4;
+	grid-column-end: 5;
+	grid-row: 1;
+}
+
+div.sprint-task button.edit_task.btn svg {
+	font-size: 14px;
+	margin: auto 0;
+}
+
+div.sprint-task div.coordinator_options button.btn {
+	margin: auto 1em;
+	padding: 0 1em;
+}
+
+div.sprint-task button.btn {
+	grid-column-start: 4;
+	grid-column-end: 5;
+	grid-row: 1;
+	background-color: #0A1827;
+	margin: auto 0 auto auto;
+	padding: 0 1em;
+}
+
+div.sprint-task div.assigned_users {
+	margin: auto 0 auto auto;
+}
+
+div.sprint-task div.assigned_users img{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	max-width: 5%;
+	min-width: 1em;
+	border-radius: 50px;
+	margin: auto 0 auto auto;
+}
+
+div.sprint-task input[type="checkbox"] {
+	width: 1.5em;
+	height: 1.5em;
+	margin: auto 0 auto auto;
+	grid-column-start: 5;
+	grid-column-end: 6;
+}
+
+div.sprint-task.task_completed {
+	opacity: 1;	
+}
+
+div.sprint-task.task_completed p.task_completed {
+	text-decoration: line-through;
+}
+
+div.comment {
+	background-color: #558A8C;
+	padding: 1em 1em 1em 4em;
+	display: grid;
+	grid-template-columns: 5% 15% auto;
+}
+
+div.comment:last-of-type {
+	border-bottom: 1px solid #0A1827;
+}
+
+div.comment img {
+	max-width: 100%;
+	max-height: 100%;
+	min-width: 2em;
+	border-radius: 50px;
+	grid-column-start: 1; 
+	grid-column-end: 2; 
+}
+
+div.comment h6 {
+	font-weight: bold;
+	grid-column-start: 2; 
+	grid-column-end: 3;
+	text-align: justify; 
+	margin: auto 1em;
+}
+
+div.comment > * {
+	display: inline;
+	margin: auto;
+}
+
+div.comment > p {
+	background-color: #DDD;
+	color: black;
+	text-align: justify;
+	padding: 1em;
+	border-radius: 20px;
+	width: auto;
+	margin: 0 2em 0 1em;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+}
+
+div.comment > span {
+	font-size: 12px;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 2;
+	text-align: left;
+	margin: 0 4em;
+}
+
+div.comment div.user_options {
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+	margin: auto 0 auto auto;
+}
+
+div.comment div.user_options button {
+	font-size: 12px;
+	background-color: inherit;
+	color: #3e4a56;
+	padding: 0;
+
+}
+div.comment div.user_options  p{
+	color: #3e4a56;
+	font-size: 7px;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+div.comment p.label {
+	grid-column-start: 1; 
+	grid-column-end: 3;
+	background-color: inherit;
+	color: white;
+	margin: auto 1em;
+	padding: 0;
+	text-align: right;
+	vertical-align: middle;
+}
+
+div.comment div.form_comment {
+	display: flex;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+	width: auto;
+	margin: 0;
+}
+
+div.comment div.form_comment input.form-control {
+	margin: 0 0 0 1em;
+	width: 100%;
+	flex-grow: 1;
+}
+
+div.comment div.form_comment button.btn {
+	margin: 0;
+}
+
+
+	
+/**
+	TASKS
+*/
+
+
+/**
+	MEMBERS
+*/
+
+div#members div.row{
+	margin: 0;
+	background-color: #59738c; 
+}
+
+div#members div#user_search {
+	margin: 1em 0;
+}
+
+div.members .header{
+	border-top:2px solid #0A1827;
+	border-bottom:2px solid #0A1827;
+	color: #001;
+	background-color: #ECE7F3; 
+}
+
+div#members div#user_search input.form-control{
+	margin: auto;
+	width: auto;
+	display: inline;
+}
+
+div#members div#user_search button.btn{
+	display: inline;
+}
+
+div#members div.member {
+	margin: 0 auto;
+	padding: 1em;
+	border-top: 1px solid #001;
+}
+
+div#members div.member div.info {
+	text-align: left;
+}
+
+div#members div.member div.info img{
+	margin: auto;
+	max-width: 5em;
+	max-height: 5em;
+	border-radius: 50%;
+	margin: 0 1em;
+}
+
+div#members div.member div.info a{
+	margin: 1em auto;
+	font-weight: bold;
+	display: inline;
+	font-size: 18px;
+}
+
+div#members div.member p {
+	margin: auto;
+	display: block;
+	color: white;
+}
+
+a:hover{
+	color: #893700;
+}
+
+/**
+	New SPRINT
+*/
+
+div.row {
+	opacity: 1;
+}
+
+#new_container {
+	height: 25em;
+}
+
+div.row {
+	opacity: 1;
+
+}
+
+div.container.create_new label{
+	display: block;
+	font-size: 12px;
+}
+
+div.container.create_new {
+	/*left: 25%;
+	top: 50%;*/
+	left:0;
+	right:0;
+	top:5em;
+	bottom: 0;
+	margin: auto;
+	width: 100vw;
+	height: 100vh;	
+	position: absolute;
+	z-index: 1;
+	display: block;
+	background-color: #0A1827;
+	padding: 1em;
+	max-width: 40em;
+	height: 30em;
+	text-align: justify;
+}
+
+#new_container {
+	height: 25em;
+}
+
+div.container.create_new #add_task_btn {
+    align-self: center;
+}
+
+div.container.create_new h2 {
+	color: #ECE7F3;
+	font-size: 24px;
+	text-align: center;
+}
+
+div.container.create_new > button {
+	margin: 0.25em 0 0 0;
+}
+
+div.container.create_new div.form_area {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 1em 0;
+}
+
+div.container.create_new div.form_area button {
+	width: 20%;
+	align-self: center;
+}
+
+div.container.create_new div.form_area #new_task {
+	display: flex;
+	width: 95%;
+	align-self: center;
+}
+
+div.container.create_new div.form_area #new_task button {
+	width: 20%;
+}
+
+div.container.create_new #add_task_btn {
+	align-self: center;
+}
+
+div.container.create_new div.form_area_date {
+	display: flex;
+	flex-direction: column;
+	margin: 1em 0;
+}
+
+div.container.create_new label {
+	display: inline;
+	color: #ECE7F3;
+	text-align: left;
+	clear: both;
+    margin: auto 1em;
+}
+
+div.container.create_new input.form-control {
+	flex-grow: 1;
+	align-self: center;
+	width: 100%;
+}
+
+.col-12 h1 {
+	color: #001;
+}
+
+div.container.create_new input[type="date"].form-control {
+	display: inline;
+	flex-grow: 0;
+	margin-left: 0;
+}
+
+div.container.create_new div#new_tasks {
+	display: block;
+	background-color: #4E5D6C;
+	padding: 1em;
+	width: 100%;
+	text-align: center;
+}
+
+div.container.create_new div.created_task {
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+}
+
+div.container.create_new div#new_tasks p {
+	color: #ECE7F3;
+	display: inline;
+	margin: auto auto auto 0;
+}
+
+div.container.create_new div#new_tasks div.created_task button.btn.delete {
+	padding: 0;
+	background-color: inherit;
+	display: inline;
+}
+
+div.container.create_new div#form_options {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-around;
+	text-align: center;
+	margin: 1em;
+}
+
+.comment h6, .comment span {
+	color: #ECE7F3;
+}
+
+
+/**
+
+SINGLE TASK
+
+*/
+
+div.col-12 div#task_info {
+	background-color: #CCD9CE;
+	padding: 0 1em 0 1em;
+	display: grid;
+	grid-template-columns: 5% auto 5%;
+	grid-template-rows: 10% auto;
+	border-bottom: 1px solid #0A1827;
+}
+
+
+div.col-12 div#task_description {
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	grid-column: 2;
+	grid-row: 1;
+	justify-self: center;
+}
+
+div.col-12 div#task_images {
+	padding-top: 5%;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+div.col-12 div#task_images img {
+	padding: 1%;
+	width:100%;
+	max-width: 500px;
+	max-height: 300px;
+
+}
+
+
+
+
+@media screen and (max-width: 575px) {
+
+	div#members div.member div.info {
+		text-align: center;
+	}
+
+	div#members div.member div.info a{
+		display: block;
+	}
+	div#members div.member p {
+		margin: auto;
+	}
+}
+
+@media screen and (max-width: 600px){
+
+	section.container-fluid {
+		min-height: 100vh;
+		margin: 2em 0;
+		width: 100%;
+		max-width: 100%;
+		padding: 0 1em;
+	}
+	div.list-group-item p {
+		font-size: 12px;
+	}
+
+	div.list-group-item a{
+		font-size: 14px;
+	}
+
+	div.list-group-item a.btn.edit_sprint svg {
+		font-size: 12px;
+	}
+
+	div.sprint-task {
+		padding: 0 1em 0 1em;
+	}
+
+	div.sprint-task svg{
+		font-size: 16px;
+		padding: 0 2px 0 0;
+	}
+
+	div.sprint-task button {
+		font-size: 12px;
+	}
+
+	div.sprint-task p {
+		font-size: 14px;
+	}
+
+
+	div.sprint-task.create_task {
+		padding: 1em 0em;
+		justify-content: center;
+	}
+
+	div.sprint-task.create_task input {
+		width: 50%;
+		margin: auto 1em;
+	}
+
+	div.sprint-task.create_task button {
+		margin: auto 0;
+	}
+
+	div.comment {
+		padding: 1em;
+		display: block;
+	}
+
+	div.comment > img {
+		max-width: 10%;
+		display: block;
+		margin: auto auto;
+	}
+	div.comment h6 {
+		display: block;
+		text-align: center;
+	}
+	div.comment p {
+		display: block;
+		font-size: 12px;
+		margin: auto;
+	}
+	div.comment div.user_options {
+		display: inline;
+		margin: auto auto;
+	}
+	div.comment div.user_options button.btn {
+		font-size: 10px;
+		display: inline;
+		margin: auto auto;
+	}
+	div.comment div.user_options  p{
+		font-size: 8px;
+		margin: auto auto;
+		text-align: center;
+	}
+	div.comment p.label {
+		text-align: left;
+		margin: auto;
+	}
+
+	div.comment h6 {
+		font-size: 14px;
+	}
+	div.comment div.form_comment {
+		display: flex;
+		width: auto;
+		margin: 0;
+	}
+
+	div.comment div.form_comment input.form-control {
+		margin: 0;
+		width: 100%;
+		flex-grow: 1;
+	}
+
+	div.comment div.form_comment button.btn {
+		margin: 0;
+		padding: 0 0.5em;
+		font-size: 12px;
+	}
+
+	/**
+		New Sprint or task
+	*/
+
+	div.container.create_new {
+		width: 100vw;
+		height: 100vh;	
+		margin: 1em 0;
+	}
+
+	div.container.create_new div.form_area {
+		display: block;
+		margin: 1em 0;
+	}
+
+	div.container div.form_area button.btn {
+		margin: 0;
+		padding: 0.375rem 0.75rem;
+		font-size: 12px;
+	}
+
+	div.container.create_new label{
+		display: block;
+		font-size: 12px;
+	}
+	div.container.create_new div.form_area div#new_task button {
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 820px) and (min-width: 601px) {
+	div.comment p {
+		font-size: 12px;
+	}
+	div.comment h6 {
+		font-size: 14px;
+		padding: 0 0.5em;
+	}
+	div.comment {
+		padding: 2em;
+	}
+}
+
+
+@media screen and (max-width: 738px){
+
+	div#members div#user_search {
+		text-align: center;
+	}
+
+	div#members div#user_search input.form-control{
+		display: block;
+		width: 100%;
+	}
+
+	div#members div#user_search button.btn{
+		margin: auto;
+	}
+}
+
+@media screen and (max-width: 1070px) and (min-width: 820px) {
+	div.comment p {
+		font-size: 12px;
+	}
+}

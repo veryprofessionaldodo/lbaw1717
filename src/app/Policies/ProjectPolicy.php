@@ -12,10 +12,14 @@ class ProjectPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Project $project)
+    public function not_authorized(User $user, Project $project)
     {
       // TODO: Change this!!
-      return $user->id == $project->user_id;
+      /*if($user->projects()->get()->contains($project))
+        return true;
+      else if($project->ispublic)
+        return true;*/
+      return false;
     }
 
     public function list(User $user)

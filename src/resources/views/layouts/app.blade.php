@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile_page.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/projects_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
@@ -21,10 +22,10 @@
     </script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
-    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" defer></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" defer></script>-->
+    <script type="text/javascript" src={{ asset('js/profile.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/project.js') }} defer></script>
   </head>
+  
   <body>
     <nav class="row nav">
       <a class="col-3" href="{{ url('/')}}">Proyekt</a>
@@ -40,7 +41,7 @@
       <div class="user col-3">  
 
         <div id="notifications">
-          <input type="checkbox" id="hamburger2">
+
           <label class="hamburger" for="hamburger2"></label>
 
           <div id="notifications_box">
@@ -97,6 +98,7 @@
 
         <div id="profile_options">
           <ul>
+            <li><a href="{{ route('user_profile', ['username' => Auth::user()->username])}}">View Profile</a></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>
           </ul>
         </div>

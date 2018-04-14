@@ -80,6 +80,7 @@ nav ul li {
 	margin-top: 0.5em;
 	font-size: 18px;
 	color: white;
+	cursor: pointer;
 }
 
 #notifications #hamburger2 {
@@ -107,8 +108,8 @@ nav ul li {
 	box-shadow: 0 0 10px 1px black;
 	border-radius: 10px;
 	opacity: 0;
-	max-height: 0;
-	transition: opacity 0.1s ease-out, height 1s linear 1s;
+	height: 0;
+	transition: opacity 0.1s ease-out, height 1s linear;
 }
 
 #notifications_box ul {
@@ -123,12 +124,11 @@ nav ul li {
 	margin: 0;
 	width: 100%;
 }
-
+/*
 #notifications #hamburger2:checked ~ #notifications_box{
-	/*visibility: visible;*/
 	opacity: 1;
 	max-height: 300px;
-}
+}*/
 
 #notifications_box:before{
 	content: "";
@@ -194,6 +194,19 @@ nav ul li {
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+#profile_options ul li:first-of-type{
+	border-bottom: 1px solid white;
+}
+
+#profile_options ul li{
+	padding: 1em;
+}
+
+#profile_options ul li a {
+	text-decoration: none;
+	color: white;
 }
 
 /*

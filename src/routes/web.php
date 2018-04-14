@@ -22,9 +22,9 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register'); //done
 
 // User
-Route::get('api/users/{username}', 'User\UserController@showProfile');
-Route::get('api/users/{username}/edit', 'User\UserController@showEditProfileForm')->name('api/users/{username}/edit');
-Route::post('api/users/{username}/edit', 'User\UserController@editProfile');
+Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile');
+Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile');
+Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action');
 
 Route::post('api/users/projects/accept_invite', 'User\UserController@acceptInvite');
 Route::post('api/users/projects/unsigned_project', 'User\UserController@unsignProject');
@@ -38,53 +38,46 @@ Route::put('api/users/projects/new_project', 'User\UserController@newProject');
 Route::get('api/admin/{username}', 'User\UserController@showAdminPage');
 
 // Project
-Route::get('projects/{id}/visitor', 'ProjectController@projectViewVisitor');
-Route::get('projects/{id}/members', 'ProjectController@projectMembersList');
-Route::get('projects/{id}/settings/members', 'ProjectController@projectSettingsMembersList');
-Route::delete('projects/{id}/settings/members/{id}/remove', 'ProjectController@projectSettingsMembersRemove');
-Route::get('projects/{id}/settings/requests', 'ProjectController@projectSettingsRequestsList');
-Route::post('projects/{id}/settings/requests/{id}/accept', 'ProjectController@projectSettingsRequestsAccept');
-Route::post('projects/{id}/edit', 'ProjectController@projectSettingsRequestsAccept');
-Route::get('projects/{id}/statistics', 'ProjectController@projectStatisticsView');
-Route::post('projects/{id}/members', 'ProjectController@projectMembersSearch');
-Route::post('projects/{id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
+Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members');
+Route::get('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersList');
+Route::delete('api/projects/{project_}/settings/members/{username}', 'ProjectController@projectSettingsMembersRemove');
+Route::get('api/projects/{project_id}/settings/requests', 'ProjectController@projectSettingsRequestsList');
+Route::post('api/projects/{project_id}/settings/requests/{request_id}/accept', 'ProjectController@projectSettingsRequestsAccept');
+Route::post('api/projects/{project_id}/settings/requests/{request_id}/reject', 'ProjectController@projectSettingsRequestsReject');
+Route::post('api/projects/{project_id}/edit', 'ProjectController@projectSettingsRequestsAccept');
+Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectStatisticsView');
+Route::post('api/projects/{project_id}/members', 'ProjectController@projectMembersSearch');
+Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
 
-/*
+/*Route::get('api/projects/{project_id}', function($id) {
+	return redirect()->route('project_sprints', ['id' => $id]);
+})->name('project'); // done*/
+Route::get('api/projects/{project_id}', 'ProjectController@project')->name('project');
+
 //Sprints and Tasks
-Route::get('projects/{id}/sprints', 'ProjectController@sprintsView');
-Route::get('projects/{id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEditForm');
-Route::post('projects/{id}/sprints/{sprint_id}', 'ProjectController@sprintEdit');
-Route::get('projects/{id}/sprints/{sprint_id}/tasks/{task_id}', 'ProjectController@taskPageView');
-Route::get('projects/{id}/sprints/{sprint_id}/tasks/{task_id}/edit', 'ProjectController@taskEditForm');
-Route::post('projects/{id}/sprints/{sprint_id}/tasks/{task_id}', 'ProjectController@taskEditAction');
-Route::get('projects/{id}/sprints/new_sprint', 'ProjectController@newSprintForm');
-Route::put('projects/{id}/sprints/', 'ProjectController@newSprint');
-Route::put('projects/{id}/sprints/{sprint_id}/tasks/', 'ProjectController@newTask');
-Route::put('projects/{id}/sprints/{sprint_id}/tasks/{task_id}/comments/', 'ProjectController@newComment');
-Route::get('projects/{id}/sprints/{sprint_id}/tasks/{task_id}/comments/{comment_id}/edit','ProjectController@editCommentForm');
-Route::post('projects/{id}/sprints/{sprint_id}/tasks/{task_id}/comments/{comment_id}','ProjectController@editCommentAction');
-Route::post('projects/{id}/sprints/{sprint_id}/tasks/{task_id}/assign','ProjectController@taskAssignUser');
-Route::post('projects/{id}/sprints/{sprint_id}/tasks/{task_id}/unassign','ProjectController@taskUnassignUser');
-Route::delete('projects/{id}/sprints/{sprint_id}','ProjectController@deleteSprint');
-Route::delete('projects/{id}/sprints/{sprint_id}/task/{task_id}','ProjectController@deleteTask');
-Route::delete('projects/{id}/sprints/{sprint_id}/task/{task_id}/comments/{comment_id}','ProjectController@deleteComment');
-Route::post('projects/{id}/sprints/{sprint_id}/task/{task_id}/complete','ProjectController@completeTask');
+Route::get('api/projects/{project_id}/sprints', 'ProjectController@sprintsView')->name('project_sprints'); //done
+/*Route::get('api/projects/{project_id}/sprints', 'ProjectController@sprintsViewPartial')->name('project_sprints_partial');*/
+Route::get('api/projects/{project_id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEditForm');
+Route::post('api/projects/{project_id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEdit');
+Route::get('api/projects/{project_id}/sprints/new_sprint', 'ProjectController@newSprintForm');
+Route::put('api/projects/{project_id}/sprints', 'ProjectController@newSprint');
+Route::delete('api/projects/{project_id}/sprints/{sprint_id}','ProjectController@deleteSprint');
 
 //Tasks 
-Route::get('projects/{id}/tasks', 'ProjectController@taskView');
-Route::get('projects/{id}/tasks/{task_id}', 'ProjectController@taskPageView');
-Route::get('projects/{id}/tasks/{task_id}/edit', 'ProjectController@taskEditForm');
-Route::post('projects/{id}/tasks/{task_id}', 'ProjectController@taskEditAction');
-Route::delete('projects/{id}/tasks/{task_id}', 'ProjectController@deleteTask');
-Route::post('projects/{id}/tasks/{task_id}/complete', 'ProjectController@completeTask');
-Route::post('projects/{id}/tasks/{task_id}/assign', 'ProjectController@taskAssignUser');
-Route::post('projects/{id}/tasks/{task_id}/unassign', 'ProjectController@taskUnassignUser');
-Route::put('projects/{id}/tasks/', 'ProjectController@newTask');
-Route::put('projects/{id}/tasks/{task_id}/comments', 'ProjectController@newComment');
-Route::get('projects/{id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
-Route::post('projects/{id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@editCommentAction');
-Route::delete('projects/{id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment');
-
+Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->name('project_tasks');
+Route::get('api/projects/{project_id}/tasks/{task_id}', 'ProjectController@taskPageView');
+Route::get('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditForm');
+Route::post('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditAction');
+Route::delete('api/projects/{project_id}/tasks/{task_id}', 'ProjectController@deleteTask');
+Route::post('api/projects/{project_id}/tasks/{task_id}/complete', 'ProjectController@completeTask');
+Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'ProjectController@taskAssignUser');
+Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'ProjectController@taskUnassignUser');
+Route::put('api/projects/{project_id}/tasks', 'ProjectController@newTask');
+Route::put('api/projects/{project_id}/tasks/{task_id}/comments', 'ProjectController@newComment');
+Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
+Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
+Route::delete('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment');
+/*
 //Project Forum
 Route::get('projects/{id}/threads', 'ProjectController@threadsView');
 Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm');

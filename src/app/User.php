@@ -38,7 +38,11 @@ class User extends Authenticatable
      * The cards this user owns.
      */
     public function projects() {
-       return $this->belongsToMany(Project::class, 'project_members');
+       return $this->belongsToMany(Project::class, 'project_members')->withPivot('iscoordinator');
+    }
+
+    public function comments() {
+      return $this->hasMany('App\Comment');
     }
 
     public function isAdmin()
@@ -62,7 +66,7 @@ class User extends Authenticatable
 
     public function userProjects(int $n) {
         return DB::select(
-          DB::raw('SELECT project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
+          DB::raw('SELECT project.id, project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
             FROM "user", project_members, project
             INNER JOIN 
             (SELECT project_id, COUNT(project_id) AS num_members
