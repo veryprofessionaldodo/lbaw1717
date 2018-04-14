@@ -40,6 +40,11 @@ section.container-fluid {
 	margin: 0.5em 0;
 }
 
+#info_buttons a{
+	width: 8em;
+	margin: 0.5em 0;
+}
+
 section.container-fluid .row .nav-tabs {
 	margin-top: 1em;
 }

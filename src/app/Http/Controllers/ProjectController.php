@@ -119,6 +119,43 @@ class ProjectController extends Controller
     }
 
 
+    public function threadsView($id){
+      if(Auth::check()){
+       $project = Project::find($id);
+       $threads = Project::find($id)->threads()->where('thread.project_id','=',$project->id)->get();
+       $notifications = Auth::user()->userNotifications();
+
+      /* foreach($threads as $thread){
+        echo($thread->name);
+       }*/
+       
+      /* FALTA O USER QUE O CRIOU e a cena das páginas*/
+
+        return $viewHTML = view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
+      }
+    }
+
+    public function threadPageView($id,$thread_id){
+      if(Auth::check()){
+        $project = Project::find($id);
+        $thread = Thread::find($thread_id);
+        $notifications = Auth::user()->userNotifications();
+ 
+         //return $viewHTML = view('pages/forum',['project' => $project,'thread' => $thread, 'notifications' => $notifications]);
+       }
+    }
+
+    
+    /**
+     * Creates a new card.
+     *
+     * @return Card The card created.
+     */
+    public function create(Request $request)
+    {
+      
+    }
+
     public function searchProject(Request $request) {
       $notifications = Auth::user()->userNotifications();
 

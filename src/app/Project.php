@@ -33,6 +33,10 @@ class Project extends Model
     orderBy('name');
   }
 
+  public function threads() {
+    return $this->hasMany('App\Thread');
+  }
+
   /**
    * The user this card belongs to
    */
