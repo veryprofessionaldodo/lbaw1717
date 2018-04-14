@@ -19,6 +19,8 @@
       <input class="form-control" type="text" placeholder="Search"> 
       <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button> 
     </form> 
+
+    <a href="{{ route('logout')}}">logout</a>
     <!--<div id="user" class="col-3"> 
       <div id="mobile"> 
         <img src="res/profile/profile-pic.png"> 
