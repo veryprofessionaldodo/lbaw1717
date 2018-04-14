@@ -15,6 +15,7 @@ class ProjectPolicy
     public function not_authorized(User $user, Project $project)
     {
       // TODO: Change this!!
+
       /*if($user->projects()->get()->contains($project))
         return true;
       else if($project->ispublic)
@@ -24,7 +25,7 @@ class ProjectPolicy
 
     public function list(User $user)
     {
-      // Any user can list its own cards
+      // Any user can list its own projects
       return Auth::check();
     }
 

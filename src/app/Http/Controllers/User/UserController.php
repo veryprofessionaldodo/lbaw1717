@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\User;
+use App\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -11,18 +12,12 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller {
 
-
     public function showProfile(string $n) {
 	   if (!Auth::check()) return redirect('/login');
 
-        //$this->authorize('list', Project::class);
+        $this->authorize('list', Project::class);
 
         $notifications = Auth::user()->userNotifications();
-        /*foreach($notifications as $notification){
-        	echo $notification->notification_type;
-        	echo $notification->username;
-        	echo $notification->name;
-        }*/
 
         $numProjects = Auth::user()->projects()->count();
 		$projects = Auth::user()->userProjects((int)$n);
@@ -44,6 +39,8 @@ class UserController extends Controller {
         Returns the form to edit a profile
     */
     public function editProfileForm(Request $request) {
+        if (!Auth::check()) return redirect('/login');
+            
         $viewHTML = view('partials.edit_profile')->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
     }

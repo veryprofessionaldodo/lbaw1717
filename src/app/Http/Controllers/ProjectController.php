@@ -102,6 +102,8 @@ class ProjectController extends Controller
         $viewHTML = view('partials.tasks_view', ['tasks'=>$tasks, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
       }
+      else
+        return redirect('/login');
     }
 
     public function projectMembersView($id) {
@@ -112,18 +114,12 @@ class ProjectController extends Controller
         $viewHTML = view('partials.project_members', ['members' => $members])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
       }
+      else 
+        return redirect('/login');
     }
 
 
     public function searchProject(Request $request) {
-      /*SELECT "name", description FROM project
-      WHERE (to_tsvector('english', project.name || ' ' || project.description) 
-        @@ plainto_tsquery('english', $search))
-      AND isPublic = TRUE
-      ORDER BY name
-      LIMIT 10 OFFSET $n;*/
-
-      //return $request->input('search');
       $notifications = Auth::user()->userNotifications();
 
       $projects = Project::search($request->input('search'))->with('user')->take(10)->get();
