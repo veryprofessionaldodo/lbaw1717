@@ -141,7 +141,7 @@ class ProjectController extends Controller
         $thread = Thread::find($thread_id);
         $notifications = Auth::user()->userNotifications();
  
-         return $viewHTML = view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
+         //return $viewHTML = view('pages/forum',['project' => $project,'thread' => $thread, 'notifications' => $notifications]);
        }
     }
 

@@ -96,6 +96,7 @@ input.form-control, textarea.form-control {
 	padding-bottom: 0.1em;
 	vertical-align: middle;
 	background-color: #ECE7F3;
+	text-align: center;
 }
 
 a:hover {
