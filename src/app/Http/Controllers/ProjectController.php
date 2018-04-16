@@ -125,12 +125,6 @@ class ProjectController extends Controller
        $threads = Project::find($id)->threads()->with('user')->get();
        $notifications = Auth::user()->userNotifications();
 
-      /* foreach($threads as $thread){
-        echo($thread->name);
-       }*/
-       
-      /* FALTA O USER QUE O CRIOU e a cena das páginas*/
-
         return $viewHTML = view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
       }
     }
@@ -142,6 +136,15 @@ class ProjectController extends Controller
         $notifications = Auth::user()->userNotifications();
  
          //return $viewHTML = view('pages/forum',['project' => $project,'thread' => $thread, 'notifications' => $notifications]);
+       }
+    }
+
+    public function threadsCreateForm($id){
+      if(Auth::check()){
+        $project = Project::find($id);
+        $notifications = Auth::user()->userNotifications();
+ 
+         return $viewHTML = view('pages/new_thread_page',['project' => $project, 'notifications' => $notifications]);
        }
     }
 

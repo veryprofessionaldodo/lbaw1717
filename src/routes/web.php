@@ -79,9 +79,9 @@ Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edi
 Route::delete('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment');
 
 //Project Forum
-Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('forum');
-/*Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm');
-Route::put('projects/{id}/threads', 'ProjectController@createThread');
+Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('forum'); //done
+Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm')->name('new_thread_form');
+/*Route::put('projects/{id}/threads', 'ProjectController@createThread');
 */Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView');
 /*Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm');
 Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction');
