@@ -16,7 +16,7 @@
 
         <div id="header">
             <h1>Forum</h1>
-            <button class="btn btn-info"><i class="fas fa-plus"></i> New Thread</button>               
+            <a class="btn btn-info" href="{{ route('new_thread_form', ['id' => $project->id])}}"><i class="fas fa-plus"></i> New Thread</a>               
         </div>
         
         <div id="threads">
