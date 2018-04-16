@@ -17,7 +17,7 @@
         </form>
     </nav>
 
-    <section>
+    <section>user
         <form method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <h2>Sign In</h2>

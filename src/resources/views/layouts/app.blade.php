@@ -12,15 +12,24 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/search.css') }}" rel="stylesheet">
     <link href="{{ asset('css/profile_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/projects_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/forum_thread.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" defer></script>
+    <!-- only for bootstrap -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 
+    <!-- only for bootstrap -->
     <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/profile.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/project.js') }} defer></script>
@@ -31,8 +40,11 @@
       <a class="col-3" href="{{ url('/')}}">Proyekt</a>
 
       <!--  FAZER ESTE FORM ATIVO -->
-      <form class="col-6">
-        <input class="form-control" type="text" placeholder="Search">
+      <form class="col-6" method="POST" action="{{ route('search') }}">
+        {{ csrf_field() }}
+
+        <input class="form-control" name="search" type="text" placeholder="Search">
+
         <button class="btn btn-primary" type="submit">
           <i class="fas fa-search"></i>
         </button>

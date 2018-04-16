@@ -14,6 +14,9 @@
 //Landing Page
 Route::get('/', 'LandingPageController@showLandingPage'); //done
 
+//Search public projects
+Route::post('api/search', 'ProjectController@searchProject')->name('search'); //done
+
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); //done
 Route::post('login', 'Auth\LoginController@login'); //done
@@ -23,8 +26,8 @@ Route::post('register', 'Auth\RegisterController@register'); //done
 
 // User
 Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile');
-Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile');
-Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action');
+Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
+Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action'); // done
 
 Route::post('api/users/projects/accept_invite', 'User\UserController@acceptInvite');
 Route::post('api/users/projects/unsigned_project', 'User\UserController@unsignProject');
@@ -34,11 +37,8 @@ Route::post('api/users/projects/search_project', 'User\UserController@searchUser
 Route::put('api/users/projects/new_project', 'User\UserController@newProject');
 
 
-//Admin
-Route::get('api/admin/{username}', 'User\UserController@showAdminPage');
-
 // Project
-Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members');
+Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members'); //done
 Route::get('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersList');
 Route::delete('api/projects/{project_}/settings/members/{username}', 'ProjectController@projectSettingsMembersRemove');
 Route::get('api/projects/{project_id}/settings/requests', 'ProjectController@projectSettingsRequestsList');
@@ -77,24 +77,27 @@ Route::put('api/projects/{project_id}/tasks/{task_id}/comments', 'ProjectControl
 Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
 Route::delete('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment');
-/*
+
 //Project Forum
-Route::get('projects/{id}/threads', 'ProjectController@threadsView');
-Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm');
+Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('forum');
+/*Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm');
 Route::put('projects/{id}/threads', 'ProjectController@createThread');
-Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView');
-Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm');
+*/Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView')->name('thread');
+/*Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm');
 Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction');
 Route::put('projects/{id}/threads/{thread_id}/comments', 'ProjectController@newThreadComment');
 Route::get('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'ProjectController@threadCommentEditForm');
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@threadCommentEditAction');
 Route::delete('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread');
 Route::delete('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment');
+*/
 
 //Admin Administraton, Report and Static Pages
-*/Route::get('admin/reports/comments', 'AdminController@commentReportsView');
-/*Route::get('admin/reports/users', 'AdminController@userReportsView');
-Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView');
+Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
+Route::get('api/admin/{username}/reports/comments', 'AdminController@commentReportsView')->name('admin_comments');
+Route::get('api/admin/{username}/reports/users', 'AdminController@userReportsView')->name('admin_users');
+
+/*Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView');
 Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportView');
 Route::delete('admin/reports/{report_id}', 'AdminController@deleteReport');
 Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser');

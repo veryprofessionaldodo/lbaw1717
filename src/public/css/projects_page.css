@@ -27,6 +27,11 @@ section.container-fluid {
 	max-width: 75%;
 }
 
+nav#buttons_nav a.btn {
+	text-decoration: none;
+}
+
+
 /*
 	DIV extra-buttons
 */
@@ -36,6 +41,11 @@ section.container-fluid {
 }
 
 #info_buttons button{
+	width: 8em;
+	margin: 0.5em 0;
+}
+
+#info_buttons a{
 	width: 8em;
 	margin: 0.5em 0;
 }

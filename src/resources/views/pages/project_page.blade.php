@@ -25,10 +25,12 @@
 	<div class="row">
 		<div class="col-12">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">
-				<button type="button" class="btn btn-secondary" id="project_buttons">
-					<i class="fas fa-comments"></i> Forum</button>
-				<button type="button" class="btn btn-secondary" id="project_buttons">
-					<i class="fas fa-chart-line"></i> Statistics</button>
+
+				<a class="btn btn-secondary" class="project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
+					<i class="fas fa-comments"></i> Forum</a>
+
+				<a class="btn btn-secondary" class="project_buttons" href="">
+					<i class="fas fa-chart-line"></i> Statistics</a>
 			</nav>
 		</div>
 
@@ -95,8 +97,8 @@
 	<div class="row">
 		<div class="col-12">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">
-				<button type="button" class="btn btn-secondary" id="project_buttons">
-					<i class="fas fa-comments"></i> Forum</button>
+				<a class="btn btn-secondary" id="project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
+					<i class="fas fa-comments"></i> Forum</a>
 				<button type="button" class="btn btn-secondary" id="project_buttons">
 					<i class="fas fa-chart-line"></i> Statistics</button>
 				<button type="button" class="btn btn-secondary" id="project_buttons">

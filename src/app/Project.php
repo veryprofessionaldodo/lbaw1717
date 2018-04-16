@@ -25,6 +25,18 @@ class Project extends Model
     return $this->hasMany('App\Task');
   }
 
+  public function scopeSearch($query, $search) {
+    if(!$search)
+      return $query;
+    return $query->whereRaw('to_tsvector(\'english\', name || \' \' || description) 
+      @@ plainto_tsquery(\'english\', ?)', [$search])->where('ispublic','=',true)->
+    orderBy('name');
+  }
+
+  public function threads() {
+    return $this->hasMany('App\Thread');
+  }
+
   /**
    * The user this card belongs to
    */

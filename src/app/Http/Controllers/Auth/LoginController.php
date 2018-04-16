@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -41,12 +44,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout', 'getLogout');
     }
 
-    /*public function redirectPath() {
-        if (Auth::check()) {
-            //return redirect()->action('User\UserController@showProfile', Auth::user()->username);
-            $this->redirectTo = '/api/users/' + Auth::user()->username;
-        }
-    }*/
+    public function logout(Request $request) {
+        Auth::logout();
+        Session::flush();
+        return redirect('/');
+    }
 
 
 }
