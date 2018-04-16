@@ -122,7 +122,7 @@ class ProjectController extends Controller
     public function threadsView($id){
       if(Auth::check()){
        $project = Project::find($id);
-       $threads = Project::find($id)->threads()->where('thread.project_id','=',$project->id)->get();
+       $threads = Project::find($id)->threads()->with('user')->get();
        $notifications = Auth::user()->userNotifications();
 
       /* foreach($threads as $thread){
