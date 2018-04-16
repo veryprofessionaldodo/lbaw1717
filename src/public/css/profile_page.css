@@ -1,7 +1,7 @@
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
-	color: #0A1827;
+	/*color: #0A1827;*/
 }
 
 
@@ -10,8 +10,6 @@ h2 {
 */
 
 div.container-fluid {
-	/*display: grid;
-	grid-template-columns: 20% auto;*/
 	min-height: 100vh;
 }
 
@@ -26,7 +24,7 @@ div.container-fluid > div.row {
 aside {
 	text-align: center;
 	color: #e3eaed;
-	background-color: #004649;
+	background-color: #888;
 	box-shadow: 0 0px 5px 1px black;
 	padding: 0;
 }
@@ -103,17 +101,6 @@ div#options div#role_button {
 }
 
 
-
-form#new_project_name {
-	margin: 0 3em;
-}
-
-form#new_project_name > input.form-control {
-	display: inline;
-	width: 50%;
-}
-
-
 .hide {
 	display: none;
 }
@@ -123,8 +110,7 @@ div.container-fluid {
 }
 
 section {
-	/*grid-column-start: 2;
-	grid-column-end: 3;*/
+	
 }
 
 section p {
@@ -144,7 +130,7 @@ section > a {
 }
 
 section div.project {
-	background-color: #CCD9CE;
+	/*background-color: #CCD9CE;*/
 	margin: 1em 3em;
 	padding: 1em;
 	outline: 1px solid #666;
@@ -154,7 +140,7 @@ section div.project {
 }
 
 section div.project:hover {
-	background-color: #9AC0BA;
+	/*background-color: #9AC0BA;*/
 	outline: 1px solid #333;
 }
 
@@ -170,7 +156,7 @@ section div.project > h5 {
 }
 
 section div.project > h5:hover {
-	color: #DF691A;
+	/*color: #DF691A;*/
 }
 
 section div.project > p {
@@ -195,7 +181,7 @@ section div.project .project_info > *{
 }
 
 section div.project .project_info > button.btn.btn-secondary{
-	background-color: #004649;
+	/*background-color: #004649;*/
 	font-size: 14px;
 	margin: 0.5em auto;
 	padding: 0.5em 1em;
@@ -209,7 +195,7 @@ div#dashboard {
 	opacity: 1;
 }
 
-div.container.edit_profile {
+div.container.edit_profile, div.container.new_project {
 	left:0;
 	right:0;
 	top:5em;
@@ -218,7 +204,7 @@ div.container.edit_profile {
 	position: absolute;
 	z-index: 1;
 	display: block;
-	background-color: #0A1827;
+	background-color: #5bc0de;
 
 	padding: 1em;
 	max-width: 40em;
@@ -226,21 +212,28 @@ div.container.edit_profile {
 	text-align: justify;
 }
 
-div.container.edit_profile h2 {
+div.container.edit_profile h2, div.container.new_project h2 {
 	font-size: 24px;
 	text-align: center;
-	color: #ECE7F3;
 }
 
-div.container.edit_profile > a {
+div.container.edit_profile > a, div.container.new_project > a {
 	margin: 0.25em 0 0 0;
 }
 
-div.container.edit_profile div.form_area {
+div.container.edit_profile div.form_area, div.container.new_project div.form_area {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	margin: 1em 0;
+}
+
+div.container.new_project div.form_area.custom-checkbox {
+	display: block;
+}
+
+div.container.new_project div.form_area.custom-checkbox input {
+	vertical-align: middle;
 }
 
 div.container.edit_profile div.form_area_date {
@@ -248,27 +241,22 @@ div.container.edit_profile div.form_area_date {
 	margin: 1em 0;
 }
 
-div.container.edit_profile label {
+div.container.edit_profile label, div.container.new_project label {
 	display: inline;
 	text-align: left;
 	clear: both;
     margin: auto 1em;
 }
 
-div.container.edit_profile input {
+div.container.edit_profile input, div.container.new_project input {
 	align-self: center;
 }
 
-div.container.edit_profile input.form-control {
-	width: 95%;
-}
-
-div.container.edit_profile div#form_options {
+div.container.edit_profile div#form_options, div.container.new_project div#form_options {
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: space-between;
 	text-align: center;
-	margin: 1em;
 }
 
 @media screen and (max-width: 767px) {

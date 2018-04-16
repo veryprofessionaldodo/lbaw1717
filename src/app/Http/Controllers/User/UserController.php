@@ -45,6 +45,16 @@ class UserController extends Controller {
         return response()->json(array('success' => true, 'html' => $viewHTML));
     }
 
+    /**
+        Returns the form to create a new project
+    */
+    public function createProjectForm(Request $request) {
+        if (!Auth::check()) return redirect('/login');
+            
+        $viewHTML = view('partials.create_project_form')->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
+    }
+
 	/**
 		Udpate the users profile
 	*/

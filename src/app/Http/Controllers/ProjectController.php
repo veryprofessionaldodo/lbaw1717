@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Project;
+use App\ProjectMember;
 
 class ProjectController extends Controller
 {
@@ -58,7 +59,6 @@ class ProjectController extends Controller
             $role = 'co';
         }
         else if($project->ispublic){
-          //if project is public
           $role = 'guest';
         }
         else
@@ -145,17 +145,6 @@ class ProjectController extends Controller
        }
     }
 
-    
-    /**
-     * Creates a new card.
-     *
-     * @return Card The card created.
-     */
-    public function create(Request $request)
-    {
-      
-    }
-
     public function searchProject(Request $request) {
       $notifications = Auth::user()->userNotifications();
 
@@ -164,4 +153,36 @@ class ProjectController extends Controller
       return view('pages.result_search', ['projects' => $projects, 'notifications' => $notifications]);
     }
 
+    /**
+     * Creates a new project.
+     *
+     * @return Project The project created.
+     */
+    public function create(Request $request)
+    {
+      $project = new Project();
+
+      $this->authorize('create', $project);
+
+      $project->name = $request->input('name');
+      $project->description = $request->input('description');
+      if($request->input('public') == 'on')
+        $project->ispublic = TRUE;
+      else
+        $project->ispublic = FALSE;
+      $project->save();
+
+      /*$project_member = new ProjectMember();
+      $project_member->user_id = $request->input('user_id');
+      $project_member->project_id = $project->id;
+      $project_member->iscoordinator = TRUE;
+      $project_member->save();*/
+
+      DB::insert('insert into project_members (user_id, project_id, iscoordinator) values (?,?,?)',
+                  array($request->input('user_id'),
+                        $project->id,
+                        TRUE));
+
+      return $project;
+    }
 }

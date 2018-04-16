@@ -34,7 +34,8 @@ Route::post('api/users/projects/unsigned_project', 'User\UserController@unsignPr
 Route::post('api/users/projects/search_project', 'User\UserController@searchUserProject');
 
 
-Route::put('api/users/projects/new_project', 'User\UserController@newProject');
+Route::get('api/users/projects/new_project', 'User\UserController@createProjectForm')->name('new_project_form');
+Route::post('api/users/projects', 'ProjectController@create')->name('create_project'); //done
 
 
 // Project
