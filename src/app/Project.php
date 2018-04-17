@@ -25,6 +25,10 @@ class Project extends Model
     return $this->hasMany('App\Task');
   }
 
+  public function categories() {
+    return $this->hasMany('App\Category');
+  }
+
   public function scopeSearch($query, $search) {
     if(!$search)
       return $query;

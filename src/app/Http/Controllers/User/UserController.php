@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\User;
 use App\Project;
+use App\Category;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +19,7 @@ class UserController extends Controller {
         $this->authorize('list', Project::class);
         $notifications = Auth::user()->userNotifications();
         $numProjects = Auth::user()->projects()->count();
-		$projects = Auth::user()->userProjects((int)$n);
+        $projects = Auth::user()->userProjects((int)0); //later change to $n
         $taskCompletedWeek = Auth::user()->taskCompletedThisWeek()[0];
         $taskCompletedMonth = Auth::user()->taskCompletedThisMonth()[0];
         $sprintsContributedTo = Auth::user()->sprintsContributedTo()[0];
@@ -39,6 +41,18 @@ class UserController extends Controller {
         if (!Auth::check()) return redirect('/login');
             
         $viewHTML = view('partials.edit_profile')->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
+    }
+
+    /**
+        Returns the form to create a new project
+    */
+    public function createProjectForm(Request $request) {
+        if (!Auth::check()) return redirect('/login');
+
+        $categories = Category::all();
+            
+        $viewHTML = view('partials.create_project_form',['categories' => $categories])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
     }
 

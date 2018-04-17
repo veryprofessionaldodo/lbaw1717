@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Project;
 use App\Thread;
 
+use App\ProjectMember;
+
 class ProjectController extends Controller
 {
     public function project($id)
@@ -59,7 +61,6 @@ class ProjectController extends Controller
             $role = 'co';
         }
         else if($project->ispublic){
-          //if project is public
           $role = 'guest';
         }
         else
@@ -156,6 +157,14 @@ class ProjectController extends Controller
        }
     }
 
+    public function searchProject(Request $request) {
+      $notifications = Auth::user()->userNotifications();
+
+      $projects = Project::search($request->input('search'))->with('user')->take(10)->get();
+
+      return view('pages.result_search', ['projects' => $projects, 'notifications' => $notifications]);
+    }
+
    /* public function threadsCreateAction(Request $request) {
       if (!Auth::check()) return redirect('/login');
 
@@ -178,21 +187,36 @@ class ProjectController extends Controller
 
     
     /**
-     * Creates a new card.
+     * Creates a new project.
      *
-     * @return Card The card created.
+     * @return Project The project created.
      */
     public function create(Request $request)
     {
-      
+      $project = new Project();
+
+      $this->authorize('create', $project);
+
+      $project->name = $request->input('name');
+      $project->description = $request->input('description');
+      if($request->input('public') == 'on')
+        $project->ispublic = TRUE;
+      else
+        $project->ispublic = FALSE;
+      $project->save();
+      $project->user()->attach($request->input('user_id'), ['iscoordinator' => true]);
+
+      /*$project_member = new ProjectMember();
+      $project_member->user_id = $request->input('user_id');
+      $project_member->project_id = $project->id;
+      $project_member->iscoordinator = TRUE;
+      $project_member->save();*/
+
+      /*DB::insert('insert into project_members (user_id, project_id, iscoordinator) values (?,?,?)',
+                  array($request->input('user_id'),
+                        $project->id,
+                        TRUE));*/
+
+      return $project;
     }
-
-    public function searchProject(Request $request) {
-      $notifications = Auth::user()->userNotifications();
-
-      $projects = Project::search($request->input('search'))->with('user')->take(10)->get();
-
-      return view('pages.result_search', ['projects' => $projects, 'notifications' => $notifications]);
-    }
-
 }

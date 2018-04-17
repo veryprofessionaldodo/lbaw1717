@@ -38,9 +38,8 @@
 			<div id="options">
 				<div class="row">
 
-					<!-- Add functionality to this button -->
 					<div class="offset-lg-1 col-lg-2 col-md-12">
-						<button id="new_project" class="btn btn-primary">Create New Project</button>
+						<a id="new_project" class="btn btn-primary" href="{{ route('new_project_form')}}">Create New Project</a>
 					</div>
 
 					<!-- Add functionality to this form -->
@@ -67,12 +66,6 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- Add functionality to this form -->
-			<form id="new_project_name" class="hide">
-				<input type="text" class="form-control" name="name_project" placeholder="name of project">
-				<button class="btn btn-primary my-2 my-sm-0" type="submit">Submit</button>
-			</form>
 
 			@each('partials.user_project', $projects, 'project')
 			
