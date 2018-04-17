@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
         }
 
         if (Auth::guard($guard)->check()){
-            return redirect()->action('User\UserController@showProfile', Auth::user()->username);
+            return redirect()->action('User\UserController@showProfile',Auth::user()->username);
         }
         return $next($request);
     }

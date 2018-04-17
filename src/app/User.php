@@ -42,7 +42,11 @@ class User extends Authenticatable
     }
 
     public function comments() {
-      return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment');
+    }
+
+    public function threads(){
+        return $this->hasMany('App\Thread','user_creator_id');
     }
 
     public function isAdmin()

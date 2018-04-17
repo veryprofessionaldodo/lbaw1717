@@ -1,0 +1,219 @@
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+	color: #0A1827;
+}
+/*
+
+POST
+
+*/
+
+div#container ol.breadcrumb {
+	background-color: inherit;
+	padding: 0;
+}
+
+.table {
+	border: solid 6px;
+	border-color: #003;
+    box-shadow: 0 0 10px #000;
+}
+
+#container {
+   /* margin: 5% 15% auto 15%;*/
+   margin: 2em 10em;
+    /*grid-template-rows: [row0] 25% [row1] auto [row2];
+	grid-template-columns: [col0] 15% [col1] auto [col2] 15% [col3];*/
+}
+
+#thread {
+	/*background-color: #2B3E50;*/
+	margin-bottom: 2em;
+}
+
+#thread div#header {
+	background-color: #182f35;
+	border-width: 5px 5px 0 5px;
+	border-style: solid;
+	border-color: black;
+	padding: 1em;
+}
+
+
+#thread div.col-lg-2:last-of-type {
+	margin: auto;
+	text-align: center;
+}
+
+#thread div#issue {
+	margin: auto;
+	text-align: justify;
+}
+/*
+#thread img {
+	position: relative;
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+}*/
+
+#thread #profile_pic {
+	width: 50px;
+	height: 50px;
+}
+/*
+#thread div.row:not(:first-child){
+	height: 100px;
+}
+*/
+
+div.date p {
+	margin-bottom: 0.2em;
+}
+
+div.date a{
+	padding-left: 0;
+}
+
+.date a {
+	text-decoration: none;
+}
+
+#thread div.comment .col-lg-8:nth-child(2) {
+	padding: 0 1em;
+}
+
+#thread div.comment:last-of-type {
+	border-width: 0 5px 5px 5px;
+	border-style: solid;
+	border-color: black;
+}
+
+#thread div.comment {
+	padding: 0.5em;
+	background-color: #CCD9CE;
+	padding: 1em;
+	border-width: 0 5px 1px 5px;
+	border-style: solid;
+	border-color: black;
+	color: #001;
+}
+
+#issue h2 {
+	color: #ECE7F3;
+}
+
+
+div.col-8 button {
+	margin-left: 88%;
+}
+
+#thread .comment a, #thread #header a{
+	background-color: inherit;
+	color: #3e4a56;
+	grid-column-start: 3; 
+	grid-column-end: 4;
+	grid-row: 1;
+	margin: auto;
+	text-align: center;
+	transition: background-color 0s;
+}
+
+#title.form-control {
+	display: block;
+}
+
+#description.form-control {
+	display: block;
+}
+
+
+@media screen and (max-width: 635px){
+	#container {
+	    margin: 5% 5% auto 5%;
+	}
+
+	#thread {
+		display: block;
+	}
+
+	div.row > div.col-3{
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+
+	div.row > div.col-7 {
+		margin-top: 1em;
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+
+	div.row > div.col-2{
+		max-width: 100%;
+		flex: 0 0 100%;
+		height: 100px;
+	}
+
+	div.row > div.col-8 {
+		margin-top: 1em;
+		max-width: 100%;
+		flex: 0 0 100%;
+	}
+
+	#thread figcaption {
+		font-size: 12px;
+	}
+
+	#thread img {
+		max-width: 75%;
+    	height: auto;
+    }
+
+	#thread #issue p {
+		font-size: 14px;
+	}
+
+	#thread p {
+		font-size: 12px;
+	}
+
+	#thread h2{
+		font-size: 20px;
+	}
+}
+
+@media screen and (max-width: 950px) and (min-width: 636px) {
+	#container {
+	    margin: 5% 10% auto 10%;
+	}
+
+	#thread figcaption {
+		font-size: 12px;
+	}
+
+	#thread img {
+		max-width: 100%;
+    	height: auto;
+    	margin: auto;
+	}
+
+	#thread #issue p {
+		font-size: 14px;
+	}
+
+	#thread p {
+		font-size: 12px;
+	}
+
+	#thread h2{
+		font-size: 20px;
+	}
+	
+}
+
+@media screen and (max-width: 531px){
+	div.col-8 button {
+		margin-left: 70%;
+	}
+}

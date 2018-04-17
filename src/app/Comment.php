@@ -20,7 +20,7 @@ class Comment extends Model
   	return $this->belongsTo('App\User');
   }
 
-  /*public function thread() {
+  public function thread() {
     return $this->belongsTo('App\Thread');
-  }*/
+  }
 }

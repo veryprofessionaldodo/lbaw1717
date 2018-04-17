@@ -13,12 +13,9 @@ use Illuminate\Http\Request;
 class UserController extends Controller {
 
     public function showProfile(string $n) {
-	   if (!Auth::check()) return redirect('/login');
-
+	    if (!Auth::check()) return redirect('/login');
         $this->authorize('list', Project::class);
-
         $notifications = Auth::user()->userNotifications();
-
         $numProjects = Auth::user()->projects()->count();
 		$projects = Auth::user()->userProjects((int)$n);
         $taskCompletedWeek = Auth::user()->taskCompletedThisWeek()[0];

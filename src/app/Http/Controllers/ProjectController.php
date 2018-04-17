@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Project;
+use App\Thread;
+
 use App\ProjectMember;
 
 class ProjectController extends Controller
@@ -122,7 +124,7 @@ class ProjectController extends Controller
     public function threadsView($id){
       if(Auth::check()){
        $project = Project::find($id);
-       $threads = Project::find($id)->threads()->where('thread.project_id','=',$project->id)->get();
+       $threads = Project::find($id)->threads()->with('user')->get();
        $notifications = Auth::user()->userNotifications();
 
       /* foreach($threads as $thread){
@@ -131,7 +133,7 @@ class ProjectController extends Controller
        
       /* FALTA O USER QUE O CRIOU e a cena das páginas*/
 
-        return $viewHTML = view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
+        return view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
       }
     }
 
@@ -139,9 +141,19 @@ class ProjectController extends Controller
       if(Auth::check()){
         $project = Project::find($id);
         $thread = Thread::find($thread_id);
+        $comments = Thread::find($thread_id)->comments()->with('user')->get();
         $notifications = Auth::user()->userNotifications();
  
-         //return $viewHTML = view('pages/forum',['project' => $project,'thread' => $thread, 'notifications' => $notifications]);
+        return view('pages/thread_page',['project' => $project,'thread' => $thread, 'notifications' => $notifications, 'comments' => $comments]);
+       }
+    }
+
+    public function threadsCreateForm($id){
+      if(Auth::check()){
+        $project = Project::find($id);
+        $notifications = Auth::user()->userNotifications();
+ 
+         return $viewHTML = view('pages/new_thread_page',['project' => $project, 'notifications' => $notifications]);
        }
     }
 

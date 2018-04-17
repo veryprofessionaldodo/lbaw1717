@@ -17,6 +17,8 @@
     <link href="{{ asset('css/projects_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/forum_thread.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -31,6 +33,7 @@
     <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/profile.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/project.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/forum.js') }} defer></script>
   </head>
   
   <body>
