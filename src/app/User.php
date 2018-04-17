@@ -69,21 +69,7 @@ class User extends Authenticatable
     }
 
     public function userProjects(int $n) {
-        return DB::select(
-          DB::raw('SELECT project.id, project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
-            FROM "user", project_members, project
-            INNER JOIN 
-            (SELECT project_id, COUNT(project_id) AS num_members
-            FROM project_members GROUP BY project_members.project_id) num 
-            ON project.id = num.project_id
-            INNER JOIN
-            (SELECT project_id, COUNT(*) AS sprints_num FROM sprint
-            GROUP BY project_id) sprints 
-            ON project.id = sprints.project_id
-            WHERE "user".username = :username AND project_members.user_id = "user".id 
-            AND project_members.project_id = project.id AND num.project_id = project.id
-            LIMIT 5 OFFSET :n'), array('username' => $this->username, 'n' => $n)
-        );
+        return $this->projects()->withCount('sprints')->withCount('user')/*->take(5)*/->skip($n)->get();
     }
 
     public function taskCompletedThisWeek() {

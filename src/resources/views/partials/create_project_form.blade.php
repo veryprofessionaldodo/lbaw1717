@@ -12,6 +12,14 @@
         <label>Public: </label>
         <input type="checkbox" id="public">
     </div>
+    <div class="form_area">
+        <label>Categories:</label>
+        <select name="categories" multiple>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{$category->name}}</option>
+            @endforeach
+        </select>
+    </div>
     <div id="form_options">
         <a href="{{ route('create_project', ['user_id' => Auth::user()->id])}}" class="btn btn-success">Submit</a>
         <a href="{{ route('user_profile', ['username' => Auth::user()->username])}}" class="btn btn-danger">Cancel</a>

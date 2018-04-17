@@ -75,6 +75,9 @@ function createProjectAction(event) {
 	let project_name = document.querySelector("input[name='project_name']").value;
 	let project_description = document.querySelector("input[name='project_description']").value;
 	let project_public = document.querySelector("input#public").value;
+	
+	let select = document.querySelector("select");
+	let categories = getSelectValues(select);
 
 	let index = event.target.href.indexOf('?');
 	let user_id_text = event.target.href.substring(index + 1, event.target.href.length);
@@ -87,7 +90,23 @@ function createProjectAction(event) {
 }
 
 function showProfileUpdated() {
-	//window.location.href = this.responseText;
+	window.location.href = this.responseText;
+}
+
+function getSelectValues(select) {
+	var result = [];
+  	var options = select && select.options;
+  	var opt;
+
+	for (var i=0, iLen=options.length; i<iLen; i++) {
+		opt = options[i];
+
+		if (opt.selected) {
+		result.push(opt.value || opt.text);
+		}
+	}
+	console.log(result);
+	return result;
 }
 
 addEventListeners();

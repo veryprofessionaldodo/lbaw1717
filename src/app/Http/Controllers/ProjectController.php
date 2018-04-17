@@ -183,6 +183,7 @@ class ProjectController extends Controller
       else
         $project->ispublic = FALSE;
       $project->save();
+      $project->user()->attach($request->input('user_id'), ['iscoordinator' => true]);
 
       /*$project_member = new ProjectMember();
       $project_member->user_id = $request->input('user_id');
@@ -190,10 +191,10 @@ class ProjectController extends Controller
       $project_member->iscoordinator = TRUE;
       $project_member->save();*/
 
-      DB::insert('insert into project_members (user_id, project_id, iscoordinator) values (?,?,?)',
+      /*DB::insert('insert into project_members (user_id, project_id, iscoordinator) values (?,?,?)',
                   array($request->input('user_id'),
                         $project->id,
-                        TRUE));
+                        TRUE));*/
 
       return $project;
     }
