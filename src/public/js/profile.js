@@ -86,16 +86,17 @@ function createProjectAction(event) {
 	let href = event.target.href.substring(0, index);
 	
 	sendAjaxRequest('post', href, 
-	{name: project_name, description: project_description, public: project_public, user_id: user_id}, showProfileUpdated);
+	{name: project_name, description: project_description, public: project_public, 
+		user_id: user_id, categories: categories}, showProfileUpdated);
 }
 
 function showProfileUpdated() {
-	window.location.href = this.responseText;
+	//window.location.href = this.responseText;
 }
 
 function getSelectValues(select) {
 	var result = [];
-  	var options = select && select.options;
+	var options = select.options;
   	var opt;
 
 	for (var i=0, iLen=options.length; i<iLen; i++) {
@@ -105,7 +106,6 @@ function getSelectValues(select) {
 		result.push(opt.value || opt.text);
 		}
 	}
-	console.log(result);
 	return result;
 }
 

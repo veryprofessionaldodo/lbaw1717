@@ -13,8 +13,8 @@
         <input type="checkbox" id="public">
     </div>
     <div class="form_area">
-        <label>Categories:</label>
-        <select name="categories" multiple>
+        <label>Categories (can be more than one):</label>
+        <select name="categories" class="form-control" multiple>
             @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{$category->name}}</option>
             @endforeach

@@ -12,8 +12,7 @@ class Category extends Model
 
   protected $table = 'category';
 
-
   public function projects() {
-    return $this->belongsTo('App\Project');
+    return $this->belongsToMany('App\Project', 'project_categories');
   }
 }
