@@ -23,14 +23,14 @@
             <hr class="my-4">
             <div class="form-group">
                 <label class="col-form-label" for="title">Insert the title of the new issue: </label>
-                <input type="text" class="form-control" placeholder="Title..." id="title">
+                <input type="text" class="form-control" name="title" placeholder="Title..." id="title">
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="description">Insert the description of the issue: </label>
-                <textarea class="form-control" id="description" placeholder ="Description..." rows="5"></textarea>
+                <textarea class="form-control" id="description" name="description" placeholder ="Description..." rows="5"></textarea>
             </div>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Create</a>
+                <a class="btn btn-primary btn-lg" id="newThread-btn" href="{{ route('new_thread_action', ['id' => $project->id])}}" role="button">Create</a>
             </p>
         </div>   
     </div>

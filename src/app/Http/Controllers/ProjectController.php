@@ -156,6 +156,26 @@ class ProjectController extends Controller
        }
     }
 
+   /* public function threadsCreateAction(Request $request) {
+      if (!Auth::check()) return redirect('/login');
+
+      $user = Auth::user();
+      $new_thread = Thread::create([
+        'name' => ,
+        'description' =>,
+        'date' => ,
+        'project_id' => ,
+        'user_creator_id' =>
+      ]);
+
+      $user->name = $request->input('name');
+      $user->username = $request->input('username');
+      $user->email = $request->input('email');
+      $user->image = $request->input('image');
+
+      return route('user_profile', [Auth::user()->username]);
+    }*/
+
     
     /**
      * Creates a new card.

@@ -80,7 +80,8 @@ Route::delete('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}',
 
 //Project Forum
 Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('forum'); //done
-Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm')->name('new_thread_form');
+Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm')->name('new_thread_form'); //done
+Route::post('projects/{id}/threads/create', 'ProjectController@threadsCreateAction')->name('new_thread_action');
 Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView')->name('thread');
 /*Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm');
 Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction');
