@@ -68,8 +68,8 @@ class User extends Authenticatable
               ->select('user.username','project.name','notification.*')->get();
     }
 
-    public function userProjects(int $n) {
-        return $this->projects()->withCount('sprints')->withCount('user')->take(5)->skip($n)->get();
+    public function userProjects() {
+        return $this->projects()->withCount('sprints')->withCount('user')->paginate(5);
     }
 
     public function taskCompletedThisWeek() {

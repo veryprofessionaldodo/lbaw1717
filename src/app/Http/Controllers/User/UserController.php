@@ -14,22 +14,23 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller {
 
-    public function showProfile(string $username, int $n) {
+    public function showProfile(string $username) {
 	    if (!Auth::check()) return redirect('/login');
         $this->authorize('list', Project::class);
         $notifications = Auth::user()->userNotifications();
         $numProjects = Auth::user()->projects()->count();
-        $projects = Auth::user()->userProjects($n * 5);
+        $projects = Auth::user()->userProjects();
         $taskCompletedWeek = Auth::user()->taskCompletedThisWeek()[0];
         $taskCompletedMonth = Auth::user()->taskCompletedThisMonth()[0];
         $sprintsContributedTo = Auth::user()->sprintsContributedTo()[0];
   
-		return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'n' => (int)$n, 'numProjects' => $numProjects]);
+        return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
+        'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'numProjects' => $numProjects]);
       
     }
     
     public function getUserProjects(int $n) {
-        $projects = Auth::user()->userProjects($n * 5);
+        $projects = Auth::user()->userProjects();
         
         return view('partials.user_projects', ['projects' => $projects]);
     }

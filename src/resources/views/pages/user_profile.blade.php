@@ -67,7 +67,7 @@
 				</div>
 			</div>
 
-			@include('partials.user_projects',['projects' => $projects]);
+			@include('partials.user_projects',['projects' => $projects])
 						
 		</section>
 	</div>

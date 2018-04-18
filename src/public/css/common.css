@@ -255,25 +255,73 @@ nav ul li {
 /**
 	PAGINATION
 */
+
 div#pagination_section {
-	text-align: center;
-	margin: auto;
+	display: inline-block;
 }
 
-div#pagination_section ul.pagination{
+ul.pagination{
 	margin: auto;
-	width: 17em;
 	text-align: center;
 }
 
-
-div#pagination_section li.page-item:hover {
-	background-color: #0A1827;
+ul.pagination li {
+	
 }
 
-div#pagination_section li.page-link a{
+ 
+ul.pagination li > * {
+	position: relative;
+	display: block;
+	padding: 0.5rem 0.75rem;
+	margin-left: -1px;
+	line-height: 1.25;
+	color: #888;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+ul.pagination li > *:hover {
+	z-index: 2;
+	color: #00526e;
+	text-decoration: none;
+	background-color: #eee;
+	border-color: #dee2e6;
+}
+
+ul.pagination li > *:focus {
+	z-index: 2;
+	outline: 0;
+	-webkit-box-shadow: 0 0 0 0.2rem rgba(0, 140, 186, 0.25);
+			box-shadow: 0 0 0 0.2rem rgba(0, 140, 186, 0.25);
+}
+
+ul.pagination li:first-child > * {
+	margin-left: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+ul.pagination li:last-child > * {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+ul.pagination li.active > * {
+	z-index: 1;
 	color: #fff;
+	background-color: #008cba;
+	border-color: #0079a1;
 }
+  
+ul.pagination li.disabled > * {
+	color: #eee;
+	pointer-events: none;
+	cursor: auto;
+	background-color: #fff;
+	border-color: #dee2e6;
+}
+
 
 /**
   FOOTER
