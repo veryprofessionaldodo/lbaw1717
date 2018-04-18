@@ -69,7 +69,7 @@ class User extends Authenticatable
     }
 
     public function userProjects(int $n) {
-        return $this->projects()->withCount('sprints')->withCount('user')/*->take(5)*/->skip($n)->get();
+        return $this->projects()->withCount('sprints')->withCount('user')->take(5)->skip($n)->get();
     }
 
     public function taskCompletedThisWeek() {

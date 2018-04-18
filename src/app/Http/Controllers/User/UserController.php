@@ -14,19 +14,25 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller {
 
-    public function showProfile(string $n) {
+    public function showProfile(string $username, int $n) {
 	    if (!Auth::check()) return redirect('/login');
         $this->authorize('list', Project::class);
         $notifications = Auth::user()->userNotifications();
         $numProjects = Auth::user()->projects()->count();
-        $projects = Auth::user()->userProjects((int)0); //later change to $n
+        $projects = Auth::user()->userProjects($n * 5);
         $taskCompletedWeek = Auth::user()->taskCompletedThisWeek()[0];
         $taskCompletedMonth = Auth::user()->taskCompletedThisMonth()[0];
         $sprintsContributedTo = Auth::user()->sprintsContributedTo()[0];
   
 		return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'n' => (int)$n, 'numProjects' => $numProjects]);
       
-	}
+    }
+    
+    public function getUserProjects(int $n) {
+        $projects = Auth::user()->userProjects($n * 5);
+        
+        return view('partials.user_projects', ['projects' => $projects]);
+    }
 
 	public function showAdminPage(string $username){
 		if (!Auth::check()) return redirect('/login');

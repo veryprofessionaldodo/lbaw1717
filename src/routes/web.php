@@ -25,14 +25,13 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register'); //done
 
 // User
-Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile');
+Route::get('api/users/{username}/{n_page}', 'User\UserController@showProfile')->name('user_profile');
 Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
 Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action'); // done
 
 Route::post('api/users/projects/accept_invite', 'User\UserController@acceptInvite');
 Route::post('api/users/projects/unsigned_project', 'User\UserController@unsignProject');
 Route::post('api/users/projects/search_project', 'User\UserController@searchUserProject');
-
 
 Route::get('api/users/projects/new_project', 'User\UserController@createProjectForm')->name('new_project_form');
 Route::post('api/users/projects', 'ProjectController@create')->name('create_project'); //done
