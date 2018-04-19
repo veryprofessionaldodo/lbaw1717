@@ -17,15 +17,26 @@ class UserController extends Controller {
     public function showProfile(string $username) {
 	    if (!Auth::check()) return redirect('/login');
         $this->authorize('list', Project::class);
-        $notifications = Auth::user()->userNotifications();
-        $numProjects = Auth::user()->projects()->count();
+
         $projects = Auth::user()->userProjects();
+
+        $requests = request()->headers->all();
+        print_r($requests);
+
+        if(request()->ajax()) {
+            $viewHTML = view('partials.user_projects', ['projects' => $projects])->render();
+            echo $viewHTML;
+            return response()->json(array('success' => true, 'html' => $viewHTML));
+        }
+
+        $notifications = Auth::user()->userNotifications();
+
         $taskCompletedWeek = Auth::user()->taskCompletedThisWeek()[0];
         $taskCompletedMonth = Auth::user()->taskCompletedThisMonth()[0];
         $sprintsContributedTo = Auth::user()->sprintsContributedTo()[0];
   
         return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
-        'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'numProjects' => $numProjects]);
+        'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications]);
       
     }
     

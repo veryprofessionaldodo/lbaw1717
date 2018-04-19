@@ -5,7 +5,7 @@ function addEventListeners() {
 
     newThreadButton.addEventListener('click', addNewThread);
 }
-
+/*
 function encodeForAjax(data) {
     if (data == null) return null;
     return Object.keys(data).map(function (k) {
@@ -25,7 +25,7 @@ function sendAjaxRequest(method, url, data, handler) {
         request.send(encodeForAjax(data));
     else
         request.send();
-}
+}*/
 
 function addNewThread(request){
     event.preventDefault();
