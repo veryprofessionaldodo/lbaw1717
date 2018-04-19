@@ -1,14 +1,15 @@
 body {
 	margin: 0;
-	background-color: #ECE7F3;
+	/*background-color: #ECE7F3;*/
 }
 
  /**
 		NAV
  */
 nav {
-	background-color: #0A1827;
+	background-color: #008cba;
 	align-items: center;
+	box-shadow: 0 1px 5px 1px black;
 }
 
 nav.row{

@@ -15,7 +15,7 @@ div#all_projects.container div.row {
 	margin: auto;
 }
 
-.project {
+div#all_projects .project {
 	background-color: #CCD9CE;
 	outline: 1px solid #666;
 	padding: 1em;

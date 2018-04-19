@@ -17,6 +17,7 @@ function addEventListeners() {
 		console.log(paginationLinks[i]);
 		paginationLinks[i].addEventListener('click', getUserProjectsPage);
 	}
+
 }
 
 function encodeForAjax(data) {
