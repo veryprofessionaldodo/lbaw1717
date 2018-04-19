@@ -67,23 +67,8 @@
 				</div>
 			</div>
 
-			@each('partials.user_project', $projects, 'project')
-			
-			<div id="pagination_section" class="col-12">
-			  <ul class="pagination">
-			  	@if($n != 1)
-				    <li class="page-item disabled">
-				      <a class="page-link" href="#">&laquo;</a>
-				    </li>
-			    @endif
-			    @if($n != $numProjects)
-				    <li class="page-item">
-				      <a class="page-link" href="#">&raquo;</a>
-				    </li>
-				@endif
-			  </ul>
-			</div>
-			
+			@include('partials.user_projects',['projects' => $projects])
+						
 		</section>
 	</div>
 </div>

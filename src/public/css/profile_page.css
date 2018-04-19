@@ -208,7 +208,7 @@ div.container.edit_profile, div.container.new_project {
 
 	padding: 1em;
 	max-width: 40em;
-	height: 27em;
+	max-height: 30em;
 	text-align: justify;
 }
 

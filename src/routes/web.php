@@ -33,7 +33,6 @@ Route::post('api/users/projects/accept_invite', 'User\UserController@acceptInvit
 Route::post('api/users/projects/unsigned_project', 'User\UserController@unsignProject');
 Route::post('api/users/projects/search_project', 'User\UserController@searchUserProject');
 
-
 Route::get('api/users/projects/new_project', 'User\UserController@createProjectForm')->name('new_project_form');
 Route::post('api/users/projects', 'ProjectController@create')->name('create_project'); //done
 

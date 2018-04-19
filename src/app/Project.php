@@ -26,7 +26,7 @@ class Project extends Model
   }
 
   public function categories() {
-    return $this->hasMany('App\Category');
+    return $this->hasMany('App\Category', 'project_categories');
   }
 
   public function scopeSearch($query, $search) {

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Project;
 use App\Thread;
+use App\Category;
 
-use App\ProjectMember;
 
 class ProjectController extends Controller
 {
@@ -203,19 +203,16 @@ class ProjectController extends Controller
       else
         $project->ispublic = FALSE;
       $project->save();
+
       $project->user()->attach($request->input('user_id'), ['iscoordinator' => true]);
 
-      /*$project_member = new ProjectMember();
-      $project_member->user_id = $request->input('user_id');
-      $project_member->project_id = $project->id;
-      $project_member->iscoordinator = TRUE;
-      $project_member->save();*/
+      $categories = $request->input('categories');
+      $cat_array = explode(',',$categories);
 
-      /*DB::insert('insert into project_members (user_id, project_id, iscoordinator) values (?,?,?)',
-                  array($request->input('user_id'),
-                        $project->id,
-                        TRUE));*/
-
+      foreach($cat_array as $cat) {
+        Category::find($cat)->projects()->attach($project->id);
+      }
+      
       return $project;
     }
 }
