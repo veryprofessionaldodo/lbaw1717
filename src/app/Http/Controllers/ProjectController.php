@@ -153,7 +153,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $notifications = Auth::user()->userNotifications();
  
-         return $viewHTML = view('pages/new_thread_page',['project' => $project, 'notifications' => $notifications]);
+         return view('pages/new_thread_page',['project' => $project, 'notifications' => $notifications]);
        }
     }
 
@@ -165,25 +165,24 @@ class ProjectController extends Controller
       return view('pages.result_search', ['projects' => $projects, 'notifications' => $notifications]);
     }
 
-   /* public function threadsCreateAction(Request $request) {
+    public function threadsCreateAction(Request $request) {
       if (!Auth::check()) return redirect('/login');
 
-      $user = Auth::user();
-      $new_thread = Thread::create([
-        'name' => ,
-        'description' =>,
-        'date' => ,
-        'project_id' => ,
-        'user_creator_id' =>
-      ]);
+      $user = Auth::user()->id;
 
-      $user->name = $request->input('name');
-      $user->username = $request->input('username');
-      $user->email = $request->input('email');
-      $user->image = $request->input('image');
+      $thread = new Thread();
+      //TODO authorize
 
-      return route('user_profile', [Auth::user()->username]);
-    }*/
+      $thread->name = $request->input('name');
+      $thread->description = $request->input('description');
+      $thread->project_id = $request->input('project_id');
+      $thread->user_creator_id = $user;
+
+      $thread->save();
+
+      $viewHTML = $this->threadsView($request->project_id)->render();
+      return response()->json(array('success' => true, 'html' => $viewHTML)); 
+    }
 
     
     /**
