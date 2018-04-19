@@ -26,9 +26,9 @@ aside {
 	text-align: center;
 	color: #fff;
 	background-color: #008cba;
-	/* box-shadow: 2px 5px 5px 1px black; */
+	box-shadow: 1px 5px 5px 1px #888;
 	padding: 0;
-	margin: auto 0;
+	margin: 1em 0;
 }
 
 aside p {

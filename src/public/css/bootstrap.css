@@ -75,7 +75,7 @@
    line-height: 1.5;
    color: #222;
    text-align: left;
-   background-color: #fff;
+   background-color: #e3e8ef;
  }
  
  [tabindex="-1"]:focus {
@@ -2026,7 +2026,7 @@
  }
  
  .form-control::placeholder {
-   color: #888;
+   color: #fff;
    opacity: 1;
  }
  

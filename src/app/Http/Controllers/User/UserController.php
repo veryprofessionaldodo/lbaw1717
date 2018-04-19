@@ -20,14 +20,14 @@ class UserController extends Controller {
 
         $projects = Auth::user()->userProjects();
 
-        $requests = request()->headers->all();
-        print_r($requests);
+        // $requests = request()->headers->all();
+        // print_r($requests);
 
-        if(request()->ajax()) {
-            $viewHTML = view('partials.user_projects', ['projects' => $projects])->render();
-            echo $viewHTML;
-            return response()->json(array('success' => true, 'html' => $viewHTML));
-        }
+        // if(request()->ajax()) {
+        //     $viewHTML = view('partials.user_projects', ['projects' => $projects])->render();
+        //     echo $viewHTML;
+        //     return response()->json(array('success' => true, 'html' => $viewHTML));
+        // }
 
         $notifications = Auth::user()->userNotifications();
 

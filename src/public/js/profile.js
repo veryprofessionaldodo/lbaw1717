@@ -1,22 +1,21 @@
 function addEventListeners() {
 	
-	window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').content;
-	window.axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-	window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+	// window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').content;
+	// window.axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+	// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-	
 	let editProfileButton = document.querySelector(".container-fluid .row aside div a#edit_profile");
 	editProfileButton.addEventListener('click', editProfileForm);
 
 	let createProjectButton = document.querySelector(".container-fluid div#options a#new_project");
 	createProjectButton.addEventListener('click', createProjectForm);
 
-	let paginationLinks = document.querySelectorAll("ul.pagination li a, ul.pagination li span");
-	console.log(paginationLinks);
-	for(var i = 0; i < paginationLinks.length; i++){
-		console.log(paginationLinks[i]);
-		paginationLinks[i].addEventListener('click', getUserProjectsPage);
-	}
+	// let paginationLinks = document.querySelectorAll("ul.pagination li a, ul.pagination li span");
+	// console.log(paginationLinks);
+	// for(var i = 0; i < paginationLinks.length; i++){
+	// 	console.log(paginationLinks[i]);
+	// 	paginationLinks[i].addEventListener('click', getUserProjectsPage);
+	// }
 
 }
 
@@ -32,9 +31,9 @@ function sendAjaxRequest(method, url, data, handler) {
   let request = new XMLHttpRequest();
 
   request.open(method, url, true);
-  /*request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+  request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
   request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');*/
+  request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
   request.addEventListener('load', handler);
   if(data != null)
   	request.send(encodeForAjax(data));
@@ -125,21 +124,21 @@ function getSelectValues(select) {
 	return result;
 }
 
-function getUserProjectsPage(event) {
-	event.preventDefault();
-	console.log('ah!');
+// function getUserProjectsPage(event) {
+// 	event.preventDefault();
+// 	console.log('ah!');
 
-	var page = event.target.href.split('page=')[1];
+// 	var page = event.target.href.split('page=')[1];
 
-	sendAjaxRequest('get', event.target.href, null, changePage);
-}
+// 	sendAjaxRequest('get', event.target.href, null, changePage);
+// }
 
-function changePage() {
-	var response = JSON.parse(this.responseText);
-	console.log(response);
+// function changePage() {
+// 	var response = JSON.parse(this.responseText);
+// 	console.log(response);
 
-	let content = document.querySelector("div.#projects");
-	content.innerHTML = response.html;
-}
+// 	let content = document.querySelector("div.#projects");
+// 	content.innerHTML = response.html;
+// }
 
 addEventListeners();

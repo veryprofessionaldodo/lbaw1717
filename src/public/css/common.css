@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	/*background-color: #ECE7F3;*/
+	/* background-color: #e3e8ef; */
 }
 
  /**
@@ -80,7 +80,7 @@ nav ul li {
 #notifications .hamburger {
 	margin-top: 0.5em;
 	font-size: 18px;
-	color: white;
+	color: #e3e8ef;
 	cursor: pointer;
 }
 
@@ -94,7 +94,7 @@ nav ul li {
 }
 
 #notifications_box {
-	background-color: white;
+	background-color: #e3e8ef;
 	color: black;
 	font-size: 12px;
 	text-align: left;
@@ -120,7 +120,7 @@ nav ul li {
 }
 
 #notifications_box li.row {
-	background-color: white;
+	background-color: #e3e8ef;
 	padding: 0;
 	margin: 0;
 	width: 100%;
@@ -266,10 +266,6 @@ ul.pagination{
 	text-align: center;
 }
 
-ul.pagination li {
-	
-}
-
  
 ul.pagination li > * {
 	position: relative;
@@ -278,7 +274,7 @@ ul.pagination li > * {
 	margin-left: -1px;
 	line-height: 1.25;
 	color: #888;
-	background-color: #fff;
+	background-color: #eee;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -319,7 +315,7 @@ ul.pagination li.disabled > * {
 	color: #eee;
 	pointer-events: none;
 	cursor: auto;
-	background-color: #fff;
+	background-color: #eee;
 	border-color: #dee2e6;
 }
 
