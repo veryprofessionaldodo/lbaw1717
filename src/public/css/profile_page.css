@@ -11,6 +11,7 @@ h2 {
 
 div.container-fluid {
 	min-height: 100vh;
+	margin-bottom: 0;
 }
 
 div.container-fluid > div.row {
@@ -23,10 +24,11 @@ div.container-fluid > div.row {
 
 aside {
 	text-align: center;
-	color: #e3eaed;
-	background-color: #888;
-	box-shadow: 0 0px 5px 1px black;
+	color: #fff;
+	background-color: #008cba;
+	/* box-shadow: 2px 5px 5px 1px black; */
 	padding: 0;
+	margin: auto 0;
 }
 
 aside p {
@@ -64,6 +66,7 @@ aside div#statistics {
 
 div#options {
 	margin: auto;
+	height: 3em;
 }
 div#options button#new_project {
 	margin: 1em auto;
@@ -105,12 +108,9 @@ div#options div#role_button {
 	display: none;
 }
 
-div.container-fluid {
-	margin-bottom: 2em;
-}
 
 section {
-	
+	margin-top: 1em;
 }
 
 section p {
@@ -130,10 +130,11 @@ section > a {
 }
 
 section div.project {
-	/*background-color: #CCD9CE;*/
+	background-color: #eee;
 	margin: 1em 3em;
 	padding: 1em;
-	outline: 1px solid #666;
+	box-shadow: 0 0 5px 1px #888;
+	/* outline: 1px solid #666; */
 	color: #000;
 	display: grid;
 	grid-template-columns: 20% auto auto;
@@ -141,7 +142,7 @@ section div.project {
 
 section div.project:hover {
 	/*background-color: #9AC0BA;*/
-	outline: 1px solid #333;
+	outline: 0 solid #333;
 }
 
 section div.project > h5 {

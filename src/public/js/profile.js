@@ -4,6 +4,7 @@ function addEventListeners() {
 
 	let createProjectButton = document.querySelector(".container-fluid div#options a#new_project");
 	createProjectButton.addEventListener('click', createProjectForm);
+	
 }
 
 function encodeForAjax(data) {
