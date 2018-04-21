@@ -20,8 +20,12 @@
         <div id="thread">
             <div class="row" id="header">
                 <div class="col-3">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" height="150px" width="150px">
-                    <figcaption>sportelona</figcaption>
+                    @if($thread->user->image != null)
+                        <img src="{{$thread->user->image}}" width="150px">
+                    @else
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" width="150px">
+                    @endif
+                    <figcaption>{{$thread->user->username}}</figcaption>
                 </div>
                 <div class="col-7">
                     <div id="issue">
