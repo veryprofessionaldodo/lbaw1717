@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Project;
 use App\Thread;
 use App\Category;
+use App\Comment;
 
 
 class ProjectController extends Controller
@@ -214,5 +215,24 @@ class ProjectController extends Controller
       }
       
       return $project;
+    }
+
+    public function storeComment(Request $request,$id, $thread_id){
+      
+    $thread = Thread::find($thread_id);
+    /*$user = User::find($user_id);*/
+
+    $comment = new Comment();
+    $comment->content = $request->content;
+   // $comment->thread_id = $thread_id;
+    $comment->user_id = Auth::id();
+    //$comment->associate($user);
+
+    $thread->comments()->save($comment); 
+
+    echo($comment);
+
+    return back();
+
     }
 }

@@ -44,111 +44,32 @@
 
             @each('partials.comment', $comments, 'comment')
 
-<!--
-            <div class="row comment table-dark">
-                <div class="col-2">
-                    <img src="res/forum/bee.jpg" id="profile_pic">
-                    <figcaption>BeeMargarida</figcaption>
-                </div>
-                <div class="col-8">
-                    <p>You have plenty of infomation on the w3schools website, maybe head over there!.</p>
-                </div>
-                <div class="col-2">
-                    <div class="date">
-                        <p>22:31
-                            <a class="btn" href="report_page.html">Report 
-                                <i class="fas fa-flag"></i>
-                            </a>
-                        </p>
-                        <p>20/02/2018</p>
 
-                    </div>
-                </div>
+
+        <div class="row comment table-dark">
+            <div class="col-2">
+                <img src="res/forum/squirtle.jpeg" id="profile_pic">
+                <figcaption>lues</figcaption>
             </div>
-
-            <div class="row comment table-dark">
-                <div class="col-2">
-                    <img src="res/forum/dodo.jpg" id="profile_pic">
-                    <figcaption>ragingdodo</figcaption>
-                </div>
-                <div class="col-8">
-                    <p>
-                        <strong>@Sportelona</strong>, come on, you really should know grids by now... Just ignore him,
-                        <strong>@BeeMargarida!</strong>
-                    </p>
-                </div>
-                <div class="col-2">
-                    <div class="date">
-                        <p>22:35
-                            <a class="btn" href="report_page.html">Report 
-                                <i class="fas fa-flag"></i>
-                            </a>
-                        </p>
-                        <p>20/02/2018</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row comment table-dark">
-                <div class="col-2">
-                    <img src="res/forum/css_master.jpg" id="profile_pic">
-                    <figcaption>designing101</figcaption>
-                </div>
-                <div class="col-8">
-                    <p>I know some tricks I can teach you.</p>
-                </div>
-                <div class="col-2">
-                    <div class="date">
-                        <p>22:48
-                            <a class="btn" href="report_page.html">Report
-                                <i class="fas fa-flag"></i>
-                            </a>
-                        </p>
-                        <p>20/02/2018</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row comment table-dark">
-                    <div class="col-2">
-                        <img src="res/forum/sloth.jpg" id="profile_pic">
-                        <figcaption>slacker404</figcaption>
-                    </div>
-                    <div class="col-8">
-                        <p>Sorry, I'm late to this issue... Still need help?</p>
-                    </div>
-                    <div class="col-2">
-                        <div class="date">
-                            <p>02:48
-                                <a class="btn" href="report_page.html">Report
-                                    <i class="fas fa-flag"></i>
-                                </a>
-                            </p>
-                            <p>21/02/2018</p>
-                        </div>
-                    </div>
-                </div>
-
-            <div class="row comment table-dark">
-                <div class="col-2">
-                    <img src="res/forum/squirtle.jpeg" id="profile_pic">
-                    <figcaption>lues</figcaption>
-                </div>
+            <form method="POST" action="/projects/{{ $project -> id }}/threads/{{ $thread -> id}}/comments">
+                {{ csrf_field()}}
+                
                 <div class="col-8">
                     <label>Your post:</label>
-                    <input type="text" class="form-control" placeholder="Write here...">    
+                    <input type="text" class="form-control" name="content" id="content" placeholder="Write here...">    
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn btn-secondary">Submit</button>
+                    <button type="submit" class="btn btn-secondary">Submit</button>
                 </div>
                 <div class="offset-2"></div>
-            </div>
+            </form> 
+            
         </div>
 
 
     
     </div>
-    <footer>
+  <!--  <footer>
         <div id="contacts">
             <h6>Contacts</h6>
             <p>(+351)255255255</p>

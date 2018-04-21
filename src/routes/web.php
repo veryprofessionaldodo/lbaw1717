@@ -83,6 +83,7 @@ Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('foru
 Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm')->name('new_thread_form'); //done
 Route::post('projects/{id}/threads/create', 'ProjectController@threadsCreateAction')->name('new_thread_action');
 Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView')->name('thread');
+Route::post('projects/{id}/threads/{thread_id}/comments', 'ProjectController@storeComment');
 /*Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm');
 Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction');
 Route::put('projects/{id}/threads/{thread_id}/comments', 'ProjectController@newThreadComment');
