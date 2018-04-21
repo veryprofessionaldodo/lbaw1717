@@ -20,8 +20,12 @@
         <div id="thread">
             <div class="row" id="header">
                 <div class="col-3">
-                    <img src="res/forum/liedson.jpg" height="150px" width="150px">
-                    <figcaption>sportelona</figcaption>
+                    @if($thread->user->image != null)
+                        <img src="{{$thread->user->image}}" width="150px">
+                    @else
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" width="150px">
+                    @endif
+                    <figcaption>{{$thread->user->username}}</figcaption>
                 </div>
                 <div class="col-7">
                     <div id="issue">
@@ -29,14 +33,16 @@
                         <p>{{$thread->description}}</p>
                     </div>
                 </div>
+                <?php  
+                    $date = new \DateTime($thread->date);
+                ?>
                 <div class="col-2">
                     <div class="date">
-                        <p>22:25
-                            <a class="btn" href="report_page.html">Report 
-                                <i class="fas fa-flag"></i>
-                            </a>
-                        </p>
-                        <p>20/02/2018</p>
+                        <p>{{$date->format('h:m')}}</p>
+                        <p>{{$date->format('d/m/Y')}}</p>
+                        <a class="btn" href="report_page.html">Report 
+                            <i class="fas fa-flag"></i>
+                        </a>
                     </div>
 
                 </div>
@@ -65,9 +71,6 @@
             </form> 
             
         </div>
-
-
-    
     </div>
   <!--  <footer>
         <div id="contacts">

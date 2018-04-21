@@ -19,7 +19,8 @@ class UserController extends Controller {
         $this->authorize('list', Project::class);
 
         $projects = Auth::user()->userProjects();
-
+        $user = User::where('username',$username)->get();
+        
         // $requests = request()->headers->all();
         // print_r($requests);
 
@@ -27,16 +28,16 @@ class UserController extends Controller {
         //     $viewHTML = view('partials.user_projects', ['projects' => $projects])->render();
         //     echo $viewHTML;
         //     return response()->json(array('success' => true, 'html' => $viewHTML));
-        // }
+        // }]);
 
-        $notifications = Auth::user()->userNotifications();
+        $notifications = $user[0]->userNotifications();
 
-        $taskCompletedWeek = Auth::user()->taskCompletedThisWeek()[0];
-        $taskCompletedMonth = Auth::user()->taskCompletedThisMonth()[0];
-        $sprintsContributedTo = Auth::user()->sprintsContributedTo()[0];
+        $taskCompletedWeek = $user[0]->taskCompletedThisWeek()[0];
+        $taskCompletedMonth = $user[0]->taskCompletedThisMonth()[0];
+        $sprintsContributedTo = $user[0]->sprintsContributedTo()[0];
   
         return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
-        'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications]);
+        'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'user' => $user[0]]);
       
     }
     
@@ -52,7 +53,7 @@ class UserController extends Controller {
 		return view('pages/admin_page');
 	}
 
-    /**
+    /**]);
         Returns the form to edit a profile
     */
     public function editProfileForm(Request $request) {

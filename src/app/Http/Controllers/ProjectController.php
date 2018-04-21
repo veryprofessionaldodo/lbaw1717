@@ -125,14 +125,8 @@ class ProjectController extends Controller
     public function threadsView($id){
       if(Auth::check()){
        $project = Project::find($id);
-       $threads = Project::find($id)->threads()->with('user')->get();
+       $threads = Project::find($id)->threads()->with('user')->paginate(5);
        $notifications = Auth::user()->userNotifications();
-
-      /* foreach($threads as $thread){
-        echo($thread->name);
-       }*/
-       
-      /* FALTA O USER QUE O CRIOU e a cena das páginas*/
 
         return view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
       }

@@ -11,15 +11,15 @@
 		<aside class="col-lg-2 col-md-3 col-12">
 			<div class="row">
 				<div id="info" class="col-md-12 col-6">
-					@if(Auth::user()->image != NULL)
-						<img src="{{url(Auth::user()->image)}}">
+					@if($user->image != NULL)
+						<img src="{{url($user->image)}}">
 					@else						
 						<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
 					@endif
 					<div id="info_text">
-						<h3>{{ Auth::user()->name }}</h3>
-						<p>{{ Auth::user()->username }}</p>
-						<p>{{ Auth::user()->email }}</p>
+						<h3>{{ $user->name }}</h3>
+						<p>{{ $user->username }}</p>
+						<p>{{ $user->email }}</p>
 					</div>
 				</div>
 
@@ -29,8 +29,11 @@
 					<p>{{ $taskCompletedMonth->count }} tasks completed this month</p>
 					<p>{{ $sprintsContributedTo->count }} sprints contributed to</p>
 				</div>
-
+				@if(Auth::user()->username == $user->username)
 				<a href="{{ route('edit_profile', ['username' => Auth::user()->username])}}" id="edit_profile" class="col-md-12 col-12">Edit Profile</a>
+				@else
+				<a id="reprt_btn" class="col-md-12 col-12">Report</a>
+				@endif
 			</div>
 		</aside>
 
@@ -68,7 +71,7 @@
 			</div>
 
 			<div id="projects">
-				@include('partials.user_projects',['projects' => $projects])
+				@include('partials.user_projects',['projects' => $projects, 'user' => $user])
 			</div>
 						
 		</section>

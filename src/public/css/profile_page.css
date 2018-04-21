@@ -86,6 +86,22 @@ div#options form {
 	text-align: right;
 }
 
+div#options .form-control {
+	background-color: #fff;
+	color: #0A1827;
+}
+
+div#options .form-control:focus {
+	background-color: #fff;
+	color: #0A1827;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+
+div#options .form-control::placeholder {
+	color: #0A1827;
+	opacity: 1;
+  }
+
 div#options form.col-12 {
 	text-align: center;
 }
@@ -124,6 +140,9 @@ section button#new_project.btn.btn-primary {
 }
 
 /* PROJECTS TAB */
+div#projects > a {
+	text-decoration: none;
+}
 
 section > a {
 	text-decoration: none;
@@ -134,30 +153,29 @@ section div.project {
 	margin: 1em 3em;
 	padding: 1em;
 	box-shadow: 0 0 5px 1px #888;
-	/* outline: 1px solid #666; */
 	color: #000;
 	display: grid;
 	grid-template-columns: 20% auto auto;
 }
 
 section div.project:hover {
-	/*background-color: #9AC0BA;*/
-	outline: 0 solid #333;
+	background-color: #9AC0BA;
 }
 
+/* Hover effect is in search .css */
+
+
 section div.project > h5 {
-	text-decoration: underline;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	margin: auto;
 	font-weight: bold;
 	text-align: center;
 	color: #111;
-	transition: all 0.2s;
 }
 
 section div.project > h5:hover {
-	/*color: #DF691A;*/
+	color: #DF691A;
 }
 
 section div.project > p {
@@ -263,7 +281,7 @@ div.container.edit_profile div#form_options, div.container.new_project div#form_
 @media screen and (max-width: 767px) {
 	aside {
 		text-align: center;
-		box-shadow: 0 0px 5px 1px black;
+		box-shadow: 0 0px 5px 1px #888;
 		padding: 0;
 	}
 
@@ -301,10 +319,6 @@ div.container.edit_profile div#form_options, div.container.new_project div#form_
 
 	section div.project {
 		display: block;
-	}
-
-	section div.project > h5:hover {
-		color: #DF691A;
 	}
 
 	section div.project .project_info{
