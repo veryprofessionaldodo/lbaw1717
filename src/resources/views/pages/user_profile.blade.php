@@ -42,7 +42,7 @@
 				<div class="row">
 
 					<div class="offset-lg-1 col-lg-2 col-md-12">
-						<a id="new_project" class="btn btn-primary" href="{{ route('new_project_form')}}">Create New Project</a>
+						<a id="new_project" class="btn btn-primary" href="{{ route('new_project_form',['username' => Auth::user()->username])}}">Create New Project</a>
 					</div>
 
 					<!-- Add functionality to this form -->
