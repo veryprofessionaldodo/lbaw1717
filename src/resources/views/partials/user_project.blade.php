@@ -1,3 +1,5 @@
+@if(Auth::user()->username == $user->username || $project->ispublic)
+
 <a href="{{ route('project', ['id' => $project->id])}}">
 	<div class="project">
 		<h5>{{ $project->name }}</h5>
@@ -25,3 +27,5 @@
 		</div>
 	</div>
 </a>
+@else
+@endif

@@ -1100,11 +1100,11 @@ INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('W
 
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-05-20 00:00:00+01',1,2,5);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database structure','2018-05-20 00:00:00+01',1,2,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Website','2018-04-20 12:00:00+01',2,16,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Website','2018-05-20 12:00:00+01',2,16,5);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Build Security','2018-05-20 08:00:00+01',2,16,5);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw Mock-up','2018-04-30 23:59:00+01',3,11,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design with blender','2018-04-20 22:59:00+01',3,1,7);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database','2018-04-20 23:00:00+01',4,3,7);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design with blender','2018-05-20 22:59:00+01',3,1,7);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database','2018-05-20 23:00:00+01',4,3,7);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make Website','2018-05-21 23:00:00+01',4,2,10);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mobile App','2018-05-20 23:00:00+01',6,6,10);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Security Verifications','2018-05-25 23:00:00+01',6,6,8);
@@ -1117,7 +1117,7 @@ INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Dr
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-04-30 23:00:00+01',10,18,5);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make models 3D','2018-04-30 23:00:00+01',10,17,10);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design Course Program','2018-04-30 23:00:00+01',11,17,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Introduction','2018-04-22 23:00:00+01',11,17,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Introduction','2018-05-22 23:00:00+01',11,17,5);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-04-30 23:00:00+01',12,8,3);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Kernel','2018-04-30 23:00:00+01',12,8,20);
 
