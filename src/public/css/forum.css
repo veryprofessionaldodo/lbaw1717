@@ -12,7 +12,6 @@ THREADS
 
 div#container {
 	min-height: 100vh;
-	z-index: auto;
 }
 
 div#container div#options {
@@ -137,15 +136,16 @@ a:hover {
 	color: #DF691A;
 }
 
-div#container {
-	min-height: 100vh;
-}
-
 #overlay {
 	min-height: 100vh;
 	z-index: 200;
 	width: 75%;
 	margin: auto;
+}
+
+div#pagination_section_forum {
+	display: flex;
+	align-items: center;
 }
 
 @media screen and (max-width: 635px){

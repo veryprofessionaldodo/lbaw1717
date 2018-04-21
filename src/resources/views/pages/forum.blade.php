@@ -34,6 +34,10 @@
             </table>
         </div>
 
+        <div id="pagination_section_forum">
+            {{$threads->links()}}
+        </div>
+
     </div>
 
 @else
