@@ -24,7 +24,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">
+			<nav class="navbar navbar-expand-lg navbar-dark" id="buttons_nav">
 
 				<a class="btn btn-secondary" class="project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
 					<i class="fas fa-comments"></i> Forum</a>

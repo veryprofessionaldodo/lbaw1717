@@ -46,7 +46,8 @@ section > div#sign {
 	grid-column-end: 3;
 	grid-row-start: 2;
 	grid-row-end: 3;
-	background-color: #0A1827;
+	color: #fff;
+	background-color: #008cba;
 	display: flex;
 	flex-direction: column;
 }
@@ -89,6 +90,10 @@ section > div#sign > form > button:last-of-type {
 	margin-bottom: 1.5em;
 }
 
+section > div#sign button[type="submit"] {
+	background-color: #E99002;
+}
+
 #sign_buttons {
 	display: flex;
 	width: 100%;
@@ -96,12 +101,13 @@ section > div#sign > form > button:last-of-type {
 #sign_buttons a{
 	text-decoration: none;
 	text-align: center;
-	background-color: #004144;
+	background-color: #0A1827;
 	border: 0;
 	padding: 1em;
 	width: 50%;
-	color: #999;
+	color: #fff;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 #sign_buttons a:first-child {
@@ -109,12 +115,12 @@ section > div#sign > form > button:last-of-type {
 }
 
 #sign_buttons a:hover {
-	background-color: #4b9eb7;
+	background-color: #7aacbd;
 }
 
 #sign_buttons a#selected {
 	color: #EBEBEB;
-	background-color: #0A1827;	
+	background-color: #008cba;	
 }
 
 #sign_mobile {
@@ -137,7 +143,6 @@ section > div#sign > form > button:last-of-type {
 	section > div#sign {
 		margin: 3em 0 0 0;
 		padding: 0 0 1em 0;
-		background-color: #002E30;
 		display: flex;
 		flex-direction: column;
 	}
@@ -158,7 +163,6 @@ section > div#sign > form > button:last-of-type {
 	section > div#sign {
 		margin: 3em 0 0 0;
 		padding: 0 0 1em 0;
-		background-color: #2B3E50;
 		display: none;
 		flex-direction: column;
 	}

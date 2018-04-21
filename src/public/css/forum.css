@@ -32,12 +32,12 @@ div#container h1 {
 	margin: 0 0 0.5em 0;
 }
 
-.table {
+#threads .table {
 	margin-left: auto;
 	margin-right: auto;
-	width: 70%;
+	width: 90%;
 	border: solid 3px;
-	border-color: #003;
+	border-color: #008cba;
     box-shadow: 0 0 5px #000;
     grid-row-start: row1;
     grid-row-end: row2;
@@ -60,6 +60,10 @@ input.form-control, textarea.form-control {
 	background-color: #558A8C;
 	color: #0A1827;
 	outline: 1px solid #558A8C;
+}
+
+#threads table td {
+	color: #0A1827;
 }
 
 
@@ -91,9 +95,8 @@ input.form-control, textarea.form-control {
 }
 
 #threads th {
-	font-size: 125%;
-	padding-top: 0.1em;
-	padding-bottom: 0.1em;
+	font-size: 18px;
+	padding: 1em 0;
 	vertical-align: middle;
 	background-color: #ECE7F3;
 	text-align: center;
@@ -115,11 +118,11 @@ a:hover {
 
 
 #threads th.desc {
-	background-color: #0A1827;
+	background-color: #008cba;
 }
 
 #thread_main_text {
-	background-color:#002E30;
+	background-color:#008cba;
 }
 
 

@@ -16,7 +16,7 @@ div#container ol.breadcrumb {
 
 .table {
 	border: solid 6px;
-	border-color: #003;
+	border-color: #008cba;
     box-shadow: 0 0 10px #000;
 }
 
@@ -33,11 +33,12 @@ div#container ol.breadcrumb {
 }
 
 #thread div#header {
-	background-color: #182f35;
+	background-color: #487884;
 	border-width: 5px 5px 0 5px;
 	border-style: solid;
-	border-color: black;
+	border-color: #487884;
 	padding: 1em;
+	color: #fff;
 }
 
 
@@ -50,23 +51,11 @@ div#container ol.breadcrumb {
 	margin: auto;
 	text-align: justify;
 }
-/*
-#thread img {
-	position: relative;
-	max-width: 100%;
-	max-height: 100%;
-	margin: auto;
-}*/
 
 #thread #profile_pic {
 	width: 50px;
 	height: 50px;
 }
-/*
-#thread div.row:not(:first-child){
-	height: 100px;
-}
-*/
 
 div.date p {
 	margin-bottom: 0.2em;
@@ -87,7 +76,7 @@ div.date a{
 #thread div.comment:last-of-type {
 	border-width: 0 5px 5px 5px;
 	border-style: solid;
-	border-color: black;
+	border-color: #487884;
 }
 
 #thread div.comment {
@@ -96,12 +85,25 @@ div.date a{
 	padding: 1em;
 	border-width: 0 5px 1px 5px;
 	border-style: solid;
-	border-color: black;
+	border-color: #487884;
+	color: #001;
+}
+
+#thread div.comment h6 {
+	color: #001;
+}
+
+#thread div.comment span {
+	color: #001;
+}
+
+#thread div.comment div.user_options > * {
 	color: #001;
 }
 
 #issue h2 {
-	color: #ECE7F3;
+	color: black;
+	margin-bottom: 1em;
 }
 
 
@@ -115,6 +117,7 @@ div.col-8 button {
 	grid-column-start: 3; 
 	grid-column-end: 4;
 	grid-row: 1;
+	color: black;
 	margin: auto;
 	text-align: center;
 	transition: background-color 0s;
