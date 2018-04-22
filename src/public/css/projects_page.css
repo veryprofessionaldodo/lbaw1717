@@ -27,9 +27,18 @@ section.container-fluid {
 	max-width: 75%;
 }
 
+nav#buttons_nav {
+	box-shadow: 0 0;	
+}
+
 nav#buttons_nav a.btn {
 	text-decoration: none;
+	background-color: inherit;
+	border: 0;
+	color: #fff;
+	font-size: 18px;
 }
+
 
 
 /*
@@ -66,6 +75,16 @@ section.container-fluid .row .nav-tabs {
 	flex-grow: 1;
 }
 
+.nav-tabs .nav-item .nav-link {
+	padding: 1em 0;
+	font-size: 16px;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+	background-color: #5bc0de;
+	color: #fff;
+}
+
 /**
 	COORDINATOR
 */
@@ -100,7 +119,8 @@ div.list-group-item {
 	padding: 1em;
 	display: grid;
 	border: 0;
-	background-color: #ECE7F3;
+	font-size: 14px;
+	background-color: #5bc0de;
 	border-top: 2px solid #0A1827;
 	border-bottom: 2px solid #0A1827;
 	grid-template-columns: 50% auto auto auto;
@@ -140,7 +160,7 @@ div.list-group-item span {
 }
 
 div.sprint-task {
-	background-color: #CCD9CE;
+	background-color: #a1d0dd;
 	padding: 0 1em 0 3em;
 	display: grid;
 	grid-template-columns: 5% auto auto auto 5%;
@@ -211,7 +231,8 @@ div.sprint-task button.btn {
 	grid-column-start: 4;
 	grid-column-end: 5;
 	grid-row: 1;
-	background-color: #0A1827;
+	background-color: #5bc0de;
+	font-size: 12px;
 	margin: auto 0 auto auto;
 	padding: 0 1em;
 }
@@ -245,11 +266,16 @@ div.sprint-task.task_completed p.task_completed {
 	text-decoration: line-through;
 }
 
+div.sprint-task a {
+	cursor: pointer;
+}
+
 div.comment {
 	background-color: #558A8C;
 	padding: 1em 1em 1em 4em;
 	display: grid;
 	grid-template-columns: 5% 15% auto;
+	margin: 0;
 }
 
 div.comment:last-of-type {
@@ -310,12 +336,12 @@ div.comment div.user_options {
 div.comment div.user_options button {
 	font-size: 12px;
 	background-color: inherit;
-	color: #3e4a56;
+	color: #fff;
 	padding: 0;
 
 }
 div.comment div.user_options  p{
-	color: #3e4a56;
+	color: #fff;
 	font-size: 7px;
 	margin: 0;
 	padding: 0;
@@ -334,7 +360,6 @@ div.comment p.label {
 }
 
 div.comment div.form_comment {
-	display: flex;
 	grid-column-start: 3; 
 	grid-column-end: 4;
 	grid-row: 1;
@@ -342,13 +367,18 @@ div.comment div.form_comment {
 	margin: 0;
 }
 
-div.comment div.form_comment input.form-control {
+div.comment div.form_comment form {
+	display: flex;
+	
+}
+
+div.comment div.form_comment form input.form-control {
 	margin: 0 0 0 1em;
 	width: 100%;
 	flex-grow: 1;
 }
 
-div.comment div.form_comment button.btn {
+div.comment div.form_comment form button.btn {
 	margin: 0;
 }
 
@@ -365,7 +395,7 @@ div.comment div.form_comment button.btn {
 
 div#members div.row{
 	margin: 0;
-	background-color: #59738c; 
+	background-color: #a1d0dd; 
 }
 
 div#members div#user_search {
@@ -417,7 +447,6 @@ div#members div.member div.info a{
 div#members div.member p {
 	margin: auto;
 	display: block;
-	color: white;
 }
 
 a:hover{

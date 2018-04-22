@@ -15,9 +15,8 @@ div#all_projects.container div.row {
 	margin: auto;
 }
 
-.project {
+div#all_projects .project {
 	background-color: #CCD9CE;
-	outline: 1px solid #666;
 	padding: 1em;
 	color: #001;
 	margin: 1em 0;
@@ -25,7 +24,6 @@ div#all_projects.container div.row {
 
 .project:hover {
 	background-color: #9AC0BA;
-	outline: 1px solid #333;
 }
 
 .project div.row {

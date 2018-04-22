@@ -42,7 +42,11 @@ class User extends Authenticatable
     }
 
     public function comments() {
-      return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment');
+    }
+
+    public function threads(){
+        return $this->hasMany('App\Thread','user_creator_id');
     }
 
     public function isAdmin()
@@ -64,22 +68,8 @@ class User extends Authenticatable
               ->select('user.username','project.name','notification.*')->get();
     }
 
-    public function userProjects(int $n) {
-        return DB::select(
-          DB::raw('SELECT project.id, project.name, project.description, project_members.iscoordinator, num.num_members, sprints.sprints_num
-            FROM "user", project_members, project
-            INNER JOIN 
-            (SELECT project_id, COUNT(project_id) AS num_members
-            FROM project_members GROUP BY project_members.project_id) num 
-            ON project.id = num.project_id
-            INNER JOIN
-            (SELECT project_id, COUNT(*) AS sprints_num FROM sprint
-            GROUP BY project_id) sprints 
-            ON project.id = sprints.project_id
-            WHERE "user".username = :username AND project_members.user_id = "user".id 
-            AND project_members.project_id = project.id AND num.project_id = project.id
-            LIMIT 5 OFFSET :n'), array('username' => $this->username, 'n' => $n)
-        );
+    public function userProjects() {
+        return $this->projects()->withCount('sprints')->withCount('user')->paginate(5);
     }
 
     public function taskCompletedThisWeek() {

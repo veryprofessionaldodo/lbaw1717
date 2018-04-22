@@ -1,5 +1,6 @@
 <div class="sprint-task">
-	<a data-toggle="collapse" data-target="#task-{{$task->id}}"><i class="fas fa-sort-down"></i></a>
+	<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
+		<i class="fas fa-sort-down"></i></a>
 	<p>{{$task->name}}</p>
 	@if($role == 'tm')
 		<button class="btn">Claim task</button>
@@ -12,15 +13,18 @@
 	<input type="checkbox">
 </div>
 
-<div class="list-group collapse in" id="task-{{$task->id}}">
+<div class="list-group panel-collapse collapse in" id="task-{{$task->id}}">
 
 	@each('partials.comment', $task->comments, 'comment')
 	
 	<div class="comment">
 		<p class="label">New comment:</p>
 		<div class="form_comment">
-			<input type="text" class="form-control" name="comment">
-			<button class="btn btn-primary" type="submit">Send</button>
+			<form method="POST" action="{{ route('create_comment_task',['project_id' => $project->id,'task_id' => $task->id]) }}">
+				{{ csrf_field()}}
+				<input type="text" class="form-control" name="content">
+				<button class="btn btn-primary" type="submit">Send</button>
+			</form>
 		</div>
 	</div>
 </div>

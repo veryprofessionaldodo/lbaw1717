@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Project;
+use App\Thread;
+use App\Category;
+use App\Comment;
+use App\Task;
+
 
 class ProjectController extends Controller
 {
@@ -58,7 +63,6 @@ class ProjectController extends Controller
             $role = 'co';
         }
         else if($project->ispublic){
-          //if project is public
           $role = 'guest';
         }
         else
@@ -122,16 +126,10 @@ class ProjectController extends Controller
     public function threadsView($id){
       if(Auth::check()){
        $project = Project::find($id);
-       $threads = Project::find($id)->threads()->where('thread.project_id','=',$project->id)->get();
+       $threads = Project::find($id)->threads()->with('user')->paginate(5);
        $notifications = Auth::user()->userNotifications();
 
-      /* foreach($threads as $thread){
-        echo($thread->name);
-       }*/
-       
-      /* FALTA O USER QUE O CRIOU e a cena das páginas*/
-
-        return $viewHTML = view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
+        return view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
       }
     }
 
@@ -139,21 +137,20 @@ class ProjectController extends Controller
       if(Auth::check()){
         $project = Project::find($id);
         $thread = Thread::find($thread_id);
+        $comments = Thread::find($thread_id)->comments()->with('user')->get();
         $notifications = Auth::user()->userNotifications();
  
-         //return $viewHTML = view('pages/forum',['project' => $project,'thread' => $thread, 'notifications' => $notifications]);
+        return view('pages/thread_page',['project' => $project,'thread' => $thread, 'notifications' => $notifications, 'comments' => $comments]);
        }
     }
 
-    
-    /**
-     * Creates a new card.
-     *
-     * @return Card The card created.
-     */
-    public function create(Request $request)
-    {
-      
+    public function threadsCreateForm($id){
+      if(Auth::check()){
+        $project = Project::find($id);
+        $notifications = Auth::user()->userNotifications();
+ 
+         return view('pages/new_thread_page',['project' => $project, 'notifications' => $notifications]);
+       }
     }
 
     public function searchProject(Request $request) {
@@ -164,4 +161,87 @@ class ProjectController extends Controller
       return view('pages.result_search', ['projects' => $projects, 'notifications' => $notifications]);
     }
 
+    public function threadsCreateAction(Request $request) {
+      if (!Auth::check()) return redirect('/login');
+
+      $user = Auth::user()->id;
+
+      $thread = new Thread();
+      //TODO authorize
+
+      $thread->name = $request->input('name');
+      $thread->description = $request->input('description');
+      $thread->project_id = $request->input('project_id');
+      $thread->user_creator_id = $user;
+
+      $thread->save();
+
+      $viewHTML = $this->threadsView($request->project_id)->render();
+      return response()->json(array('success' => true, 'html' => $viewHTML)); 
+    }
+
+    
+    /**
+     * Creates a new project.
+     *
+     * @return Project The project created.
+     */
+    public function create(Request $request)
+    {
+      $project = new Project();
+
+      $this->authorize('create', $project);
+
+      $project->name = $request->input('name');
+      $project->description = $request->input('description');
+      if($request->input('public') == 'on')
+        $project->ispublic = TRUE;
+      else
+        $project->ispublic = FALSE;
+      $project->save();
+
+      $project->user()->attach($request->input('user_id'), ['iscoordinator' => true]);
+
+      $categories = $request->input('categories');
+      $cat_array = explode(',',$categories);
+
+      foreach($cat_array as $cat) {
+        Category::find($cat)->projects()->attach($project->id);
+      }
+      
+      return $project;
+    }
+
+    public function storeComment(Request $request,$id, $thread_id){
+      
+      $thread = Thread::find($thread_id);
+      /*$user = User::find($user_id);*/
+
+      $comment = new Comment();
+      $comment->content = $request->content;
+    // $comment->thread_id = $thread_id;
+      $comment->user_id = Auth::id();
+      //$comment->associate($user);
+
+      $thread->comments()->save($comment); 
+
+      echo($comment);
+
+      return back();
+    }
+
+    public function newTaskComment(Request $request, $project_id, $task_id) {
+
+      $task = Task::find($task_id);
+
+      $comment = new Comment();
+      $comment->content = $request->content;
+      $comment->user_id = Auth::id();
+
+      $task->comments()->save($comment);
+
+      echo($comment);
+
+      return redirect()->route('project', ['project_id' => $project_id]);
+    }
 }

@@ -41,7 +41,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout', 'getLogout');
     }
 
     public function logout(Request $request) {
@@ -49,5 +49,6 @@ class LoginController extends Controller
         Session::flush();
         return redirect('/');
     }
+
 
 }

@@ -1,14 +1,15 @@
 body {
 	margin: 0;
-	background-color: #ECE7F3;
+	/* background-color: #e3e8ef; */
 }
 
  /**
 		NAV
  */
 nav {
-	background-color: #0A1827;
+	background-color: #008cba;
 	align-items: center;
+	box-shadow: 0 1px 5px 1px black;
 }
 
 nav.row{
@@ -79,7 +80,7 @@ nav ul li {
 #notifications .hamburger {
 	margin-top: 0.5em;
 	font-size: 18px;
-	color: white;
+	color: #e3e8ef;
 	cursor: pointer;
 }
 
@@ -93,7 +94,7 @@ nav ul li {
 }
 
 #notifications_box {
-	background-color: white;
+	background-color: #e3e8ef;
 	color: black;
 	font-size: 12px;
 	text-align: left;
@@ -119,7 +120,7 @@ nav ul li {
 }
 
 #notifications_box li.row {
-	background-color: white;
+	background-color: #e3e8ef;
 	padding: 0;
 	margin: 0;
 	width: 100%;
@@ -255,25 +256,69 @@ nav ul li {
 /**
 	PAGINATION
 */
+
 div#pagination_section {
-	text-align: center;
-	margin: auto;
+	display: inline-block;
 }
 
-div#pagination_section ul.pagination{
+ul.pagination{
 	margin: auto;
-	width: 17em;
 	text-align: center;
 }
 
-
-div#pagination_section li.page-item:hover {
-	background-color: #0A1827;
+ 
+ul.pagination li > * {
+	position: relative;
+	display: block;
+	padding: 0.5rem 0.75rem;
+	margin-left: -1px;
+	line-height: 1.25;
+	color: #888;
+	background-color: #eee;
+	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-div#pagination_section li.page-link a{
+ul.pagination li > *:hover {
+	z-index: 2;
+	color: #00526e;
+	text-decoration: none;
+	background-color: #eee;
+	border-color: #dee2e6;
+}
+
+ul.pagination li > *:focus {
+	z-index: 2;
+	outline: 0;
+	-webkit-box-shadow: 0 0 0 0.2rem rgba(0, 140, 186, 0.25);
+			box-shadow: 0 0 0 0.2rem rgba(0, 140, 186, 0.25);
+}
+
+ul.pagination li:first-child > * {
+	margin-left: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+ul.pagination li:last-child > * {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+ul.pagination li.active > * {
+	z-index: 1;
 	color: #fff;
+	background-color: #008cba;
+	border-color: #0079a1;
 }
+  
+ul.pagination li.disabled > * {
+	color: #eee;
+	pointer-events: none;
+	cursor: auto;
+	background-color: #eee;
+	border-color: #dee2e6;
+}
+
 
 /**
   FOOTER

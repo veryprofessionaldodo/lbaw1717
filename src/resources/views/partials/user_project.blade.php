@@ -1,3 +1,5 @@
+@if(Auth::user()->username == $user->username || $project->ispublic)
+
 <a href="{{ route('project', ['id' => $project->id])}}">
 	<div class="project">
 		<h5>{{ $project->name }}</h5>
@@ -8,15 +10,15 @@
 		@endif
 		<div class="project_info">
 			@if($project->num_members > 1)
-				<p>{{ $project->num_members }} Members</p>
+				<p>{{ $project->user_count }} Members</p>
 			@else
-				<p>{{ $project->num_members }} Member</p>
+				<p>{{ $project->user_count }} Member</p>
 			@endif
 
 			@if($project->sprints_num > 1)
-				<span>{{ $project->sprints_num }} Sprints</span>
+				<span>{{ $project->sprints_count }} Sprints</span>
 			@else
-				<span>{{ $project->sprints_num }} Sprint</span>
+				<span>{{ $project->sprints_count }} Sprint</span>
 			@endif
 			
 			<button class="btn btn-secondary">
@@ -25,3 +27,5 @@
 		</div>
 	</div>
 </a>
+@else
+@endif

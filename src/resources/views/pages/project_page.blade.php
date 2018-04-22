@@ -24,7 +24,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">
+			<nav class="navbar navbar-expand-lg navbar-dark" id="buttons_nav">
 
 				<a class="btn btn-secondary" class="project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
 					<i class="fas fa-comments"></i> Forum</a>
@@ -45,10 +45,11 @@
 			</nav>
 		</div>
 	</div>
-
+	
 	<div class="row">
 		<div class="col-12">
 			<ul class="nav nav-tabs">
+				
 				<li class="nav-item">
 					<a class="nav-link active" id="sprint_btn" data-toggle="tab" href="{{ route('project_sprints', ['project_id' => $project->id])}}"><i class="fas fa-bolt"></i>  Sprints</a>
 				</li>
@@ -97,12 +98,12 @@
 	<div class="row">
 		<div class="col-12">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">
-				<a class="btn btn-secondary" id="project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
-					<i class="fas fa-comments"></i> Forum</a>
-				<button type="button" class="btn btn-secondary" id="project_buttons">
-					<i class="fas fa-chart-line"></i> Statistics</button>
-				<button type="button" class="btn btn-secondary" id="project_buttons">
-					<i class="fas fa-cog"></i> Settings</button>
+				<a class="btn btn-secondary" class="project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
+						<i class="fas fa-comments"></i> Forum</a>
+				<a class="btn btn-secondary" class="project_buttons" href="">
+						<i class="fas fa-chart-line"></i> Statistics</a>
+				<a class="btn btn-secondary" class="project_buttons" href="">
+					<i class="fas fa-cog"></i> Settings</a>
 			</nav>
 		</div>
 
@@ -124,14 +125,15 @@
 	<div class="row">
 		<div class="col-12">
 			<ul class="nav nav-tabs">
+				
 				<li class="nav-item">
-					<a class="nav-link active" data-toggle="tab" href="#Sprints"><i class="fas fa-bolt"></i>  Sprints</a>
+					<a class="nav-link active" id="sprint_btn" data-toggle="tab" href="{{ route('project_sprints', ['project_id' => $project->id])}}"><i class="fas fa-bolt"></i>  Sprints</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#Tasks"><i class="far fa-sticky-note"></i>  Tasks</a>
+					<a class="nav-link" id="task_btn" data-toggle="tab" href="{{ route('project_tasks', ['project_id' => $project->id])}}"><i class="far fa-sticky-note"></i>  Tasks</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#Members"><i class="fas fa-users"></i> Members</a>
+					<a class="nav-link" id="member_btn" data-toggle="tab" href="{{ route('project_members', ['project_id' => $project->id])}}"><i class="fas fa-users"></i> Members</a>
 				</li> 
 			</ul>
 		</div>

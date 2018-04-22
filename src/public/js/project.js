@@ -3,7 +3,6 @@ let taskButton = document.querySelector("li.nav-item a#task_btn");
 let memberButton = document.querySelector("li.nav-item a#member_btn");
 
 function addEventListeners() {
-
 	sprintButton.addEventListener('click', switchSprintsView);
 	taskButton.addEventListener('click', switchTasksView);
 	memberButton.addEventListener('click', switchMembersView);
