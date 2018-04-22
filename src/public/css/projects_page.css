@@ -275,6 +275,7 @@ div.comment {
 	padding: 1em 1em 1em 4em;
 	display: grid;
 	grid-template-columns: 5% 15% auto;
+	margin: 0;
 }
 
 div.comment:last-of-type {
@@ -359,7 +360,6 @@ div.comment p.label {
 }
 
 div.comment div.form_comment {
-	display: flex;
 	grid-column-start: 3; 
 	grid-column-end: 4;
 	grid-row: 1;
@@ -367,13 +367,18 @@ div.comment div.form_comment {
 	margin: 0;
 }
 
-div.comment div.form_comment input.form-control {
+div.comment div.form_comment form {
+	display: flex;
+	
+}
+
+div.comment div.form_comment form input.form-control {
 	margin: 0 0 0 1em;
 	width: 100%;
 	flex-grow: 1;
 }
 
-div.comment div.form_comment button.btn {
+div.comment div.form_comment form button.btn {
 	margin: 0;
 }
 

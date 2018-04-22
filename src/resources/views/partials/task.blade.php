@@ -20,8 +20,11 @@
 	<div class="comment">
 		<p class="label">New comment:</p>
 		<div class="form_comment">
-			<input type="text" class="form-control" name="comment">
-			<button class="btn btn-primary" type="submit">Send</button>
+			<form method="POST" action="{{ route('create_comment_task',['project_id' => $project->id,'task_id' => $task->id]) }}">
+				{{ csrf_field()}}
+				<input type="text" class="form-control" name="content">
+				<button class="btn btn-primary" type="submit">Send</button>
+			</form>
 		</div>
 	</div>
 </div>

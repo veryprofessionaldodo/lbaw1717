@@ -10,6 +10,7 @@ use App\Project;
 use App\Thread;
 use App\Category;
 use App\Comment;
+use App\Task;
 
 
 class ProjectController extends Controller
@@ -213,20 +214,34 @@ class ProjectController extends Controller
 
     public function storeComment(Request $request,$id, $thread_id){
       
-    $thread = Thread::find($thread_id);
-    /*$user = User::find($user_id);*/
+      $thread = Thread::find($thread_id);
+      /*$user = User::find($user_id);*/
 
-    $comment = new Comment();
-    $comment->content = $request->content;
-   // $comment->thread_id = $thread_id;
-    $comment->user_id = Auth::id();
-    //$comment->associate($user);
+      $comment = new Comment();
+      $comment->content = $request->content;
+    // $comment->thread_id = $thread_id;
+      $comment->user_id = Auth::id();
+      //$comment->associate($user);
 
-    $thread->comments()->save($comment); 
+      $thread->comments()->save($comment); 
 
-    echo($comment);
+      echo($comment);
 
-    return back();
+      return back();
+    }
 
+    public function newTaskComment(Request $request, $project_id, $task_id) {
+
+      $task = Task::find($task_id);
+
+      $comment = new Comment();
+      $comment->content = $request->content;
+      $comment->user_id = Auth::id();
+
+      $task->comments()->save($comment);
+
+      echo($comment);
+
+      return redirect()->route('project', ['project_id' => $project_id]);
     }
 }

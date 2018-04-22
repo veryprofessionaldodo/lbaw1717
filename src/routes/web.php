@@ -70,7 +70,7 @@ Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->nam
 // Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'ProjectController@taskAssignUser');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'ProjectController@taskUnassignUser');
 // Route::put('api/projects/{project_id}/tasks', 'ProjectController@newTask');
-// Route::put('api/projects/{project_id}/tasks/{task_id}/comments', 'ProjectController@newComment');
+Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'ProjectController@newTaskComment')->name('create_comment_task');
 // Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
 // Route::delete('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment');
