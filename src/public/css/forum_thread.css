@@ -107,12 +107,12 @@ div.date a{
 }
 
 form{
-	width: 1500px;
-	padding-left: 200px;
+	width: 800%;
+	padding-left: 100%;
 }
 
 form div.col-2 button{
-	margin-left: 590px;
+	margin-left: 305%;
 	width:130%;
 }
 
