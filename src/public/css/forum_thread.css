@@ -106,8 +106,17 @@ div.date a{
 	margin-bottom: 1em;
 }
 
+form{
+	width: 1500px;
+	padding-left: 200px;
+}
 
-div.col-8 button {
+form div.col-2 button{
+	margin-left: 590px;
+	width:130%;
+}
+
+div.col-2 button {
 	margin-left: 88%;
 }
 
@@ -129,6 +138,11 @@ div.col-8 button {
 
 #description.form-control {
 	display: block;
+}
+
+form input.form_control{
+	padding-left: 20px; 
+	width: 100%;
 }
 
 
