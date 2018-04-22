@@ -71,7 +71,7 @@ class ProjectController extends Controller
         $sprints = Project::find($id)->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
         //TODO: get user assigned to task
 
-        $viewHTML = view('partials.sprints_view', ['sprints'=>$sprints, 'role' => $role])->render();
+        $viewHTML = view('partials.sprints_view', ['project' => $project, 'sprints'=>$sprints, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
         
       }
@@ -103,7 +103,7 @@ class ProjectController extends Controller
 
         $tasks = Project::find($id)->tasks()->where('task.sprint_id','=',null)->with('comments')->with('comments.user')->get();
 
-        $viewHTML = view('partials.tasks_view', ['tasks'=>$tasks, 'role' => $role])->render();
+        $viewHTML = view('partials.tasks_view', ['project' => $project, 'tasks'=>$tasks, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
       }
       else
