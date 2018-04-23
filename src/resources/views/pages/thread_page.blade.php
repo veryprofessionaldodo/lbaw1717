@@ -9,10 +9,10 @@
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="#">Project</a>
+                <a href="{{ route('project', ['id' => $project->id])}}">Project</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="#">Forum</a>
+                <a href="{{route('forum',['project_id' => $project->id])}}">Forum</a>
             </li>
             <li class="breadcrumb-item active"></li>
         </ol>
@@ -40,7 +40,7 @@
                     <div class="date">
                         <p>{{$date->format('h:m')}}</p>
                         <p>{{$date->format('d/m/Y')}}</p>
-                        <a class="btn" href="report_page.html">Report 
+                        <a class="btn" href="#">Report 
                             <i class="fas fa-flag"></i>
                         </a>
                     </div>
@@ -49,7 +49,6 @@
             </div>
 
             @each('partials.comment', $comments, 'comment')
-
 
 
         <div class="row comment table-dark">

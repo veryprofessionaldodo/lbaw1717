@@ -8,7 +8,7 @@
 	<span>{{$date->format('d/m/Y')}}</span>
 	<div class="user_options">
 		<p>Report</p>
-		<button class="btn"><i class="fas fa-flag"></i></button>
+		<a href="{{ route('comment_report_form', ['comment_id' => $comment->id])}}" class="btn"><i class="fas fa-flag"></i></a>
 	</div>
 </div>
 	

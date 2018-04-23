@@ -9,23 +9,34 @@ function createReportAction(event) {
 
     let report_summary = document.querySelector("textarea[name='report_summary']").value;
     let type = event.target.attributes.type.value;
-
-    let index = event.target.href.indexOf('users');
-    let user_reported = event.target.href.substring(index + 6, event.target.href.length);
+    let index;
+    
 
     if(type === 'USER'){
+        index = event.target.href.indexOf('users');
+        let user_reported = event.target.href.substring(index + 6, event.target.href.length);
+        
         type = 'userReported';
-    }else if(type === 'COMMENT'){
-        type = 'commentReported';
-    }
+        
+        sendAjaxRequest('post', event.target.href, 
+            {summary: report_summary, user_reported: user_reported, type : type},reportHandler);
 
-    
-	sendAjaxRequest('post', event.target.href, 
-    {summary: report_summary, user_reported: user_reported, type : type},reportUserhandler);
-    
+    }else if(type === 'COMMENT'){
+        index = event.target.href.indexOf('comments');
+        let comment_id = event.target.href.substring(index + 8, event.target.href.length);
+
+        type = 'commentReported';
+        alert(comment_id);
+
+        sendAjaxRequest('post', event.target.href,
+            {summary: report_summary, comment_id: comment_id, type : type},reportHandler);
+    }else{
+        console.log('ERROR IN REPORT ACTION !!!');
+    }    
 }
 
-function reportUserhandler() {
+function reportHandler() {
+    alert(this.responseText);
     let data = JSON.parse(this.responseText);
 
     console.log(data);

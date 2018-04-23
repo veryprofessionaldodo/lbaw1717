@@ -9,10 +9,9 @@
     <div class="col-2">
         <div class="date">
         <p>22:31
-        <a class="btn" href="report_page.html">
-        Report 
-        <i class="fas fa-flag"></i>
-        </a>
+            <a class="btn" href="#"> Report 
+                <i class="fas fa-flag"></i>
+            </a>
         </p>
         <p>20/02/2018</p>
 

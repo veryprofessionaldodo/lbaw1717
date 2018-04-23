@@ -225,8 +225,6 @@ class ProjectController extends Controller
 
       $thread->comments()->save($comment); 
 
-      echo($comment);
-
       return back();
     }
 
@@ -239,8 +237,6 @@ class ProjectController extends Controller
       $comment->user_id = Auth::id();
 
       $task->comments()->save($comment);
-
-      echo($comment);
 
       return redirect()->route('project', ['project_id' => $project_id]);
     }

@@ -14,6 +14,7 @@ use App\User;
 use App\Report;
 
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\ProjectController;
 
 class ReportController extends Controller
 {
@@ -32,37 +33,50 @@ class ReportController extends Controller
     public function commentReportForm($comment_id){
 
         $notifications = Auth::user()->userNotifications();
+        $comment = Comment::find($comment_id);
         $type = 'COMMENT';
+        $project_id = Comment::find($comment_id)->thread()->first()->project()->first()->id;
 
-        return view('pages/report_page',['user_reported' => $user_reported, 'notifications' => $notifications, 'type' => $type]);
+        return view('pages/report_page',['comment' => $comment, 'notifications' => $notifications,
+                     'type' => $type, 'project_id' => $project_id]);
     }
 
     /*
     Creates new user report
     */
-    public function createUserReport(Request $request){
+    public function createReport(Request $request){
         if (!Auth::check()) return redirect('/login');
 
         $user = Auth::user()->id;
-        $username_reported = $request->input('user_reported');
-        $user_reported = User::where('username',$username_reported)->get();
-  
         $report = new Report();
-        //TODO authorize
-  
+        
         $report->summary = $request->input('summary');
-        $report->user_reported_id = $user_reported[0]->id;
-        $report->type = $request->input('type');
         $report->user_id = $user;
-        $report->comment_reported_id = NULL;
+        $report->type = $request->input('type');
+
+        if($report->type == 'userReported'){
+
+            $username_reported = $request->input('user_reported');
+            $user_reported = User::where('username',$username_reported)->get();
+            $report->user_reported_id = $user_reported[0]->id;
+            $report->comment_reported_id = NULL;
+
+        }elseif($report->type == 'commentReported'){
+            $report->comment_reported_id = $request->input('comment_id');
+            $report->user_reported_id = NULL;
+        }    
   
         $report->save();
 
         if($report->type == 'userReported'){
             $user_controller = new UserController();
             $viewHTML = $user_controller->showProfile($username_reported)->render();
-        }else{
-            //TODO COMMENT REPORT
+        }elseif($report->type == 'commentReported'){
+            $project_controller = new ProjectController();
+            $thread_id = Comment::find($report->comment_reported_id)->thread()->first()->id;
+            $project_id = Comment::find($report->comment_reported_id)->thread()->first()->project()->first()->id;
+
+            $viewHTML = $project_controller->threadPageView($project_id,$thread_id)->render();
         }
 
 

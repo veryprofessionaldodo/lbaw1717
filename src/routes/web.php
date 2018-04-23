@@ -78,8 +78,8 @@ Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'ProjectContro
 //Project Forum
 Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('forum'); //done
 Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm')->name('new_thread_form'); //done
-Route::post('projects/{id}/threads/create', 'ProjectController@threadsCreateAction')->name('new_thread_action');
-Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView')->name('thread');
+Route::post('projects/{id}/threads/create', 'ProjectController@threadsCreateAction')->name('new_thread_action'); //done
+Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView')->name('thread'); //done
 Route::post('projects/{id}/threads/{thread_id}/comments', 'ProjectController@storeComment');
 /*Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm');
 Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction');
@@ -103,10 +103,9 @@ Route::delete('admin/reports/comments/{report_id}', 'AdminController@deleteComme
 Route::delete('admin/projects/{project_id}', 'AdminController@deleteProject');
 */
 Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentReportForm')->name('comment_report_form');
-Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form');
-
-Route::post('actions/reports/users/{username}', 'ReportController@createUserReport')->name('create_user_report');
-Route::post('actions/reports/comments{comment_id}', 'ReportController@createCommentReport')->name('create_comment_report');
+Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form'); //done
+Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done
+Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report');
 
 
 /*
