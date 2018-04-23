@@ -14,10 +14,12 @@ function dropUserOptions() {
 	if(userDropdownMenu.style.height == "0px" || userDropdownMenu.style.height == 0){
 		userDropdownMenu.style.height = "auto";
 		userDropdownMenu.style.opacity = "1";
+		userDropdownMenu.style.display = "block";
 	}
 	else {
 		userDropdownMenu.style.height = "0";
 		userDropdownMenu.style.opacity = "0";
+		userDropdownMenu.style.display = "none";
 	}
 }
 

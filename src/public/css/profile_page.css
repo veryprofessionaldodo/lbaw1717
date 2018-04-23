@@ -159,7 +159,7 @@ section div.project {
 }
 
 section div.project:hover {
-	background-color: #9AC0BA;
+	background-color: #99cedd;
 }
 
 /* Hover effect is in search .css */
@@ -200,7 +200,8 @@ section div.project .project_info > *{
 }
 
 section div.project .project_info > button.btn.btn-secondary{
-	/*background-color: #004649;*/
+	background-color: inherit;
+	display: inline;
 	font-size: 14px;
 	margin: 0.5em auto;
 	padding: 0.5em 1em;

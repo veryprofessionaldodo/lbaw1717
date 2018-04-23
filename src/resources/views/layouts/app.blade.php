@@ -43,7 +43,6 @@
     <nav class="row nav">
       <a class="col-3" href="{{ url('/')}}">Proyekt</a>
 
-      <!--  FAZER ESTE FORM ATIVO -->
       <form class="col-6" method="POST" action="{{ route('search') }}">
         {{ csrf_field() }}
 

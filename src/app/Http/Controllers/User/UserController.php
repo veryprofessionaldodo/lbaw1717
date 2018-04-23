@@ -18,8 +18,10 @@ class UserController extends Controller {
 	    if (!Auth::check()) return redirect('/login');
         $this->authorize('list', Project::class);
 
-        $projects = Auth::user()->userProjects();
+        
         $user = User::where('username',$username)->get();
+        $projects = $user[0]->userProjects();
+        $public_projects = $user[0]->userPublicProjects();
         
         // $requests = request()->headers->all();
         // print_r($requests);
@@ -36,7 +38,7 @@ class UserController extends Controller {
         $taskCompletedMonth = $user[0]->taskCompletedThisMonth()[0];
         $sprintsContributedTo = $user[0]->sprintsContributedTo()[0];
   
-        return view('pages/user_profile', ['projects' => $projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
+        return view('pages/user_profile', ['projects' => $projects,'public_projects' => $public_projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
         'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'user' => $user[0]]);
       
     }

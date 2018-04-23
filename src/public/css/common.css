@@ -43,15 +43,10 @@ nav > form {
 	align-items:center;
 	justify-content: center;
 }
-/*
-nav ul {
-	margin: 0;
-}
 
-nav ul li {
-	list-style: none;
-	display: inline-flex;
-}*/
+nav form input.form-control {
+	color: #000;
+}
 
 .user {
 	text-align: right;
@@ -163,12 +158,12 @@ nav ul li {
 }
 
 #profile_options {
-	background-color: #0A1827;
+	background-color: #008cba;
 	color: white;
 	font-size: 18px;
 	text-align: center;
 	font-family: 'Nunito', sans-serif;
-	/*visibility: collapse;*/
+	display: none;
 
 	z-index: 1;
 	position: absolute;
@@ -223,23 +218,23 @@ nav ul li {
 .form-control {
 	display: inline-block;
 	width: 50%;
-	background-color: #4F8082;
-	color: #ECE7F3;
+	background-color: #eee;
+	color: #0A1827;
 	transition: all 0.2s;
 }
 
 .form-control:hover {
-	background-color: #9AC0BA;
+	background-color: #eee;
 }
 
 .form-control:focus {
-	background-color: #CCD9CE;
+	background-color: #eee;
 	color: #0A1827;
 	outline: 5px auto -webkit-focus-ring-color;
 }
 
 .form-control::placeholder {
-  color: #BBB;
+  color: #0A1827;
   opacity: 1;
 }
 
@@ -325,7 +320,7 @@ ul.pagination li.disabled > * {
 */
 
 footer {
-	background-color: #0A1827;
+	background-color: #008cba;
 	display: grid;
 	grid-template-columns: 50% 50%;
 	width: 100%;
