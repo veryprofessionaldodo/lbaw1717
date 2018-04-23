@@ -694,7 +694,7 @@ INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Sofia S
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Lil Pump','eskeeetit','gucci_gang@gmail.com',NULL,'$2a$04$rTo1sMj3eFy80jYRQ7YOme/A1EiP8zo2oMFtncFNZYyALMZr4zn2K',FALSE); --fantanolovesme
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Jaden Smith','eyes','im_an_icon@gmail.com',NULL,'$2a$04$hAKgYV/Mm1/wXyL0uCg30e8eLiR6gERFkEjQATgMYI9kgUbK8/0Pi',FALSE);--seriously_im_an_icon-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Mac DeMarco','pepperoni_playboy','blueboy@gmail.com',NULL,'$2a$04$MwvlQrfSfL7aY7nh4MsSJetQUvTW2IN.FoGf.1q.w0XgEI2vsQsc.',FALSE);--freaking-
-INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Sir Admin','admin','admin@dmin.com',NULL,'$2a$04$MwvlQrfSfL7aY7nh4MsSJetQUvTW2IN.FoGf.1q.w0XgEI2vsQsc.',FALSE);--freaking-
+INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Sir Admin','admin','admin@dmin.com',NULL,'$2a$04$MwvlQrfSfL7aY7nh4MsSJetQUvTW2IN.FoGf.1q.w0XgEI2vsQsc.',TRUE);--freaking-
 
 
 INSERT INTO project (name,description,isPublic) VALUES ('Education Through the Web','A web page, made specifically to support students on their quest to learn more efficiently.', TRUE);

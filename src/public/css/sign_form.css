@@ -11,13 +11,21 @@ section form {
 	margin: 3em auto;
 	width: 40%;
 	text-align: center;
-	background-color: #0A1827;
+	background-color: #008cba;
 	padding: 1em 3em;
 	box-shadow: 0px 0px 10px #2B3E50;
 }
 
+section form h2 {
+	color: #eee;
+}
+
 section form > * {
 	margin: 1em auto;
+}
+
+section form button[type="submit"] {
+	background-color: #E99002;
 }
 
 section form button.btn.btn-primary {
@@ -27,11 +35,15 @@ section form button.btn.btn-info {
 	
 }
 
+section form a {
+	color: #eee;
+}
+
 section hr {
 	border: 0; 
 	height: 1px; 
 	background: #868e96; 
-	background-image: linear-gradient(to right, #2B3E50, #868e96, #2B3E50);
+	background-image: linear-gradient(to right, #008cba, #868e96, #008cba);
 }
 
 input.form-control {
