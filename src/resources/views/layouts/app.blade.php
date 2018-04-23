@@ -37,6 +37,7 @@
     <script type="text/javascript" src={{ asset('js/profile.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/project.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/forum.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/report.js') }} defer></script>
   </head>
   
   <body>

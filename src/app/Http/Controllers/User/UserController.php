@@ -32,7 +32,7 @@ class UserController extends Controller {
         //     return response()->json(array('success' => true, 'html' => $viewHTML));
         // }]);
 
-        $notifications = $user[0]->userNotifications();
+        $notifications = Auth::user()->userNotifications();
 
         $taskCompletedWeek = $user[0]->taskCompletedThisWeek()[0];
         $taskCompletedMonth = $user[0]->taskCompletedThisMonth()[0];

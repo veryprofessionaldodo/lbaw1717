@@ -33,7 +33,7 @@
 				@if(Auth::user()->username == $user->username)
 					<a href="{{ route('edit_profile', ['username' => Auth::user()->username])}}" id="edit_profile" class="col-md-12 col-12">Edit Profile</a>
 				@else
-					<a href="#" id="reprt_btn" class="col-md-12 col-12">Report</a>
+					<a href="{{ route('user_report_form', ['username' => $user->username])}}" id="reprt_btn" class="col-md-12 col-12">Report</a>
 				@endif
 			</div>
 		</aside>
