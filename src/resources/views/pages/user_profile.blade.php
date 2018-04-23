@@ -71,7 +71,11 @@
 			</div>
 
 			<div id="projects">
-				@include('partials.user_projects',['projects' => $projects, 'user' => $user])
+				@if(Auth::user()->username == $user->username)
+					@include('partials.user_projects',['projects' => $projects, 'user' => $user])
+				@else
+					@include('partials.user_projects',['projects' => $public_projects, 'user' => $user])
+				@endif
 			</div>
 						
 		</section>

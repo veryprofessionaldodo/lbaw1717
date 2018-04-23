@@ -1,4 +1,3 @@
-@if(Auth::user()->username == $user->username || $project->ispublic)
 
 <a href="{{ route('project', ['id' => $project->id])}}">
 	<div class="project">
@@ -15,17 +14,16 @@
 				<p>{{ $project->user_count }} Member</p>
 			@endif
 
-			@if($project->sprints_num > 1)
+			@if($project->sprints_num > 1 && Auth::user()->username == $user->username)
 				<span>{{ $project->sprints_count }} Sprints</span>
-			@else
+			@elseif(Auth::user()->username == $user->username)
 				<span>{{ $project->sprints_count }} Sprint</span>
+				<button class="btn btn-secondary">
+					<i class="fas fa-sign-out-alt"></i>
+				</button>
 			@endif
 			
-			<button class="btn btn-secondary">
-				<i class="fas fa-sign-out-alt"></i>
-			</button>
+			
 		</div>
 	</div>
 </a>
-@else
-@endif
