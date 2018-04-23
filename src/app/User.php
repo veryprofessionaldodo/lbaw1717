@@ -72,6 +72,10 @@ class User extends Authenticatable
         return $this->projects()->withCount('sprints')->withCount('user')->paginate(5);
     }
 
+    public function userPublicProjects() {
+        return $this->projects()->where('project.ispublic','=',TRUE)->withCount('sprints')->withCount('user')->paginate(5);
+    }
+
     public function taskCompletedThisWeek() {
         return DB::select(
           DB::raw('SELECT COUNT(id) FROM task_state_record
