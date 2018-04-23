@@ -54,12 +54,13 @@ tr#descriptions_table{
 
 }
 
+/*
 input.form-control, textarea.form-control {
 	transition: all 0.2s;
-	background-color: #558A8C;
+	background-color: #eee;
 	color: #0A1827;
-	outline: 1px solid #558A8C;
-}
+	outline: 1px solid #eee;
+}*/
 
 #threads table td {
 	color: #0A1827;

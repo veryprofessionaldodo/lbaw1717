@@ -17,7 +17,7 @@
         </form>
     </nav>
 
-    <section>user
+    <section>
         <form method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <h2>Sign In</h2>
@@ -39,7 +39,7 @@
             <hr>
             <button class="btn btn-info">Sign In with Facebook</button>
             <button class="btn btn-info">Sign In with Github</button>
-            <p>If you don't have an account, </p>
+            <p>If you don''t have an account, </p>
             <a href="{{ route('register') }}">please sign up.</a>
         </form>
     </section>
