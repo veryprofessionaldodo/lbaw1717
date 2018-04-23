@@ -101,9 +101,10 @@ Route::delete('admin/reports/{report_id}', 'AdminController@deleteReport');
 Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser');
 Route::delete('admin/reports/comments/{report_id}', 'AdminController@deleteComment');
 Route::delete('admin/projects/{project_id}', 'AdminController@deleteProject');
-
-Route::get('actions/reports/comments', 'ReportController@commentReportForm');
-Route::get('actions/reports/users', 'ReportController@userReportForm');
+*/
+Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentReportForm')->name('comment_report_form');
+Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form');
+/*
 Route::put('actions/reports/users', 'ReportController@createUserReport');
 Route::put('actions/reports/comments', 'ReportController@createCommentReport');
 */

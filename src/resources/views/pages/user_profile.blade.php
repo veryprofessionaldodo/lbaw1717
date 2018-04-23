@@ -29,10 +29,11 @@
 					<p>{{ $taskCompletedMonth->count }} tasks completed this month</p>
 					<p>{{ $sprintsContributedTo->count }} sprints contributed to</p>
 				</div>
+
 				@if(Auth::user()->username == $user->username)
-				<a href="{{ route('edit_profile', ['username' => Auth::user()->username])}}" id="edit_profile" class="col-md-12 col-12">Edit Profile</a>
+					<a href="{{ route('edit_profile', ['username' => Auth::user()->username])}}" id="edit_profile" class="col-md-12 col-12">Edit Profile</a>
 				@else
-				<a id="reprt_btn" class="col-md-12 col-12">Report</a>
+					<a href="#" id="reprt_btn" class="col-md-12 col-12">Report</a>
 				@endif
 			</div>
 		</aside>
