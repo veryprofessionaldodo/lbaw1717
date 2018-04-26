@@ -139,8 +139,13 @@ class ProjectController extends Controller
         $thread = Thread::find($thread_id);
         $comments = Thread::find($thread_id)->comments()->with('user')->get();
         $notifications = Auth::user()->userNotifications();
+        $role = Auth::user()->projects()->find($project->id)->pivot->iscoordinator;
+          if($role == false)
+            $role = 'tm';
+          else
+            $role = 'co';
  
-        return view('pages/thread_page',['project' => $project,'thread' => $thread, 'notifications' => $notifications, 'comments' => $comments]);
+        return view('pages/thread_page',['project' => $project,'thread' => $thread, 'notifications' => $notifications, 'comments' => $comments, 'role' => $role]);
        }
     }
 
@@ -180,7 +185,6 @@ class ProjectController extends Controller
       return response()->json(array('success' => true, 'html' => $viewHTML)); 
     }
 
-    
     /**
      * Creates a new project.
      *
@@ -225,8 +229,6 @@ class ProjectController extends Controller
 
       $thread->comments()->save($comment); 
 
-      echo($comment);
-
       return back();
     }
 
@@ -240,8 +242,6 @@ class ProjectController extends Controller
 
       $task->comments()->save($comment);
 
-      echo($comment);
-
       return redirect()->route('project', ['project_id' => $project_id]);
     }
 
@@ -251,4 +251,14 @@ class ProjectController extends Controller
 
       return view('pages/statistics', ['notifications' => $notifications, 'project' => $project]);
     }
+
+    /*
+    Deletes comment of task or thread
+    */
+    public function deleteComment(Request $request){
+
+      $comment = Comment::find($request->input('comment_id'));
+      $comment->delete();
+    }
+
 }
