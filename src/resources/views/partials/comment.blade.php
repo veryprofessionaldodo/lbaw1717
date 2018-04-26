@@ -7,9 +7,16 @@
 	?>
 	<span>{{$date->format('d/m/Y')}}</span>
 	<div class="user_options">
-		@if(Auth::user()->id != $comment->user->id)
+		@if(Auth::user()->id != $comment->user->id && $role == 'tm')
 			<a href="{{ route('comment_report_form', ['comment_id' => $comment->id])}}" class="btn"><i class="fas fa-flag"></i></a>
-		@else
+		@elseif(Auth::user()->id != $comment->user->id && $role == 'co')
+			<a href="{{ route('comment_report_form', ['comment_id' => $comment->id])}}" class="btn"><i class="fas fa-flag"></i></a>
+			@if($comment->task_id == NULL)
+				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteComment(this)" id="{{$comment->id}}"class"deleteComment" ><i class="fas fa-trash"></i></button>
+			@else
+				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteComment(this)" id="{{$comment->id}}"class"deleteComment" ><i class="fas fa-trash"></i></button>
+			@endif
+		@elseif(Auth::user()->id == $comment->user->id)
 			@if($comment->task_id == NULL)
 				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteComment(this)" id="{{$comment->id}}"class"deleteComment" ><i class="fas fa-trash"></i></button>
 			@else

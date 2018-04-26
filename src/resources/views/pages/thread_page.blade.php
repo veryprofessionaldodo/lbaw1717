@@ -49,7 +49,7 @@
             </div>
             
             @foreach($comments as $comment)
-                @include('partials.comment', ['project' => $project, 'thread' => $thread, 'comment' => $comment])
+                @include('partials.comment', ['project' => $project, 'thread' => $thread, 'comment' => $comment,'role'=> $role])
             @endforeach
 
 

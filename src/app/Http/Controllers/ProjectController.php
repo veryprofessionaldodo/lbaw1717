@@ -139,8 +139,13 @@ class ProjectController extends Controller
         $thread = Thread::find($thread_id);
         $comments = Thread::find($thread_id)->comments()->with('user')->get();
         $notifications = Auth::user()->userNotifications();
+        $role = Auth::user()->projects()->find($project->id)->pivot->iscoordinator;
+          if($role == false)
+            $role = 'tm';
+          else
+            $role = 'co';
  
-        return view('pages/thread_page',['project' => $project,'thread' => $thread, 'notifications' => $notifications, 'comments' => $comments]);
+        return view('pages/thread_page',['project' => $project,'thread' => $thread, 'notifications' => $notifications, 'comments' => $comments, 'role' => $role]);
        }
     }
 
