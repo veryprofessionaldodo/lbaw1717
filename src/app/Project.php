@@ -12,7 +12,6 @@ class Project extends Model
 
   protected $table = 'project';
 
-
   public function user() {
     return $this->belongsToMany('App\User', 'project_members')->withPivot('iscoordinator');
   }
@@ -40,6 +39,30 @@ class Project extends Model
   public function threads() {
     return $this->hasMany('App\Thread');
   }
+
+  public function topContributors(){
+    $tUsers = DB::select()
+		->addSelect(user.username)
+		->addSelect(user.image)
+		->addSelect(DB::raw(`COUNT(*) as num`))
+		->from(`user`)
+		->from(`task_state_record`)
+		->from(`task`)
+		->where(`task.project_id`, `=`, `$project_id`)
+		->where(`task_state_record.task_id`, `=`, `task.id`)
+		->where(`user.id`, `=`, `task_state_record.user_completed_id`)
+		->where(`task_state_record.state`, `=`, `Completed`)
+		->groupBy(`user.username`)
+		->groupBy(`user.image`)
+		->orderByRaw(`num DESC`)
+		->limit(3)
+    ->get();
+    
+    return $tUsers;
+  }
+ 
+ 
+  
 
   /**
    * The user this card belongs to

@@ -244,4 +244,11 @@ class ProjectController extends Controller
 
       return redirect()->route('project', ['project_id' => $project_id]);
     }
+
+    public function projectStatisticsView($project_id){
+      $notifications = Auth::user()->userNotifications();
+      $project = Project::find($project_id);
+
+      return view('pages/statistics', ['notifications' => $notifications, 'project' => $project]);
+    }
 }

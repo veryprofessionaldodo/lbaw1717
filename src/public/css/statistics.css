@@ -1,0 +1,111 @@
+h2 {
+	text-align: center;
+	padding-top: 0.5em;
+	color: #0A1827;
+}
+/**
+
+CONTAINER
+
+*/
+
+
+#container {
+   	margin: auto 4em;
+    min-height: 100vh;
+}
+
+.card > .card-body {
+	background-color: #ECE7F3;
+	border: 0px solid #000;
+	border-top: 1px solid #001;
+	padding: 1em;
+}
+
+.card-body h3 {
+	color: #0A1827;
+	font-size: 20px;
+	padding: 0;
+	margin: 0;
+}
+
+.title {
+    padding-top: 50px;
+}
+
+#container .sprints_stats{
+    grid-column-start: 2;
+    grid-row: 2;
+    align-self: center;
+}
+
+#container .tasks_stats {
+    grid-column-start: 2;
+    grid-row: 3;
+    align-self: center;
+}
+
+#container .contributor {
+    color: #000000;
+    background-color: #0A1827;
+}
+
+#container .members_stats {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.contributor_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+}
+
+.contributor_info p {
+	margin: auto 0;
+	color: #DF691A;
+	text-decoration: none;
+}
+.contributor_info p:last-of-type {
+	margin: auto 0;
+	color: #ECE7F3;
+	text-decoration: none;
+}
+
+.list-group-item.list-group-item-action.active {
+	border: 1px solid black;
+}
+
+div#graphics {
+	margin: 1em 4em;
+}
+
+div#graphics h4 {
+	color: black;
+	text-align: center;
+}
+
+@media screen and (max-width: 430px){
+	#container {
+	   	margin: auto 1em;
+	}
+
+	h3, h4{
+		font-size: 18px;
+	}
+
+	p {
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 635px) and (min-width: 431px){
+	h3, h4{
+		font-size: 18px;
+	}
+
+	p {
+		font-size: 14px;
+	}
+}

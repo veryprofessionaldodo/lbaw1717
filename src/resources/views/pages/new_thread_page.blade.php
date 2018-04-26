@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'New_Thread_Form')
+@section('title', 'New Thread Form')
 
 @section('content')
 

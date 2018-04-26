@@ -52,23 +52,22 @@
 
 
 
-        <div class="row comment table-dark">
-            <div class="col-2">
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" id="profile_pic">
-                <figcaption>{{\Auth::user()->username}}</figcaption>
-            </div>
+        <div class="comment row">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+            <h6>{{\Auth::user()->username}}</h6>
             <form method="POST" action="/projects/{{ $project -> id }}/threads/{{ $thread -> id}}/comments">
                 {{ csrf_field()}}
                 
-                <div class="col-8">
+              <!-- <div class="col-8">-->
                     <label>Your post:</label>
                     <input type="text" class="form-control" name="content" id="content" placeholder="Write here...">    
-                </div>
-                <div class="col-2">
+               
+                
                     <button type="submit" class="btn btn-secondary">Submit</button>
-                </div>
-                <div class="offset-2"></div>
+                
+                <!--<div class="offset-2"></div>-->
             </form> 
+            
             
         </div>
     </div>

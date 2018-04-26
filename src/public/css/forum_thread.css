@@ -1,3 +1,8 @@
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
@@ -105,7 +110,7 @@ div.date a{
 	color: black;
 	margin-bottom: 1em;
 }
-
+/*
 div#thread form{
 	width: 800%;
 	padding-left: 100%;
@@ -119,7 +124,7 @@ form div.col-2 button{
 div.col-2 button {
 	margin-left: 88%;
 }
-
+*/
 #thread .comment a, #thread #header a{
 	background-color: inherit;
 	color: #3e4a56;
@@ -143,6 +148,24 @@ div.col-2 button {
 form input.form_control{
 	padding-left: 20px; 
 	width: 100%;
+}
+
+
+#thread div.comment form {
+	text-align: justify;
+	padding: 1em;
+	border-radius: 20px;
+	width: auto;
+	margin: 0 2em 0 1em;
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row: 1;
+}
+
+#thread div.comment form button{
+
+	margin-left: 95%;
+
 }
 
 
@@ -198,6 +221,12 @@ form input.form_control{
 	#thread h2{
 		font-size: 20px;
 	}
+
+	#thread div.comment form button{
+
+		margin-left: 75%;
+	
+	}
 }
 
 @media screen and (max-width: 950px) and (min-width: 636px) {
@@ -226,11 +255,23 @@ form input.form_control{
 	#thread h2{
 		font-size: 20px;
 	}
+
+	#thread div.comment form button{
+
+		margin-left: 85%;
+	
+	}
 	
 }
 
 @media screen and (max-width: 531px){
 	div.col-8 button {
 		margin-left: 70%;
+	}
+	
+	#thread div.comment form button{
+
+		margin-left: 40%;
+	
 	}
 }

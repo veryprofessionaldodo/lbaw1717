@@ -45,7 +45,7 @@ Route::get('api/projects/{project_id}/members', 'ProjectController@projectMember
 // Route::post('api/projects/{project_id}/settings/requests/{request_id}/accept', 'ProjectController@projectSettingsRequestsAccept');
 // Route::post('api/projects/{project_id}/settings/requests/{request_id}/reject', 'ProjectController@projectSettingsRequestsReject');
 // Route::post('api/projects/{project_id}/edit', 'ProjectController@projectSettingsRequestsAccept');
-// Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectStatisticsView');
+Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectStatisticsView')->name('project_stats');
 // Route::post('api/projects/{project_id}/members', 'ProjectController@projectMembersSearch');
 // Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
 

@@ -29,7 +29,7 @@
 				<a class="btn btn-secondary" class="project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
 					<i class="fas fa-comments"></i> Forum</a>
 
-				<a class="btn btn-secondary" class="project_buttons" href="">
+				<a class="btn btn-secondary" class="project_buttons" href="{{route('project_stats',['project_id' => $project->id])}}">
 					<i class="fas fa-chart-line"></i> Statistics</a>
 			</nav>
 		</div>
