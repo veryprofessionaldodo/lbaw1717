@@ -73,7 +73,7 @@ Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->nam
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'ProjectController@newTaskComment')->name('create_comment_task');
 // Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
-// Route::delete('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment');
+ Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentTask');
 
 //Project Forum
 Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('forum'); //done
@@ -86,9 +86,8 @@ Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAc
 Route::put('projects/{id}/threads/{thread_id}/comments', 'ProjectController@newThreadComment');
 Route::get('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'ProjectController@threadCommentEditForm');
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@threadCommentEditAction');
-Route::delete('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread');
-Route::delete('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment');
-*/
+Route::delete('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread');*/
+Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentThread');
 
 //Admin Administraton, Report and Static Pages
 Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
@@ -102,7 +101,7 @@ Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser');
 Route::delete('admin/reports/comments/{report_id}', 'AdminController@deleteComment');
 Route::delete('admin/projects/{project_id}', 'AdminController@deleteProject');
 */
-Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentReportForm')->name('comment_report_form');
+Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentReportForm')->name('comment_report_form'); //done
 Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form'); //done
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done
 Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report');

@@ -40,21 +40,23 @@
                     <div class="date">
                         <p>{{$date->format('h:m')}}</p>
                         <p>{{$date->format('d/m/Y')}}</p>
-                        <a class="btn" href="#">Report 
+                       <!-- <a class="btn" href="#">Report 
                             <i class="fas fa-flag"></i>
-                        </a>
+                        </a>-->
                     </div>
 
                 </div>
             </div>
-
-            @each('partials.comment', $comments, 'comment')
+            
+            @foreach($comments as $comment)
+                @include('partials.comment', ['project' => $project, 'thread' => $thread, 'comment' => $comment])
+            @endforeach
 
 
         <div class="row comment table-dark">
             <div class="col-2">
                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" id="profile_pic">
-                <figcaption>{{\Auth::user()->username}}</figcaption>
+                <h6>{{\Auth::user()->username}}</h6>
             </div>
             <form method="POST" action="/projects/{{ $project -> id }}/threads/{{ $thread -> id}}/comments">
                 {{ csrf_field()}}

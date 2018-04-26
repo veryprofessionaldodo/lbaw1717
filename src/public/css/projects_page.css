@@ -336,8 +336,10 @@ div.comment div.user_options {
 div.comment div.user_options button {
 	font-size: 12px;
 	background-color: inherit;
-	color: #fff;
 	padding: 0;
+	padding: 0;
+	border: none;
+	background: none;
 
 }
 div.comment div.user_options  p{

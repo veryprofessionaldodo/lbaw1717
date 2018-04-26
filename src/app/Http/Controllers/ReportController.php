@@ -83,8 +83,4 @@ class ReportController extends Controller
         return response()->json(array('success' => true, 'html' => $viewHTML)); 
 
     }
-
-    public function createCommentReport(){
-        
-    }
 }

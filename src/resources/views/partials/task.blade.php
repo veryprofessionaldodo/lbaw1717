@@ -15,7 +15,9 @@
 
 <div class="list-group panel-collapse collapse in" id="task-{{$task->id}}">
 
-	@each('partials.comment', $task->comments, 'comment')
+	@foreach($task->comments as $comment)
+                @include('partials.comment', ['project' => $project,'comment' => $comment,'task' => $task])
+            @endforeach
 	
 	<div class="comment">
 		<p class="label">New comment:</p>

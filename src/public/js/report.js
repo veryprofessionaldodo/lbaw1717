@@ -26,7 +26,6 @@ function createReportAction(event) {
         let comment_id = event.target.href.substring(index + 8, event.target.href.length);
 
         type = 'commentReported';
-        alert(comment_id);
 
         sendAjaxRequest('post', event.target.href,
             {summary: report_summary, comment_id: comment_id, type : type},reportHandler);
@@ -36,10 +35,7 @@ function createReportAction(event) {
 }
 
 function reportHandler() {
-    alert(this.responseText);
     let data = JSON.parse(this.responseText);
-
-    console.log(data);
 
     document.open();
     document.write(data.html);

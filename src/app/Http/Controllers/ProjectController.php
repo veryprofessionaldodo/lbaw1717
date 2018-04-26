@@ -180,7 +180,6 @@ class ProjectController extends Controller
       return response()->json(array('success' => true, 'html' => $viewHTML)); 
     }
 
-    
     /**
      * Creates a new project.
      *
@@ -240,4 +239,11 @@ class ProjectController extends Controller
 
       return redirect()->route('project', ['project_id' => $project_id]);
     }
+
+    public function deleteComment(Request $request){
+
+      $comment = Comment::find($request->input('comment_id'));
+      $comment->delete();
+    }
+
 }

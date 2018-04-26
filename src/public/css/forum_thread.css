@@ -99,6 +99,9 @@ div.date a{
 
 #thread div.comment div.user_options > * {
 	color: #001;
+	padding: 0;
+	border: none;
+	background: none;
 }
 
 #issue h2 {
