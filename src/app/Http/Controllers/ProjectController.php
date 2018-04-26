@@ -249,7 +249,13 @@ class ProjectController extends Controller
       $notifications = Auth::user()->userNotifications();
       $project = Project::find($project_id);
 
-      return view('pages/statistics', ['notifications' => $notifications, 'project' => $project]);
+
+      $sprintsCompleted = $project->sprintsCompleted()[0];
+      $tasksCompleted = $project->tasksCompleted()[0];
+      $topContributor1 = $project->topContributors()[0];
+      $topContributor2 = $project->topContributors()[1];
+     // $topContributor3 = $project->topContributors()[2];
+      return view('pages/statistics', ['notifications' => $notifications, 'project' => $project, 'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 'topContributor2' => $topContributor2/*, 'topContributor3' => $topContributor3*/]);
     }
 
     /*

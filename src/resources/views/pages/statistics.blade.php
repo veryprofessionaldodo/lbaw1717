@@ -19,14 +19,14 @@
     <div class="sprints_stats">
         <div class="card">
             <div class="card-body">
-                <h3><i class="fas fa-bolt"></i> &nbsp; &nbsp; 12 sprints completed</h3>
+                <h3><i class="fas fa-bolt"></i> &nbsp; &nbsp; {{$sprintsCompleted->count}} sprints completed</h3>
             </div>
         </div>
     </div>
     <div class="tasks_stats">
         <div class="card">
             <div class="card-body">
-                <h3><i class="far fa-sticky-note"></i> &nbsp; &nbsp; 90 tasks completed</h3>
+                <h3><i class="far fa-sticky-note"></i> &nbsp; &nbsp; {{$tasksCompleted->count}} tasks completed</h3>
             </div>
         </div>
     </div>
@@ -38,22 +38,22 @@
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
                     <img src="res/forum/bee.jpg" height="30px" width="30px">
-                    <p>BeeMargarida</p>
-                    <p>25 tasks completed</p>
+                <p>{{$topContributor1->username}}</p>
+                    <p>{{$topContributor1->num}} tasks completed</p>
                 </div>   
             </a>
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
                     <img src="res/forum/dodo.jpg" height="30px" width="30px">
-                    <p>angrydodo</p>
-                    <p>12 tasks completed</p>
+                    <p>{{$topContributor2->username}}</p>
+                    <p>{{$topContributor2->num}} tasks completed</p>
                 </div>   
             </a>
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
                     <img src="res/forum/liedson.jpg" height="30px" width="30px">
-                    <p>Vespinha</p>
-                    <p>8 tasks completed</p>
+                    <p></p>
+                    <p>tasks completed</p>
                 </div>
             </a>
 

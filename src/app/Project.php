@@ -41,25 +41,35 @@ class Project extends Model
   }
 
   public function topContributors(){
-    $tUsers = DB::select()
-		->addSelect(user.username)
-		->addSelect(user.image)
-		->addSelect(DB::raw(`COUNT(*) as num`))
-		->from(`user`)
-		->from(`task_state_record`)
-		->from(`task`)
-		->where(`task.project_id`, `=`, `$project_id`)
-		->where(`task_state_record.task_id`, `=`, `task.id`)
-		->where(`user.id`, `=`, `task_state_record.user_completed_id`)
-		->where(`task_state_record.state`, `=`, `Completed`)
-		->groupBy(`user.username`)
-		->groupBy(`user.image`)
-		->orderByRaw(`num DESC`)
-		->limit(3)
-    ->get();
-    
-    return $tUsers;
+    return DB::select(
+      DB::raw('SELECT "user".username, "user".image, COUNT(*) AS num
+      FROM "user", task_state_record, task
+      WHERE task.project_id = :project_id
+      AND task_state_record.task_id = task.id
+      AND "user".id = task_state_record.user_completed_id
+      AND task_state_record.state = :state
+      GROUP BY "user".username, "user".image
+      ORDER BY num DESC LIMIT 3;'), array('project_id' => $this->id, 'state' => 'Completed'));
   }
+
+public function tasksCompleted(){
+  return DB::select(
+    DB::raw('SELECT COUNT(*) FROM task, task_state_record
+    WHERE task.project_id = :project_id 
+    AND task_state_record.task_id = task.id 
+    AND task_state_record.state = :state'), array('project_id' => $this->id, 'state' => 'Completed'));
+}
+
+public function sprintsCompleted(){
+  return DB::select(
+    DB::raw(' SELECT COUNT(*)
+    FROM sprint, sprint_state_record
+    WHERE sprint.project_id = :project_id
+    AND sprint_state_record.sprint_id = sprint.id 
+    AND sprint_state_record.state = :state'), array('project_id' => $this->id, 'state' => 'Completed'));
+}
+
+  
  
  
   
