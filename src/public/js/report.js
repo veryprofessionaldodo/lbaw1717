@@ -19,7 +19,7 @@ function createReportAction(event) {
         type = 'userReported';
         
         sendAjaxRequest('post', event.target.href, 
-            {summary: report_summary, user_reported: user_reported, type : type},reportHandler);
+            {summary: report_summary, user_reported: user_reported, type : type},showPageUpdated);
 
     }else if(type === 'COMMENT'){
         index = event.target.href.indexOf('comments');
@@ -28,18 +28,10 @@ function createReportAction(event) {
         type = 'commentReported';
 
         sendAjaxRequest('post', event.target.href,
-            {summary: report_summary, comment_id: comment_id, type : type},reportHandler);
+            {summary: report_summary, comment_id: comment_id, type : type},showPageUpdated);
     }else{
         console.log('ERROR IN REPORT ACTION !!!');
     }    
-}
-
-function reportHandler() {
-    let data = JSON.parse(this.responseText);
-
-    document.open();
-    document.write(data.html);
-    document.close();
 }
 
 addEventListeners();

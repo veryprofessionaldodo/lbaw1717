@@ -240,6 +240,9 @@ class ProjectController extends Controller
       return redirect()->route('project', ['project_id' => $project_id]);
     }
 
+    /*
+    Deletes comment of task or thread
+    */
     public function deleteComment(Request $request){
 
       $comment = Comment::find($request->input('comment_id'));

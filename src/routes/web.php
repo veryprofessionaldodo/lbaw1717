@@ -73,7 +73,7 @@ Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->nam
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'ProjectController@newTaskComment')->name('create_comment_task');
 // Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
- Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentTask');
+Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentTask'); //done
 
 //Project Forum
 Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('forum'); //done
@@ -87,7 +87,7 @@ Route::put('projects/{id}/threads/{thread_id}/comments', 'ProjectController@newT
 Route::get('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'ProjectController@threadCommentEditForm');
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@threadCommentEditAction');
 Route::delete('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread');*/
-Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentThread');
+Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentThread'); //done
 
 //Admin Administraton, Report and Static Pages
 Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done

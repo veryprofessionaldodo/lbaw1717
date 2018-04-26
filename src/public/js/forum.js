@@ -27,6 +27,7 @@ function showPageUpdated() {
     document.close();
 }
 
+
 function deleteComment(button){
 
     let href = button.getAttribute('href');
