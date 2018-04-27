@@ -52,6 +52,15 @@ class Project extends Model
       ORDER BY num DESC LIMIT 3;'), array('project_id' => $this->id, 'state' => 'Completed'));
   }
 
+  public function zeroContributors(){
+    return DB::select(
+      DB::raw('SELECT "user".username, "user".image, 0 AS num
+      FROM "user", task
+      WHERE task.project_id = :project_id
+      GROUP BY "user".username, "user".image
+      ORDER BY num DESC LIMIT 3;'), array('project_id' => $this->id));
+  }
+
 public function tasksCompleted(){
   return DB::select(
     DB::raw('SELECT COUNT(*) FROM task, task_state_record

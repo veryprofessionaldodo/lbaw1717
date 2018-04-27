@@ -37,23 +37,24 @@
             </a>
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
-                    <img src="res/forum/bee.jpg" height="30px" width="30px">
+                    <img src="{{$topContributor1->image}}" height="30px" width="30px">
                 <p>{{$topContributor1->username}}</p>
                     <p>{{$topContributor1->num}} tasks completed</p>
                 </div>   
             </a>
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
-                    <img src="res/forum/dodo.jpg" height="30px" width="30px">
+                <img src="{{$topContributor2->image}}" height="30px" width="30px">
                     <p>{{$topContributor2->username}}</p>
                     <p>{{$topContributor2->num}} tasks completed</p>
                 </div>   
             </a>
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
-                    <img src="res/forum/liedson.jpg" height="30px" width="30px">
-                    <p></p>
-                    <p>tasks completed</p>
+                    <img src="{{$topContributor3->image}}" height="30px" width="30px">
+                    <p>{{$topContributor3->username}}</p>
+                    <p>{{$topContributor3->num}} tasks completed</p>
+
                 </div>
             </a>
 
