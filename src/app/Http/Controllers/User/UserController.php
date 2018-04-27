@@ -9,6 +9,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 use Illuminate\Http\Request;
 
@@ -60,7 +61,7 @@ class UserController extends Controller {
     */
     public function editProfileForm(Request $request) {
         if (!Auth::check()) return redirect('/login');
-            
+        
         $viewHTML = view('partials.edit_profile')->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
     }
@@ -82,17 +83,27 @@ class UserController extends Controller {
 	*/
 	public function editProfileAction(Request $request) {
         if (!Auth::check()) return redirect('/login');
-
         $user = Auth::user();
 
-        $user->name = $request->input('name');
-        $user->username = $request->input('username');
-        $user->email = $request->input('email');
-        $user->image = $request->input('image');
+        $user->name = $request->user_name;
+        $user->username = $request->user_username;
+        $user->email = $request->user_email;
+        //$user->image = $request->input('image');
+        if($request->hasFile('user_image')){
+            $file = $request->file('user_image');
+            echo $file;
+            $user->image = $request->file('user_image')->store('public');
+            //echo Input::file('image');
+            //echo $request->user_image;
+            /*$image_name = time().'.'.$request->input('image')->getClientOriginalExtension();
+            $request->image->move(public_path('public'), $image_name);
+            $user->image = $image_name;*/
+        }
+
 
         $user->save();
-
-        return route('user_profile', [Auth::user()->username]);
+        return back();
+        //return redirect()->route('user_profile', [Auth::user()->username]);
 	}
 
 }

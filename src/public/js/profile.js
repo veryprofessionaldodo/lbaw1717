@@ -57,8 +57,9 @@ function showEditProfileForm() {
 
 	let section = document.querySelector("div.container-fluid .row section");
 	section.innerHTML = data.html;
-	let submitEdit = document.querySelector("div.edit_profile div#form_options a.btn-success");
-	submitEdit.addEventListener('click', sendEditProfile);
+	console.log('Here');
+	/*let submitEdit = document.querySelector("div.edit_profile div#form_options a.btn-success");
+	submitEdit.addEventListener('click', sendEditProfile);*/
 }
 
 function showCreateProjectForm() {
@@ -67,11 +68,11 @@ function showCreateProjectForm() {
 
 	let section = document.querySelector("div.container-fluid .row section");
 	section.innerHTML = data.html;
-	let submitEdit = document.querySelector("div.new_project div#form_options a.btn-success");
-	submitEdit.addEventListener('click', createProjectAction);
+	let submitProject = document.querySelector("div.new_project div#form_options a.btn-success");
+	submitProject.addEventListener('click', createProjectAction);
 }
 
-function sendEditProfile(event) {
+/*function sendEditProfile(event) {
 	event.preventDefault();
 
 	let new_name = document.querySelector("input[name='user_name']").value;
@@ -79,9 +80,11 @@ function sendEditProfile(event) {
 	let new_email = document.querySelector("input[name='user_email']").value;
 	let new_image = document.querySelector("input[name='user_image']").value; // change this later TODO
 
+	console.log(new_image);
+
 	sendAjaxRequest('post', event.target.href, {name: new_name, username: new_username, 
 								email: new_email, image: new_image} , showProfileUpdated);
-}
+}*/
 
 function createProjectAction(event) {
 	event.preventDefault();
