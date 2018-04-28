@@ -97,7 +97,7 @@
                         var myChart = new Chart(ctx, {
                             type: 'line',
                             data: {
-                                labels: ["January", "February", "March"],
+                                labels: ["March", "April", "May"],
                                 datasets: [{
                                     label: '# of sprints done',
                                     data: [5, 3, 2],

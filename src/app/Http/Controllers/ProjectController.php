@@ -153,8 +153,19 @@ class ProjectController extends Controller
       if(Auth::check()){
         $project = Project::find($id);
         $notifications = Auth::user()->userNotifications();
+       
  
          return view('pages/new_thread_page',['project' => $project, 'notifications' => $notifications]);
+       }
+    }
+
+    public function threadEditForm($id, $thread_id){
+      if(Auth::check()){
+        $project = Project::find($id);
+        $notifications = Auth::user()->userNotifications();
+        $thread = Thread::find($thread_id);
+ 
+         return view('pages/edit_thread_page',['project' => $project, 'notifications' => $notifications, 'thread' => $thread]);
        }
     }
 
@@ -182,6 +193,25 @@ class ProjectController extends Controller
       $thread->save();
 
       $viewHTML = $this->threadsView($request->project_id)->render();
+      return response()->json(array('success' => true, 'html' => $viewHTML)); 
+    }
+
+    public function threadEditAction(Request $request, $project_id, $thread_id) {
+      if (!Auth::check()) return redirect('/login');
+
+      $user = Auth::user()->id;
+
+      $thread = Thread::find($thread_id);
+      //TODO authorize
+
+      $thread->name = $request->input('name');
+      $thread->description = $request->input('description');
+      $thread->project_id = $request->input('project_id');
+      $thread->user_creator_id = $user;
+
+      $thread->save();
+
+      $viewHTML = $this->threadPageView($request->project_id, $thread_id)->render();
       return response()->json(array('success' => true, 'html' => $viewHTML)); 
     }
 
@@ -274,7 +304,12 @@ class ProjectController extends Controller
         $topContributor3 = $project->topContributors()[2];
       }
       
-      return view('pages/statistics', ['notifications' => $notifications, 'project' => $project, 'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 'topContributor2' => $topContributor2, 'topContributor3' => $topContributor3]);
+      $monthlySprints = $project->monthlySprints()[0];
+
+      return view('pages/statistics', ['notifications' => $notifications, 'project' => $project, 
+      'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 
+      'topContributor2' => $topContributor2, 'topContributor3' => $topContributor3,
+      'monthlySprints' => $monthlySprints]);
     }
 
     /*

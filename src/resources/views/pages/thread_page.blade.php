@@ -43,8 +43,9 @@
                        <!-- <a class="btn" href="#">Report 
                             <i class="fas fa-flag"></i>
                         </a>-->
+                        
+                       <a href="{{ route('edit_thread_form', ['id' => $project->id, 'thread_id' => $thread->id])}}"> <i class="fas fa-edit"></i> </a>
                     </div>
-
                 </div>
             </div>
             

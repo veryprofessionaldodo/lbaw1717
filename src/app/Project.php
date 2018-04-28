@@ -78,6 +78,15 @@ public function sprintsCompleted(){
     AND sprint_state_record.state = :state'), array('project_id' => $this->id, 'state' => 'Completed'));
 }
 
+public function monthlySprints(){
+  return DB::select(
+    DB::raw('SELECT COUNT(*), date_part(:state1 ,date) AS month
+      FROM sprint_state_record, sprint
+      WHERE sprint.project_id = :project_id AND sprint_state_record.sprint_id = sprint.id
+      AND sprint_state_record.state = :state2 AND date_part(:state3,date) = date_part(:state3,now())
+      GROUP BY month'), array('project_id' => $this->id, 'state1' => 'month', 'state2' => 'Completed', 'state3' => 'year'));
+}
+
   
  
  

@@ -81,9 +81,9 @@ Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm'
 Route::post('projects/{id}/threads/create', 'ProjectController@threadsCreateAction')->name('new_thread_action'); //done
 Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView')->name('thread'); //done
 Route::post('projects/{id}/threads/{thread_id}/comments', 'ProjectController@storeComment');
-/*Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm');
-Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction');
-Route::put('projects/{id}/threads/{thread_id}/comments', 'ProjectController@newThreadComment');
+Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm')->name('edit_thread_form');
+Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction')->name('edit_thread_action');
+/*Route::put('projects/{id}/threads/{thread_id}/comments', 'ProjectController@newThreadComment');
 Route::get('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'ProjectController@threadCommentEditForm');
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@threadCommentEditAction');
 Route::delete('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread');*/
