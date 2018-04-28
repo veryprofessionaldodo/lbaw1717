@@ -74,6 +74,12 @@ div.date a{
 	text-decoration: none;
 }
 
+div.date button{
+	padding-left: 5%;
+	border: none;
+	background: none;
+}
+
 #thread div.comment .col-lg-8:nth-child(2) {
 	padding: 0 1em;
 }

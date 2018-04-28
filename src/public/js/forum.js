@@ -63,4 +63,19 @@ function commentsUpdated(){
     location.reload();
 }
 
+function deleteThread(button){
+
+    let href = button.getAttribute('href');
+
+    let r = confirm("Are you sure you want to delete this thread and the comments in it?\n");
+
+    if (r == true) {
+        let thread_id = button.id; 
+
+        sendAjaxRequest('post', href, {thread_id: thread_id},showPageUpdated);
+    } else {
+        return;
+    }
+}
+
 addEventListeners();

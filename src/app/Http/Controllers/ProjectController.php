@@ -321,4 +321,15 @@ class ProjectController extends Controller
       $comment->delete();
     }
 
+    public function deleteThread(Request $request){
+
+      $thread = Thread::find($request->input('thread_id'));
+      $project_id = $thread->project()->first()->id;
+
+      $thread->delete();
+
+      $viewHTML = $this->threadsView($project_id)->render();
+      return response()->json(array('success' => true, 'html' => $viewHTML));
+    }
+
 }

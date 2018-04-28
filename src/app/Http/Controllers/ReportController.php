@@ -19,7 +19,6 @@ use App\Http\Controllers\ProjectController;
 class ReportController extends Controller
 {
 
-
     /* gets the report form page*/
     public function userReportForm($username){
 
@@ -35,8 +34,13 @@ class ReportController extends Controller
         $notifications = Auth::user()->userNotifications();
         $comment = Comment::find($comment_id);
         $type = 'COMMENT';
-        $project_id = Comment::find($comment_id)->thread()->first()->project()->first()->id;
 
+        if($comment->thread_id == NULL){
+            $project_id = Comment::find($comment_id)->task()->first()->project()->first()->id;
+        }else{
+            $project_id = Comment::find($comment_id)->thread()->first()->project()->first()->id;
+        }
+        
         return view('pages/report_page',['comment' => $comment, 'notifications' => $notifications,
                      'type' => $type, 'project_id' => $project_id]);
     }
@@ -69,18 +73,24 @@ class ReportController extends Controller
         $report->save();
 
         if($report->type == 'userReported'){
+
             $user_controller = new UserController();
             $viewHTML = $user_controller->showProfile($username_reported)->render();
+
         }elseif($report->type == 'commentReported'){
+
             $project_controller = new ProjectController();
-            $thread_id = Comment::find($report->comment_reported_id)->thread()->first()->id;
-            $project_id = Comment::find($report->comment_reported_id)->thread()->first()->project()->first()->id;
-
-            $viewHTML = $project_controller->threadPageView($project_id,$thread_id)->render();
+            $comment = Comment::find($report->comment_reported_id);
+            
+            if($comment->task_id == NULL){
+                $project_id = Comment::find($report->comment_reported_id)->thread()->first()->project()->first()->id;
+                $thread_id = Comment::find($report->comment_reported_id)->thread()->first()->id;
+                $viewHTML = $project_controller->threadPageView($project_id,$thread_id)->render();
+            }else{
+                $project_id = Comment::find($report->comment_reported_id)->task()->first()->project()->first()->id;
+                $viewHTML = $project_controller->project($project_id)->render();
+            }
         }
-
-
         return response()->json(array('success' => true, 'html' => $viewHTML)); 
-
     }
 }
