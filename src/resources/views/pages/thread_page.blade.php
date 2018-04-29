@@ -45,8 +45,8 @@
                         </a>-->
                         @if ($thread->canBeEdited(Auth::user()))
                         <a href="{{ route('edit_thread_form', ['id' => $project->id, 'thread_id' => $thread->id])}}"> <i class="fas fa-edit"></i> </a>
-                        @endif
-                       
+                        <button href="{{ route('deleteThread', ['id' => $project->id, 'thread_id' => $thread->id])}}" onclick="deleteThread(this)" id="{{$thread->id}}" class"deleteThread" ><i class="fas fa-trash"></i></button>
+                        @endif 
                     </div>
                 </div>
             </div>

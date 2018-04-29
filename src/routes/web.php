@@ -84,8 +84,9 @@ Route::post('projects/{id}/threads/{thread_id}/comments', 'ProjectController@sto
 Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm')->name('edit_thread_form');
 Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction')->name('edit_thread_action');
 /*Route::get('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'ProjectController@threadCommentEditForm');
-Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@threadCommentEditAction');
-Route::delete('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread');*/
+Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@threadCommentEditAction');*/
+Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread')->name('deleteThread');
+Route::put('projects/{id}/threads/{thread_id}/comments', 'ProjectController@newThreadComment');
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentThread'); //done
 
 //Admin Administraton, Report and Static Pages
@@ -103,7 +104,7 @@ Route::delete('admin/projects/{project_id}', 'AdminController@deleteProject');
 Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentReportForm')->name('comment_report_form'); //done
 Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form'); //done
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done
-Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report');
+Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report'); //done
 
 
 /*

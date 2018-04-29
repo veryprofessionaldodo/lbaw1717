@@ -19,11 +19,18 @@ class UserController extends Controller {
 	    if (!Auth::check()) return redirect('/login');
         $this->authorize('list', Project::class);
 
+        try {
+            $user = User::where('username',$username)->get();
+            $projects = $user[0]->userProjects();
+            $public_projects = $user[0]->userPublicProjects();
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
         
-        $user = User::where('username',$username)->get();
-        $projects = $user[0]->userProjects();
-        $public_projects = $user[0]->userPublicProjects();
-        
+        // AJAX PAGINATION - NOT WORKING
         // $requests = request()->headers->all();
         // print_r($requests);
 
@@ -33,21 +40,38 @@ class UserController extends Controller {
         //     return response()->json(array('success' => true, 'html' => $viewHTML));
         // }]);
 
-        $notifications = Auth::user()->userNotifications();
+        try {
+            $notifications = Auth::user()->userNotifications();
 
-        $taskCompletedWeek = $user[0]->taskCompletedThisWeek()[0];
-        $taskCompletedMonth = $user[0]->taskCompletedThisMonth()[0];
-        $sprintsContributedTo = $user[0]->sprintsContributedTo()[0];
-  
-        return view('pages/user_profile', ['projects' => $projects,'public_projects' => $public_projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
-        'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'user' => $user[0]]);
+            $taskCompletedWeek = $user[0]->taskCompletedThisWeek()[0];
+            $taskCompletedMonth = $user[0]->taskCompletedThisMonth()[0];
+            $sprintsContributedTo = $user[0]->sprintsContributedTo()[0];
+            
+            return view('pages/user_profile', ['projects' => $projects,'public_projects' => $public_projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
+            'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'user' => $user[0]]);
+
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+
       
     }
     
     public function getUserProjects(int $n) {
-        $projects = Auth::user()->userProjects();
+        try {
+            $projects = Auth::user()->userProjects();
+            return view('partials.user_projects', ['projects' => $projects]);
+
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
         
-        return view('partials.user_projects', ['projects' => $projects]);
     }
 
 	public function showAdminPage(string $username){
@@ -72,10 +96,18 @@ class UserController extends Controller {
     public function createProjectForm(Request $request) {
         if (!Auth::check()) return redirect('/login');
 
-        $categories = Category::all();
+        try {
+            $categories = Category::all();
+            $viewHTML = view('partials.create_project_form',['categories' => $categories])->render();
+            return response()->json(array('success' => true, 'html' => $viewHTML));
+
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
             
-        $viewHTML = view('partials.create_project_form',['categories' => $categories])->render();
-        return response()->json(array('success' => true, 'html' => $viewHTML));
     }
 
 	/**
@@ -84,25 +116,32 @@ class UserController extends Controller {
 	public function editProfileAction(Request $request) {
         if (!Auth::check()) return redirect('/login');
         $user = Auth::user();
+        try {
+            $user->name = $request->user_name;
+            $user->username = $request->user_username;
+            $user->email = $request->user_email;
+            //$user->image = $request->input('image');
+            if($request->hasFile('user_image')){
+                $file = $request->file('user_image');
+                echo $file;
+                $user->image = $request->file('user_image')->store('public');
+                //echo Input::file('image');
+                //echo $request->user_image;
+                /*$image_name = time().'.'.$request->input('image')->getClientOriginalExtension();
+                $request->image->move(public_path('public'), $image_name);
+                $user->image = $image_name;*/
+            }
+    
+    
+            $user->save();
+            return back();
 
-        $user->name = $request->user_name;
-        $user->username = $request->user_username;
-        $user->email = $request->user_email;
-        //$user->image = $request->input('image');
-        if($request->hasFile('user_image')){
-            $file = $request->file('user_image');
-            echo $file;
-            $user->image = $request->file('user_image')->store('public');
-            //echo Input::file('image');
-            //echo $request->user_image;
-            /*$image_name = time().'.'.$request->input('image')->getClientOriginalExtension();
-            $request->image->move(public_path('public'), $image_name);
-            $user->image = $image_name;*/
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
         }
-
-
-        $user->save();
-        return back();
         //return redirect()->route('user_profile', [Auth::user()->username]);
 	}
 
