@@ -64,4 +64,18 @@ class AdminController extends Controller {
         }
     }
 
+    public function dismissReport(Request $request){
+        try {
+            $report = Report::find($request->input('report_id'));
+      
+            $report->delete();
+    
+          } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+          } catch (\Exception $e) {
+              // Handle unexpected errors
+          }
+    }
+
 }

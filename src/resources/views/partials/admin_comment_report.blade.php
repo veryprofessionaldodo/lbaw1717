@@ -5,7 +5,7 @@
 		<div class="options">
 			<button class="btn">Delete Comment</button>
 			<button class="btn">Delete User</button>
-			<button class="btn">Dismiss Report</button>
+			<button href="{{ route('dismissReport', ['report_id' => $report->id])}}" id="{{$report->id}}" onclick="dismissReport(this)"class="btn">Dismiss Report</button>
 		</div>
 	</div>
 	<div class="report_details">

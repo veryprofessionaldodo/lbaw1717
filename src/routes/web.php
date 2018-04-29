@@ -92,9 +92,9 @@ Route::get('api/admin/{username}/reports/comments', 'AdminController@commentRepo
 Route::get('api/admin/{username}/reports/users', 'AdminController@userReportsView')->name('admin_users'); //done
 
 /*Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView');
-Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportView');
-Route::delete('admin/reports/{report_id}', 'AdminController@deleteReport');
-Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser');
+Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportView');*/
+Route::post('admin/reports/{report_id}', 'AdminController@dismissReport')->name('dismissReport');
+/*Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser');
 Route::delete('admin/reports/comments/{report_id}', 'AdminController@deleteComment');
 Route::delete('admin/projects/{project_id}', 'AdminController@deleteProject');
 */

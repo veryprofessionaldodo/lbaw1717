@@ -46,5 +46,11 @@ function viewReports() {
 	content.innerHTML = data.html;
 }
 
+function dismissReport(button){
+	let href = button.getAttribute('href');
+	let report_id = button.id;
+
+	sendAjaxRequest('post', href, {report_id: report_id},refreshPage);
+}
 
 addEventListeners();

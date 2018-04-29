@@ -52,13 +52,13 @@ function deleteComment(button){
     if (r == true) {
         let comment_id = button.id; 
 
-        sendAjaxRequest('post', href, {comment_id: comment_id},commentsUpdated);
+        sendAjaxRequest('post', href, {comment_id: comment_id},refreshPage);
     } else {
         return;
     }
 }
 
-function commentsUpdated(){
+function refreshPage(){
     //TODO change to ajax
     location.reload();
 }
