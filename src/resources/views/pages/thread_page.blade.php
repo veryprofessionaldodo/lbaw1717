@@ -43,9 +43,10 @@
                        <!-- <a class="btn" href="#">Report 
                             <i class="fas fa-flag"></i>
                         </a>-->
-                        
-                       <a href="{{ route('edit_thread_form', ['id' => $project->id, 'thread_id' => $thread->id])}}"> <i class="fas fa-edit"></i> </a>
-                       <button href="{{ route('deleteThread', ['id' => $project->id, 'thread_id' => $thread->id])}}" onclick="deleteThread(this)" id="{{$thread->id}}" class"deleteThread" ><i class="fas fa-trash"></i></button>
+                        @if ($thread->canBeEdited(Auth::user()))
+                        <a href="{{ route('edit_thread_form', ['id' => $project->id, 'thread_id' => $thread->id])}}"> <i class="fas fa-edit"></i> </a>
+                        <button href="{{ route('deleteThread', ['id' => $project->id, 'thread_id' => $thread->id])}}" onclick="deleteThread(this)" id="{{$thread->id}}" class"deleteThread" ><i class="fas fa-trash"></i></button>
+                        @endif 
                     </div>
                 </div>
             </div>
