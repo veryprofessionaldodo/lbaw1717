@@ -53,4 +53,32 @@ function dismissReport(button){
 	sendAjaxRequest('post', href, {report_id: report_id},refreshPage);
 }
 
+function disableUser(button){
+	let href = button.getAttribute('href');
+
+	let r = confirm("Are you sure you want to disable this user?\n");
+
+    if (r == true) {
+        let report_id = button.id;
+
+		sendAjaxRequest('post', href, {report_id: report_id},refreshPage);
+    } else {
+        return;
+    }
+}
+
+function deleteCommentReport(button){
+	let href = button.getAttribute('href');
+
+	let r = confirm("Are you sure you want to delete this comment?\n");
+
+    if (r == true) {
+        let report_id = button.id;
+
+		sendAjaxRequest('post', href, {report_id: report_id},refreshPage);
+    } else {
+        return;
+    }
+}
+
 addEventListeners();
