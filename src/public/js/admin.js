@@ -40,11 +40,9 @@ function showCommentReports(event){
 }
 
 function viewReports() {
-	console.log(this.responseText);
 	let data = JSON.parse(this.responseText);
 
 	let content = document.querySelector("section div#reports");
-	console.log(data.html);
 	content.innerHTML = data.html;
 }
 

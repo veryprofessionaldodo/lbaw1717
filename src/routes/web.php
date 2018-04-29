@@ -83,16 +83,13 @@ Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageVie
 Route::post('projects/{id}/threads/{thread_id}/comments', 'ProjectController@storeComment');
 Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm')->name('edit_thread_form');
 Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction')->name('edit_thread_action');
-/*Route::put('projects/{id}/threads/{thread_id}/comments', 'ProjectController@newThreadComment');
-Route::get('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'ProjectController@threadCommentEditForm');
-Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@threadCommentEditAction');*/
-Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread')->name('deleteThread');
+Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread')->name('deleteThread'); //done
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentThread'); //done
 
 //Admin Administraton, Report and Static Pages
 Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
-Route::get('api/admin/{username}/reports/comments', 'AdminController@commentReportsView')->name('admin_comments');
-Route::get('api/admin/{username}/reports/users', 'AdminController@userReportsView')->name('admin_users');
+Route::get('api/admin/{username}/reports/comments', 'AdminController@commentReportsView')->name('admin_comments'); //done
+Route::get('api/admin/{username}/reports/users', 'AdminController@userReportsView')->name('admin_users'); //done
 
 /*Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView');
 Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportView');

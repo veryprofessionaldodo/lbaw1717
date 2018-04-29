@@ -15,7 +15,7 @@ class AdminController extends Controller {
 	public function showAdminPage(string $username){
 		if (!Auth::check()) return redirect('/login');
 
-        $userReports = Report::where('user_reported_id','!=',null)->with('users')->with('users_reported')->get();
+        $userReports = Report::where('user_reported_id','!=',null)->with('users')->with('users_reported')->paginate(5);
 
 		return view('pages/admin_page',['reports' => $userReports, 'type' => 'user']);
 	}
@@ -23,7 +23,7 @@ class AdminController extends Controller {
     public function userReportsView(string $username) {
         if (!Auth::check()) return redirect('/login');
 
-        $userReports = Report::where('user_reported_id','!=',null)->with('users')->with('users_reported')->get();
+        $userReports = Report::where('user_reported_id','!=',null)->with('users')->with('users_reported')->paginate(5);
 
         $viewHTML = view('partials.reports_admin', ['reports'=>$userReports, 'type' => 'user'])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
@@ -32,7 +32,7 @@ class AdminController extends Controller {
     public function commentReportsView(string $username) {
         if (!Auth::check()) return redirect('/login');
 
-        $commentReports = Report::where('comment_reported_id','!=',null)->with('users')->with('comments_reported')->with('comments_reported.user')->get();
+        $commentReports = Report::where('comment_reported_id','!=',null)->with('users')->with('comments_reported')->with('comments_reported.user')->paginate(5);
 
         $viewHTML = view('partials.reports_admin', ['reports'=>$commentReports, 'type' => 'comment'])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
