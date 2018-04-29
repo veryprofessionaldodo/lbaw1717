@@ -123,6 +123,7 @@ class ProjectController extends Controller
     }
 
 
+    /* THREADS */
     public function threadsView($id){
       if(Auth::check()){
        $project = Project::find($id);
@@ -245,6 +246,8 @@ class ProjectController extends Controller
       
       return $project;
     }
+
+    /* COMMENT */
 
     public function storeComment(Request $request,$id, $thread_id){
       

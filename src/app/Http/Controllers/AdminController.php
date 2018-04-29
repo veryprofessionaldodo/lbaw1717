@@ -17,7 +17,9 @@ class AdminController extends Controller {
 
         $userReports = Report::where('user_reported_id','!=',null)->with('users')->with('users_reported')->get();
 
-		return view('pages/admin_page',['reports' => $userReports, 'type' => 'user']);
+        $notifications = Auth::user()->userNotifications();
+
+		return view('pages/admin_page',['reports' => $userReports, 'type' => 'user', 'notifications' => $notifications]);
 	}
 
     public function userReportsView(string $username) {

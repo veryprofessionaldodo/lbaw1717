@@ -24,4 +24,8 @@ class Thread extends Model
   public function user() {
   	return $this->belongsTo('App\User','user_creator_id');
   }
+
+  function canBeEdited(User $user){
+    return $user->isAdmin() || $this->user_creator_id == $user->id;
+  }
 }
