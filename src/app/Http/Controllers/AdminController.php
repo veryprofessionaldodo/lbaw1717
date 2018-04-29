@@ -16,8 +16,9 @@ class AdminController extends Controller {
 		if (!Auth::check()) return redirect('/login');
         try {
 
-        $userReports = Report::where('user_reported_id','!=',null)->with('users')->with('users_reported')->paginate(5);
-            return view('pages/admin_page',['reports' => $userReports, 'type' => 'user']);
+            $userReports = Report::where('user_reported_id','!=',null)->with('users')->with('users_reported')->paginate(5);
+            $notifications = Auth::user()->userNotifications();
+            return view('pages/admin_page',['reports' => $userReports, 'type' => 'user', 'notifications' => $notifications]);
 
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
