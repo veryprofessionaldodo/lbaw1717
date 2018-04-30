@@ -53,7 +53,7 @@ class AdminController extends Controller {
         
         try {
             $commentReports = Report::where('comment_reported_id','!=',null)->with('users')->with('comments_reported')
-                                ->with('comments_reported.user')->paginate(1);
+                                ->with('comments_reported.user')->paginate(5);
     
             $viewHTML = view('partials.reports_admin', ['reports'=>$commentReports, 'type' => 'comment'])->render();
             return response()->json(array('success' => true, 'html' => $viewHTML));
