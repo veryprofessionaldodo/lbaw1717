@@ -11,12 +11,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     <link href="{{ asset('css/search.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/profile_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/projects_page.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
     <link href="{{ asset('css/forum_thread.css') }}" rel="stylesheet">
     <link href="{{ asset('css/statistics.css') }}" rel="stylesheet">
