@@ -2,31 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Sprint;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
+use App\Sprint;
 
 class SprintController extends Controller
 {
     public function create(Request $request) {
         if(!Auth::check()) return redirect('/login');
 
-        $sprint = new Sprint();
-        echo dd($request);
-        
         // check if is coordinator
         //$this->authorize('create', $sprint); TODO
+        try {
+            $sprint = new Sprint();
+            $sprint->name = $request->name;
 
-        $sprint->name = $request->input('name');
-        $sprint->deadline = $request->input('deadline');
-        $sprint->project_id = $request->project_id;
-        $sprint->save();
+            $date = new \DateTime($request->deadline);
+            $sprint->deadline = $date->format('Y-m-d');
 
-        //$sprint->project()->attach($request->input('project_id'));
+            $sprint->effort = $request->effort;
+            $sprint->project_id = $request->project_id;
+            $sprint->user_creator_id = Auth::user()->id;
+            $sprint->save();
 
-        //return $sprint;
+            //return $sprint;
+            return redirect()->route('project', ['project_id' => $request->project_id]);
 
-        return redirect()->route('project', ['project_id' => $request->project_id]);
+        }  catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+
     }
 
     public function delete(Request $request, $id)
