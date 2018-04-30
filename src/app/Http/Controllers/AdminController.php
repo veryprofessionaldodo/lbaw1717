@@ -52,7 +52,8 @@ class AdminController extends Controller {
         if (!Auth::check()) return redirect('/login');
         
         try {
-            $commentReports = Report::where('comment_reported_id','!=',null)->with('users')->with('comments_reported')->with('comments_reported.user')->paginate(5);
+            $commentReports = Report::where('comment_reported_id','!=',null)->with('users')->with('comments_reported')
+                                ->with('comments_reported.user')->paginate(1);
     
             $viewHTML = view('partials.reports_admin', ['reports'=>$commentReports, 'type' => 'comment'])->render();
             return response()->json(array('success' => true, 'html' => $viewHTML));

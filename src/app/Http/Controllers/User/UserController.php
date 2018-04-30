@@ -120,16 +120,11 @@ class UserController extends Controller {
             $user->name = $request->user_name;
             $user->username = $request->user_username;
             $user->email = $request->user_email;
-            //$user->image = $request->input('image');
+            
             if($request->hasFile('user_image')){
                 $file = $request->file('user_image');
                 echo $file;
-                $user->image = $request->file('user_image')->store('public');
-                //echo Input::file('image');
-                //echo $request->user_image;
-                /*$image_name = time().'.'.$request->input('image')->getClientOriginalExtension();
-                $request->image->move(public_path('public'), $image_name);
-                $user->image = $image_name;*/
+                $user->image = $request->file('user_image')->store('public');              
             }
     
     
@@ -142,9 +137,7 @@ class UserController extends Controller {
         } catch (\Exception $e) {
             // Handle unexpected errors
         }
-        //return redirect()->route('user_profile', [Auth::user()->username]);
 	}
-
 }
 
 ?>
