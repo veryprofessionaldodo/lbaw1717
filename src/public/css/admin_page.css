@@ -37,11 +37,21 @@ aside a#active {
   font-size: 1.1em; 
   color: #aaa; 
 } 
+
+form {
+  display: grid;
+}
  
 div.row a.col-6 { 
   background-color: #00494C; 
   margin-top: 1em; 
-} 
+}
+
+aside {
+  background-color: #e3e8ef;
+  box-shadow: 0 0 0 0 #000;
+  margin-bottom: 0;
+}
  
 aside div a { 
   /*outline: 2px solid #508689;*/ 
@@ -65,8 +75,8 @@ section {
  
  
 section div#search_bar input.form-control { 
-  display: inline-block; 
-  width: flex; 
+  display: inline; 
+  
    
 } 
  
@@ -78,8 +88,9 @@ section div#search_bar button.btn {
 div > button { 
   background-color: #0A1827; 
   transition: all 0.2s; 
+  color:#ccc;
 } 
- 
+
 div > button:hover { 
   background-color: #AA000C; 
 } 
