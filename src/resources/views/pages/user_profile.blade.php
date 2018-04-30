@@ -12,7 +12,7 @@
 			<div class="row">
 				<div id="info" class="col-md-12 col-6">
 					@if($user->image != NULL)
-						<img src="{{ asset('storage/app/'.$user->image)}}">
+						<img src="{{ asset('storage/'.$user->image)}}">
 					@else						
 						<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
 					@endif

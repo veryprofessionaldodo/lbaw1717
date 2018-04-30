@@ -389,7 +389,6 @@ class ProjectController extends Controller
       try {
         $notifications = Auth::user()->userNotifications();
         $project = Project::find($project_id);
-  
         $tasksCompleted = $project->tasksCompleted()[0];
         $sprintsCompleted = $project->sprintsCompleted()[0];
         
@@ -416,7 +415,7 @@ class ProjectController extends Controller
         }
         
         $monthlySprints = $project->monthlySprints()[0];
-  
+        
         return view('pages/statistics', ['notifications' => $notifications, 'project' => $project, 
         'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 
         'topContributor2' => $topContributor2, 'topContributor3' => $topContributor3,
