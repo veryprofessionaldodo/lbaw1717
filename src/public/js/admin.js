@@ -2,8 +2,16 @@ function addEventListeners() {
 	let userRepBtn = document.querySelector("aside#navbar div a:first-of-type");
 	let commentRepBtn = document.querySelector("aside#navbar div a:last-of-type");
 
+	let pagination = document.querySelectorAll("div#reports div#pagination_section ul.pagination li a");
+
+	console.log(pagination);
+
 	userRepBtn.addEventListener('click', showUserReports);
 	commentRepBtn.addEventListener('click', showCommentReports);
+
+	for(let i = 0; i < pagination.length;i++){
+		pagination[i].addEventListener('click',getPageReport);
+	}
 }
 
 function encodeForAjax(data) {
@@ -44,6 +52,8 @@ function viewReports() {
 
 	let content = document.querySelector("section div#reports");
 	content.innerHTML = data.html;
+
+	addEventListeners();
 }
 
 function dismissReport(button){
@@ -79,6 +89,12 @@ function deleteCommentReport(button){
     } else {
         return;
     }
+}
+
+function getPageReport(event){
+	event.preventDefault();
+
+	sendAjaxRequest('get', event.target.href, null, viewReports);
 }
 
 addEventListeners();
