@@ -82,7 +82,11 @@ section.container-fluid .row .nav-tabs {
 
 .nav-tabs .nav-item .nav-link.active {
 	background-color: #5bc0de;
-	color: #fff;
+	color: #001;
+}
+
+.nav-tabs .nav-item .nav-link {
+	color: #555;
 }
 
 /**
@@ -115,13 +119,17 @@ div.list-group-item svg{
 	font-size: 24px;
 }
 
+div.list-group-item:first-of-type {
+	border-top: 2px solid #0A1827;
+}
+
 div.list-group-item {
 	padding: 1em;
 	display: grid;
 	border: 0;
-	font-size: 14px;
+	font-size: 16px;
+	color: #001;
 	background-color: #5bc0de;
-	border-top: 2px solid #0A1827;
 	border-bottom: 2px solid #0A1827;
 	grid-template-columns: 50% auto auto auto;
 }
@@ -129,11 +137,9 @@ div.list-group-item {
 div.list-group-item p{
 	vertical-align: inherit;
 	margin: auto 0;
-	color: #002;
 }
 
 div.list-group-item a{
-	color: #002;
 	cursor: pointer;
 	text-align: left;
 	vertical-align: super;

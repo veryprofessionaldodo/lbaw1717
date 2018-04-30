@@ -82,7 +82,7 @@ div#options div.col-md-6 {
 }
 
 div#options form {
-	margin: auto;
+	margin: 0;
 	text-align: right;
 }
 

@@ -44,10 +44,6 @@ nav > form {
 	justify-content: center;
 }
 
-nav form input.form-control {
-	color: #000;
-}
-
 .user {
 	text-align: right;
 	margin: auto;
@@ -59,7 +55,7 @@ nav form input.form-control {
 
 .user img {
 	max-width: 3em;
-	border-radius: 50px;
+	border-radius: 50%;
 	float: right;
 	cursor: pointer;
 }
@@ -217,36 +213,26 @@ nav form input.form-control {
 
 .form-control {
 	display: inline-block;
-	width: 50%;
-	background-color: #eee;
-	color: #0A1827;
 	transition: all 0.2s;
+	background-color: #ddf;
+	color: #223;
 }
 
 .form-control:hover {
-	background-color: #eee;
+	background-color: #eef;
 }
 
 .form-control:focus {
-	background-color: #eee;
-	color: #0A1827;
+	background-color: #fff;	
 	outline: 5px auto -webkit-focus-ring-color;
+	color: #001;
 }
 
 .form-control::placeholder {
-  color: #0A1827;
+  color: #556;
   opacity: 1;
 }
 
-.form-control:hover::placeholder {
-  color: #333;
-  opacity: 1;
-}
-
-.form-control:focus::placeholder {
-  color: #333;
-  opacity: 1;
-}
 
 /**
 	PAGINATION
@@ -356,6 +342,7 @@ h1 {
 }
 
 #buttons_nav {
+	background-color: #008cba;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
