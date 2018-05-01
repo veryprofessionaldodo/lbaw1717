@@ -38,12 +38,27 @@ div#container ol.breadcrumb {
 }
 
 #thread div#header {
-	background-color: #487884;
-	border-width: 5px 5px 0 5px;
+	background-color: #333;
+	border-width: 3px 3px 3px 3px;
 	border-style: solid;
-	border-color: #487884;
+	border-color: #001;
 	padding: 1em;
 	color: #fff;
+}
+
+form {
+	display: grid;
+}
+
+form input.form-control {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+
+#thread div.comment form button{
+	margin-left: 95%;
+	grid-column-start: 2;
+	grid-column-end: 3;
 }
 
 
@@ -98,6 +113,17 @@ div.date button{
 	border-style: solid;
 	border-color: #487884;
 	color: #001;
+	display: grid;
+}
+
+#thread div.comment p {
+	margin: 0;
+}
+
+#thread div.comment div.user_options {
+	grid-column-start: 5;
+	grid-column-end: 6;
+	grid-row: 1;
 }
 
 #thread div.comment h6 {
@@ -115,10 +141,23 @@ div.date button{
 	background: none;
 }
 
+#thread h2 {
+	font-size: 30px;
+}
+
 #issue h2 {
-	color: black;
+	color: #fff;
 	margin-bottom: 1em;
 }
+
+#thread #issue p {
+	color: #ddd;
+}
+
+div.date {
+	color: #ccc;
+}
+
 /*
 div#thread form{
 	width: 800%;
@@ -136,11 +175,9 @@ div.col-2 button {
 */
 #thread .comment a, #thread #header a{
 	background-color: inherit;
-	color: #3e4a56;
-	grid-column-start: 3; 
-	grid-column-end: 4;
+	grid-column-start: 2; 
+	grid-column-end: 3;
 	grid-row: 1;
-	color: black;
 	margin: auto;
 	text-align: center;
 	transition: background-color 0s;
@@ -162,19 +199,12 @@ form input.form_control{
 
 #thread div.comment form {
 	text-align: justify;
-	padding: 1em;
 	border-radius: 20px;
 	width: auto;
 	margin: 0 2em 0 1em;
 	grid-column-start: 3;
-	grid-column-end: 4;
+	grid-column-end: 5;
 	grid-row: 1;
-}
-
-#thread div.comment form button{
-
-	margin-left: 95%;
-
 }
 
 

@@ -23,32 +23,13 @@ class UserController extends Controller {
             $user = User::where('username',$username)->get();
             $projects = $user[0]->userProjects();
             $public_projects = $user[0]->userPublicProjects();
-        } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
-        }
-        
-        // AJAX PAGINATION - NOT WORKING
-        // $requests = request()->headers->all();
-        // print_r($requests);
-
-        // if(request()->ajax()) {
-        //     $viewHTML = view('partials.user_projects', ['projects' => $projects])->render();
-        //     echo $viewHTML;
-        //     return response()->json(array('success' => true, 'html' => $viewHTML));
-        // }]);
-
-        try {
-            $notifications = Auth::user()->userNotifications();
 
             $taskCompletedWeek = $user[0]->taskCompletedThisWeek()[0];
             $taskCompletedMonth = $user[0]->taskCompletedThisMonth()[0];
             $sprintsContributedTo = $user[0]->sprintsContributedTo()[0];
             
             return view('pages/user_profile', ['projects' => $projects,'public_projects' => $public_projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
-            'sprintsContributedTo' => $sprintsContributedTo, 'notifications' => $notifications, 'user' => $user[0]]);
+            'sprintsContributedTo' => $sprintsContributedTo, 'user' => $user[0]]);
 
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 

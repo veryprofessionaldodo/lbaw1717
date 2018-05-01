@@ -24,10 +24,9 @@ class ReportController extends Controller
 
         try {
             $user_reported = User::where('username',$username)->get();
-            $notifications = Auth::user()->userNotifications();
             $type = 'USER';
             
-            return view('pages/report_page',['user_reported' => $user_reported[0], 'notifications' => $notifications, 'type' => $type]);
+            return view('pages/report_page',['user_reported' => $user_reported[0], 'type' => $type]);
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
             //(returning the view with the parsed errors, p.e)
@@ -39,7 +38,6 @@ class ReportController extends Controller
 
     public function commentReportForm($comment_id){
         try {
-            $notifications = Auth::user()->userNotifications();
             $comment = Comment::find($comment_id);
             $type = 'COMMENT';
     
@@ -48,7 +46,7 @@ class ReportController extends Controller
             }else{
                 $project_id = Comment::find($comment_id)->thread()->first()->project()->first()->id;
             }
-            return view('pages/report_page',['comment' => $comment, 'notifications' => $notifications,
+            return view('pages/report_page',['comment' => $comment,
                          'type' => $type, 'project_id' => $project_id]);
 
 
