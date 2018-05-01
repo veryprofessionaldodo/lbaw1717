@@ -3,7 +3,7 @@
 		<p>User <a href="{{ route('user_profile', ['username' => $report->users_reported->username])}}">{{$report->users_reported->username}}</a> has been reported</p>
 		<a href="#">More info</a>
 		<div class="options">
-			<button class="btn">Delete User</button>
+			<button href="{{ route('disableUser', ['report_id' => $report->id])}}" id="{{$report->id}}" onclick="disableUser(this)"class="btn">Delete User</button>
 			<button href="{{ route('dismissReport', ['report_id' => $report->id])}}" id="{{$report->id}}" onclick="dismissReport(this)"class="btn">Dismiss Report</button>
 		</div>
 	</div>
