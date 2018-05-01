@@ -52,16 +52,14 @@
             </div>
             
             @foreach($comments as $comment)
-                @include('partials.comment', ['project' => $project, 'thread' => $thread, 'comment' => $comment,'role'=> $role])
+                @include('partials.comment', ['project_id' => $project->id, 'thread' => $thread, 'comment' => $comment,'role'=> $role])
             @endforeach
-
-
 
 
         <div class="comment row">
             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
             <h6>{{\Auth::user()->username}}</h6>
-            <form method="POST" action="/projects/{{ $project -> id }}/threads/{{ $thread -> id}}/comments">
+            <form method="POST" action="{{ route('new_comment', ['id' => $project->id, 'thread_id' => $thread->id])}}">
                 {{ csrf_field()}}
                 
               <!-- <div class="col-8">-->
@@ -77,17 +75,6 @@
             
         </div>
     </div>
-  <!--  <footer>
-        <div id="contacts">
-            <h6>Contacts</h6>
-            <p>(+351)255255255</p>
-        </div>
-
-        <div id="info">
-            <a href="#">Terms of use</a>
-        </div>
-    </footer>
--->
 @else
 
 @endif

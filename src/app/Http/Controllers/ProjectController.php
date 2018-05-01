@@ -15,452 +15,256 @@ use App\Task;
 
 class ProjectController extends Controller
 {
-    public function project($id)
-    {
-      if(Auth::check()){
-
-        try {
-          $project = Project::find($id);
-          $role = null;
-          if(Auth::user()->projects()->get()->contains($project)){
-            //if user is member
-            $role = Auth::user()->projects()->find($project->id)->pivot->iscoordinator;
-            if($role == false)
-              $role = 'tm';
-            else
-              $role = 'co';
-          }
-          else if($project->ispublic){
-            //if project is public
-            $role = 'guest';
-          }
-          else
-            $this->authorize('not_authorized', $project);
-  
-          $sprints = Project::find($id)->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
-          //TODO: get user assigned to task
-  
-          $notifications = Auth::user()->userNotifications();
-  
-          return view('pages/project_page', ['project' => $project, 'sprints' => $sprints, 'notifications' => $notifications, 'role' => $role]);
-
-        } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
-        }
-      }
-      else {
-        // TODO: do the visitor view 
-      }
-    }
-
-    public function sprintsView($id)
-    {
-      if(Auth::check()){
-
-        try {
-          $project = Project::find($id);
-          $role = null;
-          if(Auth::user()->projects()->get()->contains($project)){
-            //if user is member
-            $role = Auth::user()->projects()->find($project->id)->pivot->iscoordinator;
-            if($role == false)
-              $role = 'tm';
-            else
-              $role = 'co';
-          }
-          else if($project->ispublic){
-            $role = 'guest';
-          }
-          else
-            $this->authorize('not_authorized', $project);
-  
-          $sprints = Project::find($id)->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
-          //TODO: get user assigned to task
-  
-          $viewHTML = view('partials.sprints_view', ['project' => $project, 'sprints'=>$sprints, 'role' => $role])->render();
-          return response()->json(array('success' => true, 'html' => $viewHTML));
-
-        } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
-        }
+  public function show($id)
+  {
+    if(Auth::check()){
+      
+      try {
+        $project = Project::find($id);
+        $role = null;
         
-      }
-      else {
-        // TODO: do the visitor view 
-      }
-    }
-
-
-    public function taskView($id) {
-      if(Auth::check()){
-        try {
-          $project = Project::find($id);
-          $role = null;
-          if(Auth::user()->projects()->get()->contains($project)){
-            //if user is member
-            $role = Auth::user()->projects()->find($project->id)->pivot->iscoordinator;
-            if($role == false)
-              $role = 'tm';
-            else
-              $role = 'co';
-          }
-          else if($project->ispublic){
-            //if project is public
-            $role = 'guest';
-          }
-          else
-            $this->authorize('not_authorized', $project);
-  
-          $tasks = Project::find($id)->tasks()->where('task.sprint_id','=',null)->with('comments')->with('comments.user')->get();
-  
-          $viewHTML = view('partials.tasks_view', ['project' => $project, 'tasks'=>$tasks, 'role' => $role])->render();
-          return response()->json(array('success' => true, 'html' => $viewHTML));
-
-        } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
-        }
-      }
-      else
-        return redirect('/login');
-    }
-
-    public function projectMembersView($id) {
-      if(Auth::check()) {
-        try {
-          $members = Project::find($id)->user()->get();
+        if(Auth::user()->isProjectMember($project)){
+          //if user is member
+          $role = Auth::user()->isCoordinator($project->id);
           
-          $viewHTML = view('partials.project_members', ['members' => $members])->render();
-          return response()->json(array('success' => true, 'html' => $viewHTML));
-
-        } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
-        }
-      }
-      else 
-        return redirect('/login');
-    }
-
-
-    /* THREADS */
-    public function threadsView($id){
-      if(Auth::check()){
-        try {
-          $project = Project::find($id);
-          $threads = Project::find($id)->threads()->with('user')->paginate(5);
-          $notifications = Auth::user()->userNotifications();
-   
-          return view('pages/forum',['project' => $project,'threads' => $threads, 'notifications' => $notifications]);
-
-        } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
-        }
-      }
-    }
-
-    public function threadPageView($id,$thread_id){
-      if(Auth::check()){
-        try {
-          $project = Project::find($id);
-          $thread = Thread::find($thread_id);
-          $comments = Thread::find($thread_id)->comments()->with('user')->get();
-          $notifications = Auth::user()->userNotifications();
-          $role = Auth::user()->projects()->find($project->id)->pivot->iscoordinator;
-            if($role == false)
-              $role = 'tm';
-            else
-              $role = 'co';
-   
-          return view('pages/thread_page',['project' => $project,'thread' => $thread, 'notifications' => $notifications, 'comments' => $comments, 'role' => $role]);
-
-        } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
-        }
-       }
-    }
-
-    public function threadsCreateForm($id){
-      if(Auth::check()){
-        try {
-          $project = Project::find($id);
-          $notifications = Auth::user()->userNotifications();
+          if($role == false)
+          $role = 'tm';
+          else
+          $role = 'co';
           
-          return view('pages/new_thread_page',['project' => $project, 'notifications' => $notifications]);
-
-        } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
         }
-       }
-    }
-
-    public function threadEditForm($id, $thread_id){
-      if(Auth::check()){
-        try {
-          $project = Project::find($id);
-          $notifications = Auth::user()->userNotifications();
-          $thread = Thread::find($thread_id);
-   
-          return view('pages/edit_thread_page',['project' => $project, 'notifications' => $notifications, 'thread' => $thread]);
-
-        } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
+        else if($project->ispublic){
+          
+          $role = 'guest';
+          
         }
-       }
-    }
-
-    public function searchProject(Request $request) {
-      try {
-        $notifications = Auth::user()->userNotifications();
-  
-        $projects = Project::search($request->input('search'))->with('user')->take(10)->get();
-  
-        return view('pages.result_search', ['projects' => $projects, 'notifications' => $notifications]);
-
-      } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
-      } catch (\Exception $e) {
-          // Handle unexpected errors
-      }
-    }
-
-    public function threadsCreateAction(Request $request) {
-      if (!Auth::check()) return redirect('/login');
-      try {
-        $user = Auth::user()->id;
-  
-        $thread = new Thread();
-        //TODO authorize
-  
-        $thread->name = $request->input('name');
-        $thread->description = $request->input('description');
-        $thread->project_id = $request->input('project_id');
-        $thread->user_creator_id = $user;
-  
-        $thread->save();
-  
-        $viewHTML = $this->threadsView($request->project_id)->render();
-        return response()->json(array('success' => true, 'html' => $viewHTML)); 
-
-      } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
-      } catch (\Exception $e) {
-          // Handle unexpected errors
-      }
-    }
-
-    public function threadEditAction(Request $request, $project_id, $thread_id) {
-      if (!Auth::check()) return redirect('/login');
-
-      try {
-        $user = Auth::user()->id;
-  
-        $thread = Thread::find($thread_id);
-        //TODO authorize
-  
-        $thread->name = $request->input('name');
-        $thread->description = $request->input('description');
-        $thread->project_id = $request->input('project_id');
-        $thread->user_creator_id = $user;
-  
-        $thread->save();
-  
-        $viewHTML = $this->threadPageView($request->project_id, $thread_id)->render();
-        return response()->json(array('success' => true, 'html' => $viewHTML)); 
-
-      } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
-      } catch (\Exception $e) {
-          // Handle unexpected errors
-      }
-    }
-
-    /**
-     * Creates a new project.
-     *
-     * @return Project The project created.
-     */
-    public function create(Request $request)
-    {
-      $project = new Project();
-
-      $this->authorize('create', $project);
-
-      $project->name = $request->input('name');
-      $project->description = $request->input('description');
-      if($request->input('public') == 'on')
-        $project->ispublic = TRUE;
-      else
-        $project->ispublic = FALSE;
-
-      try {
-        $project->save();
-  
-        $project->user()->attach($request->input('user_id'), ['iscoordinator' => true]);
-  
-        $categories = $request->input('categories');
-        $cat_array = explode(',',$categories);
-  
-        foreach($cat_array as $cat) {
-          Category::find($cat)->projects()->attach($project->id);
-        }
+        else
+        $this->authorize('not_authorized', $project);
         
-        return $project;
+        
+        $sprints = $project->SprintsTasksComments();
+        
+        //TODO: get user assigned to task
+        
+        return view('pages/project_page', ['project' => $project, 'sprints' => $sprints, 'role' => $role]);
         
       } catch(\Illuminate\Database\QueryException $qe) {
         // Catch the specific exception and handle it 
         //(returning the view with the parsed errors, p.e)
       } catch (\Exception $e) {
-          // Handle unexpected errors
+        // Handle unexpected errors
       }
     }
-
-    /* COMMENT */
-
-    public function storeComment(Request $request,$id, $thread_id){
-      try {
-        $thread = Thread::find($thread_id);
-        /*$user = User::find($user_id);*/
-  
-        $comment = new Comment();
-        $comment->content = $request->content;
-      // $comment->thread_id = $thread_id;
-        $comment->user_id = Auth::id();
-        //$comment->associate($user);
-  
-        $thread->comments()->save($comment); 
-  
-        return back();
-
-      } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
-      } catch (\Exception $e) {
-          // Handle unexpected errors
-      }
+    else {
+      // TODO: do the visitor view 
     }
-
-    public function newTaskComment(Request $request, $project_id, $task_id) {
+  }
+  
+  public function sprintsView($id)
+  {
+    if(Auth::check()){
+      
       try {
-        $task = Task::find($task_id);
-  
-        $comment = new Comment();
-        $comment->content = $request->content;
-        $comment->user_id = Auth::id();
-  
-        $task->comments()->save($comment);
-  
-        return redirect()->route('project', ['project_id' => $project_id]);
-
-      } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
-      } catch (\Exception $e) {
-          // Handle unexpected errors
-      }
-    }
-
-    public function projectStatisticsView($project_id){
-      try {
-        $notifications = Auth::user()->userNotifications();
-        $project = Project::find($project_id);
-        $tasksCompleted = $project->tasksCompleted()[0];
-        $sprintsCompleted = $project->sprintsCompleted()[0];
-        
-        
-        if(count($project->topContributors())==0){
-          $topContributor1 = $project->zeroContributors()[0];
-          $topContributor2 = $project->zeroContributors()[1];
-          $topContributor3 = $project->zeroContributors()[2];
+        $project = Project::find($id);
+        $role = null;
+        if(Auth::user()->isProjectMember($project)){
+          
+          //if user is member
+          $role = Auth::user()->isCoordinator($project->id);
+          
+          if($role == false)
+          $role = 'tm';
+          else
+          $role = 'co';
+          
         }
-        else if(count($project->topContributors())==1){
-          $topContributor1 = $project->topContributors()[0];
-          $topContributor2 = $project->zeroContributors()[1];
-          $topContributor3 = $project->zeroContributors()[2];
+        else if($project->ispublic){
+          
+          $role = 'guest';
+          
         }
-        else if(count($project->topContributors())==2){
-          $topContributor1 = $project->topContributors()[0];
-          $topContributor2 = $project->topContributors()[1];
-          $topContributor3 = $project->zeroContributors()[2];
-        }
-        else{
-          $topContributor1 = $project->topContributors()[0];
-          $topContributor2 = $project->topContributors()[1];
-          $topContributor3 = $project->topContributors()[2];
-        }
+        else
+        $this->authorize('not_authorized', $project);
         
-        $monthlySprints = $project->monthlySprints()[0];
+        $sprints = $project->SprintsTasksComments();
         
-        return view('pages/statistics', ['notifications' => $notifications, 'project' => $project, 
-        'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 
-        'topContributor2' => $topContributor2, 'topContributor3' => $topContributor3,
-        'monthlySprints' => $monthlySprints]);
-
-      } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
-      } catch (\Exception $e) {
-          // Handle unexpected errors
-      }
-    }
-
-    /*
-    Deletes comment of task or thread
-    */
-    public function deleteComment(Request $request){
-      try {
-        $comment = Comment::find($request->input('comment_id'));
-        $comment->delete();
-
-      } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
-      } catch (\Exception $e) {
-          // Handle unexpected errors
-      }
-    }
-
-    public function deleteThread(Request $request){
-      try {
-        $thread = Thread::find($request->input('thread_id'));
-        $project_id = $thread->project()->first()->id;
-  
-        $thread->delete();
-  
-        $viewHTML = $this->threadsView($project_id)->render();
+        //TODO: get user assigned to task
+        
+        $viewHTML = view('partials.sprints_view', ['project' => $project, 'sprints'=>$sprints, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
-
+        
       } catch(\Illuminate\Database\QueryException $qe) {
         // Catch the specific exception and handle it 
         //(returning the view with the parsed errors, p.e)
       } catch (\Exception $e) {
-          // Handle unexpected errors
+        // Handle unexpected errors
+      }
+      
+    }
+    else {
+      // TODO: do the visitor view 
+    }
+  }
+  
+  
+  public function taskView($id) {
+    
+    if(Auth::check()){
+      try {
+        $project = Project::find($id);
+        
+        $role = null;
+        if(Auth::user()->isProjectMember($project)){
+          //if user is member
+          $role = Auth::user()->isCoordinator($project->id);
+          
+          if($role == false)
+          $role = 'tm';
+          else
+          $role = 'co';
+          
+        }
+        else if($project->ispublic){
+          
+          $role = 'guest';
+          
+        }
+        else
+        $this->authorize('not_authorized', $project);
+        
+        $tasks = $project->tasksComments();
+        
+        $viewHTML = view('partials.tasks_view', ['project' => $project, 'tasks'=>$tasks, 'role' => $role])->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
+        
+      } catch(\Illuminate\Database\QueryException $qe) {
+        // Catch the specific exception and handle it 
+        //(returning the view with the parsed errors, p.e)
+      } catch (\Exception $e) {
+        // Handle unexpected errors
       }
     }
-
+    else
+    return redirect('/login');
+  }
+  
+  public function projectMembersView($id) {
+    
+    if(Auth::check()) {
+      try {
+        
+        $members = Project::find($id)->user()->get();
+        
+        $viewHTML = view('partials.project_members', ['members' => $members])->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
+        
+      } catch(\Illuminate\Database\QueryException $qe) {
+        // Catch the specific exception and handle it 
+        //(returning the view with the parsed errors, p.e)
+      } catch (\Exception $e) {
+        // Handle unexpected errors
+      }
+    }
+    else 
+    return redirect('/login');
+  }
+  
+  public function searchProject(Request $request) {
+    try {  
+      $projects = Project::search($request->input('search'))->with('user')->take(10)->get();
+      
+      return view('pages.result_search', ['projects' => $projects]);
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+  
+  /**
+  * Creates a new project.
+  *
+  * @return Project The project created.
+  */
+  public function create(Request $request)
+  {
+    $project = new Project();
+    
+    $this->authorize('create', $project);
+    
+    $project->name = $request->input('name');
+    $project->description = $request->input('description');
+    if($request->input('public') == 'on')
+    $project->ispublic = TRUE;
+    else
+    $project->ispublic = FALSE;
+    
+    try {
+      $project->save();
+      
+      $project->user()->attach($request->input('user_id'), ['iscoordinator' => true]);
+      
+      $categories = $request->input('categories');
+      $cat_array = explode(',',$categories);
+      
+      foreach($cat_array as $cat) {
+        Category::find($cat)->projects()->attach($project->id);
+      }
+      
+      return $project;
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+  
+  
+  public function projectStatisticsView($project_id){
+    try {
+      $project = Project::find($project_id);
+      $tasksCompleted = $project->tasksCompleted()[0];
+      $sprintsCompleted = $project->sprintsCompleted()[0];
+      
+      
+      if(count($project->topContributors())==0){
+        $topContributor1 = $project->zeroContributors()[0];
+        $topContributor2 = $project->zeroContributors()[1];
+        $topContributor3 = $project->zeroContributors()[2];
+      }
+      else if(count($project->topContributors())==1){
+        $topContributor1 = $project->topContributors()[0];
+        $topContributor2 = $project->zeroContributors()[1];
+        $topContributor3 = $project->zeroContributors()[2];
+      }
+      else if(count($project->topContributors())==2){
+        $topContributor1 = $project->topContributors()[0];
+        $topContributor2 = $project->topContributors()[1];
+        $topContributor3 = $project->zeroContributors()[2];
+      }
+      else{
+        $topContributor1 = $project->topContributors()[0];
+        $topContributor2 = $project->topContributors()[1];
+        $topContributor3 = $project->topContributors()[2];
+      }
+      
+      $monthlySprints = $project->monthlySprints()[0];
+      
+      return view('pages/statistics', ['project' => $project, 
+      'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 
+      'topContributor2' => $topContributor2, 'topContributor3' => $topContributor3,
+      'monthlySprints' => $monthlySprints]);
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+  
 }

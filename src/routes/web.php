@@ -50,7 +50,7 @@ Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectSta
 // Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
 
 
-Route::get('api/projects/{project_id}', 'ProjectController@project')->name('project'); // done
+Route::get('api/projects/{project_id}', 'ProjectController@show')->name('project'); // done
 
 //Sprints and Tasks
 Route::get('api/projects/{project_id}/sprints', 'ProjectController@sprintsView')->name('project_sprints'); //done
@@ -70,21 +70,22 @@ Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->nam
 // Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'ProjectController@taskAssignUser');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'ProjectController@taskUnassignUser');
 // Route::put('api/projects/{project_id}/tasks', 'ProjectController@newTask');
-Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'ProjectController@newTaskComment')->name('create_comment_task');
+Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task');
 // Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
-Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentTask'); //done
+Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentTask'); //done
 
 //Project Forum
-Route::get('projects/{id}/threads', 'ProjectController@threadsView')->name('forum'); //done
-Route::get('projects/{id}/threads/create', 'ProjectController@threadsCreateForm')->name('new_thread_form'); //done
-Route::post('projects/{id}/threads/create', 'ProjectController@threadsCreateAction')->name('new_thread_action'); //done
-Route::get('projects/{id}/threads/{thread_id}', 'ProjectController@threadPageView')->name('thread'); //done
-Route::post('projects/{id}/threads/{thread_id}/comments', 'ProjectController@storeComment');
-Route::get('projects/{id}/threads/{thread_id}/edit', 'ProjectController@threadEditForm')->name('edit_thread_form');
-Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@threadEditAction')->name('edit_thread_action');
-Route::post('projects/{id}/threads/{thread_id}', 'ProjectController@deleteThread')->name('deleteThread'); //done
-Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'ProjectController@deleteComment')->name('deleteCommentThread'); //done
+Route::get('projects/{id}/threads', 'ThreadController@list')->name('forum'); //done
+Route::get('projects/{id}/threads/create', 'ThreadController@create')->name('new_thread_form'); //done
+Route::post('projects/{id}/threads/create', 'ThreadController@store')->name('new_thread_action'); //done
+Route::get('projects/{id}/threads/{thread_id}', 'ThreadController@show')->name('thread'); //done
+Route::get('projects/{id}/threads/{thread_id}/edit', 'ThreadController@edit')->name('edit_thread_form');
+Route::post('projects/{id}/threads/{thread_id}', 'ThreadController@update')->name('edit_thread_action');
+Route::delete('projects/{id}/threads/{thread_id}', 'ThreadController@destroy')->name('deleteThread'); //done
+
+Route::post('projects/{id}/threads/{thread_id}/comments', 'CommentController@store')->name('new_comment');
+Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentThread'); //done
 
 //Admin Administraton, Report and Static Pages
 Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done

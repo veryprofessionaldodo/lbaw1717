@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('partials.notifications', function($view) {
+            $view->with('notifications', \App\User::userNotifications());
+        });
     }
 
     /**
