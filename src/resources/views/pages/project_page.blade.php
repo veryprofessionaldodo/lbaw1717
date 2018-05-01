@@ -103,7 +103,7 @@
 							<i class="fas fa-comments"></i> Forum</a>
 					<a class="btn btn-secondary" class="project_buttons" href="{{route('project_stats',['project_id' => $project->id])}}">
 							<i class="fas fa-chart-line"></i> Statistics</a>
-					<a class="btn btn-secondary" class="project_buttons" href="{{route('project_settings_members',['project_id' => $project->id])}}">
+					<a class="btn btn-secondary" class="project_buttons" href="{{route('project_settings_requests',['project_id' => $project->id])}}">
 						<i class="fas fa-cog"></i> Settings</a>
 				</nav>
 			</div>

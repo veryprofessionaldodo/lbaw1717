@@ -50,6 +50,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Thread','user_creator_id');
     }
 
+    public function invites(){
+        return $this->hasMany('App\Invite');
+      }    
+
     public function isAdmin()
     {
         return $this->isadmin; // this looks for an admin column in your users table

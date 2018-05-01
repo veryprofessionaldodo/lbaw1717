@@ -252,12 +252,12 @@ class ProjectController extends Controller
         $topContributor3 = $project->topContributors()[2];
       }
       
-      $monthlySprints = $project->monthlySprints()[0];
+     // $monthlySprints = $project->monthlySprints()[0];
       
       return view('pages/statistics', ['project' => $project, 
       'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 
       'topContributor2' => $topContributor2, 'topContributor3' => $topContributor3,
-      'monthlySprints' => $monthlySprints]);
+      /*'monthlySprints' => $monthlySprints*/]);
       
     } catch(\Illuminate\Database\QueryException $qe) {
       // Catch the specific exception and handle it 
@@ -266,5 +266,18 @@ class ProjectController extends Controller
       // Handle unexpected errors
     }
   }
+
+  public function projectSettingsRequestsList($project_id){
+    $project = Project::find($project_id);
+    $requests = $project->invites()->get();
+
+    return view('pages/project_settings_requests', ['project' => $project, 'requests' => $requests]);
+  }
   
+  public function projectSettingsMembersList($project_id){
+    $project = Project::find($project_id);
+    $members = $project->user()->get();
+
+    return view('pages/project_settings_members', ['project' => $project, 'members' => $members]);
+  }
 }

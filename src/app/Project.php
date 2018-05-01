@@ -32,6 +32,10 @@ class Project extends Model
     return $this->hasMany('App\Thread');
   }
 
+  public function invites(){
+    return $this->hasMany('App\Invite');
+  }
+
   public function SprintsTasksComments() {
     return $this->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
   }
