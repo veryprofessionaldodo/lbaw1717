@@ -46,19 +46,15 @@ div#container ol.breadcrumb {
 	color: #fff;
 }
 
-form {
-	display: grid;
-}
-
 form input.form-control {
 	grid-column-start: 1;
 	grid-column-end: 2;
 }
 
 #thread div.comment form button{
-	margin-left: 95%;
-	grid-column-start: 2;
-	grid-column-end: 3;
+	grid-column-start: 5;
+	grid-column-end: 6;
+	grid-row: 1;
 }
 
 
@@ -103,6 +99,11 @@ div.date button{
 	border-width: 0 5px 5px 5px;
 	border-style: solid;
 	border-color: #487884;
+}
+
+form label {
+	grid-column-start: 1;
+	grid-column-end: 2;
 }
 
 #thread div.comment {
@@ -198,14 +199,12 @@ form input.form_control{
 
 
 #thread div.comment form {
-	text-align: justify;
 	border-radius: 20px;
-	width: auto;
-	margin: 0 2em 0 1em;
 	grid-column-start: 3;
-	grid-column-end: 5;
+	grid-column-end: 6;
 	grid-row: 1;
-}
+	display: grid;
+}	
 
 
 @media screen and (max-width: 635px){
@@ -295,11 +294,7 @@ form input.form_control{
 		font-size: 20px;
 	}
 
-	#thread div.comment form button{
-
-		margin-left: 85%;
 	
-	}
 	
 }
 

@@ -73,12 +73,44 @@ div#options button#new_project {
 }
 
 div#options div.col-md-12{
-	margin: auto;
 	text-align: center;
 }
 
 div#options div.col-md-6 {
 	text-align: center;
+}
+
+/* Search and create new bar */
+div#options .row {
+	display: flex;
+	max-width: 100%;
+	margin-left: 3em;
+	margin-right:3em;
+	margin-top: 0.5em;
+}
+
+.searchbar {
+	display: flex;
+	max-width: 100%;
+	flex : 1;
+}
+
+div#options form > button.btn.btn-primary {
+	display: inline;
+}
+
+
+div#options div#role_button {
+	margin: auto;
+	text-align: center;
+	flex: 0;
+	padding:0;
+	
+}
+#new_project {
+	grid-column-start: 1;
+	grid-column-end: 2;
+	margin: auto;
 }
 
 div#options form {
@@ -106,24 +138,9 @@ div#options form.col-12 {
 	text-align: center;
 }
 
-div#options form > input.form-control {
-	width: auto;
-	display: inline;
-}
-
-div#options form > button.btn.btn-primary {
-	vertical-align: inherit;
-}
-div#options div#role_button {
-	margin: auto;
-	text-align: center;
-}
-
-
 .hide {
 	display: none;
 }
-
 
 section {
 	margin-top: 1em;
@@ -337,6 +354,38 @@ div.container.edit_profile div#form_options, div.container.new_project div#form_
 }
 
 @media screen and (max-width: 500px){
+	/* Search and create new bar */
+	div#options .row {
+		display: inline-block;
+		max-width: 100%;
+		margin-left: 3em;
+		margin-right:3em;
+		margin-top: 0.5em;
+	}
+
+	.searchbar {
+		display: flex;
+		max-width: 100%;
+		flex : 1;
+	}
+
+	div#options form > button.btn.btn-primary {
+		display: inline;
+	}
+
+
+	div#options div#role_button {
+		margin: auto;
+		text-align: center;
+		flex: 0;
+		padding:0;
+
+	}
+	#new_project {
+		grid-column-start: 1;
+		grid-column-end: 2;
+		margin: auto;
+	}
 
 	/* PROJECTS */
 

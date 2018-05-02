@@ -47,7 +47,7 @@
 					</div>
 
 					<!-- Add functionality to this form -->
-					<form class="col-lg-6 col-md-7 col-sm-7 col-12">
+					<form class="col-lg-6 col-md-7 col-sm-7 col-12 searchbar">
 						<input type="text" name="search" placeholder="Search Your Projects" class="form-control">
 						<button class="btn btn-primary" type="submit">
 							<i class="fas fa-search"></i>
