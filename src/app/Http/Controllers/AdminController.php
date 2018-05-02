@@ -86,8 +86,15 @@ class AdminController extends Controller {
             $report = Report::find($request->input('report_id'));
             $user = User::find($report->user_reported_id);
 
+            $reports = Report::where('user_reported_id','=',$report->user_reported_id)->get();
+
             $user->disable = true;
-            $report->delete();
+            $user->save();
+
+            for($x = 0; $x < count($reports);$x++){
+                $reports[$x]->delete();
+            }
+            
 
           } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
@@ -103,8 +110,20 @@ class AdminController extends Controller {
             $report = Report::find($request->input('report_id'));
             $comment = Comment::find($report->comment_reported_id);
 
+            //if the admin also wants to disable the user due to the comment
+            if($request->input('disable') == 'true'){
+                $user = User::find($comment->user_id);
+                $user->disable = true;
+                $user->save();
+            }
+            
+            $reports = Report::where('comment_reported_id','=',$report->comment_reported_id)->get();
+
+            for($x = 0; $x < count($reports);$x++){
+                $reports[$x]->delete();
+            }
+
             $comment->delete();
-            $report->delete();
 
           } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 

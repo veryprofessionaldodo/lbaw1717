@@ -2,10 +2,16 @@ let sprintButton = document.querySelector("li.nav-item a#sprint_btn");
 let taskButton = document.querySelector("li.nav-item a#task_btn");
 let memberButton = document.querySelector("li.nav-item a#member_btn");
 
+let newSprintButton = document.querySelector("section.container-fluid div.col-12.new_sprint a");
+
 function addEventListeners() {
 	sprintButton.addEventListener('click', switchSprintsView);
 	taskButton.addEventListener('click', switchTasksView);
 	memberButton.addEventListener('click', switchMembersView);
+
+	if(newSprintButton !== null){
+		newSprintButton.addEventListener('click', getSprintForm);
+	}
 }
 
 function encodeForAjax(data) {
@@ -63,6 +69,19 @@ function showSprintsView() {
 	let data = JSON.parse(this.responseText);
 
 	let content = document.querySelector("section.container-fluid div.row.content_view");
+	content.innerHTML = data.html;
+}
+
+function getSprintForm(event) {
+	event.preventDefault();
+
+	sendAjaxRequest('get', event.target.href, null, showSprintForm);
+}
+
+function showSprintForm() {
+	let data = JSON.parse(this.responseText);
+
+	let content = document.querySelector("section.container-fluid div#project_structure");
 	content.innerHTML = data.html;
 }
 

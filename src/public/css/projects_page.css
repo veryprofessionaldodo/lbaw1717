@@ -655,6 +655,62 @@ div.col-12 div#task_images img {
 
 }
 
+/* NEW SPRINT */
+
+
+div.container.new_sprint {
+	left:0;
+	right:0;
+	top:10em;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	z-index: 1;
+	display: block;
+	background-color: #5bc0de;
+
+	padding: 1em;
+	max-width: 40em;
+	max-height: 25em;
+	text-align: justify;
+}
+
+div.container.new_sprint h2 {
+	font-size: 24px;
+	text-align: center;
+}
+
+div.container.new_sprint > a {
+	margin: 0.25em 0 0 0;
+}
+
+div.container.new_sprint div.form_area {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 1em 0;
+}
+
+
+div.container.new_sprint label {
+	display: inline;
+	text-align: left;
+	clear: both;
+    margin: auto 1em;
+}
+
+div.container.new_sprint input {
+	align-self: center;
+}
+
+div.container.new_sprint div#form_options {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	text-align: center;
+}
+
+
 
 
 

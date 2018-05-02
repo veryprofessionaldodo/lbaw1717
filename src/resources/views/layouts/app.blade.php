@@ -20,6 +20,7 @@
     <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
     <link href="{{ asset('css/forum_thread.css') }}" rel="stylesheet">
     <link href="{{ asset('css/statistics.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/project_settings.css') }}" rel="stylesheet">
     
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -68,44 +69,9 @@
 
           <div id="notifications_box">
             <ul>
-              @foreach($notifications as $notification)
-                @if($notification->notification_type == 'invite')
-                  <li class="row">
-                    <div class="notification_content col-9">
-                      <p>Invite to <strong>{{ $notification->name }}</strong> by <em>{{ $notification->username }}</em></p>
-                    </div>
-                    <div class="notification_options col-3">
-                      <a class="btn"><i class="fas fa-check"></i></a>
-                      <a class="btn"><i class="fas fa-times"></i></a>
-                    </div>
-                  </li>
-                @elseif($notification->notification_type == 'comment')
-                  <li class="row">
-                    <div class="notification_content col-12">
-                      <a href="#">A comment has been written in your thread</a>
-                    </div>
-                  </li>
-                @elseif($notification->notification_type == 'commentreported')
-                  <li class="row">
-                    <div class="notification_content col-12">
-                      <a href="#">Your comment has been reported</a>
-                    </div>
-                  </li>
-                @elseif($notification->notification_type == 'promotion')
-                  <li class="row">
-                    <div class="notification_content col-12">
-                      <a href="#">You were promoted in project <strong>{{ $notification->name }}</strong></a>
-                    </div>
-                  </li>
-                @elseif($notification->notification_type == 'removedfromproject')
-                  <li class="row">
-                    <div class="notification_content col-12">
-                      <a href="#">You were removed from project <strong>{{ $notification->name }}</strong></a>
-                    </div>
-                  </li>
-                @endif
-                <!-- Request? -->
-              @endforeach
+
+              @include('partials.notifications')
+              
             </ul>
           </div>
         </div>
@@ -128,6 +94,15 @@
       </nav>
 
   @yield('content')
-  
+  <footer>
+      <div id="contacts">
+          <h6>Contacts</h6>
+          <p>(+351)255255255</p>
+      </div>
+
+      <div id="info">
+          <a href="#">Terms of use</a>
+      </div>
+  </footer>
   </body>
 </html>

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -49,22 +50,29 @@ class User extends Authenticatable
         return $this->hasMany('App\Thread','user_creator_id');
     }
 
+    public function invites(){
+        return $this->hasMany('App\Invite');
+      }    
+
     public function isAdmin()
     {
         return $this->isadmin; // this looks for an admin column in your users table
     }
 
-    // nao funciona
-    /*public function Notifications() {
-      return $this->hasMany('App\Notification', 'user_id');
-    }*/
+    public function isProjectMember(Project $project) {
+        return $this->projects()->get()->contains($project);
+    }
 
-    public function userNotifications() {
+    public function isCoordinator(int $project_id) {
+        return $this->projects()->find($project_id)->pivot->iscoordinator;
+    }
+
+    public static function userNotifications() {
       // Add comments and reports as well
       return DB::table('notification')
               ->join('user','user.id','=','notification.user_id')
               ->join('project','project.id','=','notification.project_id')
-              ->where('user_id','=',$this->id)
+              ->where('user_id','=',Auth::user()->id)
               ->select('user.username','project.name','notification.*')->get();
     }
 
