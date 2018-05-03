@@ -1,10 +1,10 @@
 function addEventListeners() {
 	let userDropButton = document.querySelector("nav .user > img");
 	userDropButton.addEventListener('click', dropUserOptions);
-
+	
 	let notificationDropIcon = document.querySelector("nav .user #notifications label");
 	notificationDropIcon.addEventListener('click', dropNotificationsMenu);
-
+	
 	/*let searchButton = document.querySelector("nav form button.btn.btn-primary");
 	searchButton.addEventListener('click', searchProjectAction);*/
 }
@@ -40,39 +40,41 @@ function dropNotificationsMenu() {
 }
 
 function encodeForAjax(data) {
-  if (data == null) return null;
-  return Object.keys(data).map(function(k){
-    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-  }).join('&');
+	if (data == null) return null;
+	return Object.keys(data).map(function(k){
+		return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+	}).join('&');
 }
 
 
 function sendAjaxRequest(method, url, data, handler) {
-  let request = new XMLHttpRequest();
-
-  request.open(method, url, true);
-  request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.addEventListener('load', handler);
-  if(data != null)
-  	request.send(encodeForAjax(data));
-  else
-  	request.send();
+	let request = new XMLHttpRequest();
+	
+	request.open(method, url, true);
+	request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	request.addEventListener('load', handler);
+	if(data != null)
+	request.send(encodeForAjax(data));
+	else
+	request.send();
 }
+
+
 
 /*function searchProjectAction(event) {
 	event.preventDefault();
-
+	
 	let form = document.querySelector("nav form");
 	let inputValue = document.querySelector("nav form input").value;
 	let url = form.action;
-
+	
 	sendAjaxRequest("POST", url, {search: inputValue}, displayResults);
 }
 
 function displayResults() {
 	let data = JSON.parse(this.responseText);
-
+	
 	let content = document.querySelector("section.container-fluid div.row.content_view");
 	content.innerHTML = data.html;
 }*/

@@ -2,6 +2,9 @@ function addEventListeners() {
     /*let newThreadButtonForm = document.querySelector("div#container div#overlay div.jumbotron p.lead a#newThread-btn");
 
     newThreadButtonForm.addEventListener('click',createThreadAction);*/
+
+    submitComment = document.querySelector("div.comment#thread form");
+	submitComment.addEventListener('submit', addCommentThread);
 }
 /*
 function editThreadAction(event) {
@@ -19,33 +22,58 @@ function editThreadAction(event) {
         {name: thread_title, description: thread_description, project_id: project_id, user_username : user_creator_username},showPageUpdated);
 }
 */
+/*
 function showPageUpdated() {
 
     let data = JSON.parse(this.responseText);
     console.log(data);
     let doc = document.querySelector("body");
     doc.innerHTML = data.html;
+}*/
+
+function addCommentThread(event){
+	event.preventDefault();
+
+	let content = document.querySelector("div.comment#thread form input[name='content']").value;
+
+	sendAjaxRequest('post', event.target.action, {content: content} , updateCommentsThread);
 }
 
+function updateCommentsThread() {
+	let data = JSON.parse(this.responseText);
+    console.log(data.comment);
+	let lastComment = document.querySelector("div#thread div.comment:last-of-type");
+	
+	//let form = document.querySelector("div#task-"+ data.task_id + " div.comment:last-of-type");
 
-function deleteComment(button){
+	lastComment.insertAdjacentHTML('beforebegin', data.comment);
 
-    let href = button.getAttribute('href');
-
-    let r = confirm("Are you sure you want to delete this comment?\n");
-
-    if (r == true) {
-        let comment_id = button.id; 
-
-        sendAjaxRequest('post', href, {comment_id: comment_id},refreshPage);
-    } else {
-        return;
-    }
+	let input = document.querySelector("div.comment#thread form input[name='content']");
+	input.value = "";
+	
 }
 
-function refreshPage(){
-    //TODO change to ajax
-    location.reload();
+function deleteCommentThread(button){
+	
+	let href = button.getAttribute('href');
+	
+	let r = confirm("Are you sure you want to delete this comment?\n");
+	
+	if (r == true) {
+		let comment_id = button.id; 
+		
+		sendAjaxRequest('post', href, {comment_id: comment_id}, updateCommentThreadDeletion);
+	} else {
+		return;
+	}
+}
+
+function updateCommentThreadDeletion(){
+	let data = JSON.parse(this.responseText);
+	if(data.success){
+		let comment = document.querySelector("div.comment[data-id='" + data.comment.id + "']");
+		comment.remove();
+	}
 }
 
 function deleteThread(button){

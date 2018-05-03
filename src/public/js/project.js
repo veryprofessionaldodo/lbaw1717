@@ -12,6 +12,9 @@ function addEventListeners() {
 	if(newSprintButton !== null){
 		newSprintButton.addEventListener('click', getSprintForm);
 	}
+
+	submitComment = document.querySelector("div.comment div.form_comment form");
+	submitComment.addEventListener('submit', addComment);
 }
 
 function encodeForAjax(data) {
@@ -97,6 +100,52 @@ function showMembersView() {
 
 	let content = document.querySelector("section.container-fluid div.row.content_view");
 	content.innerHTML = data.html;
+}
+
+function addComment(event){
+	event.preventDefault();
+	console.log(event.target.action);
+
+	let content = document.querySelector("div.comment div.form_comment input[name='content']").value;
+
+	sendAjaxRequest('post', event.target.action, {content: content} , updateComments);
+}
+
+function updateComments() {
+	let data = JSON.parse(this.responseText);
+
+	let comments = document.querySelector("div#task-" + data.task_id);
+	
+	let form = document.querySelector("div#task-"+ data.task_id + " div.comment:last-of-type");
+
+	form.insertAdjacentHTML('beforebegin', data.comment);
+
+	let input = document.querySelector("div.comment div.form_comment input[name='content']");
+	input.value = "";
+	
+}
+
+function deleteCommentTask(button){
+	
+	let href = button.getAttribute('href');
+	
+	let r = confirm("Are you sure you want to delete this comment?\n");
+	
+	if (r == true) {
+		let comment_id = button.id; 
+		
+		sendAjaxRequest('post', href, {comment_id: comment_id}, updateCommentDeletion);
+	} else {
+		return;
+	}
+}
+
+function updateCommentDeletion(){
+	let data = JSON.parse(this.responseText);
+	if(data.success){
+		let comment = document.querySelector("div.comment[data-id='" + data.comment.id + "']");
+		comment.remove();
+	}
 }
 
 addEventListeners();
