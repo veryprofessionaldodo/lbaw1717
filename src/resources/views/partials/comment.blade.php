@@ -20,17 +20,17 @@
 			<a href="{{ route('comment_report_form', ['comment_id' => $comment->id])}}" class="btn"><i class="fas fa-flag"></i></a>
 			
 			@if($comment->task_id == NULL)
-				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteComment(this)" id="{{$comment->id}}"class"deleteComment" ><i class="fas fa-trash"></i></button>
+				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
 			@else
-				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteComment(this)" id="{{$comment->id}}"class"deleteComment" ><i class="fas fa-trash"></i></button>
+				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
 			@endif
 
 		@elseif(Auth::user()->id == $comment->user->id)
 
 			@if($comment->task_id == NULL)
-				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteComment(this)" id="{{$comment->id}}"class"deleteComment" ><i class="fas fa-trash"></i></button>
+				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
 			@else
-				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteComment(this)" id="{{$comment->id}}"class"deleteComment" ><i class="fas fa-trash"></i></button>
+				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
 			@endif
 
 		@endif

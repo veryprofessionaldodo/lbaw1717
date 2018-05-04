@@ -52,11 +52,11 @@
             </div>
             
             @foreach($comments as $comment)
-                @include('partials.comment', ['project_id' => $project->id, 'thread' => $thread, 'comment' => $comment,'role'=> $role])
+                @include('partials.comment', ['project' => $project, 'thread' => $thread, 'comment' => $comment,'role'=> $role])
             @endforeach
 
 
-        <div class="comment row">
+        <div class="comment row" id="thread">
             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
             <h6>{{\Auth::user()->username}}</h6>
             <form method="POST" action="{{ route('new_comment', ['id' => $project->id, 'thread_id' => $thread->id])}}">

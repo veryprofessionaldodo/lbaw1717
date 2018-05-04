@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Task;
 use App\Thread;
+use App\Project;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,18 @@ class CommentController extends Controller
             
             $thread->comments()->save($comment); 
             
-            return back();
+
+            $project = Project::find($id);
+            $thread = Thread::find($thread_id);
+            $role = Auth::user()->isCoordinator($id);
+
+            if($role == false)
+                $role = 'tm';
+            else
+                $role = 'co';
+
+            $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'thread' => $thread, 'role' => $role])->render();
+            return response()->json(array('success' => true, 'comment' => $commentView));
             
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
@@ -77,7 +89,18 @@ class CommentController extends Controller
             $task->comments()->save($comment);
             $comment->save();
             
-            return redirect()->route('project', ['project_id' => $id]);
+
+            $project = Project::find($id);
+            $task = Task::find($task_id);
+            $role = Auth::user()->isCoordinator($id);
+            if($role == false)
+                $role = 'tm';
+            else
+                $role = 'co';
+
+
+            $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'task' => $task, 'role' => $role])->render();
+            return response()->json(array('success' => true, 'comment' => $commentView, 'task_id' => $task_id));
             
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
@@ -132,6 +155,8 @@ class CommentController extends Controller
         try {
             $comment = Comment::find($request->input('comment_id'));
             $comment->delete();
+
+            return response()->json(array('success' => true, 'comment' => $comment));
             
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
