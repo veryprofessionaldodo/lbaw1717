@@ -133,4 +133,37 @@ class AdminController extends Controller {
           }
     }
 
+    public function commentReportView($report_id){
+        try {
+            $report = Report::where('id','=',$report_id)->with('users')->with('comments_reported')
+            ->with('comments_reported.user')->first();
+
+            $reportView = view('partials.report_comment_detail', ['report' => $report])->render();
+            return response()->json(array('success' => true, 'reportView' => $reportView,'report'=>$report));
+            
+          } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+          } catch (\Exception $e) {
+              // Handle unexpected errors
+          }
+    }
+
+    public function userReportView($report_id){
+        try {
+            $report = Report::where('id','=',$report_id)->with('users')->with('comments_reported')
+            ->with('comments_reported.user')->first();
+
+            $reportView = view('partials.report_user_detail', ['report' => $report])->render();
+            return response()->json(array('success' => true, 'reportView' => $reportView,'report'=>$report));
+
+          } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+          } catch (\Exception $e) {
+              // Handle unexpected errors
+          }
+  
+    }
+
 }

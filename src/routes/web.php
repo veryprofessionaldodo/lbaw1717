@@ -92,8 +92,8 @@ Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
 Route::get('api/admin/{username}/reports/comments', 'AdminController@commentReportsView')->name('admin_comments'); //done
 Route::get('api/admin/{username}/reports/users', 'AdminController@userReportsView')->name('admin_users'); //done
 
-/*Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView');
-Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportView');*/
+Route::get('admin/reports/comments/{comment_report_id}', 'AdminController@commentReportView')->name('commentReportView');//done
+Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportView')->name('userReportView');//done
 Route::post('admin/reports/{report_id}', 'AdminController@dismissReport')->name('dismissReport'); //done
 Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser')->name('disableUser'); //done
 Route::post('admin/reports/comments/{report_id}', 'AdminController@deleteComment')->name('deleteCommentReport'); //done

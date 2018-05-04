@@ -1,5 +1,5 @@
 function addEventListeners() {
-	
+
 	// window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').content;
 	// window.axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 	// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -20,25 +20,25 @@ function addEventListeners() {
 }
 
 function encodeForAjax(data) {
-  if (data == null) return null;
-  return Object.keys(data).map(function(k){
-    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-  }).join('&');
+	if (data == null) return null;
+	return Object.keys(data).map(function (k) {
+		return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+	}).join('&');
 }
 
 
 function sendAjaxRequest(method, url, data, handler) {
-  let request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 
-  request.open(method, url, true);
-  request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  request.addEventListener('load', handler);
-  if(data != null)
-  	request.send(encodeForAjax(data));
-  else
-  	request.send();
+	request.open(method, url, true);
+	request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+	request.addEventListener('load', handler);
+	if (data != null)
+		request.send(encodeForAjax(data));
+	else
+		request.send();
 }
 
 function editProfileForm(event) {
@@ -92,7 +92,7 @@ function createProjectAction(event) {
 	let project_name = document.querySelector("input[name='project_name']").value;
 	let project_description = document.querySelector("input[name='project_description']").value;
 	let project_public = document.querySelector("input#public").value;
-	
+
 	let select = document.querySelector("select");
 	let categories = getSelectValues(select);
 
@@ -101,10 +101,12 @@ function createProjectAction(event) {
 	let index2 = user_id_text.indexOf('=');
 	let user_id = user_id_text.substring(index2 + 1, user_id_text.length);
 	let href = event.target.href.substring(0, index);
-	
-	sendAjaxRequest('post', href, 
-	{name: project_name, description: project_description, public: project_public, 
-		user_id: user_id, categories: categories}, showProfileUpdated);
+
+	sendAjaxRequest('post', href,
+		{
+			name: project_name, description: project_description, public: project_public,
+			user_id: user_id, categories: categories
+		}, showProfileUpdated);
 }
 
 function showProfileUpdated() {
@@ -115,13 +117,13 @@ function showProfileUpdated() {
 function getSelectValues(select) {
 	var result = [];
 	var options = select.options;
-  	var opt;
+	var opt;
 
-	for (var i=0, iLen=options.length; i<iLen; i++) {
+	for (var i = 0, iLen = options.length; i < iLen; i++) {
 		opt = options[i];
 
 		if (opt.selected) {
-		result.push(opt.value || opt.text);
+			result.push(opt.value || opt.text);
 		}
 	}
 	return result;

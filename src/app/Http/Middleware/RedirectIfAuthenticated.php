@@ -17,6 +17,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {   
+        if(Auth::guard($guard)->check() && Auth::user()->isDisable()){
+            //return something saying user cant access the website
+        }
+        
         if(Auth::guard($guard)->check() && Auth::user()->isAdmin()){
             return redirect()->action('AdminController@showAdminPage', Auth::user()->username);
         }

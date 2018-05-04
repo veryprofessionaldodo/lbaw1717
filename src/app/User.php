@@ -54,9 +54,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Invite');
       }    
 
-    public function isAdmin()
-    {
+    public function isAdmin(){
         return $this->isadmin; // this looks for an admin column in your users table
+    }
+
+    public function isDisable(){
+        return $this->disable;  //this looks for an disable column in your users table
     }
 
     public function isProjectMember(Project $project) {

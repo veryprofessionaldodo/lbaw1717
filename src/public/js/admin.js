@@ -2,6 +2,8 @@ function addEventListeners() {
 	let userRepBtn = document.querySelector("aside#navbar div a:first-of-type");
 	let commentRepBtn = document.querySelector("aside#navbar div a:last-of-type");
 
+	let commentsRepDetail = document.querySelectorAll("div#reports div.report_comment div.report_principal_info a");
+	let userRepDetail = document.querySelectorAll("div#reports div.report_user div.report_principal_info a");
 	let pagination = document.querySelectorAll("div#reports div#pagination_section ul.pagination li a");
 
 	userRepBtn.addEventListener('click', showUserReports);
@@ -9,6 +11,14 @@ function addEventListeners() {
 
 	for (let i = 0; i < pagination.length; i++) {
 		pagination[i].addEventListener('click', getPageReport);
+	}
+
+	for (let i = 0; i < commentsRepDetail.length; i++) {
+		commentsRepDetail[i].addEventListener('click', ReportCommentsDetail);
+	}
+
+	for (let i = 0; i < userRepDetail.length; i++) {
+		userRepDetail[i].addEventListener('click', ReportUserDetail);
 	}
 }
 
@@ -58,6 +68,8 @@ function dismissReport(button) {
 	let href = button.getAttribute('href');
 	let report_id = button.id;
 
+	//console.log(button.parentElement.parentElement.parentElement.getAttribute('data-id'));
+
 	sendAjaxRequest('post', href, { report_id: report_id }, refreshPage);
 }
 
@@ -84,8 +96,8 @@ function deleteCommentReport(button) {
 		let disable;
 
 		disable = confirm("Do you also want to disable the user responsible for this comment?\n")
-		
-		sendAjaxRequest('post', href, { report_id: report_id , disable : disable}, refreshPage);
+
+		sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, refreshPage);
 	} else {
 		return;
 	}
@@ -95,6 +107,54 @@ function getPageReport(event) {
 	event.preventDefault();
 
 	sendAjaxRequest('get', event.target.href, null, viewReports);
+}
+
+function ReportCommentsDetail(event) {
+	event.preventDefault();
+
+	let index = event.target.href.indexOf('comments');
+	let report_id = event.target.href.substring(index + 9, event.target.href.length);
+
+	let selector = document.querySelector("div#reports div.report_comment[data-id = '" + report_id + "'] div.report_details");
+
+	if(selector !== null){
+		selector.remove();
+	}else{
+		sendAjaxRequest('get', event.target.href, { report_id: report_id }, showReportCommentsDetail);
+	}
+}
+
+function showReportCommentsDetail() {
+	let data = JSON.parse(this.responseText);
+
+	if (data.success) {
+		let report = document.querySelector("div#reports div.report_comment[data-id = '" + data.report.id + "'] div.report_principal_info");
+		report.insertAdjacentHTML('afterend', data.reportView);
+	}
+}
+
+function ReportUserDetail(event) {
+	event.preventDefault();
+
+	let index = event.target.href.indexOf('users');
+	let report_id = event.target.href.substring(index + 6, event.target.href.length);
+
+	let selector = document.querySelector("div#reports div.report_user[data-id = '" + report_id + "'] div.report_details");
+
+	if(selector !== null){
+		selector.remove();
+	}else{
+		sendAjaxRequest('get', event.target.href, { report_id: report_id }, showReportUserDetail);
+	}
+}
+
+function showReportUserDetail() {
+	let data = JSON.parse(this.responseText);
+
+	if (data.success) {
+		let report = document.querySelector("div#reports div.report_user[data-id = '" + data.report.id + "'] div.report_principal_info");
+		report.insertAdjacentHTML('afterend', data.reportView);
+	}
 }
 
 addEventListeners();
