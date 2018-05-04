@@ -25,7 +25,7 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register'); //done
 
 // User
-Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile');
+Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile'); //done
 Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
 Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action'); // done
 
@@ -70,7 +70,7 @@ Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->nam
 // Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'ProjectController@taskAssignUser');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'ProjectController@taskUnassignUser');
 // Route::put('api/projects/{project_id}/tasks', 'ProjectController@newTask');
-Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task');
+Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task'); //done
 // Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentTask'); //done
@@ -84,7 +84,7 @@ Route::get('projects/{id}/threads/{thread_id}/edit', 'ThreadController@edit')->n
 Route::post('projects/{id}/threads/{thread_id}', 'ThreadController@update')->name('edit_thread_action');
 Route::delete('projects/{id}/threads/{thread_id}', 'ThreadController@destroy')->name('deleteThread'); //done
 
-Route::post('projects/{id}/threads/{thread_id}/comments', 'CommentController@store')->name('new_comment');
+Route::post('projects/{id}/threads/{thread_id}/comments', 'CommentController@store')->name('new_comment'); //done
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentThread'); //done
 
 //Admin Administraton, Report and Static Pages
