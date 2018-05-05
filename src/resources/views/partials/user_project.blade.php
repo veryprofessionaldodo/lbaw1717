@@ -2,7 +2,7 @@
 <a href="{{ route('project', ['id' => $project->id])}}">
 	<div class="project">
 		<h5>{{ $project->name }}</h5>
-		@if($project->iscoordinator == TRUE)
+		@if($project->pivot->iscoordinator == true)
 			<p>Coordinator</p>
 		@else
 			<p>Team Member</p>
