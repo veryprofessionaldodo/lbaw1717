@@ -1,6 +1,6 @@
 <div class="member row">
     <div class="col-lg-6 col-12">
-        <img src="res/profile/profile-pic.png">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>{{$member->username}}</h3>
     </div>
 
@@ -11,5 +11,5 @@
         </div>
     @else
     @endif
-    
+
 </div>

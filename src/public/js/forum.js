@@ -56,10 +56,8 @@ function updateCommentsThread() {
 function deleteCommentThread(button) {
 
     let href = button.getAttribute('href');
-
-    let r = confirm("Are you sure you want to delete this comment?\n");
     
-    if (r == true) {
+    if (confirm("Are you sure you want to delete this comment?\n")) {
         let comment_id = button.id;
 
         sendAjaxRequest('post', href, { comment_id: comment_id }, updateCommentThreadDeletion);
@@ -80,9 +78,7 @@ function deleteThread(button) {
 
     let href = button.getAttribute('href');
 
-    let r = confirm("Are you sure you want to delete this thread and the comments in it?\n");
-
-    if (r == true) {
+    if (confirm("Are you sure you want to delete this thread and the comments in it?\n")) {
         let thread_id = button.id;
 
         sendAjaxRequest('delete', href, { thread_id: thread_id }, redirectForum);

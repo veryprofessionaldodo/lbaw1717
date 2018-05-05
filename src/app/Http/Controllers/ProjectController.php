@@ -323,4 +323,22 @@ class ProjectController extends Controller
       // Handle unexpected errors
     }
   }
+
+  public function projectSettingsRequestsReject(Request $request){
+    try {
+
+      $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
+      $request_id = $request->id;
+      
+      $request->delete();
+
+      return response()->json(array('success' => true, 'request_id' => $request_id));
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
 }

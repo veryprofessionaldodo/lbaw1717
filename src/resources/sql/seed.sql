@@ -1238,3 +1238,4 @@ INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES 
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES (now(),4,11,NULL);
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES (now(),6,8,11);
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES (now(),4,6,6);
+INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES (now(),10,6,6);

@@ -2,15 +2,9 @@ let sprintButton = document.querySelector("li.nav-item a#sprint_btn");
 let taskButton = document.querySelector("li.nav-item a#task_btn");
 let memberButton = document.querySelector("li.nav-item a#member_btn");
 
-let settingsRequestsBtn = document.querySelector("li.nav-item a#requests");
-let settingsMembersBtn = document.querySelector("li.nav-item a#members");
-
 let newSprintButton = document.querySelector("section.container-fluid div.col-12.new_sprint a");
 
 function addEventListeners() {
-
-	settingsRequestsBtn.addEventListener('click',switchRequestView);
-	settingsMembersBtn.addEventListener('click',switchMembersView);
 
 	sprintButton.addEventListener('click', switchSprintsView);
 	taskButton.addEventListener('click', switchTasksView);
@@ -155,32 +149,5 @@ function updateCommentDeletion(){
 	}
 }
 
-/*settings*/
-
-function switchRequestView(event){
-	event.preventDefault();
-
-	settingsRequestsBtn.classList.add('active');
-	settingsMembersBtn.classList.remove('active');
-
-	sendAjaxRequest('get', event.target.href, null, showSettingsView);
-}
-
-function switchMembersView(event){
-	event.preventDefault();
-
-	settingsMembersBtn.classList.add('active');
-	settingsRequestsBtn.classList.remove('active');
-
-	sendAjaxRequest('get', event.target.href, null, showSettingsView);
-}
-
-function showSettingsView() {
-
-	let data = JSON.parse(this.responseText);
-
-	let content = document.querySelector("section.container-fluid div.content_view");
-	content.innerHTML = data.html;
-}
 
 addEventListeners();
