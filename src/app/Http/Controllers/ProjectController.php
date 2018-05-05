@@ -267,17 +267,60 @@ class ProjectController extends Controller
     }
   }
 
-  public function projectSettingsRequestsList($project_id){
-    $project = Project::find($project_id);
-    $requests = $project->invites()->get();
+  /*
+  settings page
+  */
+  public function projectSettings($project_id){
+    try {
+      $project = Project::find($project_id);
+      $requests = $project->invites()->get();
+  
+      return view('pages/project_settings', ['project' => $project, 'requests' => $requests])->render();
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
 
-    return view('pages/project_settings_requests', ['project' => $project, 'requests' => $requests]);
+  /*
+  asks for the requests (settings)
+  */
+  public function projectSettingsRequestsView($project_id){
+    try {
+      $project = Project::find($project_id);
+      $requests = $project->invites()->get();
+  
+      $viewHTML =  view('partials/project_settings_requests', ['project' => $project, 'requests' => $requests])->render();
+      return response()->json(array('success' => true, 'html' => $viewHTML)); 
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
   }
   
-  public function projectSettingsMembersList($project_id){
-    $project = Project::find($project_id);
-    $members = $project->user()->get();
+  /*
+  asks for the members (settings) 
+  */
+  public function projectSettingsMembersView($project_id){
+  
+    try {
+      $project = Project::find($project_id);
+      $members = $project->user()->get();
 
-    return view('pages/project_settings_members', ['project' => $project, 'members' => $members]);
+      $viewHTML = view('partials/project_settings_members', ['project' => $project, 'members' => $members])->render();
+      return response()->json(array('success' => true, 'html' => $viewHTML));
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
   }
 }
