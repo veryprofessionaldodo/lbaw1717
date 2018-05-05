@@ -1,4 +1,5 @@
 function addEventListeners() {
+
 	let userDropButton = document.querySelector("nav .user > img");
 	userDropButton.addEventListener('click', dropUserOptions);
 	
