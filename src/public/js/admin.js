@@ -1,9 +1,9 @@
-function addEventListeners() {
+function addEventListenersAdmin() {
 	let userRepBtn = document.querySelector("aside#navbar div a:first-of-type");
 	let commentRepBtn = document.querySelector("aside#navbar div a:last-of-type");
 
-	let commentsRepDetail = document.querySelectorAll("div#reports div.report_comment div.report_principal_info a");
-	let userRepDetail = document.querySelectorAll("div#reports div.report_user div.report_principal_info a");
+	let commentsRepDetail = document.querySelectorAll("section div#reports div.report_comment div.report_principal_info a");
+	let userRepDetail = document.querySelectorAll("section div#reports div.report_user div.report_principal_info a");
 	let pagination = document.querySelectorAll("div#reports div#pagination_section ul.pagination li a");
 
 	userRepBtn.addEventListener('click', showUserReports);
@@ -61,7 +61,7 @@ function viewReports() {
 	let content = document.querySelector("section div#reports");
 	content.innerHTML = data.html;
 
-	addEventListeners();
+	addEventListenersAdmin();
 }
 
 function dismissReport(button) {
@@ -76,9 +76,7 @@ function dismissReport(button) {
 function disableUser(button) {
 	let href = button.getAttribute('href');
 
-	let r = confirm("Are you sure you want to disable this user?\n");
-
-	if (r == true) {
+	if (confirm("Are you sure you want to disable this user?\n")) {
 		let report_id = button.id;
 
 		sendAjaxRequest('post', href, { report_id: report_id }, refreshPage);
@@ -157,4 +155,4 @@ function showReportUserDetail() {
 	}
 }
 
-addEventListeners();
+addEventListenersAdmin();
