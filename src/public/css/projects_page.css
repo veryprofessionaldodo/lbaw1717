@@ -265,7 +265,7 @@ div.sprint-task input[type="checkbox"] {
 }
 
 div.sprint-task.task_completed {
-	opacity: 1;	
+	opacity: 0.2;	
 }
 
 div.sprint-task.task_completed p.task_completed {

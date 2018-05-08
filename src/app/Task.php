@@ -25,6 +25,10 @@ class Task extends Model
   	return $this->hasMany('App\Comment');
   }
 
+  public function task_state_records(){
+    return $this->hasMany('App\TaskStateRecord');
+  }
+
   public function userAssigned() {
   	return DB::select(
   		DB::raw('SELECT "user".username, "user".image, task.id FROM task, "user", task_state_record

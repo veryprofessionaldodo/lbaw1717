@@ -37,7 +37,15 @@ class Project extends Model
   }
 
   public function SprintsTasksComments() {
-    return $this->sprints()->with('tasks')->with('tasks.comments')->with('tasks.comments.user')->get();
+    return $this->sprints()
+            ->with('tasks')
+            ->with('tasks.comments')
+            ->with('tasks.comments.user')
+            ->with(['tasks.task_state_records' => function($query){
+              $query->latest('date');
+            }])
+            ->with('tasks.task_state_records.user')
+            ->get();
   }
 
   public function tasksComments() {

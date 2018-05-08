@@ -52,7 +52,11 @@ class User extends Authenticatable
 
     public function invites(){
         return $this->hasMany('App\Invite');
-      }    
+    }
+    
+    public function task_state_record() {
+        return $this->hasMany('App\TaskStateRecord', 'user_completed_id');
+    }
 
     public function isAdmin(){
         return $this->isadmin; // this looks for an admin column in your users table
