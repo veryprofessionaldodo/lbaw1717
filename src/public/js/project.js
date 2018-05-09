@@ -16,6 +16,12 @@ function addEventListeners() {
 
 	submitComment = document.querySelector("div.comment div.form_comment form");
 	submitComment.addEventListener('submit', addComment);
+
+	// tasks completion
+	let tasksCheckboxes = document.querySelectorAll("div.sprint-task input[type='checkbox']");
+	for(let i = 0; i < tasksCheckboxes.length; i++){
+		tasksCheckboxes[i].addEventListener('click', updateTaskCompletion);
+	}
 }
 
 function encodeForAjax(data) {
@@ -146,6 +152,99 @@ function updateCommentDeletion(){
 	if(data.success){
 		let comment = document.querySelector("div.comment[data-id='" + data.comment.id + "']");
 		comment.remove();
+	}
+}
+
+function updateTaskCompletion() {
+	let url = this.getAttribute("data-url");
+	console.log(url);
+	
+	let state;
+	if(this.checked){
+		state = "Completed";
+	} else if(!this.checked){
+		console.log('Ah');
+		state = "Uncompleted";
+	}
+	console.log(url);
+	sendAjaxRequest('post', url, {state: state}, updateTaskState);
+}
+
+function updateTaskState(){
+	let data = JSON.parse(this.responseText);
+	
+	let task = document.querySelector("div[data-id='" + data.task_id + "']");
+	console.log(task);
+
+	if(data.state === "Completed"){
+		task.classList.add("task_completed");
+
+		let button = document.querySelector("div[data-id='" + data.task_id + "'] button.claim");
+
+		if(data.coordinator){
+	
+			let newButton = document.createElement("button");
+			newButton.classList.add("btn", "revive");
+			newButton.innerHTML = "Revive Task";
+	
+			button.parentNode.replaceChild(newButton, button);
+		}
+		else {
+			button.remove();
+		}
+
+		let assigned_users = document.querySelector("div[data-id='" + data.task_id + "'] div.assigned_users");
+		if(assigned_users !== null)
+			assigned_users.remove();
+
+
+	} else if(data.state === "Uncompleted") {
+
+		task.classList.remove("task_completed");
+
+		if(data.coordinator){
+			let button = document.querySelector("div[data-id='" + data.task_id + "'] button.revive");
+	
+			let newDiv = document.createElement("div");
+			newDiv.classList.add("coordinator_options");
+
+			let button1 = document.createElement("button");
+			button1.innerHTML = "<i class='fas fa-pencil-alt'></i>";
+			//ADD URL
+			button1.classList.add("btn", "edit_task");
+			newDiv.appendChild(button1);
+
+			let button2 = document.createElement("button");
+			button2.innerHTML = "Assign Task";
+			//ADD URL
+			button2.classList.add("btn");
+			newDiv.appendChild(button2);
+
+			button.parentNode.replaceChild(newDiv, button);
+
+		} else {
+
+			let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] p");
+	
+			if(data.user_username != null){
+				let divUsers = document.createElement("div");
+				divUsers.classList.add("assigned_users");
+
+				let assigned_user = document.createElement("img");
+				assigned_user.src = data.image;
+				assigned_user.title = data.user_username;
+
+				divUsers.appendChild(assigned_user);
+
+				referenceNode.parentNode.insertBefore(divUsers, referenceNode.nextSibling);
+			}
+			
+			let newButton = document.createElement("button");
+			newButton.classList.add("btn", "claim");
+			newButton.innerHTML = "Claim Task";
+			task.appendChild(newButton);
+		} 
+
 	}
 }
 

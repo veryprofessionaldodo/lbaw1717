@@ -26,7 +26,7 @@ class Task extends Model
   }
 
   public function task_state_records(){
-    return $this->hasMany('App\TaskStateRecord');
+    return $this->hasMany('App\Task_state_record');
   }
 
   public function userAssigned() {

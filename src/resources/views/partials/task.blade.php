@@ -3,18 +3,18 @@
 ?>
 
 @if($last_record->state == "Completed")
-	<div class="sprint-task task_completed">
+	<div data-id="{{ $task->id}}" class="sprint-task task_completed">
 		<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
 				<i class="fas fa-sort-down"></i></a>
 			<p>{{$task->name}}</p>
 
 			@if($role == 'co')
-				<button class="btn">Revive Task</button>
+				<button class="btn revive">Revive Task</button>
 			@endif
-			<input type="checkbox" checked>
+			<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox" checked>
 		</div>
 @else
-	<div class="sprint-task">
+	<div data-id="{{ $task->id}}" class="sprint-task">
 		<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
 			<i class="fas fa-sort-down"></i></a>
 		<p>{{$task->name}}</p>
@@ -30,14 +30,14 @@
 		@endif
 
 		@if($role == 'tm')
-			<button class="btn">Claim task</button>
+			<button class="btn claim">Claim task</button>
 		@elseif($role == 'co')
 			<div class="coordinator_options">
 				<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
 				<button class="btn">Assign task</button>
 			</div>
 		@endif
-		<input type="checkbox">
+		<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox">
 	</div>
 @endif
 

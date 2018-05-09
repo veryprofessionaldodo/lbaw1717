@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
-class TaskStateRecord extends Model
+class Task_state_record extends Model
 {
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
@@ -20,5 +20,4 @@ class TaskStateRecord extends Model
   public function user() {
       return $this->belongsTo('App\User', 'user_completed_id');
   }
-
 }

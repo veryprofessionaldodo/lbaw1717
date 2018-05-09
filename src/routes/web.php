@@ -67,7 +67,7 @@ Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->nam
 // Route::get('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditForm');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditAction');
 // Route::delete('api/projects/{project_id}/tasks/{task_id}', 'ProjectController@deleteTask');
-// Route::post('api/projects/{project_id}/tasks/{task_id}/complete', 'ProjectController@completeTask');
+Route::post('api/projects/{project_id}/tasks/{task_id}/complete', 'TaskController@update')->name('update_task');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'ProjectController@taskAssignUser');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'ProjectController@taskUnassignUser');
 // Route::put('api/projects/{project_id}/tasks', 'ProjectController@newTask');
