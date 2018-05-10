@@ -164,7 +164,7 @@ class TaskController extends Controller
             // TODO Authorize
             
             $task_state_record->state = "Assigned";
-            $task_state_record->user_completed_id = Auth::id();
+            $task_state_record->user_completed_id = Auth::user()->id;
             $task_state_record->task_id = $task_id;
             
             $task_state_record->save();
