@@ -22,6 +22,12 @@ function addEventListeners() {
 	for(let i = 0; i < tasksCheckboxes.length; i++){
 		tasksCheckboxes[i].addEventListener('click', updateTaskCompletion);
 	}
+
+	// assign to task
+	let assignSelfTaskButton = document.querySelectorAll("div.sprint-task a.claim");
+	for(let i = 0; i < assignSelfTaskButton.length; i++) {
+		assignSelfTaskButton[i].addEventListener('click', assignSelfTask);
+	}
 }
 
 function encodeForAjax(data) {
@@ -179,7 +185,7 @@ function updateTaskState(){
 	if(data.state === "Completed"){
 		task.classList.add("task_completed");
 
-		let button = document.querySelector("div[data-id='" + data.task_id + "'] button.claim");
+		let button = document.querySelector("div[data-id='" + data.task_id + "'] a.claim");
 
 		if(data.coordinator){
 	
@@ -223,29 +229,61 @@ function updateTaskState(){
 			button.parentNode.replaceChild(newDiv, button);
 
 		} else {
-
-			let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] p");
 	
 			if(data.user_username != null){
-				let divUsers = document.createElement("div");
-				divUsers.classList.add("assigned_users");
-
-				let assigned_user = document.createElement("img");
-				assigned_user.src = data.image;
-				assigned_user.title = data.user_username;
-
-				divUsers.appendChild(assigned_user);
-
-				referenceNode.parentNode.insertBefore(divUsers, referenceNode.nextSibling);
+				createAssignUserDiv(data);
 			}
 			
-			let newButton = document.createElement("button");
+			let newButton = document.createElement("a");
 			newButton.classList.add("btn", "claim");
-			newButton.innerHTML = "Claim Task";
+			newButton.href = data.claim_url;
+
+			if(data.assigned)
+				newButton.innerHTML = "Unclaim Task"
+			else
+				newButton.innerHTML = "Claim Task";
 			task.appendChild(newButton);
 		} 
-
 	}
+}
+
+function assignSelfTask(event){
+	event.preventDefault();
+
+	sendAjaxRequest('post', event.target.href, null, updateAssignUsers);
+}
+
+function updateAssignUsers(){
+	let data = JSON.parse(this.responseText);
+
+	let assigned_user = document.querySelector("div[data-id='" + data.task_id + "'] div.assigned_users");
+	if(assigned_user !== null){
+		
+		//update assigned_user
+		assigned_user.firstChild.src = data.image;
+		assigned_user.firstChild.title = data.username;
+	}
+	else {
+		createAssignUserDiv(data);
+	}
+
+	let claimButton = document.querySelector("div[data-id='" + data.task_id + "'] a.claim");
+	claimButton.remove();
+}
+
+function createAssignUserDiv(data) {
+	let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] p");
+
+	let divUsers = document.createElement("div");
+	divUsers.classList.add("assigned_users");
+
+	let assigned_user = document.createElement("img");
+	assigned_user.src = data.image;
+	assigned_user.title = data.user_username;
+
+	divUsers.appendChild(assigned_user);
+
+	referenceNode.parentNode.insertBefore(divUsers, referenceNode.nextSibling);
 }
 
 

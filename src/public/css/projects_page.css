@@ -233,7 +233,7 @@ div.sprint-task div.coordinator_options button.btn {
 	padding: 0 1em;
 }
 
-div.sprint-task button.btn {
+div.sprint-task a.btn {
 	grid-column-start: 4;
 	grid-column-end: 5;
 	grid-row: 1;

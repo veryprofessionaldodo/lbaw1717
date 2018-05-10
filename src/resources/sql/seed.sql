@@ -604,17 +604,21 @@ DROP FUNCTION IF EXISTS assign_user_task();
 CREATE FUNCTION assign_user_task() RETURNS TRIGGER AS
 $BODY$
 DECLARE
-	user_id task_state_record.user_completed_id%TYPE;
+	user_task_id task_state_record.user_completed_id%TYPE;
 BEGIN
-	IF (SELECT user_completed_id AS user_id FROM task_state_record a 
+
+	SELECT a.user_completed_id INTO user_task_id FROM task_state_record a 
 			WHERE NEW.task_id = a.task_id
 			AND a.user_completed_id <> NEW.user_completed_id AND a.state = 'Assigned'
 			AND NOT EXISTS (SELECT * FROM task_state_record b WHERE a.task_id = b.task_id
 								AND a.user_completed_id = b.user_completed_id AND
-								b.state = 'Unassigned' AND a.date < b.date) <> NULL) THEN
+								b.state = 'Unassigned' AND a.date < b.date);
+
+	IF (user_task_id IS NOT NULL) THEN
 
 		INSERT INTO task_state_record (date, state, user_completed_id, task_id) 
-			VALUES (now(), 'Unassigned', user_id, NEW.task_id);
+			VALUES (now(), 'Unassigned', user_task_id, NEW.task_id);
+			
 	END IF;
 	RETURN NEW;
 END

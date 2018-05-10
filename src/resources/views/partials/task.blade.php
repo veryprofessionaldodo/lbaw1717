@@ -30,7 +30,13 @@
 		@endif
 
 		@if($role == 'tm')
-			<button class="btn claim">Claim task</button>
+			@if($task->isUserAssigned(Auth::id()) == null)
+				<a class="btn claim" href="{{ route('assign_self', ['id' => $project->id, 'task_id' => $task->id])}}">
+				Claim task</a>
+			@else
+				<a class="btn claim" /*href="{{ route('assign_self', ['id' => $project->id, 'task_id' => $task->id])}}"*/>
+					Unclaim task</a>
+			@endif
 		@elseif($role == 'co')
 			<div class="coordinator_options">
 				<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>

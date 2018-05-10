@@ -68,7 +68,7 @@ Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->nam
 // Route::post('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditAction');
 // Route::delete('api/projects/{project_id}/tasks/{task_id}', 'ProjectController@deleteTask');
 Route::post('api/projects/{project_id}/tasks/{task_id}/complete', 'TaskController@update')->name('update_task');
-// Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'ProjectController@taskAssignUser');
+Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'TaskController@assignSelf')->name('assign_self');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'ProjectController@taskUnassignUser');
 // Route::put('api/projects/{project_id}/tasks', 'ProjectController@newTask');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task'); //done
@@ -104,17 +104,3 @@ Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentRep
 Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form'); //done
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done
 Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report'); //done
-
-
-/*
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
-
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
-*/
