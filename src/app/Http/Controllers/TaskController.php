@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Task;
@@ -93,26 +94,37 @@ class TaskController extends Controller
             } else if($request->state == "Uncompleted"){
                 
                 $task_state_record = Task::find($task_id)
-                ->task_state_records()
-                ->where('state', 'Completed')
-                ->first();
+                                        ->task_state_records()
+                                        ->where('state', 'Completed')
+                                        ->first();
                 
                 $task_state_record->delete();
                 
-                $assigned_user = Task::find($task_id)
-                ->task_state_records()
-                ->where('state', 'Assigned')
-                ->with('user')
-                ->latest('date')->first();
+                /*$assigned_user = Task::find($task_id)
+                                    ->task_state_records()
+                                    ->where('state', 'Assigned')
+                                    ->whereNotExists(function($query){
+                                        $query->select(DB::raw(1))
+                                                ->from('task_state_record a')
+                                                ->whereRaw('a.task_id = task_state_record.task_id')
+                                                ->whereRaw('a.user_completed_id = task_state_record.user_completed_id')
+                                                ->whereRaw('a.state = "Unassigned"')
+                                                ->whereRaw('a.date > task_state_record.date');
+                                    })
+                                    ->with('user')
+                                    ->latest('date')->first();*/
+                
+                $assigned_user = Task::find($task_id)->userAssigned();
 
                 $claim_route = route('assign_self', ['project_id' => $id, 'task_id' => $task_id]);
-                
+
                 if($assigned_user != NULL){
-                    $username = $assigned_user->user->username;
+
+                    $username = $assigned_user[0]->username;
                     $image = "";
                     
-                    if($assigned_user->user->image != NULL){
-                        $image = asset('storage/'.$assigned_user->user->image);
+                    if($assigned_user[0]->image != NULL){
+                        $image = asset('storage/'.$assigned_user[0]->image);
                     }
                     else{
                         $image = asset('storage/1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg');
@@ -121,7 +133,7 @@ class TaskController extends Controller
                     $assigned = false;
                     if($username == Auth::user()->username){
                         $assigned = true;
-                        //$claim_route = ...not assign
+                        $claim_route = route('unassign_self', ['project_id' => $id, 'task_id' => $task_id]);
                     }
 
                     return response()->json(
@@ -132,6 +144,7 @@ class TaskController extends Controller
                     );
                 }
                 else {
+
                     return response()->json(array('success' => true, 'state' => $request->state, 
                     'task_id' => $task_id, 'coordinator' => Auth::user()->isCoordinator($id),
                     'claim_url' => $claim_route));
@@ -163,21 +176,50 @@ class TaskController extends Controller
             
             // TODO Authorize
             
-            $task_state_record->state = "Assigned";
+            $task_state_record->state = 'Assigned';
             $task_state_record->user_completed_id = Auth::user()->id;
             $task_state_record->task_id = $task_id;
             
             $task_state_record->save();
             
             $image = "";
-            if(Auth::image() != NULL)
-                $image = asset('storage/'.Auth::image());
+            if(Auth::user()->image != NULL)
+                $image = asset('storage/'.Auth::user()->image);
             else
                 $image = asset('storage/1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg');
 
-            echo dd($image);
+            $unclaim_url = route('unassign_self', ['project_id' => $id, 'task_id' => $task_id]);
+
             return response()->json(array('success' => true, 'image' => $image,
-                     'user_username' => Auth::username(), 'task_id' => $task_id));
+                    'user_username' => Auth::user()->username, 'task_id' => $task_id,
+                    'unclaim_url' => $unclaim_url));
+
+
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+    }
+
+    public function unassignSelf(Request $request, $id, $task_id) {
+        if (!Auth::check()) return redirect('/login');
+        
+        try {          
+            $task_state_record = new Task_state_record();
+            
+            // TODO Authorize
+            
+            $task_state_record->state = 'Unassigned';
+            $task_state_record->user_completed_id = Auth::user()->id;
+            $task_state_record->task_id = $task_id;
+            
+            $task_state_record->save();
+            
+            $claim_url = route('assign_self', ['project_id' => $id, 'task_id' => $task_id]);
+            return response()->json(array('success' => true, 'task_id' => $task_id,
+                    'claim_url' => $claim_url));
 
 
         } catch(\Illuminate\Database\QueryException $qe) {

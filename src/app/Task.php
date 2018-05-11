@@ -44,7 +44,7 @@ class Task extends Model
 
   public function userAssigned() {
   	return DB::select(
-  		DB::raw('SELECT "user".username, "user".image, task.id FROM task, "user", task_state_record
+  		DB::raw('SELECT "user".id, "user".username, "user".image, task.id FROM task, "user", task_state_record
 				WHERE task.id = :task_id AND task.id = task_state_record.task_id 
 				AND task_state_record.state = :state1
 				AND task_state_record.user_completed_id = "user".id
