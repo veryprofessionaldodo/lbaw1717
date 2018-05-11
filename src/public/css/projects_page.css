@@ -200,7 +200,7 @@ div.sprint-task svg{
 	color: #002;
 }
 
-div.sprint-task p{
+div.sprint-task a.task_name{
 	color: #002;
 	grid-column-start: 2;
 	grid-column-end: 3;

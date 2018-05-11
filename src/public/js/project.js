@@ -205,7 +205,7 @@ function updateTaskState(){
 
 		if(data.coordinator){
 
-			let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] p");
+			let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] a.task_name");
 	
 			let newDiv = document.createElement("div");
 			newDiv.classList.add("coordinator_options");
@@ -286,7 +286,7 @@ function updateAssignUsers(){
  * @param {*} data 
  */
 function createAssignUserDiv(data) {
-	let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] p");
+	let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] a.task_name");
 
 	let divUsers = document.createElement("div");
 	divUsers.classList.add("assigned_users");

@@ -14,7 +14,7 @@
 	<div data-id="{{ $task->id}}" class="sprint-task">
 		<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
 			<i class="fas fa-sort-down"></i></a>
-		<p>{{$task->name}}</p>
+		<a class="task_name" href="{{route('task_page',['project_id' => $project->id, 'task_id' => $task->id])}}">{{$task->name}}</a>
 
 		@if($last_record->state == "Assigned")
 			<div class="assigned_users">
