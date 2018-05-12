@@ -1,0 +1,36 @@
+div#task_info form {
+    display: block;
+}
+
+/*
+.hidden {
+    display: none;
+}*/
+input.user_name.form-control {
+    display: inline;
+    width: auto;
+    vertical-align: middle;
+    margin: auto;
+}
+
+button.send_name {
+    display: inline;
+}
+
+input[type="checkbox"] {
+	width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    margin: auto;
+}
+
+
+div#task_info form.hidden {
+    display: none;
+}
+
+div#task_info div#task_description {
+    margin: 1em;
+    background-color: #d1d1d1;
+    /* box-shadow: 0px 0px 20px #636161; */
+}

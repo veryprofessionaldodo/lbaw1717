@@ -17,10 +17,7 @@
     
     <link href="{{ asset('css/profile_page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/projects_page.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/forum_thread.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/statistics.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/project_settings.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/task_page.css') }}" rel="stylesheet">
     
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -42,13 +39,7 @@
     <script defer src={{ asset('js/tinymce/tinymce.min.js')}}></script>
 
     <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
-    <script type="text/javascript" src={{ asset('js/profile.js') }} defer></script>
-    <script type="text/javascript" src={{ asset('js/project.js') }} defer></script>
-    <script type="text/javascript" src={{ asset('js/forum.js') }} defer></script>
-    <script type="text/javascript" src={{ asset('js/report.js') }} defer></script>
-    <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script> 
-    <script type="text/javascript" src={{ asset('js/project_settings.js') }} defer></script>
-    <script type="text/javascript" src={{ asset('js/task.js')}}></script> 
+    <script type="text/javascript" src={{ asset('js/task.js')}} defer></script> 
   </head>
   
   <body>

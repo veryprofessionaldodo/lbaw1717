@@ -6,7 +6,7 @@
 	<div data-id="{{ $task->id}}" class="sprint-task task_completed">
 		<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
 				<i class="fas fa-sort-down"></i></a>
-			<p>{{$task->name}}</p>
+				<a class="task_name" href="{{route('task_page',['project_id' => $project->id, 'task_id' => $task->id])}}">{{$task->name}}</a>
 
 			<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox" checked>
 		</div>
@@ -35,13 +35,6 @@
 				<a class="btn claim" href="{{ route('unassign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
 					Unclaim task</a>
 			@endif
-
-		@elseif($role == 'co')
-
-			<div class="coordinator_options">
-				<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
-			</div>
-
 		@endif
 
 		<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox">

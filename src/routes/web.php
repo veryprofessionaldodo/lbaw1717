@@ -65,7 +65,7 @@ Route::post('api/projects/{project_id}/sprints', 'SprintController@create')->nam
 Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->name('project_tasks');
 Route::get('api/projects/{project_id}/tasks/{task_id}', 'TaskController@show')->name('task_page');
 // Route::get('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditForm');
-// Route::post('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditAction');
+Route::post('api/projects/{project_id}/tasks/{task_id}/edit', 'TaskController@edit')->name('edit_task');
 // Route::delete('api/projects/{project_id}/tasks/{task_id}', 'ProjectController@deleteTask');
 Route::post('api/projects/{project_id}/tasks/{task_id}/complete', 'TaskController@update')->name('update_task');
 Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'TaskController@assignSelf')->name('assign_self');

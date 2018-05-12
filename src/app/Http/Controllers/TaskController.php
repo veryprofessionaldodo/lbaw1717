@@ -58,7 +58,35 @@ class TaskController extends Controller
             $project = Project::find($id);
             $task = Task::find($task_id);
 
-            return view('pages.task_page', ['task' => $task, 'project' => $project]);
+            $assigned_user = Task::find($task_id)->userAssigned();
+                
+            $claim_route = route('assign_self', ['project_id' => $id, 'task_id' => $task_id]);
+            
+            $username = null;
+            $image = null;
+
+            if($assigned_user != NULL){
+                
+                $username = $assigned_user[0]->username;
+                
+                if($assigned_user[0]->image != NULL){
+                    $image = asset('storage/'.$assigned_user[0]->image);
+                }
+                else{
+                    $image = asset('storage/1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg');
+                }
+                
+                $assigned = false;
+                if($username == Auth::user()->username){
+                    $assigned = true;
+                    $claim_route = route('unassign_self', ['project_id' => $id, 'task_id' => $task_id]);
+                }
+            
+            }
+
+            return view('pages/task_page', ['task' => $task, 'project' => $project,
+            'coordinator' => Auth::user()->isCoordinator($id), 'user_username' => $username, 
+            'image' => $image, 'claim_url' => $claim_route]);
 
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
@@ -69,14 +97,31 @@ class TaskController extends Controller
     }
     
     /**
-    * Show the form for editing the specified resource.
+    * Changes the task description
     *
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function edit($id)
+    public function edit(Request $request, $id, $task_id)
     {
-        //
+        if (!Auth::check()) return redirect('/login');
+        
+        try {
+        
+            $task = Task::find($task_id);
+
+            $task->description = $request->description;
+
+            $task->save();
+
+            return back();
+
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
     }
     
     /**
