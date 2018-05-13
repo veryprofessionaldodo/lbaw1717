@@ -1,23 +1,52 @@
-div#task_info form {
-    display: block;
+div.row {
+    width: 100%;
+    margin: 0;
 }
 
-/*
-.hidden {
-    display: none;
-}*/
-input.user_name.form-control {
+div.col-12 {
+    padding: 0;
+}
+
+div#task h1 {
+    margin: 0.5em 0;
+}
+
+section#task_page div.assigned_users p{
     display: inline;
+    font-size: 12px;
+}
+
+section#task_page div.assigned_users img{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	max-width: 25%;
+	min-width: 1em;
+	border-radius: 50px;
+	margin: auto 0 auto auto;
+}
+
+section#task_page div#assign_user_form {
+    margin: 0 1em 0 0;
+    display: none;
+}
+
+section#task_page input.user_name.form-control {
     width: auto;
+    display: inline;
     vertical-align: middle;
     margin: auto;
 }
 
-button.send_name {
+section#task_page button.send_name {
     display: inline;
 }
 
-input[type="checkbox"] {
+section#task_page div#checkbox {
+    text-align: right;
+    margin: auto 0;
+}
+
+section#task_page input[type="checkbox"] {
 	width: 1.5em;
     height: 1.5em;
     vertical-align: middle;
@@ -25,12 +54,21 @@ input[type="checkbox"] {
 }
 
 
-div#task_info form.hidden {
+section#task_page div#task_info form.hidden {
     display: none;
 }
 
-div#task_info div#task_description {
-    margin: 1em;
-    background-color: #d1d1d1;
-    /* box-shadow: 0px 0px 20px #636161; */
+section#task_page div#task_info div#task_description {
+    margin: 2em 0;
+    text-align: left;
+    box-shadow: 0px 0px 10px #636161;
+}
+
+section#task_page div#task_info form {
+    display: block;
+    margin: 2em 0;
+}
+
+section#task_page div#task_info form button {
+    margin-top: 1em;
 }

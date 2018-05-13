@@ -1,3 +1,16 @@
+function taskPageEventListeners() {
+    let editButton = document.querySelector("button.edit_task");
+    let assignTaskUserButton = document.querySelector("div.coordinator_options button#assign_user");
+
+    if(editButton !== null){
+        editButton.addEventListener('click', showEditForm);
+    }
+
+    if(assignTaskUserButton !== null){
+        assignTaskUserButton.addEventListener('click', showAssignUserForm);
+    }
+}
+
 function initTinyMCE() {
     tinymce.init({
         selector: '#mytextarea',
@@ -26,12 +39,6 @@ function initTinyMCE() {
     });
 }
 
-function taskPageEventListeners() {
-    let editButton = document.querySelector("button.edit_task");
-
-    editButton.addEventListener('click', showEditForm);
-}
-
 function showEditForm() {
 
     let taskInfo = document.querySelector("div#task_info div#task_description");
@@ -48,6 +55,18 @@ function showEditForm() {
     else {
         taskInfo.style.display = "block";
         taskForm.classList.add('hidden');
+    }
+}
+
+function showAssignUserForm() {
+    let assignUserForm = document.querySelector("section#task_page div#assign_user_form");
+    console.log(assignUserForm.style.display);
+
+    if(assignUserForm.style.display == "none"){
+        assignUserForm.style.display = "inline";
+    }
+    else{
+        assignUserForm.style.display = "none";
     }
 }
 
