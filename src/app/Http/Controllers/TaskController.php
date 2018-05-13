@@ -40,7 +40,40 @@ class TaskController extends Controller
     */
     public function store(Request $request)
     {
-        //
+        if (!Auth::check()) return redirect('/login');
+        
+        try {
+            $task = new Task();
+            
+            if($request->sprint_id !== null){
+                $task->sprint_id = $request->sprint_id;
+            }
+            $task->project_id = $request->project_id;
+            $task->name = $request->name;
+            $task->effort = $request->effort;
+
+            $task->save();
+
+            $role = 'tm';
+            if(Auth::user()->isCoordinator($request->project_id)){
+                $role = 'co';
+            }
+
+            $project = Project::find($request->project_id);
+            
+            $viewHTML = view('partials.task', ['project' => $project, 
+                            'task' => $task, 'role' => $role])->render();
+
+            return response()->json(array('success' => true, 'sprint_id' => $request->sprint_id,
+                                            'html' => $viewHTML));
+
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it (max effort surpassed)
+            return response()->json(array('success' => false, 'sprint_id' => $request->sprint_id));
+        
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
     }
     
     /**

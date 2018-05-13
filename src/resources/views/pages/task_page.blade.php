@@ -36,8 +36,8 @@
             <div class="row">
                 
                 <div class="assigned_users col-2">
-                    <p>User Assigned:</p>
                     @if($last_record->state == "Assigned")
+                        <p>User Assigned:</p>
                         @if($last_record->user->image != NULL)
                             <img src="{{ asset('storage/'. $last_record->user->image)}}" title="{{ $last_record->user->username}}">
                         @else
@@ -59,7 +59,7 @@
                             @endif
                             <button class="btn btn-primary" id="assign_user">Assign task to user</button>
 
-                            <div id="assign_user_form">
+                            <div id="assign_user_form" class="hidden">
                                 <input class="form-control user_name" type="text" name="user_username" placeholder="username">
                                 <button class="btn btn-primary send_name"><i class="fas fa-caret-right"></i></button>
                             </div>
@@ -78,7 +78,7 @@
                     @endif
                 </div>
                 
-                <div class="col-1" id="checkbox" >
+                <div class="col-1" id="checkbox">
                     @if($last_record->state == "Completed")
                         <input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox" checked>    
                     @else

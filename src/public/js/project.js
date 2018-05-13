@@ -28,6 +28,11 @@ function addEventListeners() {
 	for(let i = 0; i < assignSelfTaskButton.length; i++) {
 		assignSelfTaskButton[i].addEventListener('click', assignSelfTask);
 	}
+
+	let addTaskButtons = document.querySelectorAll("form.sprint-task.create_task a");
+	for(let i = 0; i < addTaskButtons.length; i++){
+		addTaskButtons[i].addEventListener('click', createTask);
+	}
 }
 
 function encodeForAjax(data) {
@@ -163,16 +168,14 @@ function updateCommentDeletion(){
 
 function updateTaskCompletion() {
 	let url = this.getAttribute("data-url");
-	console.log(url);
 	
 	let state;
 	if(this.checked){
 		state = "Completed";
 	} else if(!this.checked){
-		console.log('Ah');
 		state = "Uncompleted";
 	}
-	console.log(url);
+	
 	sendAjaxRequest('post', url, {state: state}, updateTaskState);
 }
 
@@ -180,7 +183,6 @@ function updateTaskState(){
 	let data = JSON.parse(this.responseText);
 	
 	let task = document.querySelector("div[data-id='" + data.task_id + "']");
-	console.log(task);
 
 	if(data.state === "Completed"){
 		task.classList.add("task_completed");
@@ -300,5 +302,40 @@ function createAssignUserDiv(data) {
 	referenceNode.parentNode.insertBefore(divUsers, referenceNode.nextSibling);
 }
 
+function createTask(event) {
+	event.preventDefault();
+
+	let sprint_project_id = event.target.getAttribute('data-id').split('-');
+
+
+	let inputTaskName = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task input[type='text']");
+	let inputEffort = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task input[type='number']");
+	let formHref = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task").getAttribute("action");
+
+	sendAjaxRequest("POST", formHref, {sprint_id: sprint_project_id[0], project_id: sprint_project_id[1],
+				name: inputTaskName.value, effort: inputEffort.value}, addTaskInfo);
+}
+
+function addTaskInfo() {
+	let data = JSON.parse(this.responseText);
+
+	let div = document.querySelector("div#sprint-" + data.sprint_id + " form.sprint-task.create_task");
+	console.log(div);
+
+	if(data.success){
+		div.insertAdjacentHTML('beforebegin', data.html);
+	}
+	else {
+		let element = '<div class="alert alert-dismissible alert-danger"> <button type="button" class="close" data-dismiss="alert">&times;</button><strong>Max effort exceeded!</strong></div>';
+		div.insertAdjacentHTML('beforebegin', element);
+	}
+
+	let inputTaskName = document.querySelector("div#sprint-" + data.sprint_id +" form.sprint-task.create_task input[type='text']");
+	let inputEffort = document.querySelector("div#sprint-" + data.sprint_id +" form.sprint-task.create_task input[type='number']");
+
+	inputEffort.value = "";
+	inputTaskName.value = "";
+
+}
 
 addEventListeners();

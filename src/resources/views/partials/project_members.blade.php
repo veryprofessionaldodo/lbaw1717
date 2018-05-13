@@ -1,4 +1,4 @@
-<div class="col-12" id="members">
+<div class="col-12" id="members_project">
 	<div class="row">
 		
 	
