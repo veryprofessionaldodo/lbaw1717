@@ -26,17 +26,6 @@
 			</div>
 		@endif
 
-		@if($role == 'tm')
-
-			@if($task->isUserAssigned(Auth::id()) == null)
-				<a class="btn claim" href="{{ route('assign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
-				Claim task</a>
-			@else
-				<a class="btn claim" href="{{ route('unassign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
-					Unclaim task</a>
-			@endif
-		@endif
-
 		<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox">
 
 	</div>

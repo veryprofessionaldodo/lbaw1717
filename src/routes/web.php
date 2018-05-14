@@ -70,6 +70,8 @@ Route::post('api/projects/{project_id}/tasks/{task_id}/edit', 'TaskController@ed
 Route::post('api/projects/{project_id}/tasks/{task_id}/complete', 'TaskController@update')->name('update_task');
 Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'TaskController@assignSelf')->name('assign_self');
 Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'TaskController@unassignSelf')->name('unassign_self');
+Route::post('api/projects/{project_id}/tasks/{task_id}/assign_other', 'TaskController@assign')->name('assign_other');
+Route::post('api/projects/{project_id}/tasks/{task_id}/unassign_other', 'TaskController@unassign')->name('unassign_other');
 Route::post('api/projects/{project_id}/tasks', 'TaskController@store')->name('new_task');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task'); //done
 // Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');

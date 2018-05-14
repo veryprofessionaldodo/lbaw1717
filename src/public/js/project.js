@@ -182,60 +182,24 @@ function updateTaskCompletion() {
 function updateTaskState(){
 	let data = JSON.parse(this.responseText);
 	
-	let task = document.querySelector("div[data-id='" + data.task_id + "']");
+	let task = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task");
 
 	if(data.state === "Completed"){
 		task.classList.add("task_completed");
 
-		if(data.coordinator){
-			let coordinator_options = document.querySelector("div[data-id='" + data.task_id + "'] div.coordinator_options");
-			coordinator_options.remove();
-		}
-		else {
-			let button = document.querySelector("div[data-id='" + data.task_id + "'] a.claim");
-			button.remove();
-		}
-
-		let assigned_users = document.querySelector("div[data-id='" + data.task_id + "'] div.assigned_users");
+		let assigned_users = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
 		if(assigned_users !== null)
 			assigned_users.remove();
-
 
 	} else if(data.state === "Uncompleted") {
 
 		task.classList.remove("task_completed");
+		console.log(task);
 
-		if(data.coordinator){
+		if(data.user_username != null){
+			createAssignUserDiv(data);
+		}
 
-			let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] a.task_name");
-	
-			let newDiv = document.createElement("div");
-			newDiv.classList.add("coordinator_options");
-
-			let button1 = document.createElement("button");
-			button1.innerHTML = "<i class='fas fa-pencil-alt'></i>";
-			//ADD URL
-			button1.classList.add("btn", "edit_task");
-			newDiv.appendChild(button1);
-
-			referenceNode.parentNode.insertBefore(newDiv, referenceNode.nextSibling);
-
-		} else {
-
-			if(data.user_username != null){
-				createAssignUserDiv(data);
-			}
-			
-			let newButton = document.createElement("a");
-			newButton.classList.add("btn", "claim");
-			newButton.href = data.claim_url;
-
-			if(data.assigned)
-				newButton.innerHTML = "Unclaim Task"
-			else
-				newButton.innerHTML = "Claim Task";
-			task.appendChild(newButton);
-		} 
 	}
 }
 
@@ -255,15 +219,12 @@ function assignSelfTask(event){
 function updateAssignUsers(){
 	let data = JSON.parse(this.responseText);
 
-	let assigned_user = document.querySelector("div[data-id='" + data.task_id + "'] div.assigned_users");
-	let claimButton = document.querySelector("div[data-id='" + data.task_id + "'] a.claim");
+	let assigned_user = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
 
 	// the request was to unassign user of the task
 	if(data.claim_url != null){
 
 		assigned_user.remove();
-		claimButton.href = data.claim_url;
-		claimButton.innerHTML = "Claim Task";
 
 	}
 	else {
@@ -277,9 +238,6 @@ function updateAssignUsers(){
 		else {
 			createAssignUserDiv(data);
 		}
-			
-		claimButton.innerHTML = "Unclaim Task";
-		claimButton.href = data.unclaim_url;
 	}
 }
 
@@ -288,7 +246,7 @@ function updateAssignUsers(){
  * @param {*} data 
  */
 function createAssignUserDiv(data) {
-	let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] a.task_name");
+	let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task a.task_name");
 
 	let divUsers = document.createElement("div");
 	divUsers.classList.add("assigned_users");
