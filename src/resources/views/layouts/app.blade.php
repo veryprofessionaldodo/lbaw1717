@@ -48,7 +48,6 @@
     <script type="text/javascript" src={{ asset('js/report.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script> 
     <script type="text/javascript" src={{ asset('js/project_settings.js') }} defer></script>
-    <script type="text/javascript" src={{ asset('js/task.js')}}></script> 
   </head>
   
   <body>

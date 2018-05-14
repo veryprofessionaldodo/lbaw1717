@@ -192,8 +192,7 @@ class TaskController extends Controller
                 ->first();
                 
                 $task_state_record->delete();
-                
-                
+                                
                 $assigned_user = Task::find($task_id)->userAssigned();
                 
                 $claim_route = route('assign_self', ['project_id' => $id, 'task_id' => $task_id]);
