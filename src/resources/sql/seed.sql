@@ -448,8 +448,8 @@ DROP FUNCTION IF EXISTS add_notification_promotion();
 CREATE FUNCTION add_notification_promotion() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-	IF(OLD.role != NEW.role) THEN
-		INSERT INTO Notification (date,user_id,project_id,comment_id,user_action_id)
+	IF(OLD.iscoordinator != NEW.iscoordinator) THEN
+		INSERT INTO Notification (date,notification_type,user_id,project_id,comment_id,user_action_id)
 			VALUES (now(),'promotion',NEW.user_id,NEW.project_id,NULL,NULL);
 	END IF;
 	RETURN NULL;
