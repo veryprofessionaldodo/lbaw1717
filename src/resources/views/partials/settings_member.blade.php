@@ -1,6 +1,10 @@
 <div data-id="{{$member->username}}" class="member row">
     <div class="col-lg-6 col-12">
-        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        @if($member->image != NULL)
+            <img src="{{ asset('storage/'.$member->image)}}">
+        @else						
+            <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+        @endif
         <h3>{{$member->username}}</h3>
     </div>
 
