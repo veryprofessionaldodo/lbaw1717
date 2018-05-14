@@ -17,6 +17,7 @@ section.container-fluid {
 	max-width: 75%;
 }	
 
+
 /** 
 	NAVTABS
 */
@@ -24,11 +25,6 @@ section.container-fluid {
 section.container-fluid div.row{
 	margin: 0;
 	padding: 0;
-}
-
-section.container-fluid div.row div.col-12 {
-	padding: 0;
-	
 }
 
 section.container-fluid .row .nav-tabs {
@@ -65,14 +61,11 @@ div.user_search  label {
 }
 
 
-.member.row{
+.member-row{
 	border-top: 1px solid #001;
 	background-color: #CCD9CE;
 }
 
-.member.row .col-12 {
-	padding-top:10em;
-}
 
 div.user_search input.form-control {
 	margin: 0 0 0 1em;
@@ -84,22 +77,25 @@ div.user_search button.btn {
 	margin: 0;
 }
 
+.col-lg-6 {
+	display: inline;
+}
 
 div#members {
-	background-color: #ECE7F3;
 	margin: 0;
-	min-height: 100vh;
 }
 
 div#members.row {
 	margin: 0;
 }
 
-div#members div.member:last-of-type {
+div#members div.member-row:last-of-type {
 	margin-bottom: 2em;
 }
 
-div#members div.member {
+div#members div.member-row {
+	padding: 0;
+	margin: 0;
 	text-align: left;
 	margin: 1em 2em;
 	color: #001;
@@ -107,7 +103,7 @@ div#members div.member {
 }
 
 
-div#members div.member img {
+div#members div.member-row img {
 	max-width: 5em;
 	max-height: 5em;
 	border-radius: 50%;
@@ -116,15 +112,16 @@ div#members div.member img {
 
 }
 
-div#members div.member h3 {
+div#members div.member-row h3 {
 	display: inline;
 	font-size: 20px;
 }
 
-div#members div.member div.buttons {
+div.buttons {
 	text-align: right;
 	margin: auto;
 	padding-right: 1em; 
+	float: right;
 }
 
 /** 
@@ -162,15 +159,15 @@ div#requests div.request div.option_buttons {
 
 
 @media screen and (max-width: 991px) {
-	div#members div.member {
+	div#members div.member-row {
 		text-align: center;
 	}
 
-	div#members div.member h3 {
+	div#members div.member-row h3 {
 		display: block;
 	}
 
-	div#members div.member div.buttons {
+	 div.buttons {
 		text-align: center;
 		margin: 1em 0;
 	}
@@ -209,7 +206,7 @@ div#requests div.request div.option_buttons {
 		max-width: 85%;
 	}
 
-	div#members div.member div.buttons {
+	div.buttons {
 		text-align: center;
 		margin: auto;
 		padding: 1em 0;
@@ -222,7 +219,7 @@ div#requests div.request div.option_buttons {
 		margin: 1em 1em;
 	}
 
-	div#members div.member div.buttons button.btn {
+	div.buttons button.btn {
 		font-size: 12px;
 		padding: 0.5em;
 	}

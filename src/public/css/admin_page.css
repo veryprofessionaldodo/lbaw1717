@@ -20,9 +20,25 @@ div.row {
   margin: 0 1em; 
 } 
  
-.container-fluid > div.row { 
-  min-height: 100vh; 
+div.container-fluid > div.row { 
+  min-height: 0; 
 } 
+
+#search_bar_admin form {
+  width: 100%;
+  text-align: right;
+  margin: 0;
+}
+
+#search_bar_admin input.form-control {
+  width: 70%;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+form .btn {
+  display: inline;
+}
  
 aside.col-12 { 
   padding: 0; 
@@ -37,10 +53,6 @@ aside a#active {
   font-size: 1.1em; 
   color: #aaa; 
 } 
-
-form {
-  display: grid;
-}
  
 div.row a.col-6 { 
   background-color: #00494C; 
@@ -72,19 +84,7 @@ section {
   margin: 0 0; 
   padding: 1em; 
 } 
- 
- 
-section div#search_bar input.form-control { 
-  display: inline; 
   
-   
-} 
- 
-section div#search_bar button.btn { 
-  display: inline-block; 
-  vertical-align: inherit; 
-} 
- 
 div > button { 
   background-color: #0A1827; 
   transition: all 0.2s; 
