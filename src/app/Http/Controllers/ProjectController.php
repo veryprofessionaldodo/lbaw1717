@@ -11,6 +11,7 @@ use App\Thread;
 use App\Category;
 use App\Comment;
 use App\Task;
+use App\User;
 
 
 class ProjectController extends Controller
@@ -330,6 +331,69 @@ class ProjectController extends Controller
       $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
       $request_id = $request->id;
       
+      $request->delete();
+
+      return response()->json(array('success' => true, 'request_id' => $request_id));
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+
+  public function projectSettingsPromote(Request $request){
+    try {
+
+      $user = User::where('username','=',$request->input('username'))->first();
+      
+      DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->update(
+        ['iscoordinator' => true]
+      );
+
+      //$users= DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->get();
+      //return $users;
+      return response()->json(array('success' => true, 'member_username' => $user->username));
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+
+  /*
+  Removes user from project
+   */
+  public function projectSettingsMembersRemove(Request $request){
+    try {
+
+      $user = User::where('username','=',$request->input('username'))->first();
+
+      DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->delete();
+
+      return response()->json(array('success' => true, 'member_username' => $user->username));
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+
+  public function projectSettingsRequestsAccept(Request $request){
+    try {
+
+      $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
+      $request_id = $request->id;
+
+      DB::table('project_members')->insert(
+        ['user_id' => $request->user_invited_id , 'project_id' =>$request->project_id , 'iscoordinator' => FALSE]
+      );
+
       $request->delete();
 
       return response()->json(array('success' => true, 'request_id' => $request_id));

@@ -41,11 +41,11 @@ Route::post('api/users/projects', 'ProjectController@create')->name('create_proj
 Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members'); //done
 Route::get('api/projects/{project_id}/settings', 'ProjectController@projectSettings')->name('project_settings');//done
 Route::get('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersView')->name('project_settings_members');//done
-//Route::delete('api/projects/{project_}/settings/members/{username}', 'ProjectController@projectSettingsMembersRemove');
+Route::post('api/projects/{project_id}/settings/members/{username}/remove', 'ProjectController@projectSettingsMembersRemove')->name('remove_member');//done
+Route::post('api/projects/{project_id}/settings/members/{username}/promote', 'ProjectController@projectSettingsPromote')->name('promote_member');//done
 Route::get('api/projects/{project_id}/settings/requests', 'ProjectController@projectSettingsRequestsView')->name('project_settings_requests');//done
-// Route::post('api/projects/{project_id}/settings/requests/{request_id}/accept', 'ProjectController@projectSettingsRequestsAccept');
+Route::post('api/projects/{project_id}/settings/requests/{request_id}/accept', 'ProjectController@projectSettingsRequestsAccept')->name('settings_accept_request');//done
 Route::post('api/projects/{project_id}/settings/requests/{request_id}/reject', 'ProjectController@projectSettingsRequestsReject')->name('rejectRequest');//done
-// Route::post('api/projects/{project_id}/edit', 'ProjectController@projectSettingsRequestsAccept');
 Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectStatisticsView')->name('project_stats');
 // Route::post('api/projects/{project_id}/members', 'ProjectController@projectMembersSearch');
 // Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
