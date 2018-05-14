@@ -83,8 +83,8 @@ Route::get('projects/{id}/threads', 'ThreadController@list')->name('forum'); //d
 Route::get('projects/{id}/threads/create', 'ThreadController@create')->name('new_thread_form'); //done
 Route::post('projects/{id}/threads/create', 'ThreadController@store')->name('new_thread_action'); //done
 Route::get('projects/{id}/threads/{thread_id}', 'ThreadController@show')->name('thread'); //done
-Route::get('projects/{id}/threads/{thread_id}/edit', 'ThreadController@edit')->name('edit_thread_form');
-Route::post('projects/{id}/threads/{thread_id}', 'ThreadController@update')->name('edit_thread_action');
+Route::get('projects/{id}/threads/{thread_id}/edit', 'ThreadController@edit')->name('edit_thread_form');//done
+Route::post('projects/{id}/threads/{thread_id}', 'ThreadController@update')->name('edit_thread_action');//done
 Route::delete('projects/{id}/threads/{thread_id}', 'ThreadController@destroy')->name('deleteThread'); //done
 
 Route::post('projects/{id}/threads/{thread_id}/comments', 'CommentController@store')->name('new_comment'); //done

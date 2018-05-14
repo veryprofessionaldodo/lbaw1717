@@ -20,10 +20,10 @@
     <div id="thread">
         <div class="row" id="header">
             <div class="col-3">
-                @if($thread->user->image != null)
-                <img src="{{$thread->user->image}}" width="150px">
+                @if($thread->user->image != NULL)
+                    <img src="{{$thread->user->image}}" width="150px">
                 @else
-                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" width="150px">
+                    <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" width="150px">
                 @endif
                 <figcaption>{{$thread->user->username}}</figcaption>
             </div>
@@ -57,7 +57,13 @@
         
         
         <div class="comment row" id="thread">
-            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+            
+            @if(Auth::user()->image != NULL)
+                <img src="{{ asset('storage/'.Auth::user()->image)}}">
+            @else						
+                <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+            @endif
+
             <h6>{{\Auth::user()->username}}</h6>
             <form method="POST" action="{{ route('new_comment', ['id' => $project->id, 'thread_id' => $thread->id])}}">
                 {{ csrf_field()}}
