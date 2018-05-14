@@ -1,6 +1,11 @@
 <div data-id="{{ $comment->id }}" class="comment">
 
-	<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+	@if($comment->user->image != NULL)
+		<img src="{{ asset('storage/'.$comment->user->image)}}">
+	@else						
+		<img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+	@endif
+	
 	<a href="{{ route('user_profile', ['username' => $comment->user->username])}}">{{$comment->user->username}}</a> <!-- TODO ANCHOR and adapte css-->
 	<p>{{$comment->content}}</p>
 	

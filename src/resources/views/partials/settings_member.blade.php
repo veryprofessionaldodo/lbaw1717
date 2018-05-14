@@ -1,15 +1,22 @@
 <div data-id="{{$member->username}}" class="member-row">
     <div class="col-lg-6 col-12">
-        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        @if($member->image != NULL)
+            <img src="{{ asset('storage/'.$member->image)}}">
+        @else						
+            <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+        @endif
         <h3>{{$member->username}}</h3>
     </div>
 
-    @if($member->pivot->iscoordinator == false)
-        <div class="col-lg-6 col-12 buttons">
+<div class="col-lg-6 col-12 buttons">
+        @if($member->pivot->iscoordinator == false)
             <a href="{{route('promote_member',['project_id' => $project_id,'username' => $member->username])}}" class="btn promote">Promote to Coordenator</i></a>
-            <a href="{{route('remove_member',['project_id' => $project_id,'username' => $member->username])}}" class="btn remove"><i class="fas fa-times"></i></a>
-        </div>
-    @else
-    @endif
+        @else
+        @endif
 
+        @if($member->username !== Auth::user()->username)
+            <a href="{{route('remove_member',['project_id' => $project_id,'username' => $member->username])}}" class="btn remove"><i class="fas fa-times"></i></a>
+        @else
+        @endif
+    </div>
 </div>
