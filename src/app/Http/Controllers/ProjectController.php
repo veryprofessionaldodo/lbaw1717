@@ -45,8 +45,6 @@ class ProjectController extends Controller
         
         $sprints = $project->SprintsTasksComments();
         
-        //TODO: get user assigned to task
-        
         return view('pages/project_page', ['project' => $project, 'sprints' => $sprints, 'role' => $role]);
         
       } catch(\Illuminate\Database\QueryException $qe) {
@@ -131,7 +129,7 @@ class ProjectController extends Controller
           
         }
         else
-        $this->authorize('not_authorized', $project);
+          $this->authorize('not_authorized', $project);
         
         $tasks = $project->tasksComments();
         

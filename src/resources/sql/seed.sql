@@ -614,7 +614,7 @@ BEGIN
 								AND a.user_completed_id = b.user_completed_id AND
 								b.state = 'Unassigned' AND a.date < b.date);
 
-	IF (user_task_id IS NOT NULL) THEN
+	IF (user_task_id IS NOT NULL AND NEW.state <> 'Completed') THEN
 
 		INSERT INTO task_state_record (date, state, user_completed_id, task_id) 
 			VALUES (now(), 'Unassigned', user_task_id, NEW.task_id);

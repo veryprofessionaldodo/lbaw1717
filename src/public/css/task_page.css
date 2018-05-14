@@ -25,12 +25,12 @@ section#task_page div.assigned_users img{
 	margin: auto 0 auto auto;
 }
 
-section#task_page div#assign_user_form {
+section#task_page form#assign_user_form {
     margin: 0 1em 0 0;
     display: inline;
 }
 
-section#task_page div#assign_user_form.hidden {
+section#task_page form#assign_user_form.hidden {
     display: none;
 }
 
