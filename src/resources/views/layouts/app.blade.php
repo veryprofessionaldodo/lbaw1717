@@ -30,7 +30,7 @@
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>   
 
     <!-- only for bootstrap -->
     <script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -39,13 +39,16 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
     <!-- only for bootstrap -->
 
+    <script defer src={{ asset('js/tinymce/tinymce.min.js')}}></script>
+
     <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/profile.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/project.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/forum.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/report.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script> 
-    <script type="text/javascript" src={{ asset('js/project_settings.js') }} defer></script> 
+    <script type="text/javascript" src={{ asset('js/project_settings.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/task.js')}}></script> 
   </head>
   
   <body>

@@ -22,6 +22,17 @@ function addEventListeners() {
 	for(let i = 0; i < tasksCheckboxes.length; i++){
 		tasksCheckboxes[i].addEventListener('click', updateTaskCompletion);
 	}
+
+	// assign to task
+	let assignSelfTaskButton = document.querySelectorAll("div.sprint-task a.claim");
+	for(let i = 0; i < assignSelfTaskButton.length; i++) {
+		assignSelfTaskButton[i].addEventListener('click', assignSelfTask);
+	}
+
+	let addTaskButtons = document.querySelectorAll("form.sprint-task.create_task a");
+	for(let i = 0; i < addTaskButtons.length; i++){
+		addTaskButtons[i].addEventListener('click', createTask);
+	}
 }
 
 function encodeForAjax(data) {
@@ -157,16 +168,14 @@ function updateCommentDeletion(){
 
 function updateTaskCompletion() {
 	let url = this.getAttribute("data-url");
-	console.log(url);
 	
 	let state;
 	if(this.checked){
 		state = "Completed";
 	} else if(!this.checked){
-		console.log('Ah');
 		state = "Uncompleted";
 	}
-	console.log(url);
+	
 	sendAjaxRequest('post', url, {state: state}, updateTaskState);
 }
 
@@ -174,22 +183,16 @@ function updateTaskState(){
 	let data = JSON.parse(this.responseText);
 	
 	let task = document.querySelector("div[data-id='" + data.task_id + "']");
-	console.log(task);
 
 	if(data.state === "Completed"){
 		task.classList.add("task_completed");
 
-		let button = document.querySelector("div[data-id='" + data.task_id + "'] button.claim");
-
 		if(data.coordinator){
-	
-			let newButton = document.createElement("button");
-			newButton.classList.add("btn", "revive");
-			newButton.innerHTML = "Revive Task";
-	
-			button.parentNode.replaceChild(newButton, button);
+			let coordinator_options = document.querySelector("div[data-id='" + data.task_id + "'] div.coordinator_options");
+			coordinator_options.remove();
 		}
 		else {
+			let button = document.querySelector("div[data-id='" + data.task_id + "'] a.claim");
 			button.remove();
 		}
 
@@ -203,7 +206,8 @@ function updateTaskState(){
 		task.classList.remove("task_completed");
 
 		if(data.coordinator){
-			let button = document.querySelector("div[data-id='" + data.task_id + "'] button.revive");
+
+			let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] a.task_name");
 	
 			let newDiv = document.createElement("div");
 			newDiv.classList.add("coordinator_options");
@@ -214,39 +218,124 @@ function updateTaskState(){
 			button1.classList.add("btn", "edit_task");
 			newDiv.appendChild(button1);
 
-			let button2 = document.createElement("button");
-			button2.innerHTML = "Assign Task";
-			//ADD URL
-			button2.classList.add("btn");
-			newDiv.appendChild(button2);
-
-			button.parentNode.replaceChild(newDiv, button);
+			referenceNode.parentNode.insertBefore(newDiv, referenceNode.nextSibling);
 
 		} else {
 
-			let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] p");
-	
 			if(data.user_username != null){
-				let divUsers = document.createElement("div");
-				divUsers.classList.add("assigned_users");
-
-				let assigned_user = document.createElement("img");
-				assigned_user.src = data.image;
-				assigned_user.title = data.user_username;
-
-				divUsers.appendChild(assigned_user);
-
-				referenceNode.parentNode.insertBefore(divUsers, referenceNode.nextSibling);
+				createAssignUserDiv(data);
 			}
 			
-			let newButton = document.createElement("button");
+			let newButton = document.createElement("a");
 			newButton.classList.add("btn", "claim");
-			newButton.innerHTML = "Claim Task";
+			newButton.href = data.claim_url;
+
+			if(data.assigned)
+				newButton.innerHTML = "Unclaim Task"
+			else
+				newButton.innerHTML = "Claim Task";
 			task.appendChild(newButton);
 		} 
-
 	}
 }
 
+/**
+ * Assign or unassign self to task
+ * @param {*} event 
+ */
+function assignSelfTask(event){
+	event.preventDefault();
+
+	sendAjaxRequest('post', event.target.href, null, updateAssignUsers);
+}
+
+/**
+ * Updates the assign_users Div and buttons
+ */
+function updateAssignUsers(){
+	let data = JSON.parse(this.responseText);
+
+	let assigned_user = document.querySelector("div[data-id='" + data.task_id + "'] div.assigned_users");
+	let claimButton = document.querySelector("div[data-id='" + data.task_id + "'] a.claim");
+
+	// the request was to unassign user of the task
+	if(data.claim_url != null){
+
+		assigned_user.remove();
+		claimButton.href = data.claim_url;
+		claimButton.innerHTML = "Claim Task";
+
+	}
+	else {
+		// if the request was to assign user to task
+		if(assigned_user !== null){
+			
+			//update assigned_user
+			assigned_user.firstChild.src = data.image;
+			assigned_user.firstChild.title = data.username;
+		}
+		else {
+			createAssignUserDiv(data);
+		}
+			
+		claimButton.innerHTML = "Unclaim Task";
+		claimButton.href = data.unclaim_url;
+	}
+}
+
+/**
+ * Creates a assign_users DIV with the current assigned user to the task
+ * @param {*} data 
+ */
+function createAssignUserDiv(data) {
+	let referenceNode = document.querySelector("div[data-id='" + data.task_id + "'] a.task_name");
+
+	let divUsers = document.createElement("div");
+	divUsers.classList.add("assigned_users");
+
+	let assigned_user = document.createElement("img");
+	assigned_user.src = data.image;
+	assigned_user.title = data.user_username;
+
+	divUsers.appendChild(assigned_user);
+
+	referenceNode.parentNode.insertBefore(divUsers, referenceNode.nextSibling);
+}
+
+function createTask(event) {
+	event.preventDefault();
+
+	let sprint_project_id = event.target.getAttribute('data-id').split('-');
+
+
+	let inputTaskName = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task input[type='text']");
+	let inputEffort = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task input[type='number']");
+	let formHref = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task").getAttribute("action");
+
+	sendAjaxRequest("POST", formHref, {sprint_id: sprint_project_id[0], project_id: sprint_project_id[1],
+				name: inputTaskName.value, effort: inputEffort.value}, addTaskInfo);
+}
+
+function addTaskInfo() {
+	let data = JSON.parse(this.responseText);
+
+	let div = document.querySelector("div#sprint-" + data.sprint_id + " form.sprint-task.create_task");
+	console.log(div);
+
+	if(data.success){
+		div.insertAdjacentHTML('beforebegin', data.html);
+	}
+	else {
+		let element = '<div class="alert alert-dismissible alert-danger"> <button type="button" class="close" data-dismiss="alert">&times;</button><strong>Max effort exceeded!</strong></div>';
+		div.insertAdjacentHTML('beforebegin', element);
+	}
+
+	let inputTaskName = document.querySelector("div#sprint-" + data.sprint_id +" form.sprint-task.create_task input[type='text']");
+	let inputEffort = document.querySelector("div#sprint-" + data.sprint_id +" form.sprint-task.create_task input[type='number']");
+
+	inputEffort.value = "";
+	inputTaskName.value = "";
+
+}
 
 addEventListeners();

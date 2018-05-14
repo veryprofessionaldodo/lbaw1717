@@ -1,0 +1,79 @@
+div.row {
+    width: 100%;
+    margin: 0;
+}
+
+div.col-12 {
+    padding: 0;
+}
+
+div#task h1 {
+    margin: 0.5em 0;
+}
+
+section#task_page div.assigned_users p{
+    display: inline;
+    font-size: 12px;
+}
+
+section#task_page div.assigned_users img{
+	grid-column-start: 3;
+	grid-column-end: 4;
+	max-width: 25%;
+	min-width: 1em;
+	border-radius: 50px;
+	margin: auto 0 auto auto;
+}
+
+section#task_page div#assign_user_form {
+    margin: 0 1em 0 0;
+    display: inline;
+}
+
+section#task_page div#assign_user_form.hidden {
+    display: none;
+}
+
+section#task_page input.user_name.form-control {
+    width: auto;
+    display: inline;
+    vertical-align: middle;
+    margin: auto;
+}
+
+section#task_page button.send_name {
+    display: inline;
+}
+
+section#task_page div#checkbox {
+    text-align: right;
+    margin: auto 0;
+}
+
+section#task_page input[type="checkbox"] {
+	width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    margin: auto;
+}
+
+
+section#task_page div#task_info form.hidden {
+    display: none;
+}
+
+section#task_page div#task_info div#task_description {
+    margin: 2em 0;
+    padding: 1em;
+    text-align: left;
+    box-shadow: 0px 0px 10px #636161;
+}
+
+section#task_page div#task_info form {
+    display: block;
+    margin: 2em 0;
+}
+
+section#task_page div#task_info form button {
+    margin-top: 1em;
+}

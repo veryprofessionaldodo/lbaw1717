@@ -63,14 +63,14 @@ Route::post('api/projects/{project_id}/sprints', 'SprintController@create')->nam
 
 //Tasks 
 Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->name('project_tasks');
-// Route::get('api/projects/{project_id}/tasks/{task_id}', 'ProjectController@taskPageView');
+Route::get('api/projects/{project_id}/tasks/{task_id}', 'TaskController@show')->name('task_page');
 // Route::get('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditForm');
-// Route::post('api/projects/{project_id}/tasks/{task_id}/edit', 'ProjectController@taskEditAction');
+Route::post('api/projects/{project_id}/tasks/{task_id}/edit', 'TaskController@edit')->name('edit_task');
 // Route::delete('api/projects/{project_id}/tasks/{task_id}', 'ProjectController@deleteTask');
 Route::post('api/projects/{project_id}/tasks/{task_id}/complete', 'TaskController@update')->name('update_task');
-// Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'ProjectController@taskAssignUser');
-// Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'ProjectController@taskUnassignUser');
-// Route::put('api/projects/{project_id}/tasks', 'ProjectController@newTask');
+Route::post('api/projects/{project_id}/tasks/{task_id}/assign', 'TaskController@assignSelf')->name('assign_self');
+Route::post('api/projects/{project_id}/tasks/{task_id}/unassign', 'TaskController@unassignSelf')->name('unassign_self');
+Route::post('api/projects/{project_id}/tasks', 'TaskController@store')->name('new_task');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task'); //done
 // Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
@@ -104,17 +104,3 @@ Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentRep
 Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form'); //done
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done
 Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report'); //done
-
-
-/*
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
-
-// API
-Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
-*/

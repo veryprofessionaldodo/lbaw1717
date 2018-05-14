@@ -176,18 +176,22 @@ div.sprint-task {
 	border-top: 2px solid #000;*/
 }
 
-div.sprint-task.create_task {
+form.sprint-task.create_task {
 	padding: 1em;
 	display: flex;
 	justify-content: flex-start;
 }
 
-div.sprint-task.create_task input {
-	width: 100%;
+form.sprint-task.create_task input[type="text"] {
 	margin: auto 1em;
 }
 
-div.sprint-task.create_task button {
+form.sprint-task.create_task input[type="number"] {
+	width: 25%;
+	margin: auto 1em;
+}
+
+form.sprint-task.create_task a {
 	margin: auto;
 	display: inline;
 }
@@ -200,7 +204,7 @@ div.sprint-task svg{
 	color: #002;
 }
 
-div.sprint-task p{
+div.sprint-task a.task_name{
 	color: #002;
 	grid-column-start: 2;
 	grid-column-end: 3;
@@ -233,7 +237,7 @@ div.sprint-task div.coordinator_options button.btn {
 	padding: 0 1em;
 }
 
-div.sprint-task button.btn {
+div.sprint-task a.btn {
 	grid-column-start: 4;
 	grid-column-end: 5;
 	grid-row: 1;
@@ -401,43 +405,43 @@ div.comment div.form_comment form button.btn {
 	MEMBERS
 */
 
-div#members div.row{
+div#members_project div.row{
 	margin: 0;
 	background-color: #a1d0dd; 
 }
 
-div#members div#user_search {
+div#members_project div#user_search {
 	margin: 1em 0;
 }
 
-div.members .header{
+div.members_project .header{
 	border-top:2px solid #0A1827;
 	border-bottom:2px solid #0A1827;
 	color: #001;
 	background-color: #ECE7F3; 
 }
 
-div#members div#user_search input.form-control{
+div#members_project div#user_search input.form-control{
 	margin: auto;
 	width: auto;
 	display: inline;
 }
 
-div#members div#user_search button.btn{
+div#members_project div#user_search button.btn{
 	display: inline;
 }
 
-div#members div.member {
+div#members_project div.member {
 	margin: 0 auto;
 	padding: 1em;
 	border-top: 1px solid #001;
 }
 
-div#members div.member div.info {
+div#members_project div.member div.info {
 	text-align: left;
 }
 
-div#members div.member div.info img{
+div#members_project div.member div.info img{
 	margin: auto;
 	max-width: 5em;
 	max-height: 5em;
@@ -445,14 +449,14 @@ div#members div.member div.info img{
 	margin: 0 1em;
 }
 
-div#members div.member div.info a{
+div#members_project div.member div.info a{
 	margin: 1em auto;
 	font-weight: bold;
 	display: inline;
 	font-size: 18px;
 }
 
-div#members div.member p {
+div#members_project div.member p {
 	margin: auto;
 	display: block;
 }

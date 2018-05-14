@@ -6,18 +6,15 @@
 	<div data-id="{{ $task->id}}" class="sprint-task task_completed">
 		<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
 				<i class="fas fa-sort-down"></i></a>
-			<p>{{$task->name}}</p>
+				<a class="task_name" href="{{route('task_page',['project_id' => $project->id, 'task_id' => $task->id])}}">{{$task->name}}</a>
 
-			@if($role == 'co')
-				<button class="btn revive">Revive Task</button>
-			@endif
 			<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox" checked>
 		</div>
 @else
 	<div data-id="{{ $task->id}}" class="sprint-task">
 		<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
 			<i class="fas fa-sort-down"></i></a>
-		<p>{{$task->name}}</p>
+		<a class="task_name" href="{{route('task_page',['project_id' => $project->id, 'task_id' => $task->id])}}">{{$task->name}}</a>
 
 		@if($last_record->state == "Assigned")
 			<div class="assigned_users">
@@ -30,14 +27,18 @@
 		@endif
 
 		@if($role == 'tm')
-			<button class="btn claim">Claim task</button>
-		@elseif($role == 'co')
-			<div class="coordinator_options">
-				<button class="btn edit_task"><i class="fas fa-pencil-alt"></i></button>
-				<button class="btn">Assign task</button>
-			</div>
+
+			@if($task->isUserAssigned(Auth::id()) == null)
+				<a class="btn claim" href="{{ route('assign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
+				Claim task</a>
+			@else
+				<a class="btn claim" href="{{ route('unassign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
+					Unclaim task</a>
+			@endif
 		@endif
+
 		<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox">
+
 	</div>
 @endif
 

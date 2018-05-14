@@ -604,17 +604,21 @@ DROP FUNCTION IF EXISTS assign_user_task();
 CREATE FUNCTION assign_user_task() RETURNS TRIGGER AS
 $BODY$
 DECLARE
-	user_id task_state_record.user_completed_id%TYPE;
+	user_task_id task_state_record.user_completed_id%TYPE;
 BEGIN
-	IF (SELECT user_completed_id AS user_id FROM task_state_record a 
+
+	SELECT a.user_completed_id INTO user_task_id FROM task_state_record a 
 			WHERE NEW.task_id = a.task_id
 			AND a.user_completed_id <> NEW.user_completed_id AND a.state = 'Assigned'
 			AND NOT EXISTS (SELECT * FROM task_state_record b WHERE a.task_id = b.task_id
 								AND a.user_completed_id = b.user_completed_id AND
-								b.state = 'Unassigned' AND a.date < b.date) <> NULL) THEN
+								b.state = 'Unassigned' AND a.date < b.date);
+
+	IF (user_task_id IS NOT NULL) THEN
 
 		INSERT INTO task_state_record (date, state, user_completed_id, task_id) 
-			VALUES (now(), 'Unassigned', user_id, NEW.task_id);
+			VALUES (now(), 'Unassigned', user_task_id, NEW.task_id);
+			
 	END IF;
 	RETURN NEW;
 END
@@ -667,12 +671,12 @@ INSERT INTO administrator (id, username, password) VALUES (1, 'admin', '1234Admi
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Pedro Reis','partelinuxes','pedroreis@gmail.com',NULL,'$2a$04$A8A9VFFpZQzrL3tECqVeY..wCpv8Mi3RLqhNy7rmgb9z32obgQBQy',TRUE); --eunaverdadegostodewindows
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Ana Margarida','PortugueseCountryFan','just2playgg@gmail.com',NULL,'$2a$04$gtmJyF/vHKCyie9/95zs5.fNhyiST2QLIo7RPipzbw7gASx/2ogU6',FALSE); --asdasdparecemeseguro123
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Luis Correia','luigi_darkside','luigi_mei<3@gmail.com',NULL,'$2a$04$p8mMBaGAuVd9WykkcgEwVe8k8r2fAwURfUyC0SNA22mhiVjL/XtXi',FALSE); --passwordprofissional123
-INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Vicente Espinha','vespinha','sdds_do_liedson@gmail.com','http://i.dailymail.co.uk/i/pix/2008/04/01/article-1004361-00A0672B00000578-20_468x321_popup.jpg','$2a$04$0l7NUZaVkLggU/zvUfZcHu2YZFlmuH6pnyN35/ptVKyfCmNihEarS',FALSE); --queroverosportingcampeao
+INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Vicente Espinha','vespinha','sdds_do_liedson@gmail.com',NULL,'$2a$04$0l7NUZaVkLggU/zvUfZcHu2YZFlmuH6pnyN35/ptVKyfCmNihEarS',FALSE); --queroverosportingcampeao
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Marco Silva','Marcus_97','marcus_silva_97@gmail.com',NULL,'$2a$04$.mPl.hlwqbD.tX/ulwLfR.ocprsbpfeEhwZnRC8UbnHzhZsxGTKI.',FALSE); --1234Marcus-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('André Ribeiro','programmer_rib','andre_ribeiro@gmail.com',NULL,'$2a$04$UvVGqhkYDhuj4n3OvglI3efBw5jfNi70r2ujTP9knwB56lvQcMdOW',FALSE); --1234Andre-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Diana Salgado','dianne_sal','diana_salgado_2@hotmail.com',NULL,'$2a$04$8rnLzQsMvPSpCgdPZq4OsezYmnHSMtrg0hsTlyxVbZ/yuXQTa6cf.',FALSE); --1234Diana-
-INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Andrew Tanenbaum','minix_lover','tanenbaum@gmail.com','https://pt.wikipedia.org/wiki/Andrew_Stuart_Tanenbaum','$2a$04$JvOpczD9Mmh.y90ZC4V5/uFXbcgJRgkx2KByJE9v7oBpE/D5h7tpG',FALSE); --1234Andrew-
-INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Linus Torvalds','linux_lover_52','linus_torvalds@gmail.com','https://en.wikipedia.org/wiki/Linus_Torvalds','$2a$04$P/Nd2IZSWTFtXUGFKIfRdetcEsonPMQ0zWMd1gFJAn2lXU.Gkk.Eu',FALSE); --1234Linus-
+INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Andrew Tanenbaum','minix_lover','tanenbaum@gmail.com',NULL,'$2a$04$JvOpczD9Mmh.y90ZC4V5/uFXbcgJRgkx2KByJE9v7oBpE/D5h7tpG',FALSE); --1234Andrew-
+INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Linus Torvalds','linux_lover_52','linus_torvalds@gmail.com',NULL,'$2a$04$P/Nd2IZSWTFtXUGFKIfRdetcEsonPMQ0zWMd1gFJAn2lXU.Gkk.Eu',FALSE); --1234Linus-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Susana Torres','susana_torres_92','susana_torres_92@gmail.com',NULL,'$2a$04$MGNQLACkm1H1E7UPyg5sJe7pEAc9dNwnH0YyCd3HMC9JoyixCuimq',FALSE);--1234Susana-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Diogo Mateus','diogo_76','diogo.mateus@gmail.com',NULL,'$2a$04$N/dq9RimubASPdNEnZAMkuVXFxaifT2tcpSavQVfIVMMoewze3Bwa',FALSE); --1234Diogo-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Adelino Bastos','adele_boy_67','adelino.bastos@gmail.com',NULL,'$2a$04$o9HPoqIJlqfbW20qj3YcR.xH8hmuVSs0VcZ.ko2FNPtIdzcGUbXba',FALSE); --1234Adelino-
@@ -680,8 +684,8 @@ INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Analisa
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Madalena Soares','madalena_muffin','madalena_muffin@gmail.com',NULL,'$2a$04$dSsohrJB0QpV.3bi5i5v.u.g0AZ8zGCbOhQVT1aqvGONXQxptaFau',FALSE); --1234Madalena-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Pedro Batista','batista_89','pedro.batista@gmail.com',NULL,'$2a$04$2N95FBUIfm.ThJCFAyeXA.W5yKnbA3ixW8kcfFAU/Pn1aK2mb16Ua',FALSE); --1234Pedro-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Raul Vidal','sejam_felizes','raul.vidal@gmail.com',NULL,'$2a$04$bZm3UQ2YoxzkmeVqc4JIPO3yXF9PZOSb7/haEZK5QeZPkHDPU1Oie',FALSE);--1234Vidal-
-INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Elliot Alderson','Mr_Robot','im_not_mr_robot@gmail.com','https://shiiftyshift.deviantart.com/art/Hackerman-643435212','$2a$04$pN01sGBVWCwf0bV8SeRiDecopFcctLcVRxDEy4BIzK3GXpAlN90pO',FALSE);--1234Elliot-
-INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Felix Kjellberg','Pewdiepie','meme_review@gmail.com','https://gfycat.com/gifs/detail/hilariouseagerarmednylonshrimp','$2a$04$hdUC2rQF4FLqngwja19JIeU0B9Wq/aHKKGG46TrS4jpxR/d4eBLP2',FALSE); --1234Pewdiepie-
+INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Elliot Alderson','Mr_Robot','im_not_mr_robot@gmail.com',NULL,'$2a$04$pN01sGBVWCwf0bV8SeRiDecopFcctLcVRxDEy4BIzK3GXpAlN90pO',FALSE);--1234Elliot-
+INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Felix Kjellberg','Pewdiepie','meme_review@gmail.com',NULL,'$2a$04$hdUC2rQF4FLqngwja19JIeU0B9Wq/aHKKGG46TrS4jpxR/d4eBLP2',FALSE); --1234Pewdiepie-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Helga Smith','helga_93','helga_legit@gmail.com',NULL,'$2a$04$R3uIlr3HrNBkahguqeg0J.6g5kZhTYPh12Fv4RfDP0bTOcjaiCDXy',FALSE);--1234Helga-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Jeff Sessions','my_name_jeff','my_name_jeff@gmail.com',NULL,'$2a$04$NIsrD.U6a2Wv62ytWFo1UOOAe3X3JugMEMlw4E5KlMu.3es.Mw.My',FALSE);--1234Jeff-
 INSERT INTO "user" (name,username,email,image,password,isAdmin) VALUES ('Diogo Dores','d_pain','fortnite@gmail.com',NULL,'$2a$04$Xn6W/4qPjcTSbUgDyzR2VupuTw73TkthIJ6jt8TJMwVRLfqMSqRsS',FALSE);--fortniteisluv
