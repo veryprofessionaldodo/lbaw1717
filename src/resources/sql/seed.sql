@@ -273,7 +273,7 @@ ALTER TABLE ONLY task_state_record
 	ADD CONSTRAINT task_state_record_id_user_fkey FOREIGN KEY (user_completed_id) REFERENCES "user"(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY task_state_record
-	ADD CONSTRAINT task_state_record_id_task_fkey FOREIGN KEY (task_id) REFERENCES task(id) ON UPDATE CASCADE;
+	ADD CONSTRAINT task_state_record_id_task_fkey FOREIGN KEY (task_id) REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY sprint_state_record
 	ADD CONSTRAINT sprint_state_record_id_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE;

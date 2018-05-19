@@ -11,6 +11,14 @@ div#task h1 {
     margin: 0.5em 0;
 }
 
+div.col-12.alert.alert-dismissible.alert-danger{
+    padding: 1em;
+}
+
+form#delete_task {
+    display: inline;
+}
+
 section#task_page div.assigned_users p{
     display: inline;
     font-size: 12px;

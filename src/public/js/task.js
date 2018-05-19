@@ -1,6 +1,6 @@
 function taskPageEventListeners() {
     let editButton = document.querySelector("button.edit_task");
-    let assignTaskUserButton = document.querySelector("div.coordinator_options button#assign_user");
+    let assignTaskUserButton = document.querySelector("div.coordinator_options a#assign_user");
 
     if(editButton !== null){
         editButton.addEventListener('click', showEditForm);
@@ -19,8 +19,16 @@ function taskPageEventListeners() {
 	assignSelfTaskButton.addEventListener('click', assignSelfTask);
 
 	// assign task to other
-	let assignTaskOtherButton = document.querySelector("div.coordinator_options form#assign_user_form button.send_name");
-	assignTaskOtherButton.addEventListener('click', assignOtherTask);
+	let assignTaskOtherForm = document.querySelector("div.coordinator_options form#assign_user_form");
+	if(assignTaskOtherForm !== null){
+		assignTaskOtherForm.addEventListener('submit', assignOtherTask);
+	}
+
+	//unassign other from task
+	let unassignTaskOtherButton = document.querySelector("div.coordinator_options a#unassign_user");
+	if(unassignTaskOtherButton !== null){
+		unassignTaskOtherButton.addEventListener('click', unassignOtherTask);
+	}
 }
 
 function initTinyMCE() {
@@ -99,46 +107,66 @@ function updateTaskCompletion() {
 function updateTaskState(){
 	let data = JSON.parse(this.responseText);
 
-	if(data.state === "Completed"){
-
-		let assigned_users = document.querySelector("div.assigned_users");
-		while (assigned_users.hasChildNodes()) {
-			assigned_users.removeChild(assigned_users.lastChild);
-		}
-
+	if(!data.success){
+		let errorMessage = '<div class="col-12 alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>' + data.error + '</strong></div>';
 		
-		let task_options = document.querySelector("div.task_options");
-		while (task_options.hasChildNodes()) {
-			task_options.removeChild(task_options.lastChild);
-		}
-
-
-	} else if(data.state === "Uncompleted") {
-
-		if(data.user_username != null){
-			updateDivAssignUsers(data);
-		}
-
-		let referenceNode = document.querySelector("div.task_options");
-
-		if(data.coordinator){
-			
-			referenceNode.innerHTML = data.coordinator_options;
-
-		} else {
-			
-			let newButton = document.createElement("a");
-			newButton.classList.add("btn", "claim");
-			newButton.href = data.claim_url;
-
-			if(data.assigned)
-				newButton.innerHTML = "Unclaim Task"
-			else
-				newButton.innerHTML = "Claim Task";
-
-			referenceNode.appendChild(newButton);
-		} 
+		let referenceNode = document.querySelector("div#task");
+		referenceNode.insertAdjacentHTML('afterbegin', errorMessage);
 	}
+	else {
+
+		if(data.state === "Completed"){
+
+			let assigned_users = document.querySelector("div.assigned_users");
+			while (assigned_users.hasChildNodes()) {
+				assigned_users.removeChild(assigned_users.lastChild);
+			}
+	
+			
+			let task_options = document.querySelector("div.task_options");
+			while (task_options.hasChildNodes()) {
+				task_options.removeChild(task_options.lastChild);
+			}
+
+			let divCompleted = '<div class="alert alert-dismissible alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>This task is <strong>completed</strong>.</div>';
+			let referenceNode = document.querySelector("section#task_page");
+			referenceNode.insertAdjacentHTML('afterbegin', divCompleted);
+	
+		} else if(data.state === "Uncompleted") {
+			
+			let divCompletedMessage = document.querySelector("div.alert.alert-success");
+			if(divCompletedMessage !== null){
+				divCompletedMessage.remove();
+			}
+
+			if(data.user_username != null){
+				updateDivAssignUsers(data);
+			}
+	
+			let referenceNode = document.querySelector("div.task_options");
+	
+			if(data.coordinator){
+				
+				referenceNode.innerHTML = data.coordinator_options;
+				taskPageEventListeners();
+	
+			} else {
+				
+				let newButton = document.createElement("a");
+				newButton.classList.add("btn", "claim");
+				newButton.href = data.claim_url;
+	
+				if(data.assigned)
+					newButton.innerHTML = "Unclaim Task"
+				else
+					newButton.innerHTML = "Claim Task";
+	
+				referenceNode.appendChild(newButton);
+			} 
+		}
+
+	}
+
 }
 
 /**
@@ -159,6 +187,7 @@ function updateAssignUsers(){
 	let data = JSON.parse(this.responseText);
 
 	let buttonClaim = document.querySelector("div.task_options a.claim");
+	let assignTaskOtherButton = document.querySelector("div.coordinator_options a.claim_other");
 
 	if(data.unclaim_url != null){		
 
@@ -168,9 +197,13 @@ function updateAssignUsers(){
 		buttonClaim.innerHTML = "Unclaim task";
 		buttonClaim.href = data.unclaim_url;
 
+		assignTaskOtherButton.outerHTML = '<a class="btn btn-primary claim_other" id="assign_user">Assign task to user</a>';
+		assignTaskOtherButton = document.querySelector("div.coordinator_options a#assign_user");
+		assignTaskOtherButton.addEventListener('click', showAssignUserForm);
+
 	}
 	else if(data.claim_url != null){
-		// user was unassigned
+		// user is unassigned
 		let assigned_users = document.querySelector("div.assigned_users");
 		while (assigned_users.hasChildNodes()) {
 			assigned_users.removeChild(assigned_users.lastChild);
@@ -184,10 +217,9 @@ function updateAssignUsers(){
 function assignOtherTask(event){
 	event.preventDefault();
 
-	let url = event.target.parentNode.action;
-	let inputUsername = document.querySelector("div.coordinator_options form#assign_user_form input.user_name").value;
+	let inputUsername = document.querySelector("div.coordinator_options form#assign_user_form input.user_name");
 
-	sendAjaxRequest('POST', url, {username: inputUsername, id: 4, task_id:14}, updateOtherUserAssigned);
+	sendAjaxRequest('POST', event.target.action, {username: inputUsername.value}, updateOtherUserAssigned);
 }
 
 function updateOtherUserAssigned() {
@@ -195,7 +227,7 @@ function updateOtherUserAssigned() {
 	console.log(data);
 
 	if(!data.success) {
-		let errorMessage = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>' + data.message + '</strong></div>';
+		let errorMessage = '<div class="col-12 alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>' + data.error + '</strong></div>';
 		
 		let referenceNode = document.querySelector("div#task");
 		referenceNode.insertAdjacentHTML('afterbegin', errorMessage);
@@ -205,12 +237,60 @@ function updateOtherUserAssigned() {
 
 		updateDivAssignUsers(data);
 	
-		let assignUserButton = document.querySelector("button#assign_user");
+		let assignUserButton = document.querySelector("a#assign_user");
+		assignUserButton.innerHTML = "Unassign user from task";
 		assignUserButton.id = "unassign_user";
 		assignUserButton.href = data.unclaim_url;
+		assignUserButton.addEventListener('click', unassignOtherTask);
 	
 		let form = document.querySelector("div.coordinator_options form#assign_user_form");
 		form.classList.add("hidden");
+
+		let buttonClaim = document.querySelector("div.task_options a.claim");
+		buttonClaim.innerHTML = "Claim task";
+		buttonClaim.href = data.claim_self_url;
+	}
+
+	let inputUsername = document.querySelector("div.coordinator_options form#assign_user_form input.user_name");
+	inputUsername.value = "";
+}
+
+function unassignOtherTask(event){
+	event.preventDefault();
+
+	let form = document.querySelector("div.coordinator_options form#assign_user_form");
+	form.classList.add("hidden");
+
+	sendAjaxRequest('POST', event.target.href, null, removeAssignedUser);
+}
+
+function removeAssignedUser() {
+	let data = JSON.parse(this.responseText);
+
+	if(!data.success) {
+		let errorMessage = '<div class="col-12 alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>' + data.error + '</strong></div>';
+		
+		let referenceNode = document.querySelector("div#task");
+		referenceNode.insertAdjacentHTML('afterbegin', errorMessage);
+	}
+	else {
+
+		//remove assigned users
+		let divAssignUser = document.querySelector("div.assigned_users.col-2");
+
+		while (divAssignUser.hasChildNodes()) {
+			divAssignUser.removeChild(divAssignUser.lastChild);
+		}
+		
+		//update buttons
+		let unassignTaskOtherButton = document.querySelector("div.coordinator_options a#unassign_user");
+
+		let assignTaskOtherButton = '<a class="btn btn-primary claim_other" id="assign_user">Assign task to user</a>';
+		unassignTaskOtherButton.outerHTML = assignTaskOtherButton;
+
+		assignTaskOtherButton =  document.querySelector("div.coordinator_options a#assign_user");
+		assignTaskOtherButton.addEventListener('click', showAssignUserForm);
+
 	}
 }
 
@@ -220,10 +300,10 @@ function updateOtherUserAssigned() {
  */
 function updateDivAssignUsers(data) {
 	
-	let divAssignUser = document.querySelector("div.assigned_users");
+	let divAssignUser = document.querySelector("div.assigned_users.col-2");
 
-	if(divAssignUser.hasChildNodes()){
-		let imgAssignedUser = document.querySelector("div.assigned_users img");
+	let imgAssignedUser = document.querySelector("div.assigned_users img");
+	if(imgAssignedUser !== null){
 		imgAssignedUser.src = data.image;
 		imgAssignedUser.title = data.user_username;
 	}
@@ -238,7 +318,7 @@ function updateDivAssignUsers(data) {
 		assigned_user.title = data.user_username;
 	
 		divAssignUser.appendChild(assigned_user);
-	}
+	}	
 
 }
 

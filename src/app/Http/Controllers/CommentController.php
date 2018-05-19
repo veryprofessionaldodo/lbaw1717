@@ -41,6 +41,8 @@ class CommentController extends Controller
     */
     public function store(Request $request, $id, $thread_id)
     {
+        if (!Auth::check()) return redirect('/login');
+
         try {
             $thread = Thread::find($thread_id);
             
@@ -79,6 +81,8 @@ class CommentController extends Controller
     */
     public function storeCommentTask(Request $request, $id, $task_id)
     {
+        if (!Auth::check()) return redirect('/login');
+
         try {
             $task = Task::find($task_id);
             
@@ -152,6 +156,10 @@ class CommentController extends Controller
     */
     public function destroy(Request $request)
     {
+        if (!Auth::check()) return redirect('/login');
+
+        //authorize - check if creator, admin or coordinator
+
         try {
             $comment = Comment::find($request->input('comment_id'));
             $comment->delete();
