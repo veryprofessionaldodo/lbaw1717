@@ -281,7 +281,6 @@ div.sprint-task a {
 }
 
 div.comment {
-	background-color: #558A8C;
 	padding: 1em 1em 1em 4em;
 	display: grid;
 	grid-template-columns: 5% 15% auto;
@@ -364,7 +363,6 @@ div.comment p.label {
 	grid-column-start: 1; 
 	grid-column-end: 3;
 	background-color: inherit;
-	color: white;
 	margin: auto 1em;
 	padding: 0;
 	text-align: right;
@@ -381,11 +379,9 @@ div.comment div.form_comment {
 
 div.comment div.form_comment form {
 	display: flex;
-	
 }
 
 div.comment div.form_comment form input.form-control {
-	margin: 0 0 0 1em;
 	width: 100%;
 	flex-grow: 1;
 }
@@ -827,7 +823,6 @@ div.container.new_sprint div#form_options {
 		font-size: 14px;
 	}
 	div.comment div.form_comment {
-		display: flex;
 		width: auto;
 		margin: 0;
 	}

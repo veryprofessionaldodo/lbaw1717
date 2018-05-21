@@ -365,8 +365,9 @@ div.container.edit_profile div#form_options, div.container.new_project div#form_
 	div#options .row {
 		display: inline-block;
 		max-width: 100%;
-		margin-left: 3em;
-		margin-right:3em;
+		margin-left: 0;
+		margin-right:0;
+		padding: 0;
 		margin-top: 0.5em;
 	}
 
