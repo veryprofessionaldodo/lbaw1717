@@ -19,9 +19,9 @@
 		@if($last_record->state == "Assigned")
 			<div class="assigned_users">
 				@if($last_record->user->image != NULL)
-					<img src="{{ asset('storage/'. $last_record->user->image)}}" title="{{ $last_record->user->username}}">
+					<img alt="Profile Image" src="{{ asset('storage/'. $last_record->user->image)}}" title="{{ $last_record->user->username}}">
 				@else
-					<img src="{{ asset('storage/'. '1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" title="{{ $last_record->user->username}}">
+					<img alt="Profile Default Image" src="{{ asset('storage/'. '1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" title="{{ $last_record->user->username}}">
 				@endif
 			</div>
 		@endif

@@ -12,9 +12,9 @@
 			<div class="row">
 				<div id="info" class="col-md-12 col-6">
 					@if($user->image != NULL)
-						<img src="{{ asset('storage/'.$user->image)}}">
+						<img alt="Profile Image" src="{{ asset('storage/'.$user->image)}}">
 					@else						
-						<img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+						<img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
 					@endif
 					<div id="info_text">
 						<h3>{{ $user->name }}</h3>

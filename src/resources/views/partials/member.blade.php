@@ -2,9 +2,9 @@
 	<div class="row">
 		<div class="info col-sm-8 col-12">
 			@if($user->image != NULL)
-				<img src="{{$user->image}}">
+				<img alt="Profile Image" src="{{$user->image}}">
 			@else
-				<img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+				<img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
 			@endif
 			<a href="{{ route('user_profile', ['username' => $user->username])}}">{{$user->username}}</a>
 		</div>

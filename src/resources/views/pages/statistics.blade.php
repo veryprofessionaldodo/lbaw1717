@@ -38,9 +38,9 @@
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
                     @if($topContributor1->image != NULL)
-                        <img src="{{$topContributor1->image}}" height="30px" width="30px">
+                        <img alt="Profile Image of Contributor 1"src="{{$topContributor1->image}}" height="30px" width="30px">
                     @else
-                        <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
+                        <img alt="Profile Default Image of Contributor 1"src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
                     @endif
                     <p>{{$topContributor1->username}}</p>
                     <p>{{$topContributor1->num}} tasks completed</p>
@@ -49,9 +49,9 @@
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
                     @if($topContributor2->image != NULL)
-                        <img src="{{$topContributor2->image}}" height="30px" width="30px">
+                        <img alt="Profile Image of Contributor 2"src="{{$topContributor2->image}}" height="30px" width="30px">
                     @else
-                        <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
+                        <img alt="Profile Default Image of Contributor 2"src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
                     @endif
                     <p>{{$topContributor2->username}}</p>
                     <p>{{$topContributor2->num}} tasks completed</p>
@@ -60,9 +60,9 @@
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
                     @if($topContributor3->image != NULL)
-                        <img src="{{$topContributor3->image}}" height="30px" width="30px">
+                        <img alt="Profile Image of Contributor 3"src="{{$topContributor3->image}}" height="30px" width="30px">
                     @else
-                        <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
+                        <img alt="Profile Default Image of Contributor 3"src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
                     @endif
                     <p>{{$topContributor3->username}}</p>
                     <p>{{$topContributor3->num}} tasks completed</p>
