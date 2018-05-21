@@ -48,6 +48,8 @@
     <script type="text/javascript" src={{ asset('js/report.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script> 
     <script type="text/javascript" src={{ asset('js/project_settings.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/notifications.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/task.js')}}></script> 
   </head>
   
   <body>
@@ -66,6 +68,7 @@
 
       <div class="user col-3">  
 
+        @if(Auth::check())
         <div id="notifications">
 
           <label class="hamburger" for="hamburger2"></label>
@@ -78,21 +81,24 @@
             </ul>
           </div>
         </div>
+        @endif
          
         @if (Auth::check())
           @if (Auth::user()->image != NULL)
-          <img src="{{ asset('storage/'. Auth::user()->image)}}">
+          <img alt="Profile Image" src="{{ asset('storage/'. Auth::user()->image)}}">
           @else
-            <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+            <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
           @endif
         @endif
 
+        @if(Auth::check())
         <div id="profile_options">
           <ul>
             <li><a href="{{ route('user_profile', ['username' => Auth::user()->username])}}">View Profile</a></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>
           </ul>
         </div>
+        @endif
         
       </nav>
 

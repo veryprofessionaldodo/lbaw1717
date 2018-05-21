@@ -39,6 +39,10 @@ section form a {
 	color: #eee;
 }
 
+section form > a {
+	display: block;
+}
+
 section hr {
 	border: 0; 
 	height: 1px; 

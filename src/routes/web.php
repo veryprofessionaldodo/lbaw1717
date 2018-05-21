@@ -24,6 +24,11 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout'); //done
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register'); //done
 Route::post('register', 'Auth\RegisterController@register'); //done
 
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 // User
 Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile'); //done
 Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
@@ -106,3 +111,7 @@ Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentRep
 Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form'); //done
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done
 Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report'); //done
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home');
