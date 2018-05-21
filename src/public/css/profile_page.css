@@ -67,7 +67,7 @@ aside div#statistics {
 
 div#options {
 	margin: auto;
-	height: 3em;
+	text-align:center;
 }
 div#options button#new_project {
 	margin: 1em auto;
@@ -75,7 +75,7 @@ div#options button#new_project {
 
 div#options div.col-md-12{
 	width: auto;
-	margin-left: 0;
+	/* margin-left: 0; */
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -88,8 +88,8 @@ div#options div.col-md-6 {
 div#options .row {
 	display: flex;
 	max-width: 100%;
-	margin-left: 3em;
-	margin-right:3em;
+	margin-left: 1em;
+	margin-right:1em;
 	margin-top: 0.5em;
 }
 
@@ -101,13 +101,11 @@ div#options .row {
 
 div#options form > button.btn.btn-primary {
 	width: auto;
-	float: left;
 }
 
 
 div#options div#role_button {
 	display: inline;
-	float: right;
 	width: auto;
 	padding: 0;
 	margin: 0;
@@ -116,7 +114,6 @@ div#options div#role_button {
 #new_project {
 	margin: auto;
 	width: auto;
-	float: left;
 	vertical-align: middle;
 }
 
@@ -129,7 +126,6 @@ div#options .form-control {
 	background-color: #fff;
 	color: #0A1827;
 	width: auto;
-	float: left;
 	vertical-align: middle;
 }
 
@@ -145,7 +141,8 @@ div#options .form-control::placeholder {
   }
 
 div#options form.col-12 {
-	text-align: right;
+	padding: 0;
+	text-align: center;
 }
 
 .hide {
