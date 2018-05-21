@@ -53,6 +53,10 @@ class User extends Authenticatable
     public function invites(){
         return $this->hasMany('App\Invite');
     }
+
+    public function notifications(){
+        return $this->hasMany('App\Notification','user_id');
+    }
     
     public function task_state_record() {
         return $this->hasMany('App\TaskStateRecord', 'user_completed_id');

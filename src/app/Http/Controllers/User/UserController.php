@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\User;
 use App\Project;
 use App\Category;
+use App\Notification;
+use App\Invite;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -118,7 +120,82 @@ class UserController extends Controller {
         } catch (\Exception $e) {
             // Handle unexpected errors
         }
-	}
+    }
+    
+    /*
+    Deletes notification
+   */
+    public function dismissNotification($notification_id){
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+
+            $notification = Notification::find($notification_id);
+            $notification->delete();
+
+            return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+    }
+
+    /*
+    Accepts invite to project and deletes invite and notification
+   */
+    public function acceptInviteNotification($notification_id){
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+
+            $notification = Notification::find($notification_id);
+
+            $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
+            $invite->delete();
+
+            DB::table('project_members')->insert(
+                ['user_id' => $notification->user_id , 'project_id' =>$notification->project_id , 'iscoordinator' => FALSE]
+              );
+
+            $notification->delete();
+
+            return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        } 
+    }
+
+    /*
+    Rejects invite to project and deletes invite and notification
+   */
+    public function rejectInviteNotification($notification_id){
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+
+            $notification = Notification::find($notification_id);
+
+            $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
+            $invite->delete();
+
+            $notification->delete();
+
+            return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        } 
+    }
 }
 
 ?>

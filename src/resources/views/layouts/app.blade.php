@@ -48,6 +48,8 @@
     <script type="text/javascript" src={{ asset('js/report.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script> 
     <script type="text/javascript" src={{ asset('js/project_settings.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/notifications.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/task.js')}}></script> 
   </head>
   
   <body>
@@ -81,9 +83,9 @@
          
         @if (Auth::check())
           @if (Auth::user()->image != NULL)
-          <img src="{{ asset('storage/'. Auth::user()->image)}}">
+          <img alt="Profile Image" src="{{ asset('storage/'. Auth::user()->image)}}">
           @else
-            <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+            <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
           @endif
         @endif
 
