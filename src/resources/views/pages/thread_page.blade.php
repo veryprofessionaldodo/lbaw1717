@@ -21,9 +21,9 @@
         <div class="row" id="header">
             <div class="col-3">
                 @if($thread->user->image != NULL)
-                    <img src="{{$thread->user->image}}" width="150px">
+                    <img alt="Profile Image"src="{{$thread->user->image}}" width="150px">
                 @else
-                    <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" width="150px">
+                    <img alt="Profile Default Image"src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" width="150px">
                 @endif
                 <figcaption>{{$thread->user->username}}</figcaption>
             </div>
@@ -59,9 +59,9 @@
         <div class="comment row" id="thread">
             
             @if(Auth::user()->image != NULL)
-                <img src="{{ asset('storage/'.Auth::user()->image)}}">
+                <img alt="Profile Image" src="{{ asset('storage/'.Auth::user()->image)}}">
             @else						
-                <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+                <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
             @endif
 
             <h6>{{\Auth::user()->username}}</h6>

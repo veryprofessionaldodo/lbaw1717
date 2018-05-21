@@ -16,6 +16,6 @@ class Invite extends Model
   }
 
   public function project() {
-    return $this->belongsTo('App\Thread');
+    return $this->belongsTo('App\Project');
   }
 }

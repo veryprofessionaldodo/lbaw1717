@@ -22,14 +22,14 @@ function editThreadAction(event) {
         {name: thread_title, description: thread_description, project_id: project_id, user_username : user_creator_username},showPageUpdated);
 }
 */
-/*
+
 function showPageUpdated() {
 
     let data = JSON.parse(this.responseText);
     console.log(data);
     let doc = document.querySelector("body");
     doc.innerHTML = data.html;
-}*/
+}
 
 function addCommentThread(event) {
     event.preventDefault();

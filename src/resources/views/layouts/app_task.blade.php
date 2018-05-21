@@ -73,9 +73,9 @@
          
         @if (Auth::check())
           @if (Auth::user()->image != NULL)
-          <img src="{{ asset('storage/'. Auth::user()->image)}}">
+          <img alt="Profile Image" src="{{ asset('storage/'. Auth::user()->image)}}">
           @else
-            <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+            <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
           @endif
         @endif
 

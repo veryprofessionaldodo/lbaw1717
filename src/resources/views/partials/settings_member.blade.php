@@ -1,9 +1,9 @@
 <div data-id="{{$member->username}}" class="member-row">
     <div class="col-lg-6 col-12">
         @if($member->image != NULL)
-            <img src="{{ asset('storage/'.$member->image)}}">
+            <img alt="Profile Image" src="{{ asset('storage/'.$member->image)}}">
         @else						
-            <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+            <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
         @endif
         <h3>{{$member->username}}</h3>
     </div>

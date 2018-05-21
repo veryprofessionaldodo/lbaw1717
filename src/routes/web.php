@@ -34,9 +34,11 @@ Route::get('api/users/{username}', 'User\UserController@showProfile')->name('use
 Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
 Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action'); // done
 
-Route::post('api/users/projects/accept_invite', 'User\UserController@acceptInvite');
-Route::post('api/users/projects/unsigned_project', 'User\UserController@unsignProject');
-Route::post('api/users/projects/search_project', 'User\UserController@searchUserProject');
+//Notifications
+Route::post('api/users/projects/notifications/{notification_id}/dismiss','User\UserController@dismissNotification')->name('dismiss_notification');//done
+Route::post('api/users/projects/notifications/{notification_id}/accept','User\UserController@acceptInviteNotification')->name('accept_invite_notification');//done
+Route::post('api/users/projects/notifications/{notification_id}/reject','User\UserController@rejectInviteNotification')->name('reject_invite_notification');//done
+
 
 Route::get('api/users/{username}/projects/new_project', 'User\UserController@createProjectForm')->name('new_project_form');
 Route::post('api/users/projects', 'ProjectController@create')->name('create_project'); //done

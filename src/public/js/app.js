@@ -29,9 +29,10 @@ function dropNotificationsMenu() {
 	let notifications = document.querySelector("nav .user #notifications #notifications_box ul li");
 	
 	if(notifications != null){
-		if(notificationDropdown.style.height == 0){
+		if(notificationDropdown.style.height == "0px" || !notificationDropdown.style.height){
 			notificationDropdown.style.height = "300px";
 			notificationDropdown.style.opacity = 1;
+			addEventListenersNotifications();
 		}
 		else {
 			notificationDropdown.style.height = 0;
