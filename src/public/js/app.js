@@ -32,6 +32,7 @@ function dropNotificationsMenu() {
 		if(notificationDropdown.style.height == 0){
 			notificationDropdown.style.height = "300px";
 			notificationDropdown.style.opacity = 1;
+			addEventListenersNotifications();
 		}
 		else {
 			notificationDropdown.style.height = 0;

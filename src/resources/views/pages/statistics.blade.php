@@ -37,21 +37,33 @@
             </a>
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
-                    <img src="{{$topContributor1->image}}" height="30px" width="30px">
-                <p>{{$topContributor1->username}}</p>
+                    @if($topContributor1->image != NULL)
+                        <img src="{{$topContributor1->image}}" height="30px" width="30px">
+                    @else
+                        <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
+                    @endif
+                    <p>{{$topContributor1->username}}</p>
                     <p>{{$topContributor1->num}} tasks completed</p>
                 </div>   
             </a>
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
-                <img src="{{$topContributor2->image}}" height="30px" width="30px">
+                    @if($topContributor2->image != NULL)
+                        <img src="{{$topContributor2->image}}" height="30px" width="30px">
+                    @else
+                        <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
+                    @endif
                     <p>{{$topContributor2->username}}</p>
                     <p>{{$topContributor2->num}} tasks completed</p>
                 </div>   
             </a>
             <a href="#" class="contributor list-group-item list-group-item-action">
                 <div class="contributor_info">
-                    <img src="{{$topContributor3->image}}" height="30px" width="30px">
+                    @if($topContributor3->image != NULL)
+                        <img src="{{$topContributor3->image}}" height="30px" width="30px">
+                    @else
+                        <img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" height="30px" width="30px">
+                    @endif
                     <p>{{$topContributor3->username}}</p>
                     <p>{{$topContributor3->num}} tasks completed</p>
 
