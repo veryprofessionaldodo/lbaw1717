@@ -1,4 +1,4 @@
-<div data-id="{{$member->username}}" class="member row">
+<div data-id="{{$member->username}}" class="member-row">
     <div class="col-lg-6 col-12">
         @if($member->image != NULL)
             <img src="{{ asset('storage/'.$member->image)}}">

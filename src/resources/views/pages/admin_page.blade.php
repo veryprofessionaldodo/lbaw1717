@@ -24,7 +24,7 @@
       <section class="col-12"> 
 
         <div class="row"> 
-          <div id="search_bar" class="col-12"> 
+          <div id="search_bar_admin" class="col-12"> 
             <form> <!-- change styling of this input --> 
               <input class="form-control" type="text" placeholder="Search"> 
               <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button> 

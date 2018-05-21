@@ -74,7 +74,10 @@ div#options button#new_project {
 }
 
 div#options div.col-md-12{
-	text-align: center;
+	width: auto;
+	margin-left: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 div#options div.col-md-6 {
@@ -97,21 +100,24 @@ div#options .row {
 }
 
 div#options form > button.btn.btn-primary {
-	display: inline;
+	width: auto;
+	float: left;
 }
 
 
 div#options div#role_button {
-	margin: auto;
-	text-align: center;
-	flex: 0;
-	padding:0;
+	display: inline;
+	float: right;
+	width: auto;
+	padding: 0;
+	margin: 0;
 	
 }
 #new_project {
-	grid-column-start: 1;
-	grid-column-end: 2;
 	margin: auto;
+	width: auto;
+	float: left;
+	vertical-align: middle;
 }
 
 div#options form {
@@ -122,6 +128,9 @@ div#options form {
 div#options .form-control {
 	background-color: #fff;
 	color: #0A1827;
+	width: auto;
+	float: left;
+	vertical-align: middle;
 }
 
 div#options .form-control:focus {
@@ -136,7 +145,7 @@ div#options .form-control::placeholder {
   }
 
 div#options form.col-12 {
-	text-align: center;
+	text-align: right;
 }
 
 .hide {

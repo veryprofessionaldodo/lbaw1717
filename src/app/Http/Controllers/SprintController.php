@@ -38,7 +38,7 @@ class SprintController extends Controller
 
     }
 
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
       $sprint = Sprint::find($id);
 

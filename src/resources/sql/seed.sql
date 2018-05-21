@@ -141,7 +141,7 @@ CREATE TABLE sprint_state_record(
 	date TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
 	state text NOT NULL,
 	sprint_id INTEGER NOT NULL,
-	CONSTRAINT state CHECK ((state = ANY(ARRAY['Completed'::text, 'Outdated'::text, 'Created'::text])))
+	CONSTRAINT state CHECK ((state = ANY(ARRAY['Completed'::text, 'Created'::text])))
 );
 
 CREATE TABLE project_categories (
@@ -273,7 +273,7 @@ ALTER TABLE ONLY task_state_record
 	ADD CONSTRAINT task_state_record_id_user_fkey FOREIGN KEY (user_completed_id) REFERENCES "user"(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY task_state_record
-	ADD CONSTRAINT task_state_record_id_task_fkey FOREIGN KEY (task_id) REFERENCES task(id) ON UPDATE CASCADE;
+	ADD CONSTRAINT task_state_record_id_task_fkey FOREIGN KEY (task_id) REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY sprint_state_record
 	ADD CONSTRAINT sprint_state_record_id_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE;
@@ -347,24 +347,6 @@ CREATE TRIGGER add_notification_invite
 	AFTER INSERT ON invite
 	FOR EACH ROW
 		EXECUTE PROCEDURE add_notification_invite();
-
--- Change sprint Status when the deadline is passed
-DROP FUNCTION IF EXISTS check_deadline();
-CREATE FUNCTION check_deadline() RETURNS TRIGGER AS
-$BODY$
-DECLARE 
-   deadline "sprint"%rowtype;
-BEGIN
-	FOR deadline IN
-	SELECT deadline, id FROM sprint
-	LOOP 
-	    IF (deadline < now()) THEN 
-	    INSERT INTO sprint_state_record (date, state, sprint_id) VALUES (now(), 'Outdated', id);
-            END IF;
-	END LOOP;
-END;
-$BODY$
-LANGUAGE plpgsql;
 
 -- Complete a sprint when its tasks are completed
 DROP FUNCTION IF EXISTS check_completed_sprint();
@@ -614,7 +596,7 @@ BEGIN
 								AND a.user_completed_id = b.user_completed_id AND
 								b.state = 'Unassigned' AND a.date < b.date);
 
-	IF (user_task_id IS NOT NULL) THEN
+	IF (user_task_id IS NOT NULL AND NEW.state <> 'Completed') THEN
 
 		INSERT INTO task_state_record (date, state, user_completed_id, task_id) 
 			VALUES (now(), 'Unassigned', user_task_id, NEW.task_id);
@@ -1102,28 +1084,28 @@ INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Did you know?	','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn''t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!', '2018-05-08 12:00:00+01',12,9);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Witcher 3 quest!','Could someone give some hints about where i can find cedaline in witcher 3?', '2018-05-08 12:00:00+01',78,1);
 
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-05-20 00:00:00+01',1,2,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database structure','2018-05-20 00:00:00+01',1,2,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Website','2018-05-20 12:00:00+01',2,16,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Build Security','2018-05-20 08:00:00+01',2,16,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-05-28 00:00:00+01',1,2,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database structure','2018-05-28 00:00:00+01',1,2,3);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Website','2018-05-28 12:00:00+01',2,16,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Build Security','2018-05-28 08:00:00+01',2,16,5);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw Mock-up','2018-05-30 23:59:00+01',3,11,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design with blender','2018-05-20 22:59:00+01',3,1,7);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design with blender','2018-05-28 22:59:00+01',3,1,7);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database','2018-05-30 23:00:00+01',4,3,7);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make Website','2018-05-21 23:00:00+01',4,2,10);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mobile App','2018-05-20 23:00:00+01',6,6,10);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Security Verifications','2018-05-25 23:00:00+01',6,6,8);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-05-20 23:00:00+01',7,6,7);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make Website','2018-05-28 23:00:00+01',4,2,10);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mobile App','2018-05-28 23:00:00+01',6,6,10);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Security Verifications','2018-06-04 23:00:00+01',6,6,8);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-05-28 23:00:00+01',7,6,7);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Security','2018-05-30 23:00:00+01',7,6,7);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Client RMI','2018-06-29 23:00:00+01',8,11,7);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Communications between servers','2018-05-20 23:00:00+01',8,11,8);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Write history','2018-05-20 23:00:00+01',9,1,6);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw characters','2018-05-20 00:00:00+01',9,1,8);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Communications between servers','2018-05-28 23:00:00+01',8,11,8);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Write history','2018-05-28 23:00:00+01',9,1,6);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw characters','2018-05-28 00:00:00+01',9,1,8);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-05-30 23:00:00+01',10,18,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make models 3D','2018-05-20 23:00:00+01',10,17,10);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design Course Program','2018-05-20 23:00:00+01',11,17,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Introduction','2018-05-20 23:00:00+01',11,17,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-05-20 23:00:00+01',12,8,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Kernel','2018-05-20 23:00:00+01',12,8,20);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make models 3D','2018-05-28 23:00:00+01',10,17,10);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design Course Program','2018-05-28 23:00:00+01',11,17,3);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Introduction','2018-05-28 23:00:00+01',11,17,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-05-28 23:00:00+01',12,8,3);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Kernel','2018-05-28 23:00:00+01',12,8,20);
 
 INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Index Page','Make a responsive mock up of the index page, with tonalities of blue and gold. Images will be added next',1,1,1);
 INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Video Page','Responsive page to allocate many videos',2,1,1);

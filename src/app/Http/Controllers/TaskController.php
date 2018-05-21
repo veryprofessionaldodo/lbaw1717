@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+use App\User;
 use App\Project;
 use App\Task;
 use App\Task_state_record;
@@ -90,6 +91,7 @@ class TaskController extends Controller
             
             $project = Project::find($id);
             $task = Task::find($task_id);
+            $comments = $task->comments()->get();
 
             $assigned_user = Task::find($task_id)->userAssigned();
                 
@@ -117,9 +119,9 @@ class TaskController extends Controller
             
             }
 
-            return view('pages/task_page', ['task' => $task, 'project' => $project,
-            'coordinator' => Auth::user()->isCoordinator($id), 'user_username' => $username, 
-            'image' => $image, 'claim_url' => $claim_route]);
+            return view('pages/task_page', ['task' => $task, 'project' => $project, 
+            'comments' => $comments,'coordinator' => Auth::user()->isCoordinator($id), 
+            'user_username' => $username,'image' => $image, 'claim_url' => $claim_route]);
 
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
@@ -169,6 +171,7 @@ class TaskController extends Controller
         if (!Auth::check()) return redirect('/login');
         
         try {
+
             if($request->state == "Completed"){
                 
                 $task_state_record = new Task_state_record();
@@ -186,6 +189,7 @@ class TaskController extends Controller
                 
             } else if($request->state == "Uncompleted"){
                 
+                //deletes register of task completed
                 $task_state_record = Task::find($task_id)
                 ->task_state_records()
                 ->where('state', 'Completed')
@@ -193,11 +197,15 @@ class TaskController extends Controller
                 
                 $task_state_record->delete();
                 
+                // gets user assigned
+                $task = Task::find($task_id);
+                $assigned_user = $task->userAssigned();
+                $project = $task->project()->get()[0];
                 
-                $assigned_user = Task::find($task_id)->userAssigned();
-                
+                //gets claim url
                 $claim_route = route('assign_self', ['project_id' => $id, 'task_id' => $task_id]);
-                
+
+                // gets user assigned information
                 if($assigned_user != NULL){
                     
                     $username = $assigned_user[0]->username;
@@ -211,32 +219,68 @@ class TaskController extends Controller
                     }
                     
                     $assigned = false;
+
                     if($username == Auth::user()->username){
                         $assigned = true;
                         $claim_route = route('unassign_self', ['project_id' => $id, 'task_id' => $task_id]);
                     }
+
+                    //if coordinator, sends view of coordinator options
+                    if(Auth::user()->isCoordinator($id)){
+
+                        $html = view('partials.task_coordinator_options',['project' => $project, 'task' => $task, 'user_username' => $username])->render();
+                        
+                        return response()->json(
+                            array('success' => true, 'state' => $request->state, 
+                            'task_id' => $task_id, 'coordinator' => true, 
+                            'user_username' => $username, 'image' => $image, 'assigned' => $assigned,
+                            'coordinator_options' => $html)
+                        );
+                    }
+                    else {
+
+                        return response()->json(
+                            array('success' => true, 'state' => $request->state, 
+                            'task_id' => $task_id, 'coordinator' => false, 
+                            'user_username' => $username, 'image' => $image, 'assigned' => $assigned,
+                            'claim_url' => $claim_route)
+                        );
+                    }
                     
-                    return response()->json(
-                        array('success' => true, 'state' => $request->state, 
-                        'task_id' => $task_id, 'coordinator' => Auth::user()->isCoordinator($id), 
-                        'user_username' => $username, 'image' => $image, 'assigned' => $assigned,
-                        'claim_url' => $claim_route)
-                    );
                 }
                 else {
-                    
-                    return response()->json(array('success' => true, 'state' => $request->state, 
-                    'task_id' => $task_id, 'coordinator' => Auth::user()->isCoordinator($id),
-                    'claim_url' => $claim_route));
+                    if(Auth::user()->isCoordinator($id)){
+
+                        $html = view('partials.task_coordinator_options',['project' => $project, 'task' => $task, 'user_username' => null])->render();
+                        
+                        return response()->json(
+                            array('success' => true, 'state' => $request->state, 
+                            'task_id' => $task_id, 'coordinator' => true, 
+                            'coordinator_options' => $html)
+                        );
+                    }
+                    else {
+
+                        return response()->json(
+                            array('success' => true, 'state' => $request->state, 
+                            'task_id' => $task_id, 'coordinator' => false, 
+                            'claim_url' => $claim_route)
+                        );
+                    }
                 }
                 
             }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+
+            if($request->state === "Uncompleted"){
+                return response()->json(array('success' => false,'error' => 'Error changing the state of the task to UNCOMPLETED'));
+            }
+
+            return response()->json(array('success' => false,'error' => 'Error changing the state of the task to COMPLETED'));
+        
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            echo dd($e);
         }
         
     }
@@ -251,7 +295,7 @@ class TaskController extends Controller
     public function assignSelf(Request $request, $id, $task_id) {
         if (!Auth::check()) return redirect('/login');
         
-        try {          
+        try {         
             $task_state_record = new Task_state_record();
             
             // TODO Authorize
@@ -263,16 +307,17 @@ class TaskController extends Controller
             $task_state_record->save();
             
             $image = "";
-            if(Auth::user()->image != NULL)
-            $image = asset('storage/'.Auth::user()->image);
-            else
-            $image = asset('storage/1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg');
+            if(Auth::user()->image != NULL){
+                $image = asset('storage/'.Auth::user()->image);
+            }
+            else{
+                $image = asset('storage/1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg');
+            }
             
             $unclaim_url = route('unassign_self', ['project_id' => $id, 'task_id' => $task_id]);
             
             return response()->json(array('success' => true, 'image' => $image,
-            'user_username' => Auth::user()->username, 'task_id' => $task_id,
-            'unclaim_url' => $unclaim_url));
+            'user_username' => Auth::user()->username,'unclaim_url' => $unclaim_url));
             
             
         } catch(\Illuminate\Database\QueryException $qe) {
@@ -298,8 +343,7 @@ class TaskController extends Controller
             $task_state_record->save();
             
             $claim_url = route('assign_self', ['project_id' => $id, 'task_id' => $task_id]);
-            return response()->json(array('success' => true, 'task_id' => $task_id,
-            'claim_url' => $claim_url));
+            return response()->json(array('success' => true,'claim_url' => $claim_url));
             
             
         } catch(\Illuminate\Database\QueryException $qe) {
@@ -309,15 +353,112 @@ class TaskController extends Controller
             // Handle unexpected errors
         }
     }
+
+    /**
+    * Assign other user to task
+    *
+    * @param  int  $id
+    * @param  int  $task_id
+    * @return \Illuminate\Http\Response
+    */
+    public function assign(Request $request, $id, $task_id) {
+        if (!Auth::check()) return redirect('/login');
+        
+        try {         
+            
+            // TODO Authorize - only for coordinators of the project  
+
+            $user = User::where('username',$request->username)->first();
+            $project = Project::find($id);
+
+            if($user === null) {
+                return response()->json(array('success' => false, 'error' => 'User isn\'t member of the project'));    
+            }
+            else if(!$user->isProjectMember($project)){
+                return response()->json(array('success' => false, 'error' => 'User isn\'t member of the project'));    
+            }
+
+            
+            $task_state_record = new Task_state_record();
+            $task_state_record->state = 'Assigned';
+            $task_state_record->user_completed_id = $user->id;
+            $task_state_record->task_id = $task_id;
+            
+            $task_state_record->save();
+            
+            $image = "";
+            if($user->image != NULL){
+                $image = asset('storage/'.$user->image);
+            }
+            else{
+                $image = asset('storage/1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg');
+            }
+            
+            $unclaim_url = route('unassign_other', ['project_id' => $id, 'task_id' => $task_id]);
+            $claim_self_url = route('assign_self', ['project_id' => $id, 'task_id' => $task_id]);
+            
+            return response()->json(array('success' => true, 'image' => $image,
+            'user_username' => $user->username,'unclaim_url' => $unclaim_url, 'claim_self_url' => $claim_self_url));
+            
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+            echo dd($qe);
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+    }
+
+    public function unassign(Request $request, $id, $task_id) {
+        if (!Auth::check()) return redirect('/login');
+        
+        try {          
+            $task_state_record = new Task_state_record();
+            
+            // TODO Authorize
+            
+            $task_state_record->state = 'Unassigned';
+            $task_state_record->user_completed_id = Auth::user()->id;
+            $task_state_record->task_id = $task_id;
+            
+            $task_state_record->save();
+            
+            $claim_url = route('assign_self', ['project_id' => $id, 'task_id' => $task_id]);
+            return response()->json(array('success' => true,'claim_url' => $claim_url));
+            
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+            return response()->json(array('success' => false,'error' => 'Error removing assigned user'));
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+    }
     
     /**
     * Remove the specified resource from storage.
     *
-    * @param  int  $id
+    * @param  int  $project_id
+    * @param  int  $task_id
     * @return \Illuminate\Http\Response
     */
-    public function destroy($id)
+    public function destroy($project_id, $task_id)
     {
-        //
+        if (!Auth::check()) return redirect('/login');
+
+        //authorize - check if admin or coordinator of project
+
+        try {
+            $task = Task::find($task_id);
+            $task->delete();
+
+            // add messages of confirmation
+
+            return redirect()->route('project', ['project_id' => $project_id]);
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
     }
 }
