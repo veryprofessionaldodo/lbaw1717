@@ -2,7 +2,10 @@ function addEventListeners() {
     /*let newThreadButtonForm = document.querySelector("div#container div#overlay div.jumbotron p.lead a#newThread-btn");
 
     newThreadButtonForm.addEventListener('click',createThreadAction);*/
-
+    let editButton = document.querySelector("button.edit_comment");
+    if(editButton !== null){
+        editButton.addEventListener('click', showEditForm);
+    }
     submitComment = document.querySelector("div.comment#thread form");
     submitComment.addEventListener('submit', addCommentThread);
 }
@@ -22,6 +25,53 @@ function editThreadAction(event) {
         {name: thread_title, description: thread_description, project_id: project_id, user_username : user_creator_username},showPageUpdated);
 }
 */
+
+function initTinyMCE() {
+    tinymce.init({
+        selector: '#mytextarea',
+        plugins: 'code,codesample,lists,advlist,image,link,paste,textcolor,textpattern,contextmenu,emoticons,pagebreak,table',
+        toolbar: 'code, codesample, bullist, numlist, image, link, paste,forecolor backcolor,emoticons, pagebreak, table',
+        menubar: false,
+        contextmenu: 'link image inserttable | cell row column deletetable',
+        image_caption: true,
+        image_advtab: true,
+        code_dialog_height: 300,
+        code_dialog_width: 350,
+        advlist_bullet_styles: 'default,circle,disc,square',
+        advlist_number_styles: 'lower-alpha,lower-roman,upper-alpha,upper-roman',
+        codesample_languages: [
+            {text: 'HTML/XML', value: 'markup'},
+            {text: 'JavaScript', value: 'javascript'},
+            {text: 'CSS', value: 'css'},
+            {text: 'PHP', value: 'php'},
+            {text: 'Ruby', value: 'ruby'},
+            {text: 'Python', value: 'python'},
+            {text: 'Java', value: 'java'},
+            {text: 'C', value: 'c'},
+            {text: 'C#', value: 'csharp'},
+            {text: 'C++', value: 'cpp'}
+        ]
+    });
+}
+
+function showEditForm() {
+
+    let commentInfo = document.querySelector("p#content");
+    let commentForm = document.querySelector("form#edit");
+    
+    if(commentInfo.style.display !== "none"){
+        commentInfo.style.display = "none";
+
+        let textarea = document.querySelector("form#edit textarea");
+        textarea.innerHTML = commentInfo.innerHTML;
+        initTinyMCE();
+        commentForm.classList.remove('hidden');
+    }
+    else {
+        commentInfo.style.display = "block";
+        commentForm.classList.add('hidden');
+    }
+}
 
 function showPageUpdated() {
 

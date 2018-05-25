@@ -7,7 +7,17 @@
 	@endif
 	
 	<a href="{{ route('user_profile', ['username' => $comment->user->username])}}">{{$comment->user->username}}</a> <!-- TODO ANCHOR and adapte css-->
-	<p>{{$comment->content}}</p>
+	<p id="content">{{$comment->content}}</p>
+	
+	@if($comment->task_id == NULL)
+	<form id="edit" class="col-12 hidden" hidden="true" method="POST" action="{{route('editCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}">
+            {{ csrf_field()}}
+        <textarea name="description" id="mytextarea" cols="30" rows="10">
+        </textarea>
+
+        <button type="submit" class="btn">Submit Changes</button>
+      </form>
+  	@endif
 	
 	<?php  
 		$date = new \DateTime($comment->deadline);
@@ -34,6 +44,7 @@
 
 			@if($comment->task_id == NULL)
 				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
+				<button class="btn btn-warning edit_comment"><i class="fas fa-pencil-alt"></i></button>
 			@else
 				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
 			@endif
