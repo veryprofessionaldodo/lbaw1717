@@ -182,7 +182,7 @@ class CommentController extends Controller
             $comment = Comment::find($request->input('comment_id'));
             $comment->delete();
 
-            return response()->json(array('success' => true, 'comment' => $comment));
+            return response()->json(array('success' => true, 'comment_id' => $request->input('comment_id')));
             
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 

@@ -170,7 +170,7 @@ class ProjectController extends Controller
   
   public function searchProject(Request $request) {
     try {  
-      $projects = Project::search($request->input('search'))->with('user')->take(10)->get();
+      $projects = Project::search($request->input('search'))->with('user')->paginate(5);
       
       return view('pages.result_search', ['projects' => $projects]);
       

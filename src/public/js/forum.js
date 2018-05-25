@@ -1,4 +1,4 @@
-function addEventListeners() {
+function addEventListenersForum() {
     /*let newThreadButtonForm = document.querySelector("div#container div#overlay div.jumbotron p.lead a#newThread-btn");
 
     newThreadButtonForm.addEventListener('click',createThreadAction);*/
@@ -106,21 +106,28 @@ function updateCommentsThread() {
 function deleteCommentThread(button) {
 
     let href = button.getAttribute('href');
-    
-    if (confirm("Are you sure you want to delete this comment?\n")) {
-        let comment_id = button.id;
-
-        sendAjaxRequest('post', href, { comment_id: comment_id }, updateCommentThreadDeletion);
-    } else {
-        return;
-    }
+    swal({
+        title: "Are you sure you want to delete this comment?\n",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                let comment_id = button.id;
+                sendAjaxRequest('post', href, { comment_id: comment_id }, updateCommentThreadDeletion);
+            }
+        });
 }
 
 function updateCommentThreadDeletion() {
     let data = JSON.parse(this.responseText);
     if (data.success) {
-        let comment = document.querySelector("div.comment[data-id='" + data.comment.id + "']");
+        let comment = document.querySelector("div.comment[data-id='" + data.comment_id + "']");
         comment.remove();
+        swal("The comment has been deleted !", {
+            icon: "success",
+        });
     }
 }
 
@@ -128,18 +135,26 @@ function deleteThread(button) {
 
     let href = button.getAttribute('href');
 
-    if (confirm("Are you sure you want to delete this thread and the comments in it?\n")) {
-        let thread_id = button.id;
-
-        sendAjaxRequest('delete', href, { thread_id: thread_id }, redirectForum);
-    } else {
-        return;
-    }
+    swal({
+        title: "Are you sure you want to delete this thread and the comments in it?\n",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                let thread_id = button.id;
+                sendAjaxRequest('delete', href, { thread_id: thread_id }, redirectForum);
+            }
+        });
 }
 
 function redirectForum() {
     let data = JSON.parse(this.responseText);
+    swal("Successfully deleted the thread and the comments in it !", {
+        icon: "success",
+    });
     window.location.href = data.url;
 }
 
-addEventListeners();
+addEventListenersForum();

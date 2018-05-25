@@ -4,13 +4,12 @@ let memberButton = document.querySelector("li.nav-item a#member_btn");
 
 let newSprintButton = document.querySelector("section.container-fluid div.col-12.new_sprint a");
 
-function addEventListeners() {
-
+function addEventListenersProject() {
 	sprintButton.addEventListener('click', switchSprintsView);
 	taskButton.addEventListener('click', switchTasksView);
 	memberButton.addEventListener('click', switchMembersView);
 
-	if(newSprintButton !== null){
+	if (newSprintButton !== null) {
 		newSprintButton.addEventListener('click', getSprintForm);
 	}
 
@@ -19,41 +18,41 @@ function addEventListeners() {
 
 	// tasks completion
 	let tasksCheckboxes = document.querySelectorAll("div.sprint-task input[type='checkbox']");
-	for(let i = 0; i < tasksCheckboxes.length; i++){
+	for (let i = 0; i < tasksCheckboxes.length; i++) {
 		tasksCheckboxes[i].addEventListener('click', updateTaskCompletion);
 	}
 
 	// assign to task
 	let assignSelfTaskButton = document.querySelectorAll("div.sprint-task a.claim");
-	for(let i = 0; i < assignSelfTaskButton.length; i++) {
+	for (let i = 0; i < assignSelfTaskButton.length; i++) {
 		assignSelfTaskButton[i].addEventListener('click', assignSelfTask);
 	}
 
 	let addTaskButtons = document.querySelectorAll("form.sprint-task.create_task a");
-	for(let i = 0; i < addTaskButtons.length; i++){
+	for (let i = 0; i < addTaskButtons.length; i++) {
 		addTaskButtons[i].addEventListener('click', createTask);
 	}
 }
 
 function encodeForAjax(data) {
-  if (data == null) return null;
-  return Object.keys(data).map(function(k){
-    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-  }).join('&');
+	if (data == null) return null;
+	return Object.keys(data).map(function (k) {
+		return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+	}).join('&');
 }
 
 
 function sendAjaxRequest(method, url, data, handler) {
-  let request = new XMLHttpRequest();
+	let request = new XMLHttpRequest();
 
-  request.open(method, url, true);
-  request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
-  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  request.addEventListener('load', handler);
-  if(data != null)
-  	request.send(encodeForAjax(data));
-  else
-  	request.send();
+	request.open(method, url, true);
+	request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	request.addEventListener('load', handler);
+	if (data != null)
+		request.send(encodeForAjax(data));
+	else
+		request.send();
 }
 
 function switchSprintsView(event) {
@@ -108,7 +107,7 @@ function showSprintForm() {
 
 function showTasksView() {
 	let data = JSON.parse(this.responseText);
-	
+
 	let content = document.querySelector("section.container-fluid div.row.content_view");
 	content.innerHTML = data.html;
 }
@@ -120,83 +119,90 @@ function showMembersView() {
 	content.innerHTML = data.html;
 }
 
-function addComment(event){
+function addComment(event) {
 	event.preventDefault();
 	console.log(event.target.action);
 
 	let content = document.querySelector("div.comment div.form_comment input[name='content']").value;
 
-	sendAjaxRequest('post', event.target.action, {content: content} , updateComments);
+	sendAjaxRequest('post', event.target.action, { content: content }, updateComments);
 }
 
 function updateComments() {
 	let data = JSON.parse(this.responseText);
 
 	let comments = document.querySelector("div#task-" + data.task_id);
-	
-	let form = document.querySelector("div#task-"+ data.task_id + " div.comment:last-of-type");
+
+	let form = document.querySelector("div#task-" + data.task_id + " div.comment:last-of-type");
 
 	form.insertAdjacentHTML('beforebegin', data.comment);
 
 	let input = document.querySelector("div.comment div.form_comment input[name='content']");
 	input.value = "";
-	
+
 }
 
-function deleteCommentTask(button){
-	
+function deleteCommentTask(button) {
+
 	let href = button.getAttribute('href');
-	
-	let r = confirm("Are you sure you want to delete this comment?\n");
-	
-	if (r == true) {
-		let comment_id = button.id; 
-		
-		sendAjaxRequest('post', href, {comment_id: comment_id}, updateCommentDeletion);
-	} else {
-		return;
-	}
+
+	swal({
+		title: "Are you sure you want to delete this comment?\n",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if (willDelete) {
+				let comment_id = button.id;
+				sendAjaxRequest('post', href, { comment_id: comment_id }, updateCommentDeletion);
+			}
+		});
+
 }
 
-function updateCommentDeletion(){
+function updateCommentDeletion() {
 	let data = JSON.parse(this.responseText);
-	if(data.success){
-		let comment = document.querySelector("div.comment[data-id='" + data.comment.id + "']");
+	if (data.success) {
+		let comment = document.querySelector("div.comment[data-id='" + data.comment_id + "']");
 		comment.remove();
+		swal("The comment has been deleted !", {
+			icon: "success",
+		});
 	}
 }
 
 function updateTaskCompletion() {
 	let url = this.getAttribute("data-url");
-	
+
 	let state;
-	if(this.checked){
+	if (this.checked) {
 		state = "Completed";
-	} else if(!this.checked){
+	} else if (!this.checked) {
 		state = "Uncompleted";
 	}
-	
-	sendAjaxRequest('post', url, {state: state}, updateTaskState);
+
+	sendAjaxRequest('post', url, { state: state }, updateTaskState);
 }
 
-function updateTaskState(){
+function updateTaskState() {
 	let data = JSON.parse(this.responseText);
-	
+
 	let task = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task");
 
-	if(data.state === "Completed"){
+	if (data.state === "Completed") {
 		task.classList.add("task_completed");
 
 		let assigned_users = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
-		if(assigned_users !== null)
+		if (assigned_users !== null)
 			assigned_users.remove();
 
-	} else if(data.state === "Uncompleted") {
+	} else if (data.state === "Uncompleted") {
 
 		task.classList.remove("task_completed");
 		console.log(task);
 
-		if(data.user_username != null){
+		if (data.user_username != null) {
 			createAssignUserDiv(data);
 		}
 
@@ -207,7 +213,7 @@ function updateTaskState(){
  * Assign or unassign self to task
  * @param {*} event 
  */
-function assignSelfTask(event){
+function assignSelfTask(event) {
 	event.preventDefault();
 
 	sendAjaxRequest('post', event.target.href, null, updateAssignUsers);
@@ -216,21 +222,21 @@ function assignSelfTask(event){
 /**
  * Updates the assign_users Div and buttons
  */
-function updateAssignUsers(){
+function updateAssignUsers() {
 	let data = JSON.parse(this.responseText);
 
 	let assigned_user = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
 
 	// the request was to unassign user of the task
-	if(data.claim_url != null){
+	if (data.claim_url != null) {
 
 		assigned_user.remove();
 
 	}
 	else {
 		// if the request was to assign user to task
-		if(assigned_user !== null){
-			
+		if (assigned_user !== null) {
+
 			//update assigned_user
 			assigned_user.firstChild.src = data.image;
 			assigned_user.firstChild.title = data.username;
@@ -266,12 +272,14 @@ function createTask(event) {
 	let sprint_project_id = event.target.getAttribute('data-id').split('-');
 
 
-	let inputTaskName = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task input[type='text']");
-	let inputEffort = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task input[type='number']");
-	let formHref = document.querySelector("div#sprint-" + sprint_project_id[0] +" form.sprint-task.create_task").getAttribute("action");
+	let inputTaskName = document.querySelector("div#sprint-" + sprint_project_id[0] + " form.sprint-task.create_task input[type='text']");
+	let inputEffort = document.querySelector("div#sprint-" + sprint_project_id[0] + " form.sprint-task.create_task input[type='number']");
+	let formHref = document.querySelector("div#sprint-" + sprint_project_id[0] + " form.sprint-task.create_task").getAttribute("action");
 
-	sendAjaxRequest("POST", formHref, {sprint_id: sprint_project_id[0], project_id: sprint_project_id[1],
-				name: inputTaskName.value, effort: inputEffort.value}, addTaskInfo);
+	sendAjaxRequest("POST", formHref, {
+		sprint_id: sprint_project_id[0], project_id: sprint_project_id[1],
+		name: inputTaskName.value, effort: inputEffort.value
+	}, addTaskInfo);
 }
 
 function addTaskInfo() {
@@ -280,7 +288,7 @@ function addTaskInfo() {
 	let div = document.querySelector("div#sprint-" + data.sprint_id + " form.sprint-task.create_task");
 	console.log(div);
 
-	if(data.success){
+	if (data.success) {
 		div.insertAdjacentHTML('beforebegin', data.html);
 	}
 	else {
@@ -288,12 +296,12 @@ function addTaskInfo() {
 		div.insertAdjacentHTML('beforebegin', element);
 	}
 
-	let inputTaskName = document.querySelector("div#sprint-" + data.sprint_id +" form.sprint-task.create_task input[type='text']");
-	let inputEffort = document.querySelector("div#sprint-" + data.sprint_id +" form.sprint-task.create_task input[type='number']");
+	let inputTaskName = document.querySelector("div#sprint-" + data.sprint_id + " form.sprint-task.create_task input[type='text']");
+	let inputEffort = document.querySelector("div#sprint-" + data.sprint_id + " form.sprint-task.create_task input[type='number']");
 
 	inputEffort.value = "";
 	inputTaskName.value = "";
 
 }
 
-addEventListeners();
+addEventListenersProject();

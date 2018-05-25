@@ -22,16 +22,16 @@ class UserController extends Controller {
         $this->authorize('list', Project::class);
 
         try {
-            $user = User::where('username',$username)->get();
-            $projects = $user[0]->userProjects();
-            $public_projects = $user[0]->userPublicProjects();
+            $user = User::where('username',$username)->first();
+            $projects = $user->userProjects();
+            $public_projects = $user->userPublicProjects();
 
-            $taskCompletedWeek = $user[0]->taskCompletedThisWeek()[0];
-            $taskCompletedMonth = $user[0]->taskCompletedThisMonth()[0];
-            $sprintsContributedTo = $user[0]->sprintsContributedTo()[0];
+            $taskCompletedWeek = $user->taskCompletedThisWeek()[0];
+            $taskCompletedMonth = $user->taskCompletedThisMonth()[0];
+            $sprintsContributedTo = $user->sprintsContributedTo()[0];
             
             return view('pages/user_profile', ['projects' => $projects,'public_projects' => $public_projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
-            'sprintsContributedTo' => $sprintsContributedTo, 'user' => $user[0]]);
+            'sprintsContributedTo' => $sprintsContributedTo, 'user' => $user]);
 
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
@@ -195,6 +195,40 @@ class UserController extends Controller {
         } catch (\Exception $e) {
             // Handle unexpected errors
         } 
+    }
+
+    public function requestJoinProject($project_id){
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+            $project = Project::find($project_id);
+
+            $request = Invite::where([['user_invited_id','=',Auth::user()->id],['project_id','=',$project_id],['user_who_invited_id','=',null]])->get();
+
+            $invite = Invite::where([['user_invited_id','=',Auth::user()->id],['project_id','=',$project_id]])->get();
+
+            if($invite->isEmpty() && $request->isEmpty()){  //if it doesnt already exist a request or invite of this project to the auth
+                $request_created = new Invite();
+
+                $request_created->user_invited_id = Auth::user()->id;
+                $request_created->project_id = $project_id;
+                $request_created->user_who_invited_id = null ;
+    
+                $request_created->save();
+
+                return response()->json(array('success' => true, 'project_name' => $project->name));
+            }else if(!$invite->isEmpty()){
+                return response()->json(array('success' => true, 'reason' => 'invite' ,'project_name' => $project->name));
+            }else{
+                return response()->json(array('success' => false,'reason'=> 'request', 'project_name' => $project->name));
+            }            
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
     }
 }
 

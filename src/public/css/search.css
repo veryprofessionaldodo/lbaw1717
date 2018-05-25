@@ -57,7 +57,7 @@ div#all_projects .project {
 	margin: 1em 0;
 }
 
-.project button.btn {
+.project div button.btn {
 	margin: auto;
 	background-color: #d0e8e8;	
 	color: #003;

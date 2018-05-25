@@ -50,11 +50,11 @@ function updateNotifications() {
     if (data.success) {
         let notifications = document.querySelectorAll("div#notifications_box ul li");
 
-        if(notifications.length == 1){
+        if (notifications.length == 1) {
             let notificationDropdown = document.querySelector("nav .user #notifications #notifications_box");
             notificationDropdown.style.height = 0;
-			notificationDropdown.style.opacity = 0;
-        }else{
+            notificationDropdown.style.opacity = 0;
+        } else {
             let notification = document.querySelector("div#notifications_box ul li[data-id='" + data.notification_id + "']");
             notification.remove();
         }

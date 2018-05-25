@@ -1,9 +1,9 @@
 <div data-id="{{ $comment->id }}" class="comment">
 
 	@if($comment->user->image != NULL)
-		<img src="{{ asset('storage/'.$comment->user->image)}}">
+		<img alt="Profile Image" src="{{ asset('storage/'.$comment->user->image)}}">
 	@else						
-		<img src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+		<img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
 	@endif
 	
 	<a href="{{ route('user_profile', ['username' => $comment->user->username])}}">{{$comment->user->username}}</a> <!-- TODO ANCHOR and adapte css-->
