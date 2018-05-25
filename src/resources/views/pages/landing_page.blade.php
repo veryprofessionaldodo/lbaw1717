@@ -59,6 +59,8 @@
             <button type="submit" class="btn btn-primary">Sign In</button>
             <button class="btn btn-info">Sign In with Facebook</button>
             <button class="btn btn-info">Sign In with Github</button>
+
+            <a class="reset_pass text-white" href="{{route('password.reset')}}">Lost your password?</a>
         </form>
         <form method="POST" action="{{ route('register') }}" id="sign_up" >
             {{ csrf_field() }}

@@ -42,12 +42,12 @@
 			<div id="options">
 				<div class="row">
 
-					<div class="offset-lg-1 col-lg-2 col-md-12">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-12">
 						<a id="new_project" class="btn btn-primary" href="{{ route('new_project_form',['username' => Auth::user()->username])}}">Create New Project</a>
 					</div>
 
 					<!-- Add functionality to this form -->
-					<form class="col-lg-6 col-md-7 col-sm-7 col-12 searchbar">
+					<form class="col-lg-6 col-md-6 col-sm-6 col-12 searchbar">
 						<input type="text" name="search" placeholder="Search Your Projects" class="form-control">
 						<button class="btn btn-primary" type="submit">
 							<i class="fas fa-search"></i>
@@ -55,7 +55,7 @@
 					</form>
 
 					<!-- Add functionality to this form -->
-					<div class="col-lg-2 col-md-5 col-sm-5 col-12" id="role_button">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-12" id="role_button">
 						<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 							<button type="button" class="btn btn-primary">Role</button>
 							<div class="btn-group" role="group">

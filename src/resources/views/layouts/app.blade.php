@@ -70,6 +70,7 @@
 
       <div class="user col-3">  
 
+        @if(Auth::check())
         <div id="notifications">
 
           <label class="hamburger" for="hamburger2"></label>
@@ -82,6 +83,7 @@
             </ul>
           </div>
         </div>
+        @endif
          
         @if (Auth::check())
           @if (Auth::user()->image != NULL)
@@ -91,12 +93,14 @@
           @endif
         @endif
 
+        @if(Auth::check())
         <div id="profile_options">
           <ul>
             <li><a href="{{ route('user_profile', ['username' => Auth::user()->username])}}">View Profile</a></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>
           </ul>
         </div>
+        @endif
         
       </nav>
 
