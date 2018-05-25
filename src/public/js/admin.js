@@ -105,31 +105,42 @@ function disableUser(button) {
 function deleteCommentReport(button) {
 	let href = button.getAttribute('href');
 
-	swal({
-		title: "Are you sure you want to delete this comment?\n",
+	swal("Delete Comment", {
 		icon: "warning",
-		buttons: true,
-		dangerMode: true,
-	})
-		.then((willDelete) => {
-			if (willDelete) {
-				let report_id = button.id;
-				let disable;
-				swal("Do you also want to disable the user responsible for this comment?\n", {
-					icon: "warning",
-					buttons: true,
-					dangerMode: true,
-				}).then((willDelete) => {
-					if (willDelete) {
-						disable = true;
-					} else {
-						disable = false;
-					}
-					sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, reportHandler);
-
-				});
-			}
-		});
+		buttons: {
+		  cancel: "Cancel!",
+		  catch: {
+			text: "Delete comment and disable user!",
+			value: "catch",
+		  },
+		  defeat: {
+			text: "Only delete the comment!",
+			value: "defeat",
+		  },
+		},
+	  })
+	  .then((value) => {
+		let report_id = button.id;
+		let disable;
+		switch (value) {
+	   
+		  case "defeat":
+			disable = false;
+			sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, reportHandler);
+			break;
+	   
+		  case "catch":
+			disable = true;
+			sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, reportHandler);
+			break;
+	   
+		  default:
+			swal("Operation Canceled!",{
+				dangerMode: true,
+       			icon:"error",
+			});
+		}
+	  });
 }
 
 function getPageReport(event) {

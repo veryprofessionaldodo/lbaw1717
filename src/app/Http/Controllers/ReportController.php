@@ -23,10 +23,10 @@ class ReportController extends Controller
     public function userReportForm($username){
 
         try {
-            $user_reported = User::where('username',$username)->get();
+            $user_reported = User::where('username',$username)->first();
             $type = 'USER';
             
-            return view('pages/report_page',['user_reported' => $user_reported[0], 'type' => $type]);
+            return view('pages/report_page',['user_reported' => $user_reported, 'type' => $type]);
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
             //(returning the view with the parsed errors, p.e)

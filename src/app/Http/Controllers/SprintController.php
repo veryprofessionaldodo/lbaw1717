@@ -38,14 +38,14 @@ class SprintController extends Controller
 
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
-      $sprint = Sprint::find($id);
+      $sprint = Sprint::find($request->input('sprint_id'));
 
       //$this->authorize('delete', $sprint); TODO
-      $sprint->delete();
+      //$sprint->delete();
 
-      return $sprint;
+      return response()->json(array('success' => true, 'sprint_id' => $request->input('sprint_id')));
     }
 
     public function showForm(int $project_id) {

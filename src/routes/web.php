@@ -67,7 +67,7 @@ Route::get('api/projects/{project_id}/sprints', 'ProjectController@sprintsView')
 // Route::post('api/projects/{project_id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEdit');
 Route::get('api/projects/{project_id}/sprints/new_sprint', 'SprintController@showForm')->name('new_sprint_form');
 Route::post('api/projects/{project_id}/sprints', 'SprintController@create')->name('new_sprint');
-// Route::delete('api/projects/{project_id}/sprints/{sprint_id}','ProjectController@deleteSprint');
+Route::delete('api/projects/{project_id}/sprints/{sprint_id}','SprintController@destroy')->name('delete_sprint');
 
 //Tasks 
 Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->name('project_tasks');

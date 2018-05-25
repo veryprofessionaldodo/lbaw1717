@@ -13,6 +13,7 @@
 
 	@if($role == 'co')
 		<a href="" class="btn edit_sprint"><i class="fas fa-pencil-alt"></i></a>
+		<a href="{{ route('delete_sprint', ['project_id' => $project->id , 'sprint_id' => $sprint->id]) }}" class="btn delete_sprint"><i class="fas fa-trash"></i></a>
 	@endif
 	<span class="badge badge-primary badge-pill">{{ sizeof($sprint->tasks)}}</span>
 </div>

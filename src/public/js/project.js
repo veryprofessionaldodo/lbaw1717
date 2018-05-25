@@ -32,6 +32,12 @@ function addEventListenersProject() {
 	for (let i = 0; i < addTaskButtons.length; i++) {
 		addTaskButtons[i].addEventListener('click', createTask);
 	}
+
+	let deleteSprintButtons = document.querySelectorAll('div.list-group-item a.btn.delete_sprint');
+	for (let i = 0; i < deleteSprintButtons.length; i++) {
+		deleteSprintButtons[i].addEventListener('click', deleteSprint);
+	}
+
 }
 
 function encodeForAjax(data) {
@@ -302,6 +308,63 @@ function addTaskInfo() {
 	inputEffort.value = "";
 	inputTaskName.value = "";
 
+}
+
+function deleteSprint(event) {
+	event.preventDefault();
+
+	swal("Delete Sprint", {
+		icon: "warning",
+		buttons: {
+			cancel: "Cancel!",
+			all: {
+				text: "Delete sprint and tasks inside!",
+				value: "all",
+			},
+			move: {
+				text: "Delete Sprint and move tasks to the project!",
+				value: "move",
+			},
+			change: {
+				text: "Delete Sprint and move tasks to other sprints",
+				value: "change",
+			},
+		},
+	})
+		.then((value) => {
+
+			let index = event.target.href.indexOf('projects');
+			let index2 = event.target.href.indexOf('sprints');
+			let project_id = event.target.href.substring(index + 9, index2 - 1);
+			let sprint_id = event.target.href.substring(index2 + 8, event.target.length);
+
+			switch (value) {
+
+				case "all":
+					sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					break;
+
+				case "move":
+					sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					break;
+
+				case "change":
+					sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					break;
+
+				default:
+					swal("Operation Canceled!", {
+						dangerMode: true,
+						icon: "error",
+					});
+			}
+		});
+
+
+}
+
+function deleteSprintHandler() {
+	let data = JSON.parse(this.responseText);
 }
 
 addEventListenersProject();
