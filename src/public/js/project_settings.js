@@ -73,11 +73,23 @@ function deleteRequest(event) {
     index = event.target.href.indexOf('requests');
     let request_id = event.target.href.substring(index + 9, event.target.href.length);
 
-    if (confirm('Are you sure you want to reject this request?\n')) {
-        sendAjaxRequest('post', event.target.href, { project_id: project_id[0], request_id: request_id[0] }, updateRequests);
-    } else {
-        return;
-    }
+    swal({
+        title: "Are you sure you want to reject this request?\n",
+        text: "Once deleted, you will not be able to recover this request!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                sendAjaxRequest('post', event.target.href, { project_id: project_id[0], request_id: request_id[0] }, updateRequests);
+                swal("Poof! Your imaginary file has been deleted!", {
+                    icon: "success",
+                });
+            } else {
+                swal("Your request is safe!");
+            }
+        });
 }
 
 function acceptRequest(event) {
@@ -88,11 +100,22 @@ function acceptRequest(event) {
     index = event.target.href.indexOf('requests');
     let request_id = event.target.href.substring(index + 9, event.target.href.length);
 
-    if (confirm('Are you sure you want to accept this request?\n')) {
-        sendAjaxRequest('post', event.target.href, { project_id: project_id[0], request_id: request_id[0] }, updateRequests);
-    } else {
-        return;
-    }
+    swal({
+        title: "Are you sure you want to accept this request?\n",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                sendAjaxRequest('post', event.target.href, { project_id: project_id[0], request_id: request_id[0] }, updateRequests);
+                swal("Your request has been accepted !", {
+                    icon: "success",
+                });
+            } else {
+                swal("Your request is safe!");
+            }
+        });
 }
 
 function updateRequests() {
@@ -112,11 +135,20 @@ function promoteMember(event) {
     index = event.target.href.indexOf('members');
     let member_username = event.target.href.substring(index + 8, event.target.href.length - 8);
 
-    if (confirm('Are you sure you want to promote this member to Coordenator?\n')) {
-        sendAjaxRequest('post', event.target.href, { project_id: project_id[0], username: member_username }, promotedMemberUpdate);
-    } else {
-        return;
-    }
+    swal({
+        title: "Are you sure you want to promote this member to Coordenator?\n",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                sendAjaxRequest('post', event.target.href, { project_id: project_id[0], username: member_username }, promotedMemberUpdate);
+                swal("The Team Member has been promoted to Coordinator!", {
+                    icon: "success",
+                });
+            }
+        });
 }
 
 function promotedMemberUpdate() {
@@ -135,12 +167,17 @@ function removeMember(event) {
     index = event.target.href.indexOf('members');
     let member_username = event.target.href.substring(index + 8, event.target.href.length - 7);
 
-    if (confirm('Are you sure you want to remove this member from the project?\n')) {
-        sendAjaxRequest('post', event.target.href, { project_id: project_id[0], username: member_username }, removeMemberUpdate);
-    } else {
-        return;
-    }
-
+    swal({
+        title: "Are you sure you want to remove this member from the project?\n",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                sendAjaxRequest('post', event.target.href, { project_id: project_id[0], username: member_username }, removeMemberUpdate);
+            }
+        });
 }
 
 function removeMemberUpdate() {
@@ -148,6 +185,9 @@ function removeMemberUpdate() {
     if (data.success) {
         let div = document.querySelector("div.member[data-id='" + data.member_username + "']");
         div.remove();
+        swal("The user has been removed from the project!", {
+            icon: "success",
+        });
     }
 }
 

@@ -68,37 +68,68 @@ function dismissReport(button) {
 	let href = button.getAttribute('href');
 	let report_id = button.id;
 
-	//console.log(button.parentElement.parentElement.parentElement.getAttribute('data-id'));
+	swal({
+		title: "Are you sure you want to dismiss this report?\n",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if (willDelete) {
+				sendAjaxRequest('post', href, { report_id: report_id }, reportHandler);
+			}
+		});
 
-	sendAjaxRequest('post', href, { report_id: report_id }, refreshPage);
 }
 
 function disableUser(button) {
 	let href = button.getAttribute('href');
 
-	if (confirm("Are you sure you want to disable this user?\n")) {
-		let report_id = button.id;
-
-		sendAjaxRequest('post', href, { report_id: report_id }, refreshPage);
-	} else {
-		return;
-	}
+	swal({
+		title: "Are you sure you want to disable this user?\n",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if (willDelete) {
+				let report_id = button.id;
+				sendAjaxRequest('post', href, { report_id: report_id }, reportHandler);
+				swal("This user has been disable !", {
+					icon: "success",
+				});
+			}
+		});
 }
 
 function deleteCommentReport(button) {
 	let href = button.getAttribute('href');
 
-	if (confirm("Are you sure you want to delete this comment?\n")) {
+	swal({
+		title: "Are you sure you want to delete this comment?\n",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if (willDelete) {
+				let report_id = button.id;
+				let disable;
+				swal("Do you also want to disable the user responsible for this comment?\n", {
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				}).then((willDelete) => {
+					if (willDelete) {
+						disable = true;
+					} else {
+						disable = false;
+					}
+					sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, reportHandler);
 
-		let report_id = button.id;
-		let disable;
-
-		disable = confirm("Do you also want to disable the user responsible for this comment?\n")
-
-		sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, refreshPage);
-	} else {
-		return;
-	}
+				});
+			}
+		});
 }
 
 function getPageReport(event) {
@@ -115,9 +146,9 @@ function ReportCommentsDetail(event) {
 
 	let selector = document.querySelector("div#reports div.report_comment[data-id = '" + report_id + "'] div.report_details");
 
-	if(selector !== null){
+	if (selector !== null) {
 		selector.remove();
-	}else{
+	} else {
 		sendAjaxRequest('get', event.target.href, { report_id: report_id }, showReportCommentsDetail);
 	}
 }
@@ -139,9 +170,9 @@ function ReportUserDetail(event) {
 
 	let selector = document.querySelector("div#reports div.report_user[data-id = '" + report_id + "'] div.report_details");
 
-	if(selector !== null){
+	if (selector !== null) {
 		selector.remove();
-	}else{
+	} else {
 		sendAjaxRequest('get', event.target.href, { report_id: report_id }, showReportUserDetail);
 	}
 }
@@ -152,6 +183,20 @@ function showReportUserDetail() {
 	if (data.success) {
 		let report = document.querySelector("div#reports div.report_user[data-id = '" + data.report.id + "'] div.report_principal_info");
 		report.insertAdjacentHTML('afterend', data.reportView);
+	}
+}
+
+function reportHandler() {
+	let data = JSON.parse(this.responseText);
+
+	if (data.success) {
+		let report = document.querySelector("div#reports div.report[data-id = '" + data.report_id + "'] ");
+		report.remove();
+
+		swal("Success !", {
+			icon: "success",
+		});
+
 	}
 }
 

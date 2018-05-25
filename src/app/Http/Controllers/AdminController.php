@@ -71,6 +71,8 @@ class AdminController extends Controller {
             $report = Report::find($request->input('report_id'));
       
             $report->delete();
+
+            return response()->json(array('success' => true, 'report_id' => $request->input('report_id')));
     
           } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
@@ -94,6 +96,8 @@ class AdminController extends Controller {
             for($x = 0; $x < count($reports);$x++){
                 $reports[$x]->delete();
             }
+
+            return response()->json(array('success' => true, 'report_id' => $request->input('report_id')));
             
 
           } catch(\Illuminate\Database\QueryException $qe) {
@@ -124,6 +128,8 @@ class AdminController extends Controller {
             }
 
             $comment->delete();
+
+            return response()->json(array('success' => true, 'report_id' => $request->input('report_id')));
 
           } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it 
