@@ -7,7 +7,29 @@
 	@endif
 	
 	<a href="{{ route('user_profile', ['username' => $comment->user->username])}}">{{$comment->user->username}}</a> <!-- TODO ANCHOR and adapte css-->
-	<p>{{$comment->content}}</p>
+	<p id="{{$comment->id}}" class="content">{{$comment->content}}</p>
+	
+	@if($comment->task_id == NULL)
+		<div class="form_commet row">
+		<form id="edit" method="POST" style="display: none;" action="{{ route('editCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}">
+		{{ csrf_field()}}
+		
+		<!-- <div class="col-8">-->
+			<input type="text" class="form-control col-10" name="content" id="content">    
+			<button type="submit" class="btn btn-secondary">Send</button>
+			
+			<!--<div class="offset-2"></div>-->
+		</form> 
+		</div>
+	@else
+	<div class="form_comment row" style="display: none;">
+		<form id="edit" method="POST" action="{{ route('editTaskComment',['project_id' => $project->id,'task_id' => $task->id, 'comment_id' => $comment->id]) }}">
+			{{ csrf_field()}}
+			<input type="text" class="form-control col-10" name="content">
+			<button class="btn btn-primary col-2" type="submit">Send</button>
+		</form>
+	</div>
+  	@endif
 	
 	<?php  
 		$date = new \DateTime($comment->deadline);
@@ -34,8 +56,10 @@
 
 			@if($comment->task_id == NULL)
 				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
+				<button class="btn btn-warning edit_comment" onclick="editCommentThread(this)" id="{{$comment->id}}"><i class="fas fa-pencil-alt" ></i></button>
 			@else
 				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
+				<button class="btn btn-warning edit_comment" onclick="editTaskComment(this)" id="{{$comment->id}}"><i class="fas fa-pencil-alt" ></i></button>
 			@endif
 
 		@endif

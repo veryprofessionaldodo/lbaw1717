@@ -82,7 +82,7 @@ Route::post('api/projects/{project_id}/tasks/{task_id}/assign_other', 'TaskContr
 Route::post('api/projects/{project_id}/tasks/{task_id}/unassign_other', 'TaskController@unassign')->name('unassign_other');
 Route::post('api/projects/{project_id}/tasks', 'TaskController@store')->name('new_task');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task'); //done
-// Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
+Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'CommentController@edit')->name('editTaskComment');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentTask'); //done
 
@@ -97,6 +97,7 @@ Route::delete('projects/{id}/threads/{thread_id}', 'ThreadController@destroy')->
 
 Route::post('projects/{id}/threads/{thread_id}/comments', 'CommentController@store')->name('new_comment'); //done
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentThread'); //done
+Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'CommentController@edit')->name('editCommentThread');
 
 //Admin Administraton, Report and Static Pages
 Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
