@@ -1,5 +1,5 @@
 <!-- Sprint -->
-<div class="list-group-item">
+<div class="list-group-item" data-id="{{$sprint->id}}">
 	<a data-toggle="collapse" data-target="#sprint-{{$sprint->id}}" aria-expanded="true">
 		<i class="fas fa-sort-down"></i>{{$sprint->name}}</a>
 

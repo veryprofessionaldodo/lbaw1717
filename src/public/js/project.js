@@ -5,11 +5,11 @@ let memberButton = document.querySelector("li.nav-item a#member_btn");
 let newSprintButton = document.querySelector("section.container-fluid div.col-12.new_sprint a");
 
 function addEventListenersProject() {
-	if(sprintButton !== null)
+	if (sprintButton !== null)
 		sprintButton.addEventListener('click', switchSprintsView);
-	if(taskButton !== null)
+	if (taskButton !== null)
 		taskButton.addEventListener('click', switchTasksView);
-	if(memberButton !== null)
+	if (memberButton !== null)
 		memberButton.addEventListener('click', switchMembersView);
 
 	if (newSprintButton !== null) {
@@ -17,7 +17,7 @@ function addEventListenersProject() {
 	}
 
 	submitComment = document.querySelector("div.comment div.form_comment form");
-	if(submitComment !== null)
+	if (submitComment !== null)
 		submitComment.addEventListener('submit', addComment);
 
 	// tasks completion
@@ -345,15 +345,15 @@ function deleteSprint(event) {
 			switch (value) {
 
 				case "all":
-					sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					sendAjaxRequest('post', event.target.href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
 					break;
 
 				case "move":
-					sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					sendAjaxRequest('post', event.target.href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
 					break;
 
 				case "change":
-					sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					sendAjaxRequest('post', event.target.href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
 					break;
 
 				default:
@@ -368,7 +368,29 @@ function deleteSprint(event) {
 }
 
 function deleteSprintHandler() {
+
+	alert(this.responseText);
 	let data = JSON.parse(this.responseText);
+	if (data.success) {
+
+		let sprint = document.querySelector("section.container-fluid div#project_structure div#sprints div.list-group-item[data-id='" + data.sprint_id + "']");
+		sprint.remove();
+
+		switch (data.value) {
+			case "all":
+				swal("Successfully deleted this sprint and the tasks inside !", {
+					icon: "success",
+				});
+				break;
+			case "move":
+				swal("Successfully deleted this sprint and moved the tasks to the project !", {
+					icon: "success",
+				});
+				break;
+			case "chane":
+				break;
+		}
+	}
 }
 
 addEventListenersProject();

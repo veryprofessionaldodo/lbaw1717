@@ -51,7 +51,7 @@
     <script type="text/javascript" src={{ asset('js/notifications.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/task.js')}} defer></script> 
     <script type="text/javascript" src={{ asset('js/project_search.js')}} defer></script> 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
   </head>
   
   <body>
