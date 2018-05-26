@@ -1,8 +1,7 @@
 
 function addEventListenersProjectSearch() {
 
-    let joinProjectButtons = document.querySelectorAll("div#all_projects div.row div.project div.row a.join");
-    console.log(joinProjectButtons);
+    let joinProjectButtons = document.querySelectorAll("div#all_projects div.project a.join");
     for (let i = 0; i < joinProjectButtons.length; i++) {
         joinProjectButtons[i].addEventListener('click', createRequest);
     }
@@ -10,10 +9,6 @@ function addEventListenersProjectSearch() {
 
 function createRequest(event) {
     event.preventDefault();
-
-    alert("yolo");
-
-    return;
 
     let index = event.target.href.indexOf('projects');
     let project_id = event.target.href.substring(index + 9, event.target.href.length - 8);

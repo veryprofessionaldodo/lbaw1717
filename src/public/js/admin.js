@@ -6,8 +6,10 @@ function addEventListenersAdmin() {
 	let userRepDetail = document.querySelectorAll("section div#reports div.report_user div.report_principal_info a");
 	let pagination = document.querySelectorAll("div#reports div#pagination_section ul.pagination li a");
 
-	userRepBtn.addEventListener('click', showUserReports);
-	commentRepBtn.addEventListener('click', showCommentReports);
+	if(userRepBtn !== null)
+		userRepBtn.addEventListener('click', showUserReports);
+	if(commentRepBtn !== null)
+		commentRepBtn.addEventListener('click', showCommentReports);
 
 	for (let i = 0; i < pagination.length; i++) {
 		pagination[i].addEventListener('click', getPageReport);

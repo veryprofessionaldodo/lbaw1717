@@ -4,7 +4,8 @@ function addEventListenersForum() {
     newThreadButtonForm.addEventListener('click',createThreadAction);*/
 
     submitComment = document.querySelector("div.comment#thread form");
-    submitComment.addEventListener('submit', addCommentThread);
+    if(submitComment !== null)
+        submitComment.addEventListener('submit', addCommentThread);
 }
 /*
 function editThreadAction(event) {

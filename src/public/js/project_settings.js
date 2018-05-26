@@ -16,8 +16,10 @@ function addEventListenersSettings() {
     let promoteMemberBtn = document.querySelectorAll("section.container-fluid div#members div.member-row div.buttons a.promote");
     let removeMemberBtn = document.querySelectorAll("section.container-fluid div#members div.member-row div.buttons a.remove");
 
-    settingsRequestsBtn.addEventListener('click', switchRequestView);
-    settingsMembersBtn.addEventListener('click', switchMembersView);
+    if(settingsRequestsBtn !== null)
+        settingsRequestsBtn.addEventListener('click', switchRequestView);
+    if(settingsMembersBtn !== null)
+        settingsMembersBtn.addEventListener('click', switchMembersView);
 
     for (let i = 0; i < deleteRequestBtn.length; i++) {
         deleteRequestBtn[i].addEventListener('click', deleteRequest);

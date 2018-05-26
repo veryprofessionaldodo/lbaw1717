@@ -5,16 +5,20 @@ let memberButton = document.querySelector("li.nav-item a#member_btn");
 let newSprintButton = document.querySelector("section.container-fluid div.col-12.new_sprint a");
 
 function addEventListenersProject() {
-	sprintButton.addEventListener('click', switchSprintsView);
-	taskButton.addEventListener('click', switchTasksView);
-	memberButton.addEventListener('click', switchMembersView);
+	if(sprintButton !== null)
+		sprintButton.addEventListener('click', switchSprintsView);
+	if(taskButton !== null)
+		taskButton.addEventListener('click', switchTasksView);
+	if(memberButton !== null)
+		memberButton.addEventListener('click', switchMembersView);
 
 	if (newSprintButton !== null) {
 		newSprintButton.addEventListener('click', getSprintForm);
 	}
 
 	submitComment = document.querySelector("div.comment div.form_comment form");
-	submitComment.addEventListener('submit', addComment);
+	if(submitComment !== null)
+		submitComment.addEventListener('submit', addComment);
 
 	// tasks completion
 	let tasksCheckboxes = document.querySelectorAll("div.sprint-task input[type='checkbox']");

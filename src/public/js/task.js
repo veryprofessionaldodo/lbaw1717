@@ -12,11 +12,13 @@ function taskPageEventListeners() {
 
 	// tasks completion
 	let tasksCheckbox = document.querySelector("div#checkbox input[type='checkbox']");
-	tasksCheckbox.addEventListener('click', updateTaskCompletion);
+	if(tasksCheckbox !== null)
+		tasksCheckbox.addEventListener('click', updateTaskCompletion);
 
 	// assign to task to self
 	let assignSelfTaskButton = document.querySelector("div.task_options a.claim");
-	assignSelfTaskButton.addEventListener('click', assignSelfTask);
+	if(assignSelfTaskButton !== null)
+		assignSelfTaskButton.addEventListener('click', assignSelfTask);
 
 	// assign task to other
 	let assignTaskOtherForm = document.querySelector("div.coordinator_options form#assign_user_form");

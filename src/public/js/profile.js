@@ -5,10 +5,12 @@ function addEventListeners() {
 	// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 	let editProfileButton = document.querySelector(".container-fluid .row aside div a#edit_profile");
-	editProfileButton.addEventListener('click', editProfileForm);
+	if(editProfileButton !== null)
+		editProfileButton.addEventListener('click', editProfileForm);
 
 	let createProjectButton = document.querySelector(".container-fluid div#options a#new_project");
-	createProjectButton.addEventListener('click', createProjectForm);
+	if(createProjectButton !== null)
+		createProjectButton.addEventListener('click', createProjectForm);
 
 	// let paginationLinks = document.querySelectorAll("ul.pagination li a, ul.pagination li span");
 	// console.log(paginationLinks);
