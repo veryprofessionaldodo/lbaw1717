@@ -353,7 +353,7 @@ function deleteSprint(event) {
 					break;
 
 				case "change":
-					sendAjaxRequest('post', event.target.href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					//sendAjaxRequest('post', event.target.href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
 					break;
 
 				default:
@@ -387,7 +387,7 @@ function deleteSprintHandler() {
 					icon: "success",
 				});
 				break;
-			case "chane":
+			case "change":
 				break;
 		}
 	}
