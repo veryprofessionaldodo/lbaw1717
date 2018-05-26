@@ -322,4 +322,34 @@ function updateDivAssignUsers(data) {
 
 }
 
+function editTaskComment(button) {
+    
+    let ps = document.getElementsByClassName("content");
+
+    var order = 0;
+
+    for(let i = 0; i < ps.length; i++){
+        if(ps[i].id == button.id){
+            order = i
+        }
+    }
+
+	console.log(order);
+	let commentInfo = document.querySelectorAll("p.content")[order];
+	let commentDiv = document.querySelectorAll("div.form_comment.row")[order];
+    let commentForm = document.querySelectorAll("div.form_comment.row form#edit")[order];
+    
+    if(commentInfo.style.display !== "none"){
+        let input = commentForm.querySelector("input");
+        input.value = commentInfo.innerHTML;
+        commentInfo.style.display = "none"
+       	commentDiv.style.display = "block";
+    }
+    else {
+        commentInfo.style.display = "block";
+        commentDiv.style.display = "none";
+
+    }
+}
+
 taskPageEventListeners();

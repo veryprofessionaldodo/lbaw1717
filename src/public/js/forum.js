@@ -2,10 +2,10 @@ function addEventListenersForum() {
     /*let newThreadButtonForm = document.querySelector("div#container div#overlay div.jumbotron p.lead a#newThread-btn");
 
     newThreadButtonForm.addEventListener('click',createThreadAction);*/
-    let editButton = document.querySelector("button.edit_comment");
+  /*  let editButton = document.querySelector("button.edit_comment");
     if(editButton !== null){
         editButton.addEventListener('click', showEditForm);
-    }
+    }*/
     submitComment = document.querySelector("div.comment#thread form");
     submitComment.addEventListener('submit', addCommentThread);
 }
@@ -26,57 +26,39 @@ function editThreadAction(event) {
 }
 */
 
-function initTinyMCE() {
-    tinymce.init({
-        selector: '#mytextarea',
-        plugins: 'code,codesample,lists,advlist,image,link,paste,textcolor,textpattern,contextmenu,emoticons,pagebreak,table',
-        toolbar: 'code, codesample, bullist, numlist, image, link, paste,forecolor backcolor,emoticons, pagebreak, table',
-        menubar: false,
-        contextmenu: 'link image inserttable | cell row column deletetable',
-        image_caption: true,
-        image_advtab: true,
-        code_dialog_height: 300,
-        code_dialog_width: 350,
-        advlist_bullet_styles: 'default,circle,disc,square',
-        advlist_number_styles: 'lower-alpha,lower-roman,upper-alpha,upper-roman',
-        codesample_languages: [
-            {text: 'HTML/XML', value: 'markup'},
-            {text: 'JavaScript', value: 'javascript'},
-            {text: 'CSS', value: 'css'},
-            {text: 'PHP', value: 'php'},
-            {text: 'Ruby', value: 'ruby'},
-            {text: 'Python', value: 'python'},
-            {text: 'Java', value: 'java'},
-            {text: 'C', value: 'c'},
-            {text: 'C#', value: 'csharp'},
-            {text: 'C++', value: 'cpp'}
-        ]
-    });
-}
 
-function showEditForm() {
+function editCommentThread(button) {
+    
+    let ps = document.getElementsByClassName("content");
 
-    let commentInfo = document.querySelector("p#content");
-    let commentForm = document.querySelector("form#edit");
+    var order = 0;
+
+    for(let i = 0; i < ps.length; i++){
+        if(ps[i].id == button.id){
+            order = i
+        }
+    }
+
+    let commentInfo = document.querySelectorAll("p.content")[order];
+    let commentForm = document.querySelectorAll("div form#edit")[order];
     
     if(commentInfo.style.display !== "none"){
-        commentInfo.style.display = "none";
-
-        let textarea = document.querySelector("form#edit textarea");
-        textarea.innerHTML = commentInfo.innerHTML;
-        initTinyMCE();
-        commentForm.classList.remove('hidden');
+        let input = commentForm.querySelector("input#content.form-control.col-10");
+        input.value = commentInfo.innerHTML;
+        commentInfo.style.display = "none"
+        commentForm.style.display = "block";
     }
     else {
         commentInfo.style.display = "block";
-        commentForm.classList.add('hidden');
+        commentForm.style.display = "none";
+
     }
 }
 
 function showPageUpdated() {
 
     let data = JSON.parse(this.responseText);
-    console.log(data);
+    //console.log(data);
     let doc = document.querySelector("body");
     doc.innerHTML = data.html;
 }
@@ -104,7 +86,7 @@ function updateCommentsThread() {
 }
 
 function deleteCommentThread(button) {
-
+    
     let href = button.getAttribute('href');
     swal({
         title: "Are you sure you want to delete this comment?\n",

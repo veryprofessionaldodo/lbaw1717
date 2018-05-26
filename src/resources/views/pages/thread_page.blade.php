@@ -51,6 +51,7 @@
             </div>
         </div>
         
+        
         @foreach($comments as $comment)
         @include('partials.comment', ['project' => $project, 'thread' => $thread, 'comment' => $comment,'role'=> $role])
         @endforeach
@@ -65,7 +66,8 @@
             @endif
 
             <h6>{{\Auth::user()->username}}</h6>
-            <form method="POST" action="{{ route('new_comment', ['id' => $project->id, 'thread_id' => $thread->id])}}">
+            <div class="form_comment row">
+                <form method="POST" action="{{ route('new_comment', ['id' => $project->id, 'thread_id' => $thread->id])}}">
                 {{ csrf_field()}}
                 
                 <!-- <div class="col-8">-->
@@ -73,15 +75,15 @@
                     <input type="text" class="form-control" name="content" id="content" placeholder="Write here...">    
                     
                     
-                    <button type="submit" class="btn btn-secondary">Submit</button>
+                    <button type="submit" class="btn btn-secondary">Send</button>
                     
                     <!--<div class="offset-2"></div>-->
                 </form> 
+            </div> 
                 
-                
-            </div>
         </div>
     </div>
+</div>
 @else
 
 @endif

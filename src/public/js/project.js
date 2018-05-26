@@ -121,7 +121,7 @@ function showMembersView() {
 
 function addComment(event) {
 	event.preventDefault();
-	console.log(event.target.action);
+	//console.log(event.target.action);
 
 	let content = document.querySelector("div.comment div.form_comment input[name='content']").value;
 

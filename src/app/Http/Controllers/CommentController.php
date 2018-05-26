@@ -161,9 +161,23 @@ class CommentController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $thread_id, $comment_id)
     {
-        //
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+            $comment = Comment::find($request->input('comment_id'));
+            $comment->delete();
+
+           // return response()->json(array('success' => true, 'comment_id' => $request->input('comment_id')));
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+
     }
     
     /**
