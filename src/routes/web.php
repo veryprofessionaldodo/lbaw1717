@@ -26,8 +26,8 @@ Route::post('register', 'Auth\RegisterController@register'); //done
 
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.token');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request.view');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');
 
 // User
 Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile'); //done
@@ -67,7 +67,7 @@ Route::get('api/projects/{project_id}/sprints', 'ProjectController@sprintsView')
 // Route::post('api/projects/{project_id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEdit');
 Route::get('api/projects/{project_id}/sprints/new_sprint', 'SprintController@showForm')->name('new_sprint_form');
 Route::post('api/projects/{project_id}/sprints', 'SprintController@create')->name('new_sprint');
-// Route::delete('api/projects/{project_id}/sprints/{sprint_id}','ProjectController@deleteSprint');
+Route::post('api/projects/{project_id}/sprints/{sprint_id}','SprintController@destroy')->name('delete_sprint');
 
 //Tasks 
 Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->name('project_tasks');

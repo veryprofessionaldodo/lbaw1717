@@ -131,7 +131,7 @@ div.list-group-item {
 	color: #001;
 	background-color: #5bc0de;
 	border-bottom: 2px solid #0A1827;
-	grid-template-columns: 50% auto auto auto;
+	grid-template-columns: 50% auto auto auto auto;
 }
 
 div.list-group-item p{
@@ -152,6 +152,13 @@ div.list-group-item a.btn.edit_sprint {
 	padding: 0;
 	margin: auto 0 auto auto;
 }
+div.list-group-item a.btn.delete_sprint {
+	grid-column: 4;
+	grid-row: 1; 
+	background-color: inherit;
+	padding: 0;
+	margin: auto 0 auto auto;
+}
 
 div.list-group-item a.btn.edit_sprint svg {
 	font-size: 14px;
@@ -159,8 +166,14 @@ div.list-group-item a.btn.edit_sprint svg {
 	color: #002;
 }
 
+div.list-group-item a.btn.delete_sprint svg {
+	font-size: 14px;
+	margin: auto 0;
+	color: #002;
+}
+
 div.list-group-item span {
-	grid-column: 4;
+	grid-column: 5;
 	grid-row: 1; 
 	margin: auto 0 auto auto;
 }

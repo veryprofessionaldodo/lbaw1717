@@ -216,7 +216,7 @@ ALTER TABLE ONLY task
 	ADD CONSTRAINT task_id_user_project_fkey FOREIGN KEY (project_id) REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY task
-	ADD CONSTRAINT task_id_user_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE;
+	ADD CONSTRAINT task_id_user_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY thread
 	ADD CONSTRAINT thread_id_project_fkey FOREIGN KEY (project_id) REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -243,7 +243,7 @@ ALTER TABLE ONLY report
 	ADD CONSTRAINT report_id_user_fkey FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY report
-	ADD CONSTRAINT report_id_comment_reported_fkey FOREIGN KEY (comment_reported_id) REFERENCES comment(id) ON UPDATE CASCADE;
+	ADD CONSTRAINT report_id_comment_reported_fkey FOREIGN KEY (comment_reported_id) REFERENCES comment(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY report
 	ADD CONSTRAINT report_id_user_reported_fkey FOREIGN KEY (user_reported_id) REFERENCES "user"(id) ON UPDATE CASCADE;
@@ -276,7 +276,7 @@ ALTER TABLE ONLY task_state_record
 	ADD CONSTRAINT task_state_record_id_task_fkey FOREIGN KEY (task_id) REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY sprint_state_record
-	ADD CONSTRAINT sprint_state_record_id_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE;
+	ADD CONSTRAINT sprint_state_record_id_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY project_categories
 	ADD CONSTRAINT project_categories_id_project_fkey FOREIGN KEY (project_id) REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE;

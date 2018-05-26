@@ -1,7 +1,8 @@
 function addEventListenersReport() {
     let newReportForm = document.querySelector("div#container div#overlay div.jumbotron div#lead a#newReport-btn");
 
-    newReportForm.addEventListener('click', createReportAction);
+    if(newReportForm !== null)
+        newReportForm.addEventListener('click', createReportAction);
 }
 
 function createReportAction(event) {
