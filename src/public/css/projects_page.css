@@ -486,11 +486,6 @@ div.row {
 	height: 25em;
 }
 
-div.row {
-	opacity: 1;
-
-}
-
 div.container.create_new label{
 	display: block;
 	font-size: 12px;
