@@ -1,5 +1,4 @@
-@if($project->ispublic) 
-{{--  TODO not tested this yet  --}}
+@if($project->ispublic == true) 
 	<div class="project col-12">
 		<div class="row">
 			<div class="col-sm-6 col-12 title_desc">

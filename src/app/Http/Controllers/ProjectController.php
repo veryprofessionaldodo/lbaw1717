@@ -403,4 +403,57 @@ class ProjectController extends Controller
       // Handle unexpected errors
     }
   }
+
+  public function editForm($project_id){
+    try {
+
+      $project = Project::find($project_id);
+      $categories = Category::all();
+      
+      return view('pages/edit_project_page',['project' => $project, 'categories' => $categories]);
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+
+  }
+
+  public function edit(Request $request, $project_id){
+    
+    try {
+      $project = Project::find($project_id);
+
+      $project->name = $request->input('name');
+      $project->description = $request->input('description');
+
+      echo $request->input('public');
+
+      if($request->input('public') != null)
+        $project->ispublic = TRUE;
+      else
+        $project->ispublic = FALSE;
+
+      $project->save();
+      
+      /*
+      $categories = $request->input('categories');
+      
+      $cat_array = explode(',',$categories);
+      
+      foreach($cat_array as $cat) {
+        Category::find($cat)->projects()->attach($project->id);
+      }*/
+      
+      return redirect()->route('project_settings', ['project_id' => $project_id]);
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
 }
