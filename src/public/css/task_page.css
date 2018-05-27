@@ -55,7 +55,10 @@ section#task_page button.send_name {
 
 section#task_page div#checkbox {
     text-align: right;
-    margin: auto 0;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0;
 }
 
 section#task_page input[type="checkbox"] {
@@ -74,7 +77,7 @@ section#task_page div#task_info div#task_description {
     margin: 2em 0;
     padding: 1em;
     text-align: left;
-    box-shadow: 0px 0px 10px #636161;
+    box-shadow: 0px 0px 1px #636161;
 }
 
 section#task_page div#task_info form {

@@ -17,6 +17,7 @@ div#container {
 div#container div#options {
 	display: flex;
 	justify-content: space-between;
+	margin-top: 2em;
 }
 
 div#container div#options ol.breadcrumb {
@@ -119,6 +120,7 @@ a:hover {
 
 #threads th.desc {
 	background-color: #008cba;
+	color: #eef;
 }
 
 #thread_main_text {
