@@ -14,10 +14,6 @@ POST
 
 */
 
-div#container ol.breadcrumb {
-	background-color: inherit;
-	padding: 0;
-}
 
 .table {
 	border: solid 6px;
