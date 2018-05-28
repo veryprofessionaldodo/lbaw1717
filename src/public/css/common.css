@@ -320,6 +320,11 @@ footer a, footer p {
 	color: white;
 }
 
+footer h6 {
+	color: #0A1827;
+}
+
+
 footer > div#contacts {
 	grid-column-start: 1;
 	grid-column-end: 2;
@@ -328,6 +333,14 @@ footer > div#contacts {
 footer > div#info {
 	grid-column-start: 2;
 	grid-column-end: 3;
+	font-size: 0.9375rem;
+	font-family: inherit;
+	font-weight: 300;
+	line-height: 1.2;
+}
+
+footer > div#info a:hover {
+	color: #000;
 }
 
 /** PROJECTS */
@@ -415,7 +428,7 @@ h1 {
 		font-size: 12px;
 	}
 	div#pagination_section ul.pagination {
-		width: 19em;	
+		margin-bottom: 1em;
 	}
 
 }
