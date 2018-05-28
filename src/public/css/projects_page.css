@@ -327,7 +327,7 @@ div.comment > * {
 }
 
 div.comment > p {
-	background-color: #DDD;
+	background-color: #f0f0f4;
 	color: black;
 	text-align: justify;
 	padding: 1em;
@@ -470,10 +470,6 @@ div#members_project div.member p {
 	display: block;
 }
 
-a:hover{
-	color: #893700;
-}
-
 /**
 	New SPRINT
 */
@@ -505,7 +501,7 @@ div.container.create_new {
 	z-index: 1;
 	display: block;
 	background-color: #0A1827;
-	padding: 1em;
+	padding: 1em;DDD
 	max-width: 40em;
 	height: 30em;
 	text-align: justify;

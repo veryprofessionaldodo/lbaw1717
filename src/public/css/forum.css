@@ -24,9 +24,6 @@ div#container div#options ol.breadcrumb {
 	background-color: inherit;
 }
 
-div#container a.btn {
-	margin: auto 1em;
-}
 
 div#container h1 {
 	margin: 0 0 0.5em 0;
@@ -38,7 +35,7 @@ div#container h1 {
 	width: 90%;
 	border: solid 3px;
 	border-color: #008cba;
-    box-shadow: 0 0 5px #000;
+    box-shadow: 0 1px 1px #000;
     grid-row-start: row1;
     grid-row-end: row2;
 }
@@ -101,10 +98,6 @@ input.form-control, textarea.form-control {
 	vertical-align: middle;
 	background-color: #ECE7F3;
 	text-align: center;
-}
-
-a:hover {
-	box-shadow: 0 0 0px #000;
 }
 
 #threads td {
