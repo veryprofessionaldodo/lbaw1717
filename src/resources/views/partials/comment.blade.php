@@ -10,13 +10,13 @@
 	<p id="{{$comment->id}}" class="content">{{$comment->content}}</p>
 	
 	@if($comment->task_id == NULL)
-		<div class="form_commet row">
+		<div class="form_comment row">
 		<form id="edit" method="POST" style="display: none;" action="{{ route('editCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}">
 		{{ csrf_field()}}
 		
 		<!-- <div class="col-8">-->
 			<input type="text" class="form-control col-10" name="content" id="content">    
-			<button type="submit" class="btn btn-secondary">Send</button>
+			<button type="submit" class="btn btn-primary col-2">Send</button>
 			
 			<!--<div class="offset-2"></div>-->
 		</form> 

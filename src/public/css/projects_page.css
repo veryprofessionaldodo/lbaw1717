@@ -31,14 +31,19 @@ nav#buttons_nav {
 	box-shadow: 0 0;	
 }
 
+
 nav#buttons_nav a.btn {
 	text-decoration: none;
 	background-color: inherit;
 	border: 0;
-	color: #fff;
+	color: #e0e0ff;
 	font-size: 18px;
 }
 
+nav#buttons_nav a.btn:hover {
+	color: #fff;
+	text-decoration: underline;
+}
 
 
 /*
@@ -472,6 +477,7 @@ div#members_project div.member p {
 	margin: auto;
 	display: block;
 }
+
 
 /**
 	New SPRINT
