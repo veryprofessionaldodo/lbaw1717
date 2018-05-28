@@ -46,8 +46,8 @@
 						<a id="new_project" class="btn btn-primary" href="{{ route('new_project_form',['username' => Auth::user()->username])}}">Create New Project</a>
 					</div>
 
-					<!-- Add functionality to this form -->
-					<form class="col-lg-6 col-md-6 col-sm-6 col-12 searchbar">
+					
+					<form class="col-lg-6 col-md-6 col-sm-6 col-12 searchbar" method="POST" action="{{ route('search_user_project', ['username' => Auth::user()->username]) }}">
 						<input type="text" name="search" placeholder="Search Your Projects" class="form-control">
 						<button class="btn btn-primary" type="submit">
 							<i class="fas fa-search"></i>

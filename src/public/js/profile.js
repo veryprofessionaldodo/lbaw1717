@@ -19,6 +19,10 @@ function addEventListeners() {
 	// 	paginationLinks[i].addEventListener('click', getUserProjectsPage);
 	// }
 
+	let searchUserProjectForm = document.querySelector("form.searchbar");
+	if(searchUserProjectForm !== null)
+		searchUserProjectForm.addEventListener('submit', searchUserProjects);
+
 }
 
 function encodeForAjax(data) {
@@ -147,5 +151,19 @@ function getSelectValues(select) {
 // 	let content = document.querySelector("div.#projects");
 // 	content.innerHTML = response.html;
 // }
+
+function searchUserProjects(event){
+	event.preventDefault();
+
+	let inputValue = event.target.childNodes[1].value;
+
+	sendAjaxRequest("POST", event.target.action, {search: inputValue}, showUserProjects);
+}
+
+function showUserProjects(){
+	let data = JSON.parse(this.responseText);
+
+	console.log(data);
+}
 
 addEventListeners();

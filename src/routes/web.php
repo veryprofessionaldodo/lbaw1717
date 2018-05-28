@@ -30,11 +30,11 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');
 
 // User
-Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile'); //done
-Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
-Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action'); // done
-
+Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile');
+Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile');
+Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action');
 Route::post('api/projects/{project_id}/request', 'User\UserController@requestJoinProject')->name('request_join_project');
+Route::post('api/users/{username}/search', 'User\UserController@searchProjects')->name('search_user_project');
 
 //Notifications
 Route::post('api/notifications/{notification_id}/dismiss','User\UserController@dismissNotification')->name('dismiss_notification');//done

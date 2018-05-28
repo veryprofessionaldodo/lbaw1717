@@ -230,6 +230,21 @@ class UserController extends Controller {
             // Handle unexpected errors
         }
     }
+
+    public function searchProjects(Request $request){
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+            $projects = User::searchUserProject($request->search);
+            echo dd($projects);
+
+        }catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+    }
 }
 
 ?>

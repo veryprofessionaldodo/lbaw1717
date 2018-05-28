@@ -15,9 +15,13 @@
 <body>
 <nav class="row">
     <a class="col-3" href="#">Proyekt</a>
-    <form class="col-6">
-        <input class="form-control" type="text" placeholder="Search">
-        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+    <form class="col-6" method="POST" action="{{ route('search') }}">
+        {{ csrf_field() }}
+        <input class="form-control" name="search" type="text" placeholder="Search">
+
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
     </form>
 </nav>
 
