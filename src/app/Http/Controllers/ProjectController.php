@@ -169,9 +169,10 @@ class ProjectController extends Controller
   }
   
   public function searchProject(Request $request) {
+
     try {  
-      $projects = Project::search($request->input('search'))->with('user')->paginate(5);
-      
+      // TODO: verify this!
+      $projects = Project::search($request->input('search'))->with('user')->where('ispublic','=',true)->paginate(5);
       return view('pages.result_search', ['projects' => $projects]);
       
     } catch(\Illuminate\Database\QueryException $qe) {

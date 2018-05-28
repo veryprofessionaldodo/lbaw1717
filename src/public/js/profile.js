@@ -19,6 +19,15 @@ function addEventListeners() {
 	// 	paginationLinks[i].addEventListener('click', getUserProjectsPage);
 	// }
 
+	let searchUserProjectForm = document.querySelector("form.searchbar");
+	if(searchUserProjectForm !== null)
+		searchUserProjectForm.addEventListener('submit', searchUserProjects);
+
+	let searchRoleUserProjectButtons = document.querySelectorAll("div#role_button a.dropdown-item");
+	for(let i = 0; i < searchRoleUserProjectButtons.length; i++){
+		searchRoleUserProjectButtons[i].addEventListener('click', searchByRole);
+	}
+
 }
 
 function encodeForAjax(data) {
@@ -147,5 +156,30 @@ function getSelectValues(select) {
 // 	let content = document.querySelector("div.#projects");
 // 	content.innerHTML = response.html;
 // }
+
+function searchUserProjects(event){
+	event.preventDefault();
+
+	let inputValue = event.target.childNodes[1].value;
+
+	sendAjaxRequest("POST", event.target.action, {search: inputValue}, showUserProjects);
+}
+
+function searchByRole(event){
+	event.preventDefault();
+
+	let role = event.target.innerHTML;
+
+	sendAjaxRequest("POST", event.target.href, {role: role}, showUserProjects);
+}
+
+function showUserProjects(){
+	let data = JSON.parse(this.responseText);
+	console.log(data);
+
+	let div = document.querySelector("div#projects");
+	div.innerHTML = data.html;
+}
+
 
 addEventListeners();

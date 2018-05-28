@@ -99,6 +99,29 @@ class User extends Authenticatable
         return $this->projects()->where('project.ispublic','=',TRUE)->withCount('sprints')->withCount('user')->paginate(5);
     }
 
+    public function searchUserProject($search){
+        return $this->projects()
+                ->withCount('sprints')->withCount('user')
+                ->whereRaw('to_tsvector(\'english\', name) 
+                @@ plainto_tsquery(\'english\', ?)', [$search])
+                ->paginate(5);
+    }
+
+    public function searchUserProjectRole($role){
+        if($role === "Coordinator"){
+            return $this->projects()
+                ->withCount('sprints')->withCount('user')
+                ->where('iscoordinator', 'true')
+                ->paginate(5);
+        }
+        else {
+            return $this->projects()
+                ->withCount('sprints')->withCount('user')
+                ->where('iscoordinator', 'false')
+                ->paginate(5);
+        }
+    }
+
     public function taskCompletedThisWeek() {
         return DB::select(
           DB::raw('SELECT COUNT(id) FROM task_state_record
