@@ -144,8 +144,15 @@ div#pagination_section_forum {
 	align-items: center;
 }
 
+@media screen and (max-width: 1100px){
+	#overlay {
+		width: 100%;
+	}
+}
+
 @media screen and (max-width: 635px){
 
+	
 	#header{
 		flex-direction: column;
 		padding: 0;

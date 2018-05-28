@@ -69,8 +69,8 @@ nav > form {
 }
 
 #notifications .hamburger {
-	margin-top: 0.5em;
-	font-size: 18px;
+	margin-top: .66em;
+	font-size: 24px;
 	color: #e3e8ef;
 	cursor: pointer;
 }
@@ -321,7 +321,7 @@ footer a, footer p {
 }
 
 footer h6 {
-	color: #0A1827;
+	color: #fff;
 }
 
 
@@ -339,8 +339,8 @@ footer > div#info {
 	line-height: 1.2;
 }
 
-footer > div#info a:hover {
-	color: #000;
+footer > div#info a {
+	color: #fff;
 }
 
 /** PROJECTS */

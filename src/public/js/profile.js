@@ -122,7 +122,7 @@ function createProjectAction(event) {
 
 function showProfileUpdated() {
 	// TODO: Change to AJAX
-	window.location.href = this.responseText;
+	document.body.innerHTML = this.responseText;
 }
 
 function getSelectValues(select) {
