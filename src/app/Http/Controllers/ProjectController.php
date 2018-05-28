@@ -438,16 +438,16 @@ class ProjectController extends Controller
       $project->name = $request->input('name');
       $project->description = $request->input('description');
 
-      echo $request->input('public');
-
       if($request->input('public') != null)
         $project->ispublic = TRUE;
       else
         $project->ispublic = FALSE;
 
       $project->save();
-      
+
       /*
+      $project->categories()->detach();     //retiraria todas as categorias que tinha e substituia pelas selecionadas 
+      
       $categories = $request->input('categories');
       
       $cat_array = explode(',',$categories);
