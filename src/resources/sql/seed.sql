@@ -450,8 +450,10 @@ DROP FUNCTION IF EXISTS add_notification_remove();
 CREATE FUNCTION add_notification_remove() RETURNS TRIGGER AS
 $BODY$ 
 BEGIN
-	INSERT INTO Notification (date,notification_type,user_id,project_id,comment_id,user_action_id)
-		VALUES (now(),'removedfromproject',OLD.user_id,OLD.project_id,NULL,NULL);
+	IF EXISTS(SELECT * FROM project WHERE id = OLD.project_id) THEN
+		INSERT INTO Notification (date,notification_type,user_id,project_id,comment_id,user_action_id)
+			VALUES (now(),'removedfromproject',OLD.user_id,OLD.project_id,NULL,NULL);
+	END IF;
 	RETURN NULL;
 END
 $BODY$
