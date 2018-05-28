@@ -56,8 +56,13 @@ class Project extends Model
     if(!$search)
       return $query;
     return $query->whereRaw('to_tsvector(\'english\', name || \' \' || description) 
+      @@ plainto_tsquery(\'english\', ?)', [$search])->orderByRaw('ts_rank(
+        setweight(to_tsvector(\'english\', name),\'A\') || 
+        setweight(to_tsvector(\'english\', description),\'B\'),
+        plainto_tsquery(\'english\', ?)) DESC, name', [$search]);
+    /*return $query->whereRaw('to_tsvector(\'english\', name || \' \' || description) 
       @@ plainto_tsquery(\'english\', ?)', [$search])->where('ispublic','=',true)->
-    orderBy('name');
+    orderBy('name');*/
   }
 
   public function topContributors(){

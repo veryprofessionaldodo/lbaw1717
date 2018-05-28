@@ -46,8 +46,8 @@
 						<a id="new_project" class="btn btn-primary" href="{{ route('new_project_form',['username' => Auth::user()->username])}}">Create New Project</a>
 					</div>
 
-					<!-- Add functionality to this form -->
-					<form class="col-lg-6 col-md-6 col-sm-6 col-12 searchbar">
+					
+					<form class="col-lg-6 col-md-6 col-sm-6 col-12 searchbar" method="POST" action="{{ route('search_user_project', ['username' => Auth::user()->username]) }}">
 						<input type="text" name="search" placeholder="Search Your Projects" class="form-control">
 						<button class="btn btn-primary" type="submit">
 							<i class="fas fa-search"></i>
@@ -62,8 +62,8 @@
 								<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
 								 aria-expanded="false"></button>
 								<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-									<a class="dropdown-item" href="#">Coordinator</a>
-									<a class="dropdown-item" href="#">Team Member</a>
+									<a class="dropdown-item" href="{{ route('search_user_project_role', ['username' => Auth::user()->username, 'role' => 'Coordinator']) }}">Coordinator</a>
+									<a class="dropdown-item" href="{{ route('search_user_project_role', ['username' => Auth::user()->username, 'role' => 'Team_Member']) }}">Team Member</a>
 								</div>
 							</div>
 						</div>

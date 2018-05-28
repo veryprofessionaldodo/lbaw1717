@@ -8,16 +8,16 @@ h2 {
 	padding-top: 0.5em;
 	color: #0A1827;
 }
+
+ol.breadcrumb {
+	margin-top: 1.5em;
+}
 /*
 
 POST
 
 */
 
-div#container ol.breadcrumb {
-	background-color: inherit;
-	padding: 0;
-}
 
 .table {
 	border: solid 6px;
@@ -38,7 +38,7 @@ div#container ol.breadcrumb {
 }
 
 #thread div#header {
-	background-color: #333;
+	background-color: #008cba;
 	border-width: 3px 3px 3px 3px;
 	border-style: solid;
 	border-color: #001;
@@ -108,7 +108,7 @@ form label {
 
 #thread div.comment {
 	padding: 0.5em;
-	background-color: #CCD9CE;
+	background-color: #a1d0dd;
 	padding: 1em;
 	border-width: 0 5px 1px 5px;
 	border-style: solid;
@@ -152,11 +152,11 @@ form label {
 }
 
 #thread #issue p {
-	color: #ddd;
+	color: #fff;
 }
 
 div.date {
-	color: #ccc;
+	color: #fff;
 }
 
 /*

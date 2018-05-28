@@ -230,6 +230,38 @@ class UserController extends Controller {
             // Handle unexpected errors
         }
     }
+
+    public function searchProjects(Request $request){
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+            $projects = Auth::user()->searchUserProject($request->search);
+            $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user()])->render();
+            return response()->json(array('success' => true,'html' => $html));
+
+        }catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+    }
+
+    public function searchProjectsRole(Request $request){
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+            $projects = Auth::user()->searchUserProjectRole($request->role);
+            $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user()])->render();
+            return response()->json(array('success' => true,'html' => $html));
+
+        }catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+    }
 }
 
 ?>

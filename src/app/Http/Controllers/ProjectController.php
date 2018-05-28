@@ -169,9 +169,10 @@ class ProjectController extends Controller
   }
   
   public function searchProject(Request $request) {
+
     try {  
-      $projects = Project::search($request->input('search'))->with('user')->paginate(5);
-      
+      // TODO: verify this!
+      $projects = Project::search($request->input('search'))->with('user')->where('ispublic','=',true)->paginate(5);
       return view('pages.result_search', ['projects' => $projects]);
       
     } catch(\Illuminate\Database\QueryException $qe) {
@@ -270,6 +271,7 @@ class ProjectController extends Controller
   settings page
   */
   public function projectSettings($project_id){
+    if (!Auth::check()) return redirect('/login');
     try {
       $project = Project::find($project_id);
       $requests = $project->invites()->get();
@@ -288,6 +290,7 @@ class ProjectController extends Controller
   asks for the requests (settings)
   */
   public function projectSettingsRequestsView($project_id){
+    if (!Auth::check()) return redirect('/login');
     try {
       $project = Project::find($project_id);
       $requests = $project->invites()->get();
@@ -307,6 +310,7 @@ class ProjectController extends Controller
   asks for the members (settings) 
   */
   public function projectSettingsMembersView($project_id){
+    if (!Auth::check()) return redirect('/login');
   
     try {
       $project = Project::find($project_id);
@@ -324,6 +328,7 @@ class ProjectController extends Controller
   }
 
   public function projectSettingsRequestsReject(Request $request){
+    if (!Auth::check()) return redirect('/login');
     try {
 
       $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
@@ -342,6 +347,7 @@ class ProjectController extends Controller
   }
 
   public function projectSettingsPromote(Request $request){
+    if (!Auth::check()) return redirect('/login');
     try {
 
       $user = User::where('username','=',$request->input('username'))->first();
@@ -366,6 +372,7 @@ class ProjectController extends Controller
   Removes user from project
    */
   public function projectSettingsMembersRemove(Request $request){
+    if (!Auth::check()) return redirect('/login');
     try {
 
       $user = User::where('username','=',$request->input('username'))->first();
@@ -383,6 +390,7 @@ class ProjectController extends Controller
   }
 
   public function projectSettingsRequestsAccept(Request $request){
+    if (!Auth::check()) return redirect('/login');
     try {
 
       $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
@@ -395,6 +403,77 @@ class ProjectController extends Controller
       $request->delete();
 
       return response()->json(array('success' => true, 'request_id' => $request_id));
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+
+  public function editForm($project_id){
+    if (!Auth::check()) return redirect('/login');
+    try {
+
+      $project = Project::find($project_id);
+      $categories = Category::all();
+      
+      return view('pages/edit_project_page',['project' => $project, 'categories' => $categories]);
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+
+  }
+
+  public function edit(Request $request, $project_id){
+    if (!Auth::check()) return redirect('/login');    
+    try {
+      $project = Project::find($project_id);
+
+      $project->name = $request->input('name');
+      $project->description = $request->input('description');
+
+      if($request->input('public') != null)
+        $project->ispublic = TRUE;
+      else
+        $project->ispublic = FALSE;
+
+      $project->save();
+
+      /*
+      $project->categories()->detach();     //retiraria todas as categorias que tinha e substituia pelas selecionadas 
+      
+      $categories = $request->input('categories');
+      
+      $cat_array = explode(',',$categories);
+      
+      foreach($cat_array as $cat) {
+        Category::find($cat)->projects()->attach($project->id);
+      }*/
+      
+      return redirect()->route('project_settings', ['project_id' => $project_id]);
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+
+  public function destroy(Request $request){
+    if (!Auth::check()) return redirect('/login');
+    try {
+      $project = Project::find($request->input('project_id'));
+
+      //$project->delete();
+
+      return response()->json(array('success' => true, 'url' => '/api/users/'. Auth::user()->username));
       
     } catch(\Illuminate\Database\QueryException $qe) {
       // Catch the specific exception and handle it 

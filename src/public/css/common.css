@@ -9,7 +9,7 @@ body {
 nav {
 	background-color: #008cba;
 	align-items: center;
-	box-shadow: 0 1px 5px 1px black;
+	box-shadow: 0 2px 1px 1px #669;
 }
 
 nav.row{
@@ -214,16 +214,15 @@ nav > form {
 .form-control {
 	display: inline-block;
 	transition: all 0.2s;
-	background-color: #ddf;
+	background-color: #f4f4f4;
 	color: #223;
 }
 
 .form-control:hover {
-	background-color: #eef;
+	background-color: #fff;
 }
 
 .form-control:focus {
-	background-color: #fff;	
 	outline: 5px auto -webkit-focus-ring-color;
 	color: #001;
 }
@@ -321,6 +320,11 @@ footer a, footer p {
 	color: white;
 }
 
+footer h6 {
+	color: #0A1827;
+}
+
+
 footer > div#contacts {
 	grid-column-start: 1;
 	grid-column-end: 2;
@@ -329,6 +333,14 @@ footer > div#contacts {
 footer > div#info {
 	grid-column-start: 2;
 	grid-column-end: 3;
+	font-size: 0.9375rem;
+	font-family: inherit;
+	font-weight: 300;
+	line-height: 1.2;
+}
+
+footer > div#info a:hover {
+	color: #000;
 }
 
 /** PROJECTS */
@@ -416,7 +428,7 @@ h1 {
 		font-size: 12px;
 	}
 	div#pagination_section ul.pagination {
-		width: 19em;	
+		margin-bottom: 1em;
 	}
 
 }

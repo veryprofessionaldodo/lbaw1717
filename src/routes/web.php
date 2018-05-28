@@ -30,11 +30,12 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.request');
 
 // User
-Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile'); //done
-Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
-Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action'); // done
-
+Route::get('api/users/{username}', 'User\UserController@showProfile')->name('user_profile');
+Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile');
+Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action');
 Route::post('api/projects/{project_id}/request', 'User\UserController@requestJoinProject')->name('request_join_project');
+Route::post('api/users/{username}/search', 'User\UserController@searchProjects')->name('search_user_project');
+Route::post('api/users/{username}/search/{role}', 'User\UserController@searchProjectsRole')->name('search_user_project_role');
 
 //Notifications
 Route::post('api/notifications/{notification_id}/dismiss','User\UserController@dismissNotification')->name('dismiss_notification');//done
@@ -59,12 +60,16 @@ Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectSta
 // Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
 
 
+Route::get('api/projects/{project_id}/members/edit', 'ProjectController@editForm')->name('edit_project_form');//done
+Route::post('api/projects/{project_id}/members/edit', 'ProjectController@edit')->name('edit_project');
+
+
 Route::get('api/projects/{project_id}', 'ProjectController@show')->name('project'); // done
 
 //Sprints and Tasks
 Route::get('api/projects/{project_id}/sprints', 'ProjectController@sprintsView')->name('project_sprints'); //done
-// Route::get('api/projects/{project_id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEditForm');
-// Route::post('api/projects/{project_id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEdit');
+Route::get('api/projects/{project_id}/sprints/{sprint_id}/edit', 'SprintController@edit')->name('edit_sprint_form');
+Route::post('api/projects/{project_id}/sprints/{sprint_id}/edit', 'SprintController@update')->name('edit_sprint_action');
 Route::get('api/projects/{project_id}/sprints/new_sprint', 'SprintController@showForm')->name('new_sprint_form');
 Route::post('api/projects/{project_id}/sprints', 'SprintController@create')->name('new_sprint');
 Route::post('api/projects/{project_id}/sprints/{sprint_id}','SprintController@destroy')->name('delete_sprint');
@@ -109,8 +114,8 @@ Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportVi
 Route::post('admin/reports/{report_id}', 'AdminController@dismissReport')->name('dismissReport'); //done
 Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser')->name('disableUser'); //done
 Route::post('admin/reports/comments/{report_id}', 'AdminController@deleteComment')->name('deleteCommentReport'); //done
-/*Route::delete('admin/projects/{project_id}', 'AdminController@deleteProject');
-*/
+Route::post('admin/projects/{project_id}', 'ProjectController@destroy')->name('delete_project');
+
 Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentReportForm')->name('comment_report_form'); //done
 Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form'); //done
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done

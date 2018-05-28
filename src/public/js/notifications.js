@@ -20,28 +20,31 @@ function addEventListenersNotifications() {
 function dismissNotification(event) {
     event.preventDefault();
 
-    let index = event.target.href.indexOf('notifications');
-    let notification_id = event.target.href.substring(index + 14, event.target.href.length - 7);
+    let href = event.currentTarget.href;
+    let index = href.indexOf('notifications');
+    let notification_id = href.substring(index + 14, length - 7);
 
-    sendAjaxRequest('post', event.target.href, { notification_id: notification_id }, updateNotifications);
+    sendAjaxRequest('post', href, { notification_id: notification_id }, updateNotifications);
 }
 
 function acceptInviteNotification(event) {
     event.preventDefault();
 
-    let index = event.target.href.indexOf('notifications');
-    let notification_id = event.target.href.substring(index + 14, event.target.href.length - 7);
+    let href = event.currentTarget.href;
+    let index = href.indexOf('notifications');
+    let notification_id = href.substring(index + 14, href.length - 7);
 
-    sendAjaxRequest('post', event.target.href, { notification_id: notification_id }, updateNotifications);
+    sendAjaxRequest('post',href, { notification_id: notification_id }, updateNotifications);
 }
 
 function rejectInviteNotification(event) {
     event.preventDefault();
 
-    let index = event.target.href.indexOf('notifications');
-    let notification_id = event.target.href.substring(index + 14, event.target.href.length - 7);
+    let href = event.currentTarget.href;
+    let index = href.indexOf('notifications');
+    let notification_id = href.substring(index + 14, href.length - 7);
 
-    sendAjaxRequest('post', event.target.href, { notification_id: notification_id }, updateNotifications);
+    sendAjaxRequest('post', href, { notification_id: notification_id }, updateNotifications);
 }
 
 function updateNotifications() {

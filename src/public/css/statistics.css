@@ -77,8 +77,23 @@ CONTAINER
 	border: 1px solid black;
 }
 
-div#graphics {
+div#graphics  {
+	display: grid;
 	margin: 1em 4em;
+	grid-template-columns: 50% 50%;
+}
+
+div#graphics :first-child {
+	grid-row:1;
+	grid-column: 1;
+	margin-right:10%;
+
+}
+
+div#graphics :last-child {
+	grid-row:1;
+	grid-column: 2;
+	margin-left:10%;
 }
 
 div#graphics h4 {
