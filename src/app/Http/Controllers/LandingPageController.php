@@ -11,10 +11,7 @@ class LandingPageController extends Controller {
 	use AuthenticatesUsers;
 
 	public function showLandingPage() {
-       /* if (!Auth::check()) 
-            return redirect('/login');
-        else*/
-		    return view('pages/landing_page');
+		return view('pages/landing_page');
 	}
 
 	 /**
