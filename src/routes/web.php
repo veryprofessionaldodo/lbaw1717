@@ -34,7 +34,7 @@ Route::get('api/users/{username}', 'User\UserController@showProfile')->name('use
 Route::get('api/users/{username}/edit', 'User\UserController@editProfileForm')->name('edit_profile'); //done
 Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction')->name('edit_profile_action'); // done
 
-Route::post('api/projects/{project_id}/request', 'User\UserController@requestJoinProject')->name('request_join_project');
+Route::post('api/projects/{project_id}/request', 'User\UserController@requestJoinProject')->name('request_join_project'); //done
 
 //Notifications
 Route::post('api/notifications/{notification_id}/dismiss','User\UserController@dismissNotification')->name('dismiss_notification');//done
