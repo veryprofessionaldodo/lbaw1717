@@ -325,19 +325,19 @@ function deleteSprint(event) {
 	swal("Delete Sprint", {
 		icon: "warning",
 		buttons: {
+			move: {
+				text: "Delete Sprint and move tasks to the project!",
+				value: "move",
+			},
 			cancel: "Cancel!",
 			all: {
 				text: "Delete sprint and tasks inside!",
 				value: "all",
 			},
-			move: {
-				text: "Delete Sprint and move tasks to the project!",
-				value: "move",
-			},
-			change: {
+			/*change: {
 				text: "Delete Sprint and move tasks to other sprints",
 				value: "change",
-			},
+			},*/
 		},
 	})
 		.then((value) => {

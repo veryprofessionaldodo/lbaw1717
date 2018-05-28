@@ -15,7 +15,7 @@
     <div class="form_area">
         <label>Categories (can be more than one):</label><!-- TODO HELP windows::Hold down the control (ctrl) button to select multiple options-->
         <!--MAC::Hold down the control (ctrl) button to select multiple options-->  
-        <select name="categories" class="form-control" multiple>
+        <select name="categories[]" class="form-control" multiple>
             @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{$category->name}}</option>
             @endforeach

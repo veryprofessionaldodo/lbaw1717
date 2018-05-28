@@ -445,16 +445,20 @@ class ProjectController extends Controller
 
       $project->save();
 
-      /*
-      $project->categories()->detach();     //retiraria todas as categorias que tinha e substituia pelas selecionadas 
+      
+      $project->categories();
       
       $categories = $request->input('categories');
+      echo $categories;
       
       $cat_array = explode(',',$categories);
-      
       foreach($cat_array as $cat) {
-        Category::find($cat)->projects()->attach($project->id);
-      }*/
+        if(in_array($cat,$project->categories())){
+          Category::find($cat)->projects()->attach($project->id);
+        }else{
+          Category::find($cat)->projects()->attach($project->id);
+        }
+      }
       
       return redirect()->route('project_settings', ['project_id' => $project_id]);
       
