@@ -213,7 +213,7 @@ class ProjectController extends Controller
         Category::find($cat)->projects()->attach($project->id);
       }
       
-      return $project;
+      return back();
       
     } catch(\Illuminate\Database\QueryException $qe) {
       // Catch the specific exception and handle it 

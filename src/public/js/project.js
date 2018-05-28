@@ -47,6 +47,11 @@ function addEventListenersProject() {
 	if (deleteProjectButton !== null)
 		deleteProjectButton.addEventListener('click', deleteProject);
 
+	let editSprintButtons = document.querySelectorAll("a.edit_sprint");
+	for(let i = 0; i < editSprintButtons.length; i++){
+		editSprintButtons[i].addEventListener('click', getEditSprintForm);
+	}
+
 }
 
 function encodeForAjax(data) {
@@ -136,7 +141,7 @@ function showMembersView() {
 
 function addComment(event) {
 	event.preventDefault();
-	//console.log(event.target.action);
+	console.log(event.target.action);
 
 	let content = document.querySelector("div.comment div.form_comment input[name='content']").value;
 
@@ -435,7 +440,28 @@ function deleteProjectUpdate() {
 		});
 
 	}
+}
 
+function getEditSprintForm(event){
+	event.preventDefault();
+	console.log(event.target.tagName);
+	if(event.target.tagName === "A"){
+		sendAjaxRequest('GET', event.target.href, null, showEditSprintForm);
+	}
+	else if(event.target.tagName === "svg"){
+		console.log(event.target.parentNode.href);
+		sendAjaxRequest('GET', event.target.parentNode.href, null, showEditSprintForm);
+	}
+	else {
+		sendAjaxRequest('GET', event.target.parentNode.parentNode.href, null, showEditSprintForm);
+	}
+}
+
+function showEditSprintForm() {
+	let data = JSON.parse(this.responseText);
+
+	let div = document.querySelector("div#project_structure");
+	div.innerHTML = data.html;
 }
 
 addEventListenersProject();

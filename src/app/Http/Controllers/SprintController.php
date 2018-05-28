@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Sprint;
+use App\Project;
 
 class SprintController extends Controller
 {
@@ -74,10 +75,50 @@ class SprintController extends Controller
     }
 
     public function edit($project_id, $sprint_id){
+        if (!Auth::check()) return redirect('/login');
 
+        try {
+            if(Auth::user()->isCoordinator($project_id)){
+                $sprint = Sprint::where('id',$sprint_id)->first();
+                $project = Project::where('id',$project_id)->first();
+                $html = view('partials.edit_sprint_form', ['project' => $project, 'sprint' => $sprint])->render();
+                return response()->json(array('success' => true, 'html' => $html));
+
+            }
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+        // Catch the specific exception and handle it 
+        //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+        // Handle unexpected errors
+        }
     }
 
     public function update(Request $request, $project_id, $sprint_id){
-        
+        if (!Auth::check()) return redirect('/login');
+
+        try {
+            if(Auth::user()->isCoordinator($project_id)){
+
+                $sprint = Sprint::where('id',$sprint_id)->first();
+                $sprint->name = $request->input('name');
+                
+                $date = new \DateTime($request->input('deadline'));
+                $sprint->deadline = $date->format('Y-m-d');
+
+                $sprint->effort = $request->input('effort');
+
+                $sprint->save();
+                
+                return back();
+
+            }
+            
+        } catch(\Illuminate\Database\QueryException $qe) {
+        // Catch the specific exception and handle it 
+        //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+        // Handle unexpected errors
+        }
     }
 }
