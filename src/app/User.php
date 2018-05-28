@@ -100,41 +100,26 @@ class User extends Authenticatable
     }
 
     public function searchUserProject($search){
-
-        return Project::search($search)/*->join('project_members', function($query){
-            $query->on('user_id', '=', Auth::user()->id);
-            $query->on('project_id', '=', 'project.id');
-        })*/->get();
-        /*return this->projects()  
-            ->orderByRaw('ts_rank(
-                setweight(to_tsvector(\'english\', project.name),\'A\') || 
-                setweight(to_tsvector(\'english\', project.description),\'B\'),
-                plainto_tsquery(\'english\', ?)) DESC, project.name', [$search]);*/
-
-        /*return DB::table('project')
-                ->join('project_members', function($query){
-                    $query->on('user_id', '=', Auth::user()->id);
-                    $query->on('project_id', '=', 'project.id');
-                })
-                ->orderByRaw('ts_rank(
-                    setweight(to_tsvector(\'english\', project.name),\'A\') || 
-                    setweight(to_tsvector(\'english\', project.description),\'B\'),
-                    plainto_tsquery(\'english\', ?)) DESC, project.name', [$search])
-                ->select('project.name', 'project.description', 'project_members.iscoordinator')
+        return $this->projects()
+                ->withCount('sprints')->withCount('user')
+                ->whereRaw('to_tsvector(\'english\', name) 
+                @@ plainto_tsquery(\'english\', ?)', [$search])
                 ->paginate(5);
-                //->get();*/
+    }
 
-        /*return DB::select(
-            DB::raw("SELECT project.name, project.description, project_members.iscoordinator
-            FROM user, project_members, project
-            WHERE user.id = :user_search_id AND project_members.user_id = user.id
-            AND project_members.project_id = project.id 
-            ORDER BY ts_rank(
-             setweight(to_tsvector('english', project.name),’A’) || 
-             setweight(to_tsvector('english', project.description),’B’),
-             plainto_tsquery('english', :search)) DESC, name
-            LIMIT 5 OFFSET $n;")
-        )*/
+    public function searchUserProjectRole($role){
+        if($role === "Coordinator"){
+            return $this->projects()
+                ->withCount('sprints')->withCount('user')
+                ->where('iscoordinator', 'true')
+                ->paginate(5);
+        }
+        else {
+            return $this->projects()
+                ->withCount('sprints')->withCount('user')
+                ->where('iscoordinator', 'false')
+                ->paginate(5);
+        }
     }
 
     public function taskCompletedThisWeek() {

@@ -62,8 +62,8 @@
 								<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
 								 aria-expanded="false"></button>
 								<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-									<a class="dropdown-item" href="#">Coordinator</a>
-									<a class="dropdown-item" href="#">Team Member</a>
+									<a class="dropdown-item" href="{{ route('search_user_project_role', ['username' => Auth::user()->username, 'role' => 'Coordinator']) }}">Coordinator</a>
+									<a class="dropdown-item" href="{{ route('search_user_project_role', ['username' => Auth::user()->username, 'role' => 'Team_Member']) }}">Team Member</a>
 								</div>
 							</div>
 						</div>
