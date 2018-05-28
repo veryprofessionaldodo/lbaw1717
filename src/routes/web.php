@@ -59,15 +59,19 @@ Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectSta
 // Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
 
 
+Route::get('api/projects/{project_id}/members/edit', 'ProjectController@editForm')->name('edit_project_form');//done
+Route::post('api/projects/{project_id}/members/edit', 'ProjectController@edit')->name('edit_project');
+
+
 Route::get('api/projects/{project_id}', 'ProjectController@show')->name('project'); // done
 
 //Sprints and Tasks
 Route::get('api/projects/{project_id}/sprints', 'ProjectController@sprintsView')->name('project_sprints'); //done
-// Route::get('api/projects/{project_id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEditForm');
-// Route::post('api/projects/{project_id}/sprints/{sprint_id}/edit', 'ProjectController@sprintEdit');
+Route::get('api/projects/{project_id}/sprints/{sprint_id}/edit', 'SprintController@edit')->name('edit_sprint_form');
+Route::post('api/projects/{project_id}/sprints/{sprint_id}/edit', 'SprintController@update')->name('edit_sprint_action');
 Route::get('api/projects/{project_id}/sprints/new_sprint', 'SprintController@showForm')->name('new_sprint_form');
 Route::post('api/projects/{project_id}/sprints', 'SprintController@create')->name('new_sprint');
-Route::delete('api/projects/{project_id}/sprints/{sprint_id}','SprintController@destroy')->name('delete_sprint');
+Route::post('api/projects/{project_id}/sprints/{sprint_id}','SprintController@destroy')->name('delete_sprint');
 
 //Tasks 
 Route::get('api/projects/{project_id}/tasks', 'ProjectController@taskView')->name('project_tasks');
@@ -82,7 +86,7 @@ Route::post('api/projects/{project_id}/tasks/{task_id}/assign_other', 'TaskContr
 Route::post('api/projects/{project_id}/tasks/{task_id}/unassign_other', 'TaskController@unassign')->name('unassign_other');
 Route::post('api/projects/{project_id}/tasks', 'TaskController@store')->name('new_task');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task'); //done
-// Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentForm');
+Route::get('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'CommentController@edit')->name('editTaskComment');
 // Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentTask'); //done
 
@@ -97,6 +101,7 @@ Route::delete('projects/{id}/threads/{thread_id}', 'ThreadController@destroy')->
 
 Route::post('projects/{id}/threads/{thread_id}/comments', 'CommentController@store')->name('new_comment'); //done
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentThread'); //done
+Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'CommentController@edit')->name('editCommentThread');
 
 //Admin Administraton, Report and Static Pages
 Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
@@ -108,8 +113,8 @@ Route::get('admin/reports/users/{user_report_id}', 'AdminController@userReportVi
 Route::post('admin/reports/{report_id}', 'AdminController@dismissReport')->name('dismissReport'); //done
 Route::post('admin/reports/users/{report_id}', 'AdminController@disableUser')->name('disableUser'); //done
 Route::post('admin/reports/comments/{report_id}', 'AdminController@deleteComment')->name('deleteCommentReport'); //done
-/*Route::delete('admin/projects/{project_id}', 'AdminController@deleteProject');
-*/
+Route::post('admin/projects/{project_id}', 'ProjectController@destroy')->name('delete_project');
+
 Route::get('actions/reports/comments/{comment_id}', 'ReportController@commentReportForm')->name('comment_report_form'); //done
 Route::get('actions/reports/users/{username}', 'ReportController@userReportForm')->name('user_report_form'); //done
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done

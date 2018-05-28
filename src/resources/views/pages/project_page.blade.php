@@ -90,12 +90,20 @@
 	</div>
 
 	
-	<div id="project_structure">
+<div class="{{$role}}"id="project_structure">
+		@if(Auth::user()->isadmin == false)
 		<div class="row">
 			<div class="col-12 new_sprint">
 				<a href="{{ route('new_sprint_form', ['project_id' => $project->id])}}" class="btn btn-info"><i class="fas fa-plus"></i> Create New Sprint</a>
 			</div>
 		</div>
+		@else
+		<div class="row">
+				<div class="col-12 new_sprint">
+					<a href="{{ route('delete_project', ['project_id' => $project->id])}}" id="delete_project" class="btn btn-info"><i class="fas fa-trash"></i> Delete Project</a>
+				</div>
+			</div>
+		@endif
 		<div class="row">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">

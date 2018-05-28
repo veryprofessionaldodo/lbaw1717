@@ -1,5 +1,5 @@
 <!-- Sprint -->
-<div class="list-group-item">
+<div class="list-group-item" data-id="{{$sprint->id}}">
 	<a data-toggle="collapse" data-target="#sprint-{{$sprint->id}}" aria-expanded="true">
 		<i class="fas fa-sort-down"></i>{{$sprint->name}}</a>
 
@@ -12,8 +12,8 @@
 	<p>{{ $diff }} days until deadline</p>
 
 	@if($role == 'co')
-		<a href="" class="btn edit_sprint"><i class="fas fa-pencil-alt"></i></a>
-		<a href="{{ route('delete_sprint', ['project_id' => $project->id , 'sprint_id' => $sprint->id]) }}" class="btn delete_sprint"><i class="fas fa-trash"></i></a>
+		<a href="{{ route('delete_sprint', ['project_id' => $project->id , 'sprint_id' => $sprint->id])}}" class="btn edit_sprint"><i class="fas fa-pencil-alt"></i></a>
+		<a href="{{ route('delete_sprint', ['project_id' => $project->id , 'sprint_id' => $sprint->id])}}" class="btn delete_sprint"><i class="fas fa-trash"></i></a>
 	@endif
 	<span class="badge badge-primary badge-pill">{{ sizeof($sprint->tasks)}}</span>
 </div>

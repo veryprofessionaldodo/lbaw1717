@@ -216,7 +216,7 @@ ALTER TABLE ONLY task
 	ADD CONSTRAINT task_id_user_project_fkey FOREIGN KEY (project_id) REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY task
-	ADD CONSTRAINT task_id_user_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE;
+	ADD CONSTRAINT task_id_user_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY thread
 	ADD CONSTRAINT thread_id_project_fkey FOREIGN KEY (project_id) REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -243,7 +243,7 @@ ALTER TABLE ONLY report
 	ADD CONSTRAINT report_id_user_fkey FOREIGN KEY (user_id) REFERENCES "user"(id) ON UPDATE CASCADE;
 
 ALTER TABLE ONLY report
-	ADD CONSTRAINT report_id_comment_reported_fkey FOREIGN KEY (comment_reported_id) REFERENCES comment(id) ON UPDATE CASCADE;
+	ADD CONSTRAINT report_id_comment_reported_fkey FOREIGN KEY (comment_reported_id) REFERENCES comment(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY report
 	ADD CONSTRAINT report_id_user_reported_fkey FOREIGN KEY (user_reported_id) REFERENCES "user"(id) ON UPDATE CASCADE;
@@ -276,7 +276,7 @@ ALTER TABLE ONLY task_state_record
 	ADD CONSTRAINT task_state_record_id_task_fkey FOREIGN KEY (task_id) REFERENCES task(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY sprint_state_record
-	ADD CONSTRAINT sprint_state_record_id_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE;
+	ADD CONSTRAINT sprint_state_record_id_sprint_fkey FOREIGN KEY (sprint_id) REFERENCES sprint(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY project_categories
 	ADD CONSTRAINT project_categories_id_project_fkey FOREIGN KEY (project_id) REFERENCES project(id) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -1084,28 +1084,28 @@ INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Did you know?	','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn''t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!', '2018-05-08 12:00:00+01',12,9);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Witcher 3 quest!','Could someone give some hints about where i can find cedaline in witcher 3?', '2018-05-08 12:00:00+01',78,1);
 
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-05-28 00:00:00+01',1,2,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database structure','2018-05-28 00:00:00+01',1,2,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Website','2018-05-28 12:00:00+01',2,16,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Build Security','2018-05-28 08:00:00+01',2,16,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw Mock-up','2018-05-30 23:59:00+01',3,11,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design with blender','2018-05-28 22:59:00+01',3,1,7);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database','2018-05-30 23:00:00+01',4,3,7);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make Website','2018-05-28 23:00:00+01',4,2,10);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mobile App','2018-05-28 23:00:00+01',6,6,10);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-06-28 00:00:00+01',1,2,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database structure','2018-06-28 00:00:00+01',1,2,3);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Website','2018-06-28 12:00:00+01',2,16,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Build Security','2018-06-28 08:00:00+01',2,16,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw Mock-up','2018-06-30 23:59:00+01',3,11,3);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design with blender','2018-06-28 22:59:00+01',3,1,7);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Database','2018-06-30 23:00:00+01',4,3,7);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make Website','2018-06-28 23:00:00+01',4,2,10);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mobile App','2018-06-28 23:00:00+01',6,6,10);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Security Verifications','2018-06-04 23:00:00+01',6,6,8);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-05-28 23:00:00+01',7,6,7);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Security','2018-05-30 23:00:00+01',7,6,7);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Mock-Ups','2018-06-28 23:00:00+01',7,6,7);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Security','2018-06-30 23:00:00+01',7,6,7);
 INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Client RMI','2018-06-29 23:00:00+01',8,11,7);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Communications between servers','2018-05-28 23:00:00+01',8,11,8);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Write history','2018-05-28 23:00:00+01',9,1,6);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw characters','2018-05-28 00:00:00+01',9,1,8);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-05-30 23:00:00+01',10,18,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make models 3D','2018-05-28 23:00:00+01',10,17,10);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design Course Program','2018-05-28 23:00:00+01',11,17,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Introduction','2018-05-28 23:00:00+01',11,17,5);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-05-28 23:00:00+01',12,8,3);
-INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Kernel','2018-05-28 23:00:00+01',12,8,20);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Communications between servers','2018-06-28 23:00:00+01',8,11,8);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Write history','2018-06-28 23:00:00+01',9,1,6);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Draw characters','2018-06-28 00:00:00+01',9,1,8);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-06-30 23:00:00+01',10,18,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Make models 3D','2018-06-28 23:00:00+01',10,17,10);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Design Course Program','2018-06-28 23:00:00+01',11,17,3);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Introduction','2018-06-28 23:00:00+01',11,17,5);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Decide Improvements','2018-06-28 23:00:00+01',12,8,3);
+INSERT INTO sprint (name,deadline,project_id,user_creator_id,effort) VALUES ('Kernel','2018-06-28 23:00:00+01',12,8,20);
 
 INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Index Page','Make a responsive mock up of the index page, with tonalities of blue and gold. Images will be added next',1,1,1);
 INSERT INTO task (name,description,effort,project_id,sprint_id) VALUES ('Video Page','Responsive page to allocate many videos',2,1,1);
@@ -1225,4 +1225,4 @@ INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES 
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',4,11,NULL);
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',6,8,11);
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',4,6,6);
-INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',10,6,6);
+INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',8,6,6);

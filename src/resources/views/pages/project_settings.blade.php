@@ -26,6 +26,12 @@
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="col-12 edit_project">
+				<a href="{{ route('edit_project_form', ['project_id' => $project->id])}}" class="btn btn-info"><i class="fas fa-edit"></i> Edit Project Info</a>
+			</div>
+		</div>
+
     	<div class="row">
 			<div class="col-12">
 				<ul class="nav nav-tabs">

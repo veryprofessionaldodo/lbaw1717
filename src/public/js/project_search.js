@@ -18,17 +18,20 @@ function createRequest(event) {
 
 function responseCreateRequest() {
     let data = JSON.parse(this.responseText);
-    let message;
 
     if (data.success) {
-        message = 'Request send to join project ' + data.project_name;
+        swal('Request send to join project ' + data.project_name, {
+            icon: "success",
+        });
     } else if (data.reason == "request") {
-        message = 'You have already rquested to join this project (' + data.project_name + ')';
+        swal('You have already rquested to join the project (' + data.project_name + ')', {
+            icon: "warning",
+        });
     } else {
-        message = 'You have already received an invite to join this project (' + data.project_name + ')';
+        swal('You have already received an invite to join this project (' + data.project_name + ')', {
+            icon: "warning",
+        });
     }
-
-    alert(message);
 }
 
 addEventListenersProjectSearch();

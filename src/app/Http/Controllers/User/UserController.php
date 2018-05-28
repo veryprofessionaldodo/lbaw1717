@@ -218,7 +218,7 @@ class UserController extends Controller {
 
                 return response()->json(array('success' => true, 'project_name' => $project->name));
             }else if(!$invite->isEmpty()){
-                return response()->json(array('success' => true, 'reason' => 'invite' ,'project_name' => $project->name));
+                return response()->json(array('success' => false, 'reason' => 'invite' ,'project_name' => $project->name));
             }else{
                 return response()->json(array('success' => false,'reason'=> 'request', 'project_name' => $project->name));
             }            

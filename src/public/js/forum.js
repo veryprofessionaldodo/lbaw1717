@@ -2,9 +2,12 @@ function addEventListenersForum() {
     /*let newThreadButtonForm = document.querySelector("div#container div#overlay div.jumbotron p.lead a#newThread-btn");
 
     newThreadButtonForm.addEventListener('click',createThreadAction);*/
-
+    /*  let editButton = document.querySelector("button.edit_comment");
+      if(editButton !== null){
+          editButton.addEventListener('click', showEditForm);
+      }*/
     submitComment = document.querySelector("div.comment#thread form");
-    if(submitComment !== null)
+    if (submitComment !== null)
         submitComment.addEventListener('submit', addCommentThread);
 }
 /*
@@ -24,10 +27,39 @@ function editThreadAction(event) {
 }
 */
 
+
+function editCommentThread(button) {
+
+    let ps = document.getElementsByClassName("content");
+
+    var order = 0;
+
+    for (let i = 0; i < ps.length; i++) {
+        if (ps[i].id == button.id) {
+            order = i
+        }
+    }
+
+    let commentInfo = document.querySelectorAll("p.content")[order];
+    let commentForm = document.querySelectorAll("div form#edit")[order];
+
+    if (commentInfo.style.display !== "none") {
+        let input = commentForm.querySelector("input#content.form-control.col-10");
+        input.value = commentInfo.innerHTML;
+        commentInfo.style.display = "none"
+        commentForm.style.display = "block";
+    }
+    else {
+        commentInfo.style.display = "block";
+        commentForm.style.display = "none";
+
+    }
+}
+
 function showPageUpdated() {
 
     let data = JSON.parse(this.responseText);
-    console.log(data);
+    //console.log(data);
     let doc = document.querySelector("body");
     doc.innerHTML = data.html;
 }
@@ -58,7 +90,7 @@ function deleteCommentThread(button) {
 
     let href = button.getAttribute('href');
     swal({
-        title: "Are you sure you want to delete this comment?\n",
+        title: "Are you sure you want to delete this comment?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -87,7 +119,7 @@ function deleteThread(button) {
     let href = button.getAttribute('href');
 
     swal({
-        title: "Are you sure you want to delete this thread and the comments in it?\n",
+        title: "Are you sure you want to delete this thread and the comments in it?",
         icon: "warning",
         buttons: true,
         dangerMode: true,

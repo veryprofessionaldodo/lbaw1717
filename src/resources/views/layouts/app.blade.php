@@ -21,6 +21,7 @@
     <link href="{{ asset('css/forum_thread.css') }}" rel="stylesheet">
     <link href="{{ asset('css/statistics.css') }}" rel="stylesheet">
     <link href="{{ asset('css/project_settings.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user_report.css') }}" rel="stylesheet">
     
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -51,7 +52,7 @@
     <script type="text/javascript" src={{ asset('js/notifications.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/task.js')}} defer></script> 
     <script type="text/javascript" src={{ asset('js/project_search.js')}} defer></script> 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
   </head>
   
   <body>

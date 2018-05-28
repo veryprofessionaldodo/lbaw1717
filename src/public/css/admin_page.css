@@ -46,7 +46,9 @@ aside.col-12 {
  
 aside a#active { 
   margin-top: 1em; 
-  background-color: #002325; 
+  background-color: #5bc0de; 
+  color : #000011;
+  border : 1px solid #d6d6d6;
 }
  
 .col-6 a{ 
@@ -55,8 +57,14 @@ aside a#active {
 } 
  
 div.row a.col-6 { 
-  background-color: #00494C; 
+  background-color: #eee; 
+  color : #555555;
   margin-top: 1em; 
+  border : 1px solid #d6d6d6;
+}
+
+div.row a.col-6:hover { 
+  background-color: #fbfbfb; 
 }
 
 aside {
@@ -88,7 +96,7 @@ section {
 div > button { 
   background-color: #0A1827; 
   transition: all 0.2s; 
-  color:#ccc;
+  color:#fff;
 } 
 
 div > button:hover { 
@@ -105,7 +113,7 @@ section div#reports div.report {
  
 section div#reports div.report div.report_principal_info { 
   border-top: 1px solid #508689; 
-  background-color: #ECE7F3; 
+  background-color: #e3e8ef; 
   padding: 1em; 
   display: grid; 
   grid-template-columns: 40% 10% auto; 

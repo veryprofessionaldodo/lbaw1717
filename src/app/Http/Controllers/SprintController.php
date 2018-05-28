@@ -41,16 +41,43 @@ class SprintController extends Controller
     public function destroy(Request $request)
     {
       $sprint = Sprint::find($request->input('sprint_id'));
+      $tasks = Sprint::find($request->input('sprint_id'))->tasks()->get();
 
-      //$this->authorize('delete', $sprint); TODO
-      //$sprint->delete();
 
-      return response()->json(array('success' => true, 'sprint_id' => $request->input('sprint_id')));
+      switch($request->input('value')){
+          case "all":
+            for($x = 0; $x < count($tasks); $x++){
+                $tasks[$x]->delete();
+            }
+            $sprint->delete();
+            break;
+
+          case "move":
+            for($x = 0; $x < count($tasks); $x++){
+                $tasks[$x]->sprint_id = NULL;
+                $tasks[$x]->save();
+            }
+            $sprint->delete();
+            break;
+
+          case "change":
+            break;
+      }
+
+      return response()->json(array('success' => true,'value' => $request->input('value'), 'sprint_id' => $request->input('sprint_id')));
     }
 
     public function showForm(int $project_id) {
 
         $viewHTML = view('partials.create_sprint_form', ['project_id' => $project_id])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
+    }
+
+    public function edit($project_id, $sprint_id){
+
+    }
+
+    public function update(Request $request, $project_id, $sprint_id){
+        
     }
 }

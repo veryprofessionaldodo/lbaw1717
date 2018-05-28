@@ -5,11 +5,11 @@ let memberButton = document.querySelector("li.nav-item a#member_btn");
 let newSprintButton = document.querySelector("section.container-fluid div.col-12.new_sprint a");
 
 function addEventListenersProject() {
-	if(sprintButton !== null)
+	if (sprintButton !== null)
 		sprintButton.addEventListener('click', switchSprintsView);
-	if(taskButton !== null)
+	if (taskButton !== null)
 		taskButton.addEventListener('click', switchTasksView);
-	if(memberButton !== null)
+	if (memberButton !== null)
 		memberButton.addEventListener('click', switchMembersView);
 
 	if (newSprintButton !== null) {
@@ -17,7 +17,7 @@ function addEventListenersProject() {
 	}
 
 	submitComment = document.querySelector("div.comment div.form_comment form");
-	if(submitComment !== null)
+	if (submitComment !== null)
 		submitComment.addEventListener('submit', addComment);
 
 	// tasks completion
@@ -41,6 +41,11 @@ function addEventListenersProject() {
 	for (let i = 0; i < deleteSprintButtons.length; i++) {
 		deleteSprintButtons[i].addEventListener('click', deleteSprint);
 	}
+
+	let deleteProjectButton = document.querySelector("div#project_structure div.row a#delete_project");
+
+	if (deleteProjectButton !== null)
+		deleteProjectButton.addEventListener('click', deleteProject);
 
 }
 
@@ -131,7 +136,7 @@ function showMembersView() {
 
 function addComment(event) {
 	event.preventDefault();
-	console.log(event.target.action);
+	//console.log(event.target.action);
 
 	let content = document.querySelector("div.comment div.form_comment input[name='content']").value;
 
@@ -157,7 +162,7 @@ function deleteCommentTask(button) {
 	let href = button.getAttribute('href');
 
 	swal({
-		title: "Are you sure you want to delete this comment?\n",
+		title: "Are you sure you want to delete this comment?",
 		icon: "warning",
 		buttons: true,
 		dangerMode: true,
@@ -337,10 +342,11 @@ function deleteSprint(event) {
 	})
 		.then((value) => {
 
-			let index = event.target.href.indexOf('projects');
-			let index2 = event.target.href.indexOf('sprints');
-			let project_id = event.target.href.substring(index + 9, index2 - 1);
-			let sprint_id = event.target.href.substring(index2 + 8, event.target.length);
+			let href = event.currentTarget.href;
+			let index = href.indexOf('projects');
+			let index2 = href.indexOf('sprints');
+			let project_id = href.substring(index + 9, index2 - 1);
+			let sprint_id = href.substring(index2 + 8, href.length);
 
 			switch (value) {
 
@@ -349,11 +355,11 @@ function deleteSprint(event) {
 					break;
 
 				case "move":
-					sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					sendAjaxRequest('post',href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
 					break;
 
 				case "change":
-					sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
+					//sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
 					break;
 
 				default:
@@ -368,7 +374,68 @@ function deleteSprint(event) {
 }
 
 function deleteSprintHandler() {
+
+	alert(this.responseText);
 	let data = JSON.parse(this.responseText);
+	if (data.success) {
+
+		let sprint = document.querySelector("section.container-fluid div#project_structure div#sprints div.list-group-item[data-id='" + data.sprint_id + "']");
+		sprint.remove();
+
+		switch (data.value) {
+			case "all":
+				swal("Successfully deleted this sprint and the tasks inside !", {
+					icon: "success",
+				});
+				break;
+			case "move":
+				swal("Successfully deleted this sprint and moved the tasks to the project !", {
+					icon: "success",
+				});
+				break;
+			case "change":
+				break;
+		}
+	}
+}
+
+function deleteProject(event) {
+	event.preventDefault();
+
+
+	swal({
+		title: "Are you sure you want to delete this project?",
+		text: "Once deleted, you will not be able to recover this project!",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if (willDelete) {
+				let index = event.target.href.indexOf('projects');
+				let project_id = event.target.href.substring(index + 9, event.target.length);
+				sendAjaxRequest('post', event.target.href, { project_id: project_id }, deleteProjectUpdate);
+			} else {
+				swal("This project is safe !");
+			}
+		});
+}
+
+function deleteProjectUpdate() {
+
+	let data = JSON.parse(this.responseText);
+
+	if (data.success) {
+		window.location.href = data.url;
+		swal("Successfully deleted this project !", {
+			icon: "success",
+		}).then((willDelete) => {
+			if (willDelete)
+				window.location.href = data.url;
+		});
+
+	}
+
 }
 
 addEventListenersProject();
