@@ -72,4 +72,12 @@ class SprintController extends Controller
         $viewHTML = view('partials.create_sprint_form', ['project_id' => $project_id])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
     }
+
+    public function edit($project_id, $sprint_id){
+
+    }
+
+    public function update(Request $request, $project_id, $sprint_id){
+        
+    }
 }

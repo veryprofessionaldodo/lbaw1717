@@ -6,9 +6,9 @@ function addEventListenersAdmin() {
 	let userRepDetail = document.querySelectorAll("section div#reports div.report_user div.report_principal_info a");
 	let pagination = document.querySelectorAll("div#reports div#pagination_section ul.pagination li a");
 
-	if(userRepBtn !== null)
+	if (userRepBtn !== null)
 		userRepBtn.addEventListener('click', showUserReports);
-	if(commentRepBtn !== null)
+	if (commentRepBtn !== null)
 		commentRepBtn.addEventListener('click', showCommentReports);
 
 	for (let i = 0; i < pagination.length; i++) {
@@ -71,7 +71,7 @@ function dismissReport(button) {
 	let report_id = button.id;
 
 	swal({
-		title: "Are you sure you want to dismiss this report?\n",
+		title: "Are you sure you want to dismiss this report?",
 		icon: "warning",
 		buttons: true,
 		dangerMode: true,
@@ -88,7 +88,7 @@ function disableUser(button) {
 	let href = button.getAttribute('href');
 
 	swal({
-		title: "Are you sure you want to disable this user?\n",
+		title: "Are you sure you want to disable this user?",
 		icon: "warning",
 		buttons: true,
 		dangerMode: true,
@@ -110,39 +110,39 @@ function deleteCommentReport(button) {
 	swal("Delete Comment", {
 		icon: "warning",
 		buttons: {
-		  cancel: "Cancel!",
-		  catch: {
-			text: "Delete comment and disable user!",
-			value: "catch",
-		  },
-		  defeat: {
-			text: "Only delete the comment!",
-			value: "defeat",
-		  },
+			cancel: "Cancel!",
+			catch: {
+				text: "Delete comment and disable user!",
+				value: "catch",
+			},
+			defeat: {
+				text: "Only delete the comment!",
+				value: "defeat",
+			},
 		},
-	  })
-	  .then((value) => {
-		let report_id = button.id;
-		let disable;
-		switch (value) {
-	   
-		  case "defeat":
-			disable = false;
-			sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, reportHandler);
-			break;
-	   
-		  case "catch":
-			disable = true;
-			sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, reportHandler);
-			break;
-	   
-		  default:
-			swal("Operation Canceled!",{
-				dangerMode: true,
-       			icon:"error",
-			});
-		}
-	  });
+	})
+		.then((value) => {
+			let report_id = button.id;
+			let disable;
+			switch (value) {
+
+				case "defeat":
+					disable = false;
+					sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, reportHandler);
+					break;
+
+				case "catch":
+					disable = true;
+					sendAjaxRequest('post', href, { report_id: report_id, disable: disable }, reportHandler);
+					break;
+
+				default:
+					swal("Operation Canceled!", {
+						dangerMode: true,
+						icon: "error",
+					});
+			}
+		});
 }
 
 function getPageReport(event) {
