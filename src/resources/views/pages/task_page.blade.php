@@ -56,10 +56,10 @@
                         @else
 
                             @if($task->isUserAssigned(Auth::id()) == null)
-                                <a class="btn claim" href="{{ route('assign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
+                                <a class="btn claim btn-primary" href="{{ route('assign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
                                     Claim task</a>
                             @else
-                                <a class="btn claim" href="{{ route('unassign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
+                                <a class="btn claim btn-primary" href="{{ route('unassign_self', ['project_id' => $project->id, 'task_id' => $task->id])}}">
                                     Unclaim task</a>
                             @endif
 

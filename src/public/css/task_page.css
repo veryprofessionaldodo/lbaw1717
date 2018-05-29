@@ -26,6 +26,10 @@ div#task h1 {
     margin: 0.5em 0;
 }
 
+div.coordinator_options {
+    color: white;
+}
+
 div.col-12.alert.alert-dismissible.alert-danger{
     padding: 1em;
 }
