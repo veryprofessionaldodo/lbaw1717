@@ -153,6 +153,37 @@ class CommentController extends Controller
         }
  
     }
+
+    public function editAjax(Request $request, $id, $task_id, $comment_id)
+    {
+        if (!Auth::check()) return redirect('/login');
+        
+        try {
+        
+            $comment = Comment::find($comment_id);
+
+            $comment->content = $request->content;
+
+            $comment->save();
+
+            $project = Project::find($id);
+            $task = Task::find($task_id);
+            $role = Auth::user()->isCoordinator($id);
+            if($role == false)
+                $role = 'tm';
+            else
+                $role = 'co';
+
+            $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'task' => $task, 'role' => $role])->render();
+            return response()->json(array('success' => true, 'comment' => $commentView, 'task_id' => $task_id, 'comment_id' => $comment_id));
+        } catch(\Illuminate\Database\QueryException $qe) {
+            // Catch the specific exception and handle it 
+            //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+            // Handle unexpected errors
+        }
+ 
+    }
     
     /**
     * Update the specified resource in storage.

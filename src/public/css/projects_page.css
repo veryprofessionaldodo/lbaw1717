@@ -285,10 +285,16 @@ div.sprint-task a.btn {
 }
 
 div.sprint-task div.assigned_users {
-	margin: auto 0 auto auto;
+	margin: auto 0 auto auto;está a dizer que é edit_comment mas tem a route para o deleteComment
+￼￼
+￼
+
 }
 
-div.sprint-task div.assigned_users img{
+div.sprint-task div.assigned_está a dizer que é edit_comment mas tem a route para o deleteComment
+￼￼
+￼
+
 	grid-column-start: 3;
 	grid-column-end: 4;
 	max-width: 5%;
@@ -421,6 +427,7 @@ div.comment div.form_comment form {
 div.comment div.form_comment form input.form-control {
 	width: 100%;
 	flex-grow: 1;
+	max-width: 90%;
 }
 
 div.comment div.form_comment form button.btn {
@@ -858,10 +865,14 @@ div.container.new_sprint div#form_options {
 		margin: 0;
 	}
 
-	div.comment div.form_comment input.form-control {
-		margin: 0;
+	div.comment div.form_comment form input.form-control {
+		margin-top: 0.5em;
+		margin-left: auto;
+		margin-right: auto;
 		width: 100%;
 		flex-grow: 1;
+		max-width: 100%;
+	
 	}
 
 	div.comment div.form_comment button.btn {

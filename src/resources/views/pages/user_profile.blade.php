@@ -41,14 +41,20 @@
 		<section class="col-lg-10 col-md-9 col-12">
 			<div id="options">
 				<div class="row">
-
+					@if(Auth::user()->username == $user->username)
 					<div class="col-lg-4 col-md-4 col-sm-4 col-12">
 						<a id="new_project" class="btn btn-primary" href="{{ route('new_project_form',['username' => Auth::user()->username])}}">Create New Project</a>
 					</div>
+					@else
+					@endif
 
 					
 					<form class="col-lg-6 col-md-6 col-sm-6 col-12 searchbar" method="POST" action="{{ route('search_user_project', ['username' => Auth::user()->username]) }}">
+						@if(Auth::user()->username == $user->username)
 						<input type="text" name="search" placeholder="Search Your Projects" class="form-control">
+						@else
+						<input type="text" name="search" placeholder="Search Projects of this User" class="form-control">
+						@endif
 						<button class="btn btn-primary" type="submit">
 							<i class="fas fa-search"></i>
 						</button>

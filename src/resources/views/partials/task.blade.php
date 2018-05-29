@@ -39,7 +39,7 @@
 	<div class="comment">
 		<p class="label">New comment:</p>
 		<div class="form_comment row">
-			<form method="POST" action="{{ route('create_comment_task',['project_id' => $project->id,'task_id' => $task->id]) }}">
+			<form method="POST" id="submit" action="{{ route('create_comment_task',['project_id' => $project->id,'task_id' => $task->id]) }}">
 				{{ csrf_field()}}
 				<input type="text" class="form-control col-10" name="content">
 				<button class="btn btn-primary col-2" type="submit">Send</button>

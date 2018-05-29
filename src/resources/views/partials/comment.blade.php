@@ -81,7 +81,7 @@
 					onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" 
 					data-toggle="tooltip" data-placement="bottom" title="Delete Comment"><i class="fas fa-trash"></i>
 				</button>
-				<button class="btn btn-warning edit_comment" onclick="editTaskComment(this)" id="{{$comment->id}}"
+				<button class="btn btn-warning edit_comment" onclick="prepareForEdition(this)" id="{{$comment->id}}"
 						data-toggle="tooltip" data-placement="bottom" title="Edit Comment"><i class="fas fa-pencil-alt" ></i>
 				</button>
 			@endif
