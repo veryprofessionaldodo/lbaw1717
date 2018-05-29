@@ -15,13 +15,13 @@ div#container {
 }
 
 div#container div#options {
-	display: flex;
 	justify-content: space-between;
 	margin-top: 2em;
 }
 
 div#container div#options ol.breadcrumb {
-	background-color: inherit;
+	width: 80%;
+	margin: auto;
 }
 
 

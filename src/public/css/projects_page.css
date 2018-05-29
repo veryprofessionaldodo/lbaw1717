@@ -1,7 +1,7 @@
 h2 {
 	text-align: center;
 	padding-top: 0.5em;
-	color: #0A1827;
+	color: #001;
 }
 
 /*
@@ -116,7 +116,7 @@ div.new_task {
 }
 
 div a {
-	color: #0A1827;
+	color: #001;
 }
 
 div.list-group-item svg{
@@ -125,7 +125,7 @@ div.list-group-item svg{
 }
 
 div.list-group-item:first-of-type {
-	border-top: 2px solid #0A1827;
+	border-top: 2px solid #667;
 }
 
 div.list-group-item {
@@ -133,9 +133,9 @@ div.list-group-item {
 	display: grid;
 	border: 0;
 	font-size: 16px;
-	color: #001;
-	background-color: #5bc0de;
-	border-bottom: 2px solid #0A1827;
+	color: #000;
+	background-color: #5ec3e2;
+	border-bottom: 2px solid #667;
 	grid-template-columns: 50% auto auto auto auto;
 }
 
@@ -191,7 +191,7 @@ div.sprint-task {
 	padding: 0 1em 0 3em;
 	display: grid;
 	grid-template-columns: 5% auto auto auto 5%;
-	border-bottom: 1px solid #0A1827;
+	border-bottom: 1px solid #667;
 	/*border-left: 2px solid #000;
 	border-right: 2px solid #000;
 	border-top: 2px solid #000;*/
@@ -201,6 +201,8 @@ form.sprint-task.create_task {
 	padding: 1em;
 	display: flex;
 	justify-content: flex-start;
+	border-top:2px solid #667;
+	border-bottom:2px solid #667;
 }
 
 form.sprint-task.create_task input[type="text"] {
@@ -215,6 +217,16 @@ form.sprint-task.create_task input[type="number"] {
 form.sprint-task.create_task a {
 	margin: auto;
 	display: inline;
+}
+
+#members_project .first_col {
+	border-top:2px solid #667;
+	border-bottom:1px solid #667;
+}
+
+
+.member:last-of-type {
+	border-bottom:2px solid #667;
 }
 
 div.sprint-task svg{
@@ -309,7 +321,7 @@ div.comment {
 }
 
 div.comment:last-of-type {
-	border-bottom: 1px solid #0A1827;
+	border-bottom: 1px solid #667;
 }
 
 div.comment img {
@@ -424,7 +436,7 @@ div.comment div.form_comment form button.btn {
 
 div#members_project div.row{
 	margin: 0;
-	background-color: #a1d0dd; 
+	background-color: #e3e8ef; 
 }
 
 div#members_project form#user_search {
@@ -432,8 +444,8 @@ div#members_project form#user_search {
 }
 
 div.members_project .header{
-	border-top:2px solid #0A1827;
-	border-bottom:2px solid #0A1827;
+	border-top:2px solid #667;
+	border-bottom:2px solid #667;
 	color: #001;
 	background-color: #ECE7F3; 
 }
@@ -453,7 +465,7 @@ div#members_project form#user_search button.btn{
 div#members_project div.member {
 	margin: 0 auto;
 	padding: 1em;
-	border-top: 1px solid #001;
+	border-top: 1px solid #667;
 }
 
 div#members_project div.member div.info {
@@ -515,8 +527,8 @@ div.container.create_new {
 	position: absolute;
 	z-index: 1;
 	display: block;
-	background-color: #0A1827;
-	padding: 1em;DDD
+	background-color: #667;
+	padding: 1em;
 	max-width: 40em;
 	height: 30em;
 	text-align: justify;
@@ -647,7 +659,7 @@ div.col-12 div#task_info {
 	display: grid;
 	grid-template-columns: 5% auto 5%;
 	grid-template-rows: 10% auto;
-	border-bottom: 1px solid #0A1827;
+	border-bottom: 1px solid #667;
 }
 
 
