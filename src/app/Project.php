@@ -87,7 +87,7 @@ class Project extends Model
       FROM "user", task
       WHERE task.project_id = :project_id
       GROUP BY "user".username, "user".image
-      ORDER BY num DESC LIMIT 3;'), array('project_id' => $this->id));
+      ORDER BY num ASC LIMIT 3;'), array('project_id' => $this->id));
   }
 
   public function tasksCompleted(){
@@ -114,5 +114,14 @@ class Project extends Model
         WHERE sprint.project_id = :project_id AND sprint_state_record.sprint_id = sprint.id
         AND sprint_state_record.state = :state2 AND date_part(:state3,date) = date_part(:state3,now())
         GROUP BY month'), array('project_id' => $this->id, 'state1' => 'month', 'state2' => 'Completed', 'state3' => 'year'));
+  }
+
+  public function monthlyTasksPerDay() {
+    return DB::select(
+      DB::raw('SELECT COUNT(*), date_part(:state1 ,date) AS day
+      FROM task_state_record, task
+      WHERE task.project_id = :project_id AND task_state_record.task_id = task.id
+      AND task_state_record.state = :state2 AND date_part(:state3 ,date) = date_part(:state3, ,now())
+      GROUP BY day;'), array('project_id' => $this->id, 'state1' => 'day', 'state2' => 'Completed', 'state3' => 'year'));
   }
 }

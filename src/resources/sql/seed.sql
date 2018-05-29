@@ -1196,8 +1196,8 @@ INSERT INTO comment (content,date,user_id,task_id,thread_id) VALUES ('SPAM SPAM 
 
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',5);
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',13);
-INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',21);
-INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',21);
+INSERT INTO sprint_state_record (date,state,sprint_id) VALUES ('2018-05-08 16:30:00+01','Completed',21);
+INSERT INTO sprint_state_record (date,state,sprint_id) VALUES ('2018-04-08 19:30:00+01','Completed',22);
 
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 12:30:00+01','Assigned',1,1);
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 12:30:00+01','Assigned',1,3);
@@ -1222,6 +1222,7 @@ INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('20
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 16:30:00+01','Completed',14,29);
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 16:30:00+01','Completed',8,43);
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 19:30:00+01','Completed',9,43);
+INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-04-08 19:30:00+01','Completed',8,44);
 
 INSERT INTO report (date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES ('2018-05-08 19:30:00+01','It is an offensive comment and totally out of place',3,'commentReported',30,NULL);
 INSERT INTO report (date,summary,user_id,type,comment_reported_id,user_reported_id) VALUES ('2018-05-08 19:30:00+01','comment extremely offensive',18,'commentReported',32,NULL);
