@@ -231,7 +231,7 @@ function prepareForEdition(button) {
 	let commentDiv = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row");
 	let commentForm = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row form#edit");	
 	
-	let href = commentForm.getAttribute('href');
+	//let href = commentForm.getAttribute('href');
 
     if(commentInfo.style.display !== "none"){
 		let input = commentForm.querySelector("input[name='content']");

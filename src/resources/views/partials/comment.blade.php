@@ -14,8 +14,9 @@
 		<form id="edit" method="POST" style="display: none;" action="{{ route('editCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}">
 		{{ csrf_field()}}
 		
-			<input type="text" class="form-control col-10" name="content" id="content">    
-			<button type="submit" class="btn btn-primary col-2">Send</button>
+			<input type="text" class="form-control col-10" name="content" id="content">
+			<button type="button" class="btn btn-danger" onclick="editCommentThread(this)">Cancel</button>    
+			<button type="submit" class="btn btn-primary">Send</button>
 			
 		</form> 
 		</div>
@@ -24,7 +25,8 @@
 		<form id="edit" method="POST" action="{{ route('editTaskComment',['project_id' => $project->id,'task_id' => $task->id, 'comment_id' => $comment->id]) }}">
 			{{ csrf_field()}}
 			<input type="text" class="form-control col-10" name="content">
-			<button class="btn btn-primary col-2" type="submit">Send</button>
+			<button type="button" class="btn btn-danger" id="{{$comment->id}}" onclick="prepareForEdition(this)">Cancel</button>
+			<button class="btn btn-primary col-1" type="submit">Send</button>
 		</form>
 	</div>
   	@endif
