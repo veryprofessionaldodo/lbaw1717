@@ -361,17 +361,19 @@ DECLARE
 BEGIN
 	SELECT task.sprint_id INTO sprint_id FROM task WHERE task.id = NEW.task_id;
 
-	IF (NEW.state = 'Completed') THEN 
-		IF(
-			(SELECT COUNT(*) FROM task WHERE task.sprint_id = 
-				(SELECT task.sprint_id FROM task WHERE task.id = NEW.task_id)) -- tasks of respective sprint
-			=
-			(SELECT COUNT(*) FROM task_state_record t, task a 
-				WHERE t.state = 'Completed' AND a.sprint_id = 
-					(SELECT task.sprint_id FROM task WHERE task.id = NEW.task_id))
-			)
-		THEN 
-			INSERT INTO sprint_state_record (id, date, state, sprint_id) VALUES (DEFAULT, now(), 'Completed', sprint_id);
+	IF(sprint_id <> NULL) THEN
+		IF (NEW.state = 'Completed') THEN 
+			IF(
+				(SELECT COUNT(*) FROM task WHERE task.sprint_id = 
+					(SELECT task.sprint_id FROM task WHERE task.id = NEW.task_id)) -- tasks of respective sprint
+				=
+				(SELECT COUNT(*) FROM task_state_record t, task a 
+					WHERE t.state = 'Completed' AND a.sprint_id = 
+						(SELECT task.sprint_id FROM task WHERE task.id = NEW.task_id))
+				)
+			THEN 
+				INSERT INTO sprint_state_record (id, date, state, sprint_id) VALUES (DEFAULT, now(), 'Completed', sprint_id);
+			END IF;
 		END IF;
 	END IF;
 	RETURN NULL;
