@@ -37,6 +37,10 @@ function addEventListenersSettings() {
         removeMemberBtn[i].addEventListener('click', removeMember);
     }
 
+    let editProjectButton = document.querySelector(".container-fluid div.row div.edit_project a");
+    if (editProjectButton !== null)
+        editProjectButton.addEventListener('click', editProjectForm);
+
 }
 
 function switchRequestView(event) {
@@ -154,7 +158,7 @@ function promoteMember(event) {
     })
         .then((willDelete) => {
             if (willDelete) {
-                sendAjaxRequest('post',href, { project_id: project_id, username: member_username }, promotedMemberUpdate);
+                sendAjaxRequest('post', href, { project_id: project_id, username: member_username }, promotedMemberUpdate);
             }
         });
 }
@@ -204,5 +208,46 @@ function removeMemberUpdate() {
         });
     }
 }
+
+function editProjectForm(event) {
+    event.preventDefault();
+    sendAjaxRequest('get', event.target.href, null, showEditProjectForm);
+}
+
+function showEditProjectForm() {
+    let data = JSON.parse(this.responseText);
+
+    document.body.innerHTML = data.html;
+    let submitProject = document.querySelector("div#container div#overlay div.jumbotron form p.lead button#editProject-btn");
+    submitProject.addEventListener('click', editProjectAction);
+}
+
+function editProjectAction(event) {
+    event.preventDefault();
+    let project_name = document.querySelector("input[name='name']").value;
+    let project_description = document.querySelector("textarea[name='description']").value;
+    let project_public = document.querySelector("input#public").value;
+
+    let select = document.querySelector("select");
+    let categories = getSelectValues(select);
+
+
+    let href = event.currentTarget.parentNode.parentNode.action;
+
+    let index = href.indexOf('projects');
+    let index2 = href.indexOf('members');
+    let project_id = href.substring(index + 9, index2 - 1);
+
+    sendAjaxRequest('post', href,
+        {
+            name: project_name, description: project_description, public: project_public,
+            project_id: project_id, categories: categories
+        }, editProjectActionUpdate);
+}
+
+function editProjectActionUpdate() {
+    document.body.innerHTML = this.responseText;
+}
+
 
 addEventListenersSettings();
