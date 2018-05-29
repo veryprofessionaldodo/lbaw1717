@@ -21,7 +21,8 @@ nav.navbar a.navbar-brand {
 }
 
 nav.navbar a.navbar-brand:hover {
-	color: #DF691A;
+	color: #FFF;
+	text-decoration: underline;
 }
 
 nav.navbar div#navbarSupportedContent.collapse {
@@ -30,8 +31,11 @@ nav.navbar div#navbarSupportedContent.collapse {
 }
 
 nav.navbar form {
+	width:90%;
 	text-align: center;
-	margin-left: 40%;
+	margin-left: 15%;
+	display: grid;
+	grid-template-columns: 30% 50% 10% auto;
 }
 
 li.user {
@@ -88,11 +92,12 @@ li.user {
  FORMS
  */
 
-.form-control {
+form input.form-control.main-search {
 	display: inline-block;
 	transition: all 0.2s;
 	background-color: #f4f4f4;
 	color: #223;
+	grid-column-start: 1;
 }
 
 .form-control:hover {
