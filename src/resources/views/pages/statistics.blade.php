@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if(Auth::check())
+
 
 
 <div id="container">
@@ -80,10 +80,10 @@
                         var myChart = new Chart(ctx, {
                             type: 'bar',
                             data: {
-                                labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+                                labels: [27, 28, 29, 30, 31, 1],
                                 datasets: [{
                                     label: '# of tasks done',
-                                    data: [5, 3, 2, 5, 2, 3, 4, 2, 1, 8],
+                                    data: [1, 3, 2, 5, 2, 3],
                                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                                     borderColor: 'rgba(255,99,132,1)',
                                     borderWidth: 1
@@ -107,13 +107,16 @@
                     <canvas id="sprints_year_chart"></canvas>
                     <script>
                         var ctx = document.getElementById("sprints_year_chart").getContext('2d');
+                       var april = {!! json_encode($april) !!};
+                       var may = {!! json_encode($may) !!};
+                
                         var myChart = new Chart(ctx, {
                             type: 'line',
                             data: {
-                                labels: ["March", "April", "May"],
+                                labels: ["April", "May", "June"],
                                 datasets: [{
                                     label: '# of sprints done',
-                                    data: [5, 3, 2],
+                                    data: [april, may, 0],
                                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                                     borderColor: 'rgba(255,99,132,1)',
                                     borderWidth: 1
@@ -135,8 +138,6 @@
         </div>
     </div>
 </div>
-@else
 
-@endif
 
 @endsection

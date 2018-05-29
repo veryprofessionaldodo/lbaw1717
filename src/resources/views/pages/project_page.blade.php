@@ -4,8 +4,6 @@
 
 @section('content')
 
-@if(Auth::check())
-
 @if($role == 'tm')
 
 <section class="container-fluid">
@@ -165,6 +163,7 @@
 </section>
 
 @elseif($role == 'guest')
+
 <section class="container-fluid">
 	<!-- rows iniciais das project pages -->
 
@@ -186,7 +185,7 @@
 		</div>
 	</div>
 	<div class="row">
-	<div class="col-12">
+	<div class="col-2" style:"text-align: center;">
 		<nav class="navbar navbar-expand-lg navbar-dark" id="buttons_nav">
 
 			<a class="btn btn-secondary" class="project_buttons" href="{{route('project_stats',['project_id' => $project->id])}}">
@@ -206,27 +205,17 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-12">
-		<ul class="nav nav-tabs">
-			<li class="nav-item">
-				<a class="nav-link" id="member_btn" data-toggle="tab" href="{{ route('project_members', ['project_id' => $project->id])}}"><i class="fas fa-users"></i> Members</a>
-			</li> 
-		</ul>
-	</div>
-</div>
 
-
-<div class="row content_view">
+<div class="col-12" id="members_project">
+	<div class="row" id="show_members">
 	
-	@include('partials.members_view', ['members' => $members, 'project' => $project])
+		@include('partials.members_view', ['members' => $members, 'project' => $project])
 
+	</div>
 </div>
 
 </section>
 
-
-@endif
 
 @endif
 

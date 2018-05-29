@@ -85,6 +85,16 @@ li.user {
 }
 
 
+form.form-inline input {
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
+form.form-inline butotn {
+	grid-column-start: 3;
+}
+
+
 /**
  FORMS
  */
