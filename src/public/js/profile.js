@@ -27,6 +27,12 @@ function addEventListeners() {
 	for (let i = 0; i < searchRoleUserProjectButtons.length; i++) {
 		searchRoleUserProjectButtons[i].addEventListener('click', searchByRole);
 	}
+
+
+	let leaveProjectBtn = document.querySelectorAll("div#projects div.project div.project_info button");
+	for (let i = 0; i < leaveProjectBtn.length; i++) {
+		leaveProjectBtn[i].addEventListener('click', leaveProject);
+	}
 }
 
 function encodeForAjax(data) {
@@ -173,11 +179,55 @@ function searchByRole(event) {
 }
 
 function showUserProjects() {
+
 	let data = JSON.parse(this.responseText);
-	console.log(data);
 
 	let div = document.querySelector("div#projects");
 	div.innerHTML = data.html;
+}
+
+
+function leaveProject(event) {
+	event.preventDefault();
+
+	let href = event.currentTarget.getAttribute('href');
+
+	let index = href.indexOf('projects');
+	let index2 = href.indexOf('leave');
+	let project_id = href.substring(index + 9, index2 - 1);
+
+	swal({
+		title: "Are you sure you want to leave this project?",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+		.then((willDelete) => {
+			if (willDelete) {
+				sendAjaxRequest('post', href, { project_id: project_id }, leaveProjectHandler);
+			}
+		});
+}
+
+function leaveProjectHandler() {
+
+	let data = JSON.parse(this.responseText);
+
+	if (data.success) {
+
+		swal("You left " + data.project_name + " successfully!", {
+			icon: "success",
+		});
+
+		let div = document.querySelector("div#projects");
+		div.innerHTML = data.html;
+
+	} else {
+		swal("Failed to leave the project!", {
+			icon: "error",
+		});
+	}
+
 }
 
 
