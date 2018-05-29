@@ -1,6 +1,8 @@
+let userRepBtn = document.querySelector("aside#navbar div a:first-of-type");
+let commentRepBtn = document.querySelector("aside#navbar div a:last-of-type");
+
 function addEventListenersAdmin() {
-	let userRepBtn = document.querySelector("aside#navbar div a:first-of-type");
-	let commentRepBtn = document.querySelector("aside#navbar div a:last-of-type");
+
 
 	let commentsRepDetail = document.querySelectorAll("section div#reports div.report_comment div.report_principal_info a.info");
 	let userRepDetail = document.querySelectorAll("section div#reports div.report_user div.report_principal_info a.info");
@@ -48,11 +50,17 @@ function sendAjaxRequest(method, url, data, handler) {
 function showUserReports(event) {
 	event.preventDefault();
 
+	userRepBtn.id = 'active';
+    commentRepBtn.id = '';
+
 	sendAjaxRequest('get', event.target.href, null, viewReports);
 }
 
 function showCommentReports(event) {
 	event.preventDefault();
+
+	userRepBtn.id = '';
+    commentRepBtn.id = 'active';
 
 	sendAjaxRequest('get', event.target.href, null, viewReports);
 }
