@@ -13,7 +13,7 @@ function taskPageEventListeners() {
 	// tasks completion
 	let tasksCheckbox = document.querySelector("div#checkbox input[type='checkbox']");
 	if(tasksCheckbox !== null)
-		tasksCheckbox.addEventListener('click', updateTaskCompletion);
+		tasksCheckbox.addEventListener('click', updateTaskCompletionPage);
 
 	// assign to task to self
 	let assignSelfTaskButton = document.querySelector("div.task_options a.claim");
@@ -93,7 +93,7 @@ function showAssignUserForm(event) {
 }
 
 
-function updateTaskCompletion() {
+function updateTaskCompletionPage() {
 	let url = this.getAttribute("data-url");
 
 	let state;

@@ -37,6 +37,11 @@ function addEventListenersProject() {
 		addTaskButtons[i].addEventListener('click', createTask);
 	}
 
+	let addTaskProjectButton = document.querySelector("form.create_task_project a");
+	if(addTaskProjectButton !== null){
+		addTaskProjectButton.addEventListener('click', createTaskProjectButton);
+	}
+
 	let deleteSprintButtons = document.querySelectorAll('div.list-group-item a.btn.delete_sprint');
 	for (let i = 0; i < deleteSprintButtons.length; i++) {
 		deleteSprintButtons[i].addEventListener('click', deleteSprint);
@@ -110,6 +115,7 @@ function showSprintsView() {
 
 	let content = document.querySelector("section.container-fluid div.row.content_view");
 	content.innerHTML = data.html;
+	addEventListenersProject();
 }
 
 function getSprintForm(event) {
@@ -130,6 +136,7 @@ function showTasksView() {
 
 	let content = document.querySelector("section.container-fluid div.row.content_view");
 	content.innerHTML = data.html;
+	addEventListenersProject();
 }
 
 function showMembersView() {
@@ -142,6 +149,8 @@ function showMembersView() {
 	if(searchProjectMember !== null){
 		searchProjectMember.addEventListener('submit', submitMemberSearch);
 	}
+
+	addEventListenersProject();
 }
 
 function addComment(event) {
@@ -309,7 +318,7 @@ function createTask(event) {
 
 function addTaskInfo() {
 	let data = JSON.parse(this.responseText);
-
+	
 	let div = document.querySelector("div#sprint-" + data.sprint_id + " form.sprint-task.create_task");
 	console.log(div);
 
@@ -327,6 +336,48 @@ function addTaskInfo() {
 	inputEffort.value = "";
 	inputTaskName.value = "";
 
+	let submitComment = document.querySelector("div.comment div.form_comment form");
+	if (submitComment !== null)
+		submitComment.addEventListener('submit', addComment);
+}
+
+function createTaskProjectButton(event){
+	event.preventDefault();
+
+	let project_id = event.target.getAttribute("data-id");
+
+	let inputTaskName = document.querySelector("form.create_task_project input[type='text']");
+	let inputEffort = document.querySelector("form.create_task_project input[type='number']");
+	let formHref = document.querySelector("form.create_task_project").getAttribute("action");
+
+
+	sendAjaxRequest("POST", formHref, { project_id: project_id,
+		name: inputTaskName.value, effort: inputEffort.value
+	}, addTaskProjectInfo);
+}
+
+function addTaskProjectInfo() {
+	let data = JSON.parse(this.responseText);
+
+	let div = document.querySelector("form.create_task_project");
+
+	if (data.success) {
+		div.insertAdjacentHTML('beforebegin', data.html);
+	}
+	else {
+		let element = '<div class="alert alert-dismissible alert-danger"> <button type="button" class="close" data-dismiss="alert">&times;</button><strong>Max effort exceeded!</strong></div>';
+		div.insertAdjacentHTML('beforebegin', element);
+	}
+
+	let inputTaskName = document.querySelector("form.create_task_project input[type='text']");
+	let inputEffort = document.querySelector("form.create_task_project input[type='number']");
+
+	inputTaskName.value = "";
+	inputEffort.value = "";
+
+	let submitComment = document.querySelector("div.comment div.form_comment form");
+	if (submitComment !== null)
+		submitComment.addEventListener('submit', addComment);
 }
 
 function deleteSprint(event) {

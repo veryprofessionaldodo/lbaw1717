@@ -16,6 +16,9 @@ Route::get('/', 'LandingPageController@showLandingPage'); //done
 
 //Search public projects
 Route::post('api/search', 'ProjectController@searchProject')->name('search'); //done
+Route::get('/faq', function() {
+    return view('pages.faq');
+});
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login'); //done

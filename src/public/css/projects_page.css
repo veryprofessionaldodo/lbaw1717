@@ -13,6 +13,10 @@ section {
 	color: #001;
 }
 
+section > span {
+	float: right;
+}
+
 .col-12 h4 {
 	margin-bottom: 1rem;
 }
@@ -197,7 +201,7 @@ div.sprint-task {
 	border-top: 2px solid #000;*/
 }
 
-form.sprint-task.create_task {
+form.sprint-task.create_task, form.sprint-task.create_task_project {
 	padding: 1em;
 	display: flex;
 	justify-content: flex-start;
@@ -205,16 +209,16 @@ form.sprint-task.create_task {
 	border-bottom:2px solid #667;
 }
 
-form.sprint-task.create_task input[type="text"] {
+form.sprint-task.create_task input[type="text"], form.sprint-task.create_task_project input[type="text"] {
 	margin: auto 1em;
 }
 
-form.sprint-task.create_task input[type="number"] {
+form.sprint-task.create_task input[type="number"], form.sprint-task.create_task_project input[type="number"] {
 	width: 25%;
 	margin: auto 1em;
 }
 
-form.sprint-task.create_task a {
+form.sprint-task.create_task a, form.sprint-task.create_task_project a {
 	margin: auto;
 	display: inline;
 }
@@ -798,18 +802,14 @@ div.container.new_sprint div#form_options {
 	}
 
 
-	div.sprint-task.create_task {
+	div.sprint-task.create_task, form.sprint-task.create_task_project {
 		padding: 1em 0em;
 		justify-content: center;
 	}
 
-	div.sprint-task.create_task input {
+	div.sprint-task.create_task input, form.sprint-task.create_task_project input {
 		width: 50%;
 		margin: auto 1em;
-	}
-
-	div.sprint-task.create_task button {
-		margin: auto 0;
 	}
 
 	div.comment {

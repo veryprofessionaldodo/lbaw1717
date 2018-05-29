@@ -9,8 +9,6 @@
 @if($role == 'tm')
 
 <section class="container-fluid">
-		<!-- rows iniciais das project pages -->
-
 	<div class="row">
 		<div class="col-12">
 			<h1>{{ $project->name }}</h1>
@@ -75,7 +73,6 @@
 @elseif($role == 'co')
 
 <section class="container-fluid">
-		<!-- rows iniciais das project pages -->
 
 	<div class="row">
 		<div class="col-12">

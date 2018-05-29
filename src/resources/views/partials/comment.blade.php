@@ -40,26 +40,50 @@
 	<div class="user_options">
 		@if(Auth::user()->id != $comment->user->id && $role == 'tm')
 
-			<a href="{{ route('comment_report_form', ['comment_id' => $comment->id])}}" class="btn"><i class="fas fa-flag"></i></a>
+			<a href="{{ route('comment_report_form', ['comment_id' => $comment->id])}}" class="btn"
+					role="button" data-toggle="tooltip" data-placement="bottom" title="Report Comment">
+				<i class="fas fa-flag"></i>
+			</a>
 		
 		@elseif(Auth::user()->id != $comment->user->id && $role == 'co')
 
-			<a href="{{ route('comment_report_form', ['comment_id' => $comment->id])}}" class="btn"><i class="fas fa-flag"></i></a>
+			<a href="{{ route('comment_report_form', ['comment_id' => $comment->id])}}" class="btn"
+					role="button" data-toggle="tooltip" data-placement="bottom" title="Report Comment">
+				<i class="fas fa-flag"></i>
+			</a>
 			
 			@if($comment->task_id == NULL)
-				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
+				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" 
+					onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" 
+					data-toggle="tooltip" data-placement="bottom" title="Delete Comment">
+					<i class="fas fa-trash"></i>
+				</button>
 			@else
-				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
+				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" 
+					onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" 
+					data-toggle="tooltip" data-placement="bottom" title="Delete Comment">
+					<i class="fas fa-trash"></i>
+				</button>
 			@endif
 
 		@elseif(Auth::user()->id == $comment->user->id)
 
 			@if($comment->task_id == NULL)
-				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
-				<button class="btn btn-warning edit_comment" onclick="editCommentThread(this)" id="{{$comment->id}}"><i class="fas fa-pencil-alt" ></i></button>
+				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" 
+					onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" 
+					data-toggle="tooltip" data-placement="bottom" title="Delete Comment"><i class="fas fa-trash"></i>
+				</button>
+				<button class="btn btn-warning edit_comment" onclick="editCommentThread(this)" id="{{$comment->id}}"
+						data-toggle="tooltip" data-placement="bottom" title="Edit Comment"><i class="fas fa-pencil-alt" ></i>
+				</button>
 			@else
-				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
-				<button class="btn btn-warning edit_comment" onclick="editTaskComment(this)" id="{{$comment->id}}"><i class="fas fa-pencil-alt" ></i></button>
+				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" 
+					onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" 
+					data-toggle="tooltip" data-placement="bottom" title="Delete Comment"><i class="fas fa-trash"></i>
+				</button>
+				<button class="btn btn-warning edit_comment" onclick="editTaskComment(this)" id="{{$comment->id}}"
+						data-toggle="tooltip" data-placement="bottom" title="Edit Comment"><i class="fas fa-pencil-alt" ></i>
+				</button>
 			@endif
 
 		@endif

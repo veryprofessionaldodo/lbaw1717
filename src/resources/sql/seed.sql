@@ -292,9 +292,13 @@ DROP FUNCTION IF EXISTS check_effort();
 CREATE FUNCTION check_effort() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-	IF ((SELECT SUM(effort) FROM task WHERE NEW.sprint_id = task.sprint_id) > 
-		(SELECT effort FROM sprint WHERE id = NEW.sprint_id))
-	THEN RAISE EXCEPTION 'This task exceeds the limit effort of the sprint.';
+	IF (NEW.sprint_id <> NULL) THEN
+		
+		IF ((SELECT SUM(effort) FROM task WHERE NEW.sprint_id = task.sprint_id) > 
+			(SELECT effort FROM sprint WHERE id = NEW.sprint_id))
+		THEN RAISE EXCEPTION 'This task exceeds the limit effort of the sprint.';
+		END IF;
+
 	END IF;
 	RETURN NEW;
 END

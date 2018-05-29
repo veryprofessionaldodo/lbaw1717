@@ -45,8 +45,7 @@ class TaskController extends Controller
         
         try {
             $task = new Task();
-            
-            if($request->sprint_id !== null){
+            if($request->sprint_id != null){
                 $task->sprint_id = $request->sprint_id;
             }
             $task->project_id = $request->project_id;

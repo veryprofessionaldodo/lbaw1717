@@ -40,12 +40,18 @@
                 <div class="date">
                     <p>{{$date->format('h:m')}}</p>
                     <p>{{$date->format('d/m/Y')}}</p>
-                    <!-- <a class="btn" href="#">Report 
-                        <i class="fas fa-flag"></i>
-                    </a>-->
+                    
                     @if ($thread->canBeEdited(Auth::user()))
-                    <a href="{{ route('edit_thread_form', ['id' => $project->id, 'thread_id' => $thread->id])}}"> <i class="fas fa-edit"></i> </a>
-                    <button href="{{ route('deleteThread', ['id' => $project->id, 'thread_id' => $thread->id])}}" onclick="deleteThread(this)" id="{{$thread->id}}" class"deleteThread" ><i class="fas fa-trash"></i></button>
+                        <a href="{{ route('edit_thread_form', ['id' => $project->id, 'thread_id' => $thread->id])}}"
+                                role="button" data-toggle="tooltip" data-placement="bottom" title="Edit Thread"> 
+                                <i class="fas fa-edit"></i> 
+                        </a>
+
+                        <button href="{{ route('deleteThread', ['id' => $project->id, 'thread_id' => $thread->id])}}" 
+                            onclick="deleteThread(this)" id="{{$thread->id}}" class="deleteThread" 
+                            role="button" data-toggle="tooltip" data-placement="bottom" title="Delete Thread">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     @endif 
                 </div>
             </div>
@@ -53,7 +59,7 @@
         
         
         @foreach($comments as $comment)
-        @include('partials.comment', ['project' => $project, 'thread' => $thread, 'comment' => $comment,'role'=> $role])
+            @include('partials.comment', ['project' => $project, 'thread' => $thread, 'comment' => $comment,'role'=> $role])
         @endforeach
         
         
@@ -73,8 +79,7 @@
                 <!-- <div class="col-8">-->
                     <label>Your post:</label>
                     <input type="text" class="form-control col-10" name="content" id="content">   
-                    
-                    
+                     
                     <button type="submit" class="btn btn-primary col-2">Send</button>
                     
                     <!--<div class="offset-2"></div>-->
