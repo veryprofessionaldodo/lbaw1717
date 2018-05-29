@@ -10,12 +10,12 @@ h2 {
 */
 
 div.container-fluid {
-	min-height: 100vh;
+	min-height: 85vh;
 	margin-bottom: 0;
 }
 
 div.container-fluid > div.row {
-	min-height: 100vh;
+	min-height: 85vh;
 }
 
 /**

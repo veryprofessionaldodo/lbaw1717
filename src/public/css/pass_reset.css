@@ -1,0 +1,46 @@
+.center_container {
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 85vh;
+}
+
+div.col-md-8 {
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 85vh;
+}
+
+div.panel-heading {
+    margin-top:1em;
+    font-size: 20px;
+    text-align: center;
+}
+
+div.panel-email {
+    margin-top:1em;
+    font-size: 13px;
+    text-align: center;
+}
+
+div.email-form {
+    margin-left: auto;
+    margin-right: auto;   
+    margin-top: 1em;
+}
+
+#email {
+    margin-left: auto;
+    margin-right: auto;   
+}
+
+
+div.email-form-send button {
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.col-full {
+    max-width: 100%;
+}

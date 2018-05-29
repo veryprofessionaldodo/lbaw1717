@@ -12,7 +12,7 @@ section {
 }
 
 section.container-fluid {
-	min-height: 100vh;
+	min-height: 85vh;
 	margin: 2em auto;
 	max-width: 75%;
 }	
