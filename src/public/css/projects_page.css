@@ -140,7 +140,7 @@ div.list-group-item {
 	color: #000;
 	background-color: #5ec3e2;
 	border-bottom: 2px solid #667;
-	grid-template-columns: 50% auto auto auto auto;
+	grid-template-columns: 60% auto 5% 5% 5%;
 }
 
 div.list-group-item p{
@@ -190,15 +190,30 @@ div.list-group-item span {
 	margin: auto 0 auto auto;
 }
 
+.assigned_users {
+	grid-column-start: 3;
+	grid-column-end:4;
+}
+
+.assigned_users img {
+	max-width: 40%;
+}
+
 div.sprint-task {
 	background-color: #a1d0dd;
 	padding: 0 1em 0 3em;
 	display: grid;
-	grid-template-columns: 5% auto auto auto 5%;
+	grid-template-columns: 5% auto 10% 5%;
 	border-bottom: 1px solid #667;
 	/*border-left: 2px solid #000;
 	border-right: 2px solid #000;
 	border-top: 2px solid #000;*/
+}
+
+div.sprint-task input{
+	margin: auto;
+	float: right;
+	grid-column-start: 4; 
 }
 
 form.sprint-task.create_task, form.sprint-task.create_task_project {
@@ -706,11 +721,9 @@ div.container.new_sprint {
 	top:10em;
 	bottom: 0;
 	margin: auto;
-	position: absolute;
 	z-index: 1;
 	display: block;
-	background-color: #5bc0de;
-
+	background-color: #008cba;
 	padding: 1em;
 	max-width: 40em;
 	max-height: 25em;
@@ -738,7 +751,8 @@ div.container.new_sprint label {
 	display: inline;
 	text-align: left;
 	clear: both;
-    margin: auto 1em;
+	margin: auto 1em;
+	color: white;
 }
 
 div.container.new_sprint input {
