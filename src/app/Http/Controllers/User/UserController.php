@@ -30,9 +30,11 @@ class UserController extends Controller {
             $taskCompletedWeek = $user->taskCompletedThisWeek()[0];
             $taskCompletedMonth = $user->taskCompletedThisMonth()[0];
             $sprintsContributedTo = $user->sprintsContributedTo()[0];
+
+            $pagination = "get";
             
             return view('pages/user_profile', ['projects' => $projects,'public_projects' => $public_projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
-            'sprintsContributedTo' => $sprintsContributedTo, 'user' => $user]);
+            'sprintsContributedTo' => $sprintsContributedTo, 'user' => $user, 'pagination' => $pagination]);
 
         } catch(\Illuminate\Database\QueryException $qe) {
             return redirect()->route('error');
@@ -270,9 +272,9 @@ class UserController extends Controller {
         if (!Auth::check()) return redirect('/login');
 
         try {
-            $user = User::where('username', '=', $request->username)->get()[0];
-            $projects = $user->searchUserProjectRole($request->role);
-            $html = view('partials.user_projects', ['projects' => $projects, 'user' => $user])->render();
+            $projects = Auth::user()->searchUserProjectRole($request->role);
+            $pagination = "post";
+            $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user(), 'pagination' => $pagination])->render();
             return response()->json(array('success' => true,'html' => $html));
 
         }catch(\Illuminate\Database\QueryException $qe) {

@@ -5,6 +5,11 @@ function addEventListenersProjectSearch() {
     for (let i = 0; i < joinProjectButtons.length; i++) {
         joinProjectButtons[i].addEventListener('click', createRequest);
     }
+
+    let pagination = document.querySelectorAll("div#all_projects div#pagination_section ul.pagination li a");
+    for (let i = 0; i < pagination.length; i++) {
+        pagination[i].addEventListener('click', getProjectsSearched);
+    }
 }
 
 function createRequest(event) {
@@ -32,6 +37,16 @@ function responseCreateRequest() {
             icon: "warning",
         });
     }
+}
+
+function getProjectsSearched(event) {
+    event.preventDefault();
+    sendAjaxRequest("POST", event.target.href, null, showProjectsSearched);
+}
+
+function showProjectsSearched() {
+    document.body.innerHTML = this.responseText;
+    addEventListenersProjectSearch();
 }
 
 addEventListenersProjectSearch();

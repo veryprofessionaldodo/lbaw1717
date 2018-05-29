@@ -131,6 +131,7 @@ div#options .form-control {
 	color: #0A1827;
 	width: auto;
 	vertical-align: middle;
+	display: inline;
 }
 
 div#options .form-control:focus {

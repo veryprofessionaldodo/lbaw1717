@@ -79,9 +79,9 @@
 
 			<div id="projects">
 				@if(Auth::user()->username == $user->username)
-					@include('partials.user_projects',['projects' => $projects, 'user' => $user])
+					@include('partials.user_projects',['projects' => $projects, 'user' => $user, 'pagination' => $pagination])
 				@else
-					@include('partials.user_projects',['projects' => $public_projects, 'user' => $user])
+					@include('partials.user_projects',['projects' => $public_projects, 'user' => $user, 'pagination' => $pagination])
 				@endif
 			</div>
 						
