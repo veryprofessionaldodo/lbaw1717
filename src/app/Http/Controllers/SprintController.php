@@ -84,7 +84,7 @@ class SprintController extends Controller
 
     public function showForm(int $project_id) {
 
-        if(Auth::user()->isCoordinator($request->project_id)){
+        if(Auth::user()->isCoordinator($project_id)){
             $viewHTML = view('partials.create_sprint_form', ['project_id' => $project_id])->render();
             return response()->json(array('success' => true, 'html' => $viewHTML));
         }
