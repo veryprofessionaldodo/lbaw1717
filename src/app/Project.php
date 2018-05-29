@@ -121,7 +121,7 @@ class Project extends Model
       DB::raw('SELECT COUNT(*), date_part(:state1 ,date) AS day
       FROM task_state_record, task
       WHERE task.project_id = :project_id AND task_state_record.task_id = task.id
-      AND task_state_record.state = :state2 AND date_part(:state3 ,date) = date_part(:state3, ,now())
+      AND task_state_record.state = :state2 AND date_part(:state3 ,date) = date_part(:state3, now())
       GROUP BY day;'), array('project_id' => $this->id, 'state1' => 'day', 'state2' => 'Completed', 'state3' => 'year'));
   }
 }

@@ -76,6 +76,7 @@
                     <h4>Tasks completed this month</h4>
                     <canvas id="tasks_month_chart"></canvas>
                     <script>
+                        var tasks = {!! json_encode($tasksArray) !!};
                         var ctx = document.getElementById("tasks_month_chart").getContext('2d');
                         var myChart = new Chart(ctx, {
                             type: 'bar',
@@ -83,7 +84,7 @@
                                 labels: [27, 28, 29, 30, 31, 1],
                                 datasets: [{
                                     label: '# of tasks done',
-                                    data: [1, 3, 2, 5, 2, 3],
+                                    data: [tasks[0], tasks[1], tasks[2], tasks[3], tasks[4], 0],
                                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                                     borderColor: 'rgba(255,99,132,1)',
                                     borderWidth: 1
