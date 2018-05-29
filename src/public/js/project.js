@@ -21,7 +21,7 @@ function addEventListenersProject() {
 		submitComment[i].addEventListener('submit', addComment);
 	}
 
-	let editComment = document.querySelectorAll("div.comment div.form_comment.row form#edit");
+	let editComment = document.querySelectorAll("div.list-group.panel-collapse div.comment div.form_comment.row form#edit");
 	for(let i = 0; i < editComment.length; i++){
 		editComment[i].addEventListener('submit', editTaskComment);
 	}

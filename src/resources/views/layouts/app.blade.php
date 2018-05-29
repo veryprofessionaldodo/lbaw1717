@@ -77,11 +77,11 @@
 
           <li class="nav-item dropdown" id="not">
               
-            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-bell"></i>
             </a>
 
-            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="notification_box">
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown1" id="notification_box">
               @include('partials.notifications')
             </ul>
           </li>
