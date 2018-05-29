@@ -56,7 +56,10 @@ class ProjectController extends Controller
       }
     }
     else {
-      // TODO: do the visitor view 
+      $project = Project::find($id);
+        $members = $project->user()->get();
+        $role = 'guest';
+        return view('pages/project_page', ['project' => $project, 'role' => $role, 'members' => $members]);
     }
   }
   
@@ -273,20 +276,31 @@ class ProjectController extends Controller
       else if(count($project->topContributors())==2){
         $topContributor1 = $project->topContributors()[0];
         $topContributor2 = $project->topContributors()[1];
-        $topContributor3 = $project->zeroContributors()[2];
+        $topContributor3 = $project->zeroContributors()[0];
       }
       else{
         $topContributor1 = $project->topContributors()[0];
         $topContributor2 = $project->topContributors()[1];
         $topContributor3 = $project->topContributors()[2];
       }
+
       
-     // $monthlySprints = $project->monthlySprints()[0];
-      
+      if(count($project->monthlySprints()) == 0){
+        $april = 0;
+        $may = 0;
+      }
+      else if(count($project->monthlySprints()) == 1){
+        $april = $project->monthlySprints()[0]->count;
+        $may = 0;
+      }
+      else if(count($project->monthlySprints()) == 2){
+        $april = $project->monthlySprints()[0]->count;
+        $may = $project->monthlySprints()[1]->count;
+      }
       return view('pages/statistics', ['project' => $project, 
       'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 
       'topContributor2' => $topContributor2, 'topContributor3' => $topContributor3,
-      /*'monthlySprints' => $monthlySprints*/]);
+      'april' => $april, 'may' => $may]);
       
     } catch(\Illuminate\Database\QueryException $qe) {
       return redirect()->route('error');

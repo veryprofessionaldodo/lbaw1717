@@ -136,8 +136,12 @@ section div#reports div.report div.report_principal_info div.options{
   grid-column-end: 4; 
   text-align: right; 
   margin: auto 0; 
-  display: block; 
+  display: inline-flex;
 } 
+
+div.options button:first-child {
+  margin-right: 0.5em;
+}
  
 section div#reports div.report div.report_details { 
   outline: 1px solid #558A8C; 
