@@ -22,9 +22,10 @@
 				@include('partials.project_search', ['project' => $project])
 		@endforeach
 		
-		<div id="pagination_section">
+		<!--<div id="pagination_section">
 			{{$projects->links()}}
-		</div>  
+		</div>  -->
+		
 
     </div>
 </div>

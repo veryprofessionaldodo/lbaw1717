@@ -12,6 +12,7 @@ use App\Category;
 use App\Comment;
 use App\Task;
 use App\User;
+use App\Invite;
 
 
 class ProjectController extends Controller
@@ -173,7 +174,7 @@ class ProjectController extends Controller
 
     try {  
       // TODO: verify this!
-      $projects = Project::search($request->input('search'))->with('user')->where('ispublic','=',true)->paginate(2);
+      $projects = Project::search($request->input('search'))->with('user')->where('ispublic','=',true)->paginate(5);
       return view('pages.result_search', ['projects' => $projects]);
       
     } catch(\Illuminate\Database\QueryException $qe) {
@@ -515,6 +516,43 @@ class ProjectController extends Controller
       $project->delete();
 
       return response()->json(array('success' => true, 'url' => '/api/users/'. Auth::user()->username));
+      
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+
+  public function inviteMember(Request $request){
+    if (!Auth::check()) return redirect('/login');
+    try {
+
+      $user = User::where('username','=',$request->input('username'))->first();
+
+      if($user == null) //if input invalid
+        return response()->json(array('success' => false,'reason' => 'user'));
+
+      $invite = Invite::where([['project_id','=',$request->input('project_id')],['user_invited_id','=',$user->id]])->first(); 
+
+      if($invite != null) //if has alredy been sent and invite to the user
+        return response()->json(array('success' => false, 'reason' => 'invite'));
+
+      $invite = DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->first();
+
+      if($invite != null)//if the user is already a member
+        return response()->json(array('success' => false, 'reason' => 'project_member'));
+
+      $invite = new Invite();
+
+      $invite->user_invited_id = $user->id;
+      $invite->project_id = $request->input('project_id');
+      $invite->user_who_invited_id = Auth::user()->id;
+
+      $invite->save();
+
+      return response()->json(array('success' => true,'username', $user->username));
       
     } catch(\Illuminate\Database\QueryException $qe) {
       // Catch the specific exception and handle it 
