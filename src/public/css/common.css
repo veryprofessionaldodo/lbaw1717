@@ -6,61 +6,61 @@ body {
  /**
 		NAV
  */
-nav {
+nav.navbar {
 	background-color: #008cba;
 	align-items: center;
 	box-shadow: 0 2px 1px 1px #669;
 }
 
-nav.row{
-	margin-right: 0;
-	margin-left: 0;
+nav.navbar a.navbar-brand {
+	font-size: 24px;
 }
 
-nav > * {
-	display: inline;
-	margin: 0.5em 0;
-	/*margin: 0.5em;
-	margin-left:0.7em;*/
+nav.navbar a.navbar-brand {
+	color: #FFF;
 }
 
-nav a.col-3 {
-	text-decoration: none;
-	font-size: 27px;
-	letter-spacing: 4px;
-	color: #CCD9CE;
-	text-align:left;
-	padding-left: 1em;
-}
-
-nav a:hover {
+nav.navbar a.navbar-brand:hover {
 	color: #DF691A;
 }
 
-nav > form {
-	flex-grow: 2;
-	display: flex;
-	align-items:center;
-	justify-content: center;
+nav.navbar div#navbarSupportedContent.collapse {
+	/* display: flex;
+	justify-content: flex-end; */
 }
 
-.user {
+nav.navbar form {
+	text-align: center;
+	margin-left: 40%;
+}
+
+li.user {
 	text-align: right;
 	margin: auto;
 }
 
-.user > * {
+.user li#not {
 	vertical-align: middle;
+	margin: auto 0;
+}
+
+.user li#not > a > svg {
+	font-size: 2em;
+	color: white;
+}
+
+.user li#not .row{
+	margin: 0;
+	display: -webkit-box;
 }
 
 .user img {
 	max-width: 3em;
 	border-radius: 50%;
-	float: right;
 	cursor: pointer;
 }
 
-
+/*
 #notifications {
 	display: inline-block;
 	margin: auto;
@@ -90,7 +90,6 @@ nav > form {
 	font-size: 12px;
 	text-align: left;
 	font-family: 'Nunito', sans-serif;
-	/*visibility: collapse;*/
 
 	z-index: 1;
 	position: absolute;
@@ -116,11 +115,10 @@ nav > form {
 	margin: 0;
 	width: 100%;
 }
-/*
 #notifications #hamburger2:checked ~ #notifications_box{
 	opacity: 1;
 	max-height: 300px;
-}*/
+}
 
 #notifications_box:before{
 	content: "";
@@ -129,7 +127,7 @@ nav > form {
 	right: 27px;
 	border:10px solid #343A40;
 	border-color: transparent transparent #343A40 transparent;
-}
+}*/
 
 #notifications_box li div.notification_content {
 	padding-left: 10px;
@@ -152,7 +150,7 @@ nav > form {
 	width: 35px;
 	margin-bottom: 2px;
 }
-
+/*
 #profile_options {
 	background-color: #008cba;
 	color: white;
@@ -199,7 +197,7 @@ nav > form {
 #profile_options ul li a {
 	text-decoration: none;
 	color: white;
-}
+}*/
 
 /*
 .mobile{
@@ -381,8 +379,15 @@ h1 {
 }
 
 
+@media screen and (max-width: 990px){
+	nav.navbar form {
+		text-align: center;
+		margin-left: 0;
+	}
+}
+
 @media screen and (max-width: 500px){
-	nav div input:checked ~ ul {
+	/*nav div input:checked ~ ul {
 		visibility: visible;
 		display: inline;
 		float: left;
@@ -412,7 +417,7 @@ h1 {
 	}
 	nav div input:checked ~ label:before{
 		content: "\2715";
-	}
+	}*/
 	/**   USAR JAVASCRIPT  */
 	/*
 	nav div input:checked ~ div#mobile ul {
@@ -434,7 +439,7 @@ h1 {
 }
 
 @media screen and (max-width:315px){
-	#buttons_nav {
+	/*#buttons_nav {
 		display: none;
 	}
 
@@ -450,7 +455,7 @@ h1 {
 		background-color: #006064;
 		align-items: center;
 		height: 60px;
-	}
+	}*/
 
 	#project_buttons {
 		height: 100%;

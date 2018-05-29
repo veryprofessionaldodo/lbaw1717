@@ -3,7 +3,7 @@ function addEventListeners() {
 	let userDropButton = document.querySelector("nav .user > img");
 	userDropButton.addEventListener('click', dropUserOptions);
 
-	let notificationDropIcon = document.querySelector("nav .user #notifications label");
+	let notificationDropIcon = document.querySelector("nav.navbar #notifications label");
 	notificationDropIcon.addEventListener('click', dropNotificationsMenu);
 
 	/*let searchButton = document.querySelector("nav form button.btn.btn-primary");
@@ -11,7 +11,7 @@ function addEventListeners() {
 }
 
 function dropUserOptions() {
-	let userDropdownMenu = document.querySelector("nav .user div#profile_options");
+	let userDropdownMenu = document.querySelector("nav.navbar .user div#profile_options");
 	if (userDropdownMenu.style.height == "0px" || userDropdownMenu.style.height == 0) {
 		userDropdownMenu.style.height = "auto";
 		userDropdownMenu.style.opacity = "1";
@@ -25,8 +25,8 @@ function dropUserOptions() {
 }
 
 function dropNotificationsMenu() {
-	let notificationDropdown = document.querySelector("nav .user #notifications #notifications_box");
-	let notifications = document.querySelector("nav .user #notifications #notifications_box ul li");
+	let notificationDropdown = document.querySelector("nav.navbar #notifications #notifications_box");
+	let notifications = document.querySelector("nav #notifications #notifications_box ul li");
 
 	if (notifications != null) {
 		if (notificationDropdown.style.height == "0px" || !notificationDropdown.style.height) {

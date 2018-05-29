@@ -2,8 +2,8 @@ function addEventListenersAdmin() {
 	let userRepBtn = document.querySelector("aside#navbar div a:first-of-type");
 	let commentRepBtn = document.querySelector("aside#navbar div a:last-of-type");
 
-	let commentsRepDetail = document.querySelectorAll("section div#reports div.report_comment div.report_principal_info a");
-	let userRepDetail = document.querySelectorAll("section div#reports div.report_user div.report_principal_info a");
+	let commentsRepDetail = document.querySelectorAll("section div#reports div.report_comment div.report_principal_info a.info");
+	let userRepDetail = document.querySelectorAll("section div#reports div.report_user div.report_principal_info a.info");
 	let pagination = document.querySelectorAll("div#reports div#pagination_section ul.pagination li a");
 
 	if (userRepBtn !== null)

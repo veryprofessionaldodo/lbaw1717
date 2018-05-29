@@ -4,7 +4,7 @@
 			<div class="user_search_settings">
 				<label>Invite new team member: </label>
 				<input type="text" class="form-control" name="new_team_member" placeholder="Username">
-				<button class="btn btn-primary" type="submit">Send</button>
+				<a href="{{ route('invite_new_member', ['project_id' => $project->id]) }}"class="new_invite btn btn-primary" type="submit">Send</a>
 			</div>
 		</div>
 		<div class="col-lg-6 col-12">

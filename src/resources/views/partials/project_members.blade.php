@@ -1,6 +1,6 @@
 <div class="col-12" id="members_project">
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12 first_col">
 			<form id="user_search" method="POST" action="{{ route('project_member_search', ['project_id' => $project->id]) }}">
 				<label>Search project user: </label>
 				<input type="text" class="form-control" name="username" placeholder="Username">

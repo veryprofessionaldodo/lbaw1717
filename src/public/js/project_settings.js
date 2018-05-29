@@ -42,9 +42,13 @@ function addEventListenersSettings() {
         editProjectButton.addEventListener('click', editProjectForm);
 
     let searchTeamMember = document.querySelector("div#members form.user_search_settings");
-    if(searchTeamMember !== null){
+    if (searchTeamMember !== null) {
         searchTeamMember.addEventListener('submit', submitSearchTeamMember);
     }
+
+    let inviteNewMemberButton = document.querySelector("div#members div.user_search_settings a.new_invite");
+    if (inviteNewMemberButton !== null)
+        inviteNewMemberButton.addEventListener('click', inviteNewMember);
 
 }
 
@@ -255,12 +259,12 @@ function editProjectActionUpdate() {
 }
 
 
-function submitSearchTeamMember(event){
+function submitSearchTeamMember(event) {
     event.preventDefault();
 
     let inputVal = document.querySelector("div#members form.user_search_settings input").value;
 
-    sendAjaxRequest("POST", event.target.action, {search: inputVal}, showProjectMemberSearch);
+    sendAjaxRequest("POST", event.target.action, { search: inputVal }, showProjectMemberSearch);
 }
 
 function showProjectMemberSearch() {
@@ -269,6 +273,42 @@ function showProjectMemberSearch() {
     let div = document.querySelector("div#show_members_settings");
 
     div.innerHTML = data.html;
+}
+
+
+function inviteNewMember(event) {
+    event.preventDefault();
+    let username = document.querySelector("div#members div.user_search_settings input").value;
+
+    let href = event.target.href;
+    let index = href.indexOf('projects');
+    let index2 = href.indexOf('settings');
+    let project_id = href.substring(index + 9, index2 - 1);
+
+    sendAjaxRequest("POST", href, { project_id: project_id, username: username }, inviteMemberHandler);
+}
+
+function inviteMemberHandler() {
+
+    let data = JSON.parse(this.responseText);
+
+    if (data.success) {
+        swal("Has been sent an invite to" + data.username + " to join the project!", {
+            icon: "success",
+        });
+    } else if (data.reason == "invite") {
+        swal("Has already been sent an invite to the user!", {
+            icon: "error",
+        });
+    } else if (data.reason == "project_member") {
+        swal("The user is already a member of this project!", {
+            icon: "error",
+        });
+    } else if (data.reason == 'user') {
+        swal("This user does not exist!", {
+            icon: "error",
+        });
+    }
 }
 
 addEventListenersSettings();
