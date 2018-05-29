@@ -18,7 +18,8 @@ use Illuminate\Http\Request;
 class UserController extends Controller {
 
     public function showProfile(string $username) {
-	    if (!Auth::check()) return redirect('/login');
+        if (!Auth::check()) return redirect('/login');
+        
         $this->authorize('list', Project::class);
 
         try {
@@ -29,15 +30,16 @@ class UserController extends Controller {
             $taskCompletedWeek = $user->taskCompletedThisWeek()[0];
             $taskCompletedMonth = $user->taskCompletedThisMonth()[0];
             $sprintsContributedTo = $user->sprintsContributedTo()[0];
+
+            $pagination = "get";
             
             return view('pages/user_profile', ['projects' => $projects,'public_projects' => $public_projects, 'taskCompletedWeek' => $taskCompletedWeek, 'taskCompletedMonth' => $taskCompletedMonth, 
-            'sprintsContributedTo' => $sprintsContributedTo, 'user' => $user]);
+            'sprintsContributedTo' => $sprintsContributedTo, 'user' => $user, 'pagination' => $pagination]);
 
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return redirect()->route('error');
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return redirect()->route('error');
         }
 
       
@@ -49,10 +51,9 @@ class UserController extends Controller {
             return view('partials.user_projects', ['projects' => $projects]);
 
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return redirect()->route('error');
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return redirect()->route('error');
         }
         
     }
@@ -60,7 +61,10 @@ class UserController extends Controller {
 	public function showAdminPage(string $username){
 		if (!Auth::check()) return redirect('/login');
 
-		return view('pages/admin_page');
+        if(Auth::user()->username === $username)
+            return view('pages/admin_page');
+        else
+            return redirect()->route('error');
 	}
 
     /**]);
@@ -85,10 +89,9 @@ class UserController extends Controller {
             return response()->json(array('success' => true, 'html' => $viewHTML));
 
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
             
     }
@@ -98,27 +101,33 @@ class UserController extends Controller {
 	*/
 	public function editProfileAction(Request $request) {
         if (!Auth::check()) return redirect('/login');
-        $user = Auth::user();
+        
         try {
-            $user->name = $request->user_name;
-            $user->username = $request->user_username;
-            $user->email = $request->user_email;
-            
-            if($request->hasFile('user_image')){
-                $file = $request->file('user_image');
-                echo $file;
-                $user->image = $request->file('user_image')->store('');              
+            if(Auth::user()->username === $request->username){
+                $user = Auth::user();
+    
+                $user->name = $request->user_name;
+                $user->username = $request->user_username;
+                $user->email = $request->user_email;
+                
+                if($request->hasFile('user_image')){
+                    $file = $request->file('user_image');
+                    echo $file;
+                    $user->image = $request->file('user_image')->store('');              
+                }
+        
+        
+                $user->save();
+                return back();
             }
-    
-    
-            $user->save();
-            return back();
+            else {
+                return redirect()->route('error');
+            }
 
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return redirect()->route('error');
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return redirect()->route('error');
         }
     }
     
@@ -126,20 +135,25 @@ class UserController extends Controller {
     Deletes notification
    */
     public function dismissNotification($notification_id){
+
         if (!Auth::check()) return redirect('/login');
 
         try {
-
             $notification = Notification::find($notification_id);
-            $notification->delete();
-
-            return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            if(Auth::user()->id === $notification->user_id){
+                
+                $notification->delete();
+    
+                return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            }
+            else {
+                return response()->json(array('success' => false));
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
     }
 
@@ -152,23 +166,26 @@ class UserController extends Controller {
         try {
 
             $notification = Notification::find($notification_id);
+            if(Auth::user()->id === $notification->user_id){
+                $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
+                $invite->delete();
 
-            $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
-            $invite->delete();
+                DB::table('project_members')->insert(
+                    ['user_id' => $notification->user_id , 'project_id' =>$notification->project_id , 'iscoordinator' => FALSE]
+                );
 
-            DB::table('project_members')->insert(
-                ['user_id' => $notification->user_id , 'project_id' =>$notification->project_id , 'iscoordinator' => FALSE]
-              );
+                $notification->delete();
 
-            $notification->delete();
-
-            return response()->json(array('success' => true, 'notification_id' => $notification_id));
+                return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            
+            }else {
+                return response()->json(array('success' => false));
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         } 
     }
 
@@ -179,21 +196,24 @@ class UserController extends Controller {
         if (!Auth::check()) return redirect('/login');
 
         try {
-
             $notification = Notification::find($notification_id);
+            if(Auth::user()->id === $notification->user_id){
 
-            $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
-            $invite->delete();
+                $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
+                $invite->delete();
 
-            $notification->delete();
+                $notification->delete();
 
-            return response()->json(array('success' => true, 'notification_id' => $notification_id));
+                return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            }
+            else {
+                return response()->json(array('success' => false));
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         } 
     }
 
@@ -224,26 +244,27 @@ class UserController extends Controller {
             }            
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
     }
 
-    public function searchProjects(Request $request){
+    public function searchProjects(Request $request, $username){
         if (!Auth::check()) return redirect('/login');
 
         try {
-            $projects = Auth::user()->searchUserProject($request->search);
-            $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user()])->render();
+            $user = User::where('username', '=', $username)->get()[0];
+            $projects = $user->searchUserProject($request->search);
+            $html = view('partials.user_projects', ['projects' => $projects, 'user' => $user])->render();
             return response()->json(array('success' => true,'html' => $html));
 
         }catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            echo dd($qe);
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            echo dd($e);
+            return response()->json(array('success' => false));
         }
     }
 
@@ -252,14 +273,14 @@ class UserController extends Controller {
 
         try {
             $projects = Auth::user()->searchUserProjectRole($request->role);
-            $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user()])->render();
+            $pagination = "post";
+            $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user(), 'pagination' => $pagination])->render();
             return response()->json(array('success' => true,'html' => $html));
 
         }catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
     }
 
@@ -277,10 +298,9 @@ class UserController extends Controller {
           return response()->json(array('success' => true,'html' => $html, 'project_name' => $project->name));
           
         } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-          // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
       }
 }

@@ -14,13 +14,17 @@
 				<p>{{ $project->user_count }} Member</p>
 			@endif
 
-			@if($project->sprints_num > 1 && Auth::user()->username == $user->username)
+			@if($project->sprints_num > 1 && Auth::user()->username === $user->username)
+
 				<span>{{ $project->sprints_count }} Sprints</span>
-			@elseif(Auth::user()->username == $user->username)
+
+			@elseif(Auth::user()->username === $user->username)
+
 				<span>{{ $project->sprints_count }} Sprint</span>
 				<button href="{{ route('leave_project', ['id' => $project->id])}}"class="btn btn-secondary">
 					<i class="fas fa-sign-out-alt"></i>
 				</button>
+
 			@endif
 			
 			

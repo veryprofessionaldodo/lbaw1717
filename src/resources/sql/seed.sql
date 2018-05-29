@@ -938,12 +938,10 @@ INSERT INTO project_categories (project_id, category_id) VALUES (98,9);
 INSERT INTO project_categories (project_id, category_id) VALUES (99,1);
 INSERT INTO project_categories (project_id, category_id) VALUES (100,10);
 
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 1, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 1, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 2, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (3, '2018-05-08 10:00:00+01', 3, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (4, '2018-05-08 10:00:00+01', 3, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 4, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 4, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (3, '2018-05-08 10:00:00+01', 4, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (4, '2018-05-08 10:00:00+01', 4, TRUE);
@@ -958,7 +956,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 11, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (19, '2018-05-08 10:00:00+01', 11, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 9, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 9, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 11, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 8, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (20, '2018-05-08 10:00:00+01', 10, FALSE);
@@ -984,12 +981,10 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (7, '2018-05-08 10:00:00+01', 4, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 4, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (16, '2018-05-08 10:00:00+01', 2, TRUE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 14, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 15, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 16, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (3, '2018-05-08 10:00:00+01', 17, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (4, '2018-05-08 10:00:00+01', 18, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 19, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 20, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (3, '2018-05-08 10:00:00+01', 21, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (4, '2018-05-08 10:00:00+01', 22, TRUE);
@@ -1003,7 +998,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 30, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (19, '2018-05-08 10:00:00+01', 31, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 32, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 33, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 34, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 35, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (20, '2018-05-08 10:00:00+01', 36, FALSE);
@@ -1025,7 +1019,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 52, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6, '2018-05-08 10:00:00+01', 53, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 54, TRUE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 55, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (7, '2018-05-08 10:00:00+01',56, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 58, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (16, '2018-05-08 10:00:00+01', 59, TRUE);
@@ -1042,7 +1035,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 70, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (19, '2018-05-08 10:00:00+01', 71, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 72, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 73, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 74, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 75, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (20, '2018-05-08 10:00:00+01', 76, FALSE);
@@ -1064,7 +1056,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 92, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6, '2018-05-08 10:00:00+01', 93, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 94, TRUE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 95, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (7, '2018-05-08 10:00:00+01',96, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 98, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (16, '2018-05-08 10:00:00+01', 99, TRUE);

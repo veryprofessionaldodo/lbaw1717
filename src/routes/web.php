@@ -69,7 +69,6 @@ Route::get('api/projects/{project_id}/members/edit', 'ProjectController@editForm
 Route::post('api/projects/{project_id}/members/edit', 'ProjectController@edit')->name('edit_project');//done
 
 
-
 Route::get('api/projects/{project_id}', 'ProjectController@show')->name('project'); // done
 
 //Sprints and Tasks
@@ -110,7 +109,7 @@ Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'CommentC
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'CommentController@edit')->name('editCommentThread');
 
 //Admin Administraton, Report and Static Pages
-Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
+Route::get('api/admin/{username}', 'AdminController@showAdminPage')->name('admin_page'); // done
 Route::get('api/admin/{username}/reports/comments', 'AdminController@commentReportsView')->name('admin_comments'); //done
 Route::get('api/admin/{username}/reports/users', 'AdminController@userReportsView')->name('admin_users'); //done
 
@@ -126,6 +125,7 @@ Route::get('actions/reports/users/{username}', 'ReportController@userReportForm'
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done
 Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report'); //done
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('error', function(){
+    return view('layouts.404');
+})->name('error');

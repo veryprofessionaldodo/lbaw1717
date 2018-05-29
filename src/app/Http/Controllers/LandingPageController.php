@@ -11,7 +11,16 @@ class LandingPageController extends Controller {
 	use AuthenticatesUsers;
 
 	public function showLandingPage() {
-		return view('pages/landing_page');
+        if(!Auth::check()){
+            return view('pages/landing_page');
+        }
+
+        if(Auth::user()->isAdmin()){
+            return redirect()->route('admin_page', ['username' => Auth::user()->username]);
+        }
+        else {
+            return redirect()->route('user_profile', ['username' => Auth::user()->username]);
+        }
 	}
 
 	 /**
