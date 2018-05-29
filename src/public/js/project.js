@@ -217,20 +217,6 @@ function updateCommentDeletion() {
 
 function prepareForEdition(button) {
 	
-    /*let ps = document.getElementsByClassName("content");
-
-    var order = 0;
-
-    for(let i = 0; i < ps.length; i++){
-        if(ps[i].id == button.id){
-            order = i
-        }
-    }
-
-	let commentInfo = document.querySelectorAll("p.content")[order];
-	let commentDiv = document.querySelectorAll("div.form_comment.row")[order];
-	let commentForm = document.querySelectorAll("div.form_comment.row form#edit")[order];*/
-	
 	let commentInfo = document.querySelector("div.comment[data-id='" + button.id + "'] p.content");
 	let commentDiv = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row");
 	let commentForm = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row form#edit");
@@ -264,10 +250,10 @@ function editTaskComment(event){
 
 function editUpdate(){
 	let data = JSON.parse(this.responseText);
-	console.log(data);
+
 	if(data.success){
 		let comment = document.querySelector("div.comment[data-id='"+ data.comment_id + "']");
-		console.log(comment);
+
 		comment.outerHTML = data.comment;
 	}
 }

@@ -276,7 +276,7 @@ class TaskController extends Controller
                 return response()->json(array('success' => false,'error' => 'Error changing the state of the task to UNCOMPLETED'));
             }
 
-            return response()->json(array('success' => false,'error' => 'Error changing the state of the task to COMPLETED'));
+            return response()->json(array('success' => false,'error' => 'Error changing the state of the task to COMPLETED '.$qe));
         
         } catch (\Exception $e) {
             echo dd($e);
