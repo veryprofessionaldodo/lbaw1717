@@ -43,49 +43,56 @@
   </head>
   
   <body>
-    <nav class="row nav">
-      <a class="col-3" href="{{ url('/')}}">Proyekt</a>
-
-      <form class="col-6" method="POST" action="{{ route('search') }}">
-        {{ csrf_field() }}
-
-        <input class="form-control" name="search" type="text" placeholder="Search">
-
-        <button class="btn btn-primary" type="submit">
-          <i class="fas fa-search"></i>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{{ url('/')}}">Proyekt</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-      </form>
-
-      <div class="user col-3">  
-
-        <div id="notifications">
-
-          <label class="hamburger" for="hamburger2"></label>
-
-          <div id="notifications_box">
-            <ul>
-
-              @include('partials.notifications')
-              
-            </ul>
-          </div>
-        </div>
-         
-        @if (Auth::check())
-          @if (Auth::user()->image != NULL)
-          <img alt="Profile Image" src="{{ asset('storage/'. Auth::user()->image)}}">
-          @else
-            <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
-          @endif
-        @endif
-
-        <div id="profile_options">
-          <ul>
-            <li><a href="{{ route('user_profile', ['username' => Auth::user()->username])}}">View Profile</a></li>
-            <li><a href="{{ route('logout') }}">Logout</a></li>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+          <form class="form-inline my-2 my-lg-0 mr-auto" method="POST" action="{{ route('search') }}">
+            {{ csrf_field() }}
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+          </form>
+  
+          <ul class="navbar-nav user">
+  
+            <li class="nav-item dropdown" id="not">
+                
+              <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell"></i>
+              </a>
+  
+              <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="notification_box">
+                @include('partials.notifications')
+              </ul>
+            </li>
+  
+            <li class="nav-item dropdown">
+              @if (Auth::check())
+                @if (Auth::user()->image != NULL)
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img alt="Profile Image" src="{{ asset('storage/'. Auth::user()->image)}}">
+                  </a>
+                @else
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
+                  </a>
+                @endif
+              @endif
+  
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('user_profile', ['username' => Auth::user()->username])}}">View Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+              </div>
+            </li>
+            
           </ul>
+  
         </div>
-        
       </nav>
 
   @yield('content')
