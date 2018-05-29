@@ -25,10 +25,7 @@ nav.navbar a.navbar-brand:hover {
 	text-decoration: underline;
 }
 
-nav.navbar div#navbarSupportedContent.collapse {
-	/* display: flex;
-	justify-content: flex-end; */
-}
+
 
 nav.navbar form {
 	width:90%;
@@ -283,6 +280,47 @@ h1 {
 		margin-bottom: 1em;
 	}
 
+}
+
+
+@media screen and (max-width: 575px) {
+	.project div.title_desc {
+		text-align: center;
+	}
+
+	nav.navbar div#navbarSupportedContent.show {
+		display: inherit;
+		
+	}
+
+	nav.navbar div#navbarSupportedContent.collapsing {
+		display: flex;
+		height: 0;
+	}
+
+	form input.form-control.main-search {
+		grid-row: 1;
+	}
+
+	.user li#not > a > svg {
+		margin-right: 1em;
+	}
+
+	nav.navbar form {
+		width:45%;
+	}
+
+	.navbar-nav .dropdown-menu {
+		position:absolute;
+	}
+
+	ul.navbar-nav {
+		flex-direction: row;
+	}
+
+	.project  p.project_description {
+		text-align: center;
+	}
 }
 
 @media screen and (max-width:315px){
