@@ -229,10 +229,7 @@ function prepareForEdition(button) {
 	
 	let commentInfo = document.querySelector("div.comment[data-id='" + button.id + "'] p.content");
 	let commentDiv = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row");
-	let commentForm = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row form#edit");
-	console.log(commentInfo);
-	console.log(commentDiv);
-	
+	let commentForm = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row form#edit");	
 	
 	let href = commentForm.getAttribute('href');
 
@@ -289,7 +286,6 @@ function updateTaskState() {
 	
 		if (data.state === "Completed") {
 			task.classList.add("task_completed");
-			console.log(task.classList);
 	
 			let assigned_users = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
 			if (assigned_users !== null)
@@ -555,12 +551,10 @@ function deleteProjectUpdate() {
 
 function getEditSprintForm(event){
 	event.preventDefault();
-	console.log(event.target.tagName);
 	if(event.target.tagName === "A"){
 		sendAjaxRequest('GET', event.target.href, null, showEditSprintForm);
 	}
 	else if(event.target.tagName === "svg"){
-		console.log(event.target.parentNode.href);
 		sendAjaxRequest('GET', event.target.parentNode.href, null, showEditSprintForm);
 	}
 	else {

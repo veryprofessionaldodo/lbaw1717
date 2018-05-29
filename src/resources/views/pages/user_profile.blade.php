@@ -60,7 +60,6 @@
 						</button>
 					</form>
 
-					<!-- Add functionality to this form -->
 					<div class="col-lg-2 col-md-2 col-sm-2 col-12" id="role_button">
 						<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 							<button type="button" class="btn btn-primary">Role</button>

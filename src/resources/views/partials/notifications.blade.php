@@ -38,5 +38,4 @@
       </div>
   @endif
   </li>
-  <!-- Request? -->
 @endforeach
