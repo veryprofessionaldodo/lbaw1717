@@ -1189,7 +1189,6 @@ INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed'
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',13);
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',21);
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',22);
-INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',23);
 
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 12:30:00+01','Assigned',1,1);
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 12:30:00+01','Assigned',1,3);

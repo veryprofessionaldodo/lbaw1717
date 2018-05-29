@@ -133,17 +133,19 @@ class UserController extends Controller {
     Deletes notification
    */
     public function dismissNotification($notification_id){
+
         if (!Auth::check()) return redirect('/login');
 
         try {
             $notification = Notification::find($notification_id);
             if(Auth::user()->id === $notification->user_id){
+                
                 $notification->delete();
     
                 return response()->json(array('success' => true, 'notification_id' => $notification_id));
             }
             else {
-                return redirect()->route('error');
+                return response()->json(array('success' => false));
             }
             
         } catch(\Illuminate\Database\QueryException $qe) {
@@ -162,17 +164,21 @@ class UserController extends Controller {
         try {
 
             $notification = Notification::find($notification_id);
+            if(Auth::user()->id === $notification->user_id){
+                $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
+                $invite->delete();
 
-            $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
-            $invite->delete();
+                DB::table('project_members')->insert(
+                    ['user_id' => $notification->user_id , 'project_id' =>$notification->project_id , 'iscoordinator' => FALSE]
+                );
 
-            DB::table('project_members')->insert(
-                ['user_id' => $notification->user_id , 'project_id' =>$notification->project_id , 'iscoordinator' => FALSE]
-              );
+                $notification->delete();
 
-            $notification->delete();
-
-            return response()->json(array('success' => true, 'notification_id' => $notification_id));
+                return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            
+            }else {
+                return redirect()->route('error');
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
             return redirect()->route('error');
@@ -188,15 +194,19 @@ class UserController extends Controller {
         if (!Auth::check()) return redirect('/login');
 
         try {
-
             $notification = Notification::find($notification_id);
+            if(Auth::user()->id === $notification->user_id){
 
-            $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
-            $invite->delete();
+                $invite = Invite::where([['project_id','=',$notification->project_id],['user_who_invited_id','=',$notification->user_action_id]])->first(); 
+                $invite->delete();
 
-            $notification->delete();
+                $notification->delete();
 
-            return response()->json(array('success' => true, 'notification_id' => $notification_id));
+                return response()->json(array('success' => true, 'notification_id' => $notification_id));
+            }
+            else {
+                return redirect()->route('error');
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
             return redirect()->route('error');
@@ -238,17 +248,20 @@ class UserController extends Controller {
         }
     }
 
-    public function searchProjects(Request $request){
+    public function searchProjects(Request $request, $username){
         if (!Auth::check()) return redirect('/login');
 
         try {
-            $projects = Auth::user()->searchUserProject($request->search);
-            $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user()])->render();
+            $user = User::where('username', '=', $username)->get()[0];
+            $projects = $user->searchUserProject($request->search);
+            $html = view('partials.user_projects', ['projects' => $projects, 'user' => $user])->render();
             return response()->json(array('success' => true,'html' => $html));
 
         }catch(\Illuminate\Database\QueryException $qe) {
+            echo dd($qe);
             return redirect()->route('error');
         } catch (\Exception $e) {
+            echo dd($e);
             return redirect()->route('error');
         }
     }
@@ -257,8 +270,9 @@ class UserController extends Controller {
         if (!Auth::check()) return redirect('/login');
 
         try {
-            $projects = Auth::user()->searchUserProjectRole($request->role);
-            $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user()])->render();
+            $user = User::where('username', '=', $request->username)->get()[0];
+            $projects = $user->searchUserProjectRole($request->role);
+            $html = view('partials.user_projects', ['projects' => $projects, 'user' => $user])->render();
             return response()->json(array('success' => true,'html' => $html));
 
         }catch(\Illuminate\Database\QueryException $qe) {
