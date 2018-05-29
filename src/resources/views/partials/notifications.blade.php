@@ -1,5 +1,5 @@
 @foreach($notifications as $notification)
-  <li data-id="{{$notification->id}}"class="row">
+  <li data-id="{{$notification->id}}" class="row">
   @if($notification->notification_type == 'invite')
       <div class="notification_content col-9">
         <p>Invite to <strong>{{ $notification->name }}</strong> by <em>{{ $notification->username }}</em></p>

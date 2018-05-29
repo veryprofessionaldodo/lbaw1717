@@ -25,7 +25,7 @@ class Project extends Model
   }
 
   public function categories() {
-    return $this->hasMany('App\Category', 'project_categories');
+    return $this->belongsToMany('App\Category', 'project_categories');
   }
 
   public function threads() {
@@ -63,6 +63,10 @@ class Project extends Model
     /*return $query->whereRaw('to_tsvector(\'english\', name || \' \' || description) 
       @@ plainto_tsquery(\'english\', ?)', [$search])->where('ispublic','=',true)->
     orderBy('name');*/
+  }
+
+  public function searchMember($search){
+    return $this->user()->where('username', 'like', $search)->get();
   }
 
   public function topContributors(){

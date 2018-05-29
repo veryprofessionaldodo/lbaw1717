@@ -439,9 +439,7 @@ div#members_project div.row{
 	background-color: #e3e8ef; 
 }
 
-
-
-div#members_project div#user_search {
+div#members_project form#user_search {
 	margin: 1em 0;
 }
 
@@ -452,14 +450,16 @@ div.members_project .header{
 	background-color: #ECE7F3; 
 }
 
-div#members_project div#user_search input.form-control{
+div#members_project form#user_search input.form-control{
 	margin: auto;
 	width: auto;
 	display: inline;
+	vertical-align: middle;
 }
 
-div#members_project div#user_search button.btn{
+div#members_project form#user_search button.btn{
 	display: inline;
+	vertical-align: middle;
 }
 
 div#members_project div.member {
@@ -490,6 +490,10 @@ div#members_project div.member div.info a{
 div#members_project div.member p {
 	margin: auto;
 	display: block;
+}
+
+div#members_project div#show_members {
+	width: 100%;
 }
 
 
@@ -912,16 +916,16 @@ div.container.new_sprint div#form_options {
 
 @media screen and (max-width: 738px){
 
-	div#members div#user_search {
+	div#members form#user_search {
 		text-align: center;
 	}
 
-	div#members div#user_search input.form-control{
+	div#members form#user_search input.form-control{
 		display: block;
 		width: 100%;
 	}
 
-	div#members div#user_search button.btn{
+	div#members form#user_search button.btn{
 		margin: auto;
 	}
 }

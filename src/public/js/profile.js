@@ -5,11 +5,11 @@ function addEventListeners() {
 	// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 	let editProfileButton = document.querySelector(".container-fluid .row aside div a#edit_profile");
-	if(editProfileButton !== null)
+	if (editProfileButton !== null)
 		editProfileButton.addEventListener('click', editProfileForm);
 
 	let createProjectButton = document.querySelector(".container-fluid div#options a#new_project");
-	if(createProjectButton !== null)
+	if (createProjectButton !== null)
 		createProjectButton.addEventListener('click', createProjectForm);
 
 	// let paginationLinks = document.querySelectorAll("ul.pagination li a, ul.pagination li span");
@@ -20,14 +20,13 @@ function addEventListeners() {
 	// }
 
 	let searchUserProjectForm = document.querySelector("form.searchbar");
-	if(searchUserProjectForm !== null)
+	if (searchUserProjectForm !== null)
 		searchUserProjectForm.addEventListener('submit', searchUserProjects);
 
 	let searchRoleUserProjectButtons = document.querySelectorAll("div#role_button a.dropdown-item");
-	for(let i = 0; i < searchRoleUserProjectButtons.length; i++){
+	for (let i = 0; i < searchRoleUserProjectButtons.length; i++) {
 		searchRoleUserProjectButtons[i].addEventListener('click', searchByRole);
 	}
-
 }
 
 function encodeForAjax(data) {
@@ -157,29 +156,30 @@ function getSelectValues(select) {
 // 	content.innerHTML = response.html;
 // }
 
-function searchUserProjects(event){
+function searchUserProjects(event) {
 	event.preventDefault();
 
 	let inputValue = event.target.childNodes[1].value;
 
-	sendAjaxRequest("POST", event.target.action, {search: inputValue}, showUserProjects);
+	sendAjaxRequest("POST", event.target.action, { search: inputValue }, showUserProjects);
 }
 
-function searchByRole(event){
+function searchByRole(event) {
 	event.preventDefault();
 
 	let role = event.target.innerHTML;
 
-	sendAjaxRequest("POST", event.target.href, {role: role}, showUserProjects);
+	sendAjaxRequest("POST", event.target.href, { role: role }, showUserProjects);
 }
 
-function showUserProjects(){
+function showUserProjects() {
 	let data = JSON.parse(this.responseText);
 	console.log(data);
 
 	let div = document.querySelector("div#projects");
 	div.innerHTML = data.html;
 }
+
 
 
 addEventListeners();

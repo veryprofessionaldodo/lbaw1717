@@ -13,17 +13,24 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css')}}">
 </head>
 <body>
-<nav class="row">
-    <a class="col-3" href="#">Proyekt</a>
-    <form class="col-6" method="POST" action="{{ route('search') }}">
-        {{ csrf_field() }}
-        <input class="form-control" name="search" type="text" placeholder="Search">
-
-        <button class="btn btn-primary" type="submit">
-          <i class="fas fa-search"></i>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{{ url('/')}}">Proyekt</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-    </form>
-</nav>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <form class="form-inline my-2 my-lg-0 mr-auto" method="POST" action="{{ route('search') }}">
+            {{ csrf_field() }}
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+    
+            
+        </div>
+    </nav>
+
 
 <section>
     <div id="text">

@@ -137,6 +137,11 @@ function showMembersView() {
 
 	let content = document.querySelector("section.container-fluid div.row.content_view");
 	content.innerHTML = data.html;
+
+	let searchProjectMember = document.querySelector("form#user_search");
+	if(searchProjectMember !== null){
+		searchProjectMember.addEventListener('submit', submitMemberSearch);
+	}
 }
 
 function addComment(event) {
@@ -461,6 +466,22 @@ function showEditSprintForm() {
 	let data = JSON.parse(this.responseText);
 
 	let div = document.querySelector("div#project_structure");
+	div.innerHTML = data.html;
+}
+
+function submitMemberSearch(event){
+	event.preventDefault();
+
+	let inputVal = document.querySelector("form#user_search input").value;
+
+	sendAjaxRequest("POST", event.target.action, {search: inputVal}, showTeamMembersSearch);
+}
+
+function showTeamMembersSearch(){
+	let data = JSON.parse(this.responseText);
+
+	let div = document.querySelector("div#show_members");
+
 	div.innerHTML = data.html;
 }
 

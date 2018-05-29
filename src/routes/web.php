@@ -56,8 +56,8 @@ Route::get('api/projects/{project_id}/settings/requests', 'ProjectController@pro
 Route::post('api/projects/{project_id}/settings/requests/{request_id}/accept', 'ProjectController@projectSettingsRequestsAccept')->name('settings_accept_request');//done
 Route::post('api/projects/{project_id}/settings/requests/{request_id}/reject', 'ProjectController@projectSettingsRequestsReject')->name('rejectRequest');//done
 Route::get('api/projects/{project_id}/statistics', 'ProjectController@projectStatisticsView')->name('project_stats');
-// Route::post('api/projects/{project_id}/members', 'ProjectController@projectMembersSearch');
-// Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersSearch');
+Route::post('api/projects/{project_id}/members', 'ProjectController@projectMembersSearch')->name('project_member_search');
+Route::post('api/projects/{project_id}/settings/members', 'ProjectController@projectMembersSettingsSearch')->name('project_member_settings_search');
 
 
 Route::get('api/projects/{project_id}/members/edit', 'ProjectController@editForm')->name('edit_project_form');//done
