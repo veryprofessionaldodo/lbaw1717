@@ -10,16 +10,27 @@ div#all_projects.container-fluid {
 	margin: auto 15%;
 	width: auto;
 	padding: 0 0 1em 0;
+	
 }
 div#all_projects.container div.row {
 	margin: auto;
 }
 
+div#all_projects .project:hover {
+	background-color: #eaeff5 ;
+	box-shadow: 0px 0px 1px #001;
+}
+
 div#all_projects .project {
-	background-color: #CCD9CE;
+	background-color: inherit;
 	padding: 1em;
 	color: #001;
 	margin: 1em 0;
+	box-shadow: 0px 0px 1px #636161;
+}
+
+a.join {
+	margin: auto;
 }
 
 .project:hover {
@@ -57,6 +68,10 @@ div#all_projects .project {
 	margin: 1em 0;
 }
 
+.navbar-nav .dropdown-menu {
+	padding-right: 1em;
+}
+
 .project div button.btn {
 	margin: auto;
 	background-color: #d0e8e8;	
@@ -74,13 +89,3 @@ div#all_projects .project {
 	color: #001;
 }
 
-
-@media screen and (max-width: 575px) {
-	.project div.title_desc {
-		text-align: center;
-	}
-
-	.project  p.project_description {
-		text-align: center;
-	}
-}
