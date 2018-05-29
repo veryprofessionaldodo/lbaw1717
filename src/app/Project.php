@@ -65,6 +65,10 @@ class Project extends Model
     orderBy('name');*/
   }
 
+  public function searchMember($search){
+    return $this->user()->where('username', 'like', $search)->get();
+  }
+
   public function topContributors(){
     return DB::select(
       DB::raw('SELECT "user".username, "user".image, COUNT(*) AS num

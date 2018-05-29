@@ -47,7 +47,7 @@ section.container-fluid .row .nav-tabs {
 	MEMBERS
 */
 
-div.user_search {
+div.user_search_settings, form.user_search_settings {
 	display: flex;
 	justify-content: space-between;
 	grid-row: 1;
@@ -55,7 +55,7 @@ div.user_search {
 	margin: 2em 2em;
 }
 
-div.user_search  label {
+div.user_search_settings  label, form.user_search_settings label {
 	color: #001;
 	margin: auto;
 }
@@ -67,13 +67,13 @@ div.user_search  label {
 }
 
 
-div.user_search input.form-control {
+div.user_search_settings input.form-control, form.user_search_settings input.form-control {
 	margin: 0 0 0 1em;
 	width: 50%;
 	flex-grow: 1;
 }
 
-div.user_search button.btn {
+div.user_search_settings button.btn, form.user_search_settings button.btn {
 	margin: 0;
 }
 
@@ -103,7 +103,7 @@ div#members div.member-row {
 }
 
 
-div#members div.member-row img {
+div#members div.member-row div img {
 	max-width: 5em;
 	max-height: 5em;
 	border-radius: 50%;
@@ -192,17 +192,17 @@ div#requests div.request div.option_buttons {
 }
 
 @media screen and (max-width: 580px){
-	div.user_search {
+	div.user_search_settings, form.user_search_settings {
 		display: block;
 		width: auto;
 		margin: 1em 0;
 	}
 
-	div.user_search  label {
+	div.user_search_settings  label, form.user_search_settings label {
 		margin: auto;
 	}
 
-	div.user_search input.form-control {
+	div.user_search_settings input.form-control, form.user_search_settings input.form-control {
 		margin: 0.5em auto;
 		width: 50%;
 		display: block;
@@ -231,13 +231,13 @@ div#requests div.request div.option_buttons {
 		padding: 0.5em;
 	}
 
-	div.user_search {
+	div.user_search_settings, form.user_search_settings {
 		display: block;
 		width: auto;
 		margin: 1em 0 0 0;
 	}
 
-	div.user_search input.form-control {
+	div.user_search_settings input.form-control, form.user_search_settings input.form-control {
 		margin: 0.5em auto;
 		width: 50%;	
 	}
