@@ -6,7 +6,7 @@ h2 {
 /* PROJECT AND DETAILS */
 
 div#all_projects.container-fluid {
-	min-height: 100vh;
+	min-height: 85vh;
 	margin: auto 15%;
 	width: auto;
 	padding: 0 0 1em 0;

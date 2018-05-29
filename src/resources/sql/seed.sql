@@ -1062,7 +1062,7 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (16, '2018-05-08 10:00:00+01', 100, TRUE);
 
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Could there be a section about Programming?','I think we are focusing more on mathematics and programming is being left out. It is an interesting subject and very useful these days!', '2018-05-08 12:00:00+01',1,2);
-INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Could there be a section about Programming?','start project', '2018-05-08 12:00:00+01',6,6);
+INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Could there be a section about Programming?','I think there should.', '2018-05-08 12:00:00+01',6,6);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I think I broke the project....oopsie!','Ah...guys, it ain''t working! Could someone fix this please!?\n*screeching*', '2018-05-08 12:00:00+01',4,18);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Another game with a game with a female lead character....boring!','Guys, come on! Not again! I know it is a trend, but why not vary and make, for example, a game with several principal characters, where you can play with different characters, both in gender but also in race. This game could do it, the story allows it!', now(),3,4);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I don''t know...will this really work?','Will it be really possible to make this game? It is HL3 and, well, is open source. By the way, isn''t it kinda illegal? Doesn''t Valve has the rights to this?\nJust saying...', '2018-05-08 12:00:00+01',9,18);
@@ -1071,7 +1071,7 @@ INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('D
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I believe the mock ups are kinda ugly...','We should do it again','2018-05-08 12:00:00+01',4,18);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I have a great idea!','Let''s make the character like Geralt of Witcher 3 and the dragons will be Roach! Ah, hilarious!\nMy name''s Jeff!', '2018-05-08 12:00:00+01',10,20);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Did you know?','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn''t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!', '2018-05-08 12:00:00+01',12,9);
-INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Witcher 3 quest!','Could someone give some hints about where i can find cedaline in witcher 3?', '2018-05-08 12:00:00+01',90,2);
+INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Witcher 3 quest!','Could someone give some hints about where i can find celandine in witcher 3?', '2018-05-08 12:00:00+01',90,2);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Could there be a section about Programming?','I think we are focusing more on mathematics and programming is being left out. It is an interesting subject and very useful these days!', '2018-05-08 12:00:00+01',1,2);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I think I broke the project....oopsie!','Ah...guys, it ain''t working! Could someone fix this please!?\n*screeching*', '2018-05-08 12:00:00+01',4,18);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Another game with a game with a female lead character....boring!','Guys, come on! Not again! I know it is a trend, but why not vary and make, for example, a game with several principal characters, where you can play with different characters, both in gender but also in race. This game could do it, the story allows it!', now(),3,4);
@@ -1188,7 +1188,8 @@ INSERT INTO comment (content,date,user_id,task_id,thread_id) VALUES ('SPAM SPAM 
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',5);
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',13);
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',21);
-INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',21);
+INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',22);
+INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',23);
 
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 12:30:00+01','Assigned',1,1);
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 12:30:00+01','Assigned',1,3);

@@ -11,7 +11,7 @@ section {
 	display: grid;
 	grid-template-columns: 55% 45%;
 	grid-template-rows: 5% 75% auto;
-	min-height: 100vh;
+	min-height: 85vh;
 }
 
 section > * {

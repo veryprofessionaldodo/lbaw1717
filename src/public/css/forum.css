@@ -11,7 +11,7 @@ THREADS
 */
 
 div#container {
-	min-height: 100vh;
+	min-height: 85vh;
 }
 
 div#container div#options {
@@ -133,7 +133,7 @@ input.form-control, textarea.form-control {
 }
 
 #overlay {
-	min-height: 100vh;
+	min-height: 85vh;
 	z-index: 200;
 	width: 75%;
 	margin: auto;

@@ -1,17 +1,17 @@
 
 function addEventListenersNotifications() {
 
-    let dismissNotifications = document.querySelectorAll("div#notifications_box ul li.row div.notification_options a.dismiss");
+    let dismissNotifications = document.querySelectorAll("ul#notification_box li.row div.notification_options a.dismiss");
     for (let i = 0; i < dismissNotifications.length; i++) {
         dismissNotifications[i].addEventListener('click', dismissNotification);
     }
 
-    let acceptInviteNotifications = document.querySelectorAll("div#notifications_box ul li.row div.notification_options a.accept");
+    let acceptInviteNotifications = document.querySelectorAll("ul#notification_box li.row div.notification_options a.accept");
     for (let i = 0; i < acceptInviteNotifications.length; i++) {
         acceptInviteNotifications[i].addEventListener('click', acceptInviteNotification);
     }
 
-    let rejectInviteNotifications = document.querySelectorAll("div#notifications_box ul li.row div.notification_options a.reject");
+    let rejectInviteNotifications = document.querySelectorAll("ul#notification_box li.row div.notification_options a.reject");
     for (let i = 0; i < rejectInviteNotifications.length; i++) {
         rejectInviteNotifications[i].addEventListener('click', rejectInviteNotification);
     }

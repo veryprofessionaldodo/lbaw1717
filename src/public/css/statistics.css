@@ -12,7 +12,7 @@ CONTAINER
 
 #container {
    	margin: auto 4em;
-    min-height: 100vh;
+    min-height: 85vh;
 }
 
 .card > .card-body {
