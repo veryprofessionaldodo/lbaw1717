@@ -1,4 +1,4 @@
-function addEventListeners() {
+function addEventListenersProfile() {
 
 	// window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').content;
 	// window.axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -28,10 +28,14 @@ function addEventListeners() {
 		searchRoleUserProjectButtons[i].addEventListener('click', searchByRole);
 	}
 
-
 	let leaveProjectBtn = document.querySelectorAll("div#projects div.project div.project_info button");
 	for (let i = 0; i < leaveProjectBtn.length; i++) {
 		leaveProjectBtn[i].addEventListener('click', leaveProject);
+	}
+
+	let pagination = document.querySelectorAll("div.container-fluid div.row section div#projects div#pagination_section.post ul.pagination li a");
+	for (let i = 0; i < pagination.length; i++) {
+		pagination[i].addEventListener('click', getProjects);
 	}
 }
 
@@ -184,6 +188,8 @@ function showUserProjects() {
 
 	let div = document.querySelector("div#projects");
 	div.innerHTML = data.html;
+
+	addEventListenersProfile();
 }
 
 
@@ -230,6 +236,12 @@ function leaveProjectHandler() {
 
 }
 
+function getProjects(event) {
+	event.preventDefault();
+
+	sendAjaxRequest("POST", event.target.href, null, showUserProjects);
+}
 
 
-addEventListeners();
+
+addEventListenersProfile();
