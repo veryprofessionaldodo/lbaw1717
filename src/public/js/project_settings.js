@@ -37,6 +37,11 @@ function addEventListenersSettings() {
         removeMemberBtn[i].addEventListener('click', removeMember);
     }
 
+    let searchTeamMember = document.querySelector("div#members form.user_search_settings");
+    if(searchTeamMember !== null){
+        searchTeamMember.addEventListener('submit', submitSearchTeamMember);
+    }
+
 }
 
 function switchRequestView(event) {
@@ -203,6 +208,22 @@ function removeMemberUpdate() {
             icon: "success",
         });
     }
+}
+
+function submitSearchTeamMember(event){
+    event.preventDefault();
+
+    let inputVal = document.querySelector("div#members form.user_search_settings input").value;
+
+    sendAjaxRequest("POST", event.target.action, {search: inputVal}, showProjectMemberSearch);
+}
+
+function showProjectMemberSearch() {
+    let data = JSON.parse(this.responseText);
+
+    let div = document.querySelector("div#show_members_settings");
+
+    div.innerHTML = data.html;
 }
 
 addEventListenersSettings();

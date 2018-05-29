@@ -1,18 +1,16 @@
 <div class="col-12" id="members_project">
 	<div class="row">
-		
-	
 		<div class="col-12">
-			<div id="user_search">
+			<form id="user_search" method="POST" action="{{ route('project_member_search', ['project_id' => $project->id]) }}">
 				<label>Search project user: </label>
-				<input type="text" class="form-control" name="new_team_member" placeholder="Username">
+				<input type="text" class="form-control" name="username" placeholder="Username">
 				<button class="btn btn-primary" type="submit">Search</button>
-			</div>
+			</form>
 		</div>
 
-		@foreach($members as $member)
-			@include('partials.member', ['user' => $member])
-		@endforeach
+		<div class="row" id="show_members">
+			@include('partials.members_view', ['members' => $members])
+		</div>
 
 	</div>
 	

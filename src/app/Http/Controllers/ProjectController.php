@@ -152,9 +152,10 @@ class ProjectController extends Controller
     if(Auth::check()) {
       try {
         
-        $members = Project::find($id)->user()->get();
-        
-        $viewHTML = view('partials.project_members', ['members' => $members])->render();
+        $project = Project::find($id);
+        $members = $project->user()->get();
+
+        $viewHTML = view('partials.project_members', ['members' => $members, 'project' => $project])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
         
       } catch(\Illuminate\Database\QueryException $qe) {
@@ -175,6 +176,42 @@ class ProjectController extends Controller
       $projects = Project::search($request->input('search'))->with('user')->where('ispublic','=',true)->paginate(5);
       return view('pages.result_search', ['projects' => $projects]);
       
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+
+  public function projectMembersSearch(Request $request){
+    if(!Auth::check()) redirect('/login');
+
+    try {
+
+      $members = Project::find($request->project_id)->searchMember($request->search);
+      $html = view('partials.members_view', ['members' => $members])->render();
+      return response()->json(array('success' => true, 'html' => $html));
+
+    } catch(\Illuminate\Database\QueryException $qe) {
+      // Catch the specific exception and handle it 
+      //(returning the view with the parsed errors, p.e)
+    } catch (\Exception $e) {
+      // Handle unexpected errors
+    }
+  }
+
+  public function projectMembersSettingsSearch(Request $request){
+    if(!Auth::check()) redirect('/login');
+
+    try {
+      $project = Project::find($request->project_id);
+      $members = $project->searchMember($request->search);
+
+      
+      $html = view('partials.settings_members_view', ['project' => $project, 'members' => $members])->render();
+      return response()->json(array('success' => true, 'html' => $html));
+
     } catch(\Illuminate\Database\QueryException $qe) {
       // Catch the specific exception and handle it 
       //(returning the view with the parsed errors, p.e)
