@@ -52,6 +52,10 @@ function addEventListenersProject() {
 		editSprintButtons[i].addEventListener('click', getEditSprintForm);
 	}
 
+	let joinProjectBtn = document.querySelector("section.container-fluid div.col-12.edit_project a");
+	if(joinProjectBtn !== null)
+		joinProjectBtn.addEventListener('click',joinProject);
+
 }
 
 function encodeForAjax(data) {
@@ -332,6 +336,12 @@ function addTaskInfo() {
 function deleteSprint(event) {
 	event.preventDefault();
 
+	let href = event.currentTarget.href;
+	let index = href.indexOf('projects');
+	let index2 = href.indexOf('sprints');
+	let project_id = href.substring(index + 9, index2 - 1);
+	let sprint_id = href.substring(index2 + 8, href.length);
+
 	swal("Delete Sprint", {
 		icon: "warning",
 		buttons: {
@@ -351,12 +361,6 @@ function deleteSprint(event) {
 		},
 	})
 		.then((value) => {
-
-			let href = event.currentTarget.href;
-			let index = href.indexOf('projects');
-			let index2 = href.indexOf('sprints');
-			let project_id = href.substring(index + 9, index2 - 1);
-			let sprint_id = href.substring(index2 + 8, href.length);
 
 			switch (value) {
 
@@ -385,7 +389,6 @@ function deleteSprint(event) {
 
 function deleteSprintHandler() {
 
-	alert(this.responseText);
 	let data = JSON.parse(this.responseText);
 	if (data.success) {
 
@@ -483,6 +486,34 @@ function showTeamMembersSearch(){
 	let div = document.querySelector("div#show_members");
 
 	div.innerHTML = data.html;
+}
+
+
+function joinProject(event) {
+    event.preventDefault();
+
+    let index = event.target.href.indexOf('projects');
+    let project_id = event.target.href.substring(index + 9, event.target.href.length - 8);
+
+    sendAjaxRequest('post', event.target.href, { project_id: project_id }, responseCreateRequest);
+}
+
+function responseCreateRequest() {
+    let data = JSON.parse(this.responseText);
+
+    if (data.success) {
+        swal('Request send to join project ' + data.project_name, {
+            icon: "success",
+        });
+    } else if (data.reason == "request") {
+        swal('You have already rquested to join the project (' + data.project_name + ')', {
+            icon: "warning",
+        });
+    } else {
+        swal('You have already received an invite to join this project (' + data.project_name + ')', {
+            icon: "warning",
+        });
+    }
 }
 
 addEventListenersProject();

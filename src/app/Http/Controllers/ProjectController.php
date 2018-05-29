@@ -24,6 +24,7 @@ class ProjectController extends Controller
       try {
         $project = Project::find($id);
         $role = null;
+        $members = $project->user()->get();
         
         if(Auth::user()->isProjectMember($project)){
           //if user is member
@@ -46,7 +47,7 @@ class ProjectController extends Controller
         
         $sprints = $project->SprintsTasksComments();
         
-        return view('pages/project_page', ['project' => $project, 'sprints' => $sprints, 'role' => $role]);
+        return view('pages/project_page', ['project' => $project, 'sprints' => $sprints, 'role' => $role, 'members'=>$members]);
         
       } catch(\Illuminate\Database\QueryException $qe) {
         // Catch the specific exception and handle it 
