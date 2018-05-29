@@ -87,8 +87,7 @@ Route::post('api/projects/{project_id}/tasks/{task_id}/assign_other', 'TaskContr
 Route::post('api/projects/{project_id}/tasks/{task_id}/unassign_other', 'TaskController@unassign')->name('unassign_other');
 Route::post('api/projects/{project_id}/tasks', 'TaskController@store')->name('new_task');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments', 'CommentController@storeCommentTask')->name('create_comment_task'); //done
-Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'CommentController@edit')->name('editTaskComment');
-// Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'ProjectController@editCommentAction');
+Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}/edit', 'CommentController@editAjax')->name('editTaskComment');
 Route::post('api/projects/{project_id}/tasks/{task_id}/comments/{comment_id}', 'CommentController@destroy')->name('deleteCommentTask'); //done
 
 //Project Forum

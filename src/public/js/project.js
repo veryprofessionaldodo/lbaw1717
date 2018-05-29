@@ -16,9 +16,13 @@ function addEventListenersProject() {
 		newSprintButton.addEventListener('click', getSprintForm);
 	}
 
-	submitComment = document.querySelector("div.comment div.form_comment form");
+	submitComment = document.querySelector("div.comment div.form_comment form#submit");
 	if (submitComment !== null)
 		submitComment.addEventListener('submit', addComment);
+
+	editComment = document.querySelector("div.comment div.form_comment.row form#edit");
+	if(editComment !== null)
+		editComment.addEventListener('submit', editTaskComment);
 
 	// tasks completion
 	let tasksCheckboxes = document.querySelectorAll("div.sprint-task input[type='checkbox']");
@@ -154,6 +158,7 @@ function addComment(event) {
 }
 
 function updateComments() {
+	alert(this.responseText);
 	let data = JSON.parse(this.responseText);
 
 	let comments = document.querySelector("div#task-" + data.task_id);
@@ -194,6 +199,56 @@ function updateCommentDeletion() {
 		swal("The comment has been deleted !", {
 			icon: "success",
 		});
+	}
+}
+
+function prepareForEdition(button) {
+    
+    let ps = document.getElementsByClassName("content");
+
+    var order = 0;
+
+    for(let i = 0; i < ps.length; i++){
+        if(ps[i].id == button.id){
+            order = i
+        }
+    }
+
+	let commentInfo = document.querySelectorAll("p.content")[order];
+	let commentDiv = document.querySelectorAll("div.form_comment.row")[order];
+    let commentForm = document.querySelectorAll("div.form_comment.row form#edit")[order];
+	
+	
+	let href = commentForm.getAttribute('href');
+
+    if(commentInfo.style.display !== "none"){
+		let input = commentForm.querySelector("input");
+		let content = commentInfo.innerHTML;
+        input.value = content;
+        commentInfo.style.display = "none"
+       	commentDiv.style.display = "block";
+    }
+    else {
+        commentInfo.style.display = "block";
+        commentDiv.style.display = "none";
+
+	}
+}
+
+function editTaskComment(event){
+	event.preventDefault();
+
+	let content = document.querySelector("div.comment div.form_comment input[name='content']").value;
+
+	sendAjaxRequest('post', event.target.action, { content: content }, editUpdate);
+}
+
+function editUpdate(){
+	let data = JSON.parse(this.responseText);
+
+	if(data.success){
+		let parent = document.querySelector("div #task-"+ data.task_id);
+		parent.innerHTML = data.comment;
 	}
 }
 

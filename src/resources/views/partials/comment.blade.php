@@ -59,7 +59,7 @@
 				<button class="btn btn-warning edit_comment" onclick="editCommentThread(this)" id="{{$comment->id}}"><i class="fas fa-pencil-alt" ></i></button>
 			@else
 				<button href="{{ route('deleteCommentTask', ['id' => $project->id, 'task_id' => $task->id, 'comment_id' => $comment->id])}}" onclick="deleteCommentTask(this)" id="{{$comment->id}}" class="deleteComment" ><i class="fas fa-trash"></i></button>
-				<button class="btn btn-warning edit_comment" onclick="editTaskComment(this)" id="{{$comment->id}}"><i class="fas fa-pencil-alt" ></i></button>
+				<button class="btn btn-warning edit_comment" onclick="prepareForEdition(this)" id="{{$comment->id}}"><i class="fas fa-pencil-alt" ></i></button>
 			@endif
 
 		@endif
