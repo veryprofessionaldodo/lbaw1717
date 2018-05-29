@@ -21,23 +21,24 @@ class ReportController extends Controller
 
     /* gets the report form page*/
     public function userReportForm($username){
-
+        if(!Auth::check()) return redirect('/login');
         try {
             $user_reported = User::where('username',$username)->first();
             $type = 'USER';
             
             return view('pages/report_page',['user_reported' => $user_reported, 'type' => $type]);
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return redirect()->route('error');
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return redirect()->route('error');
         }
 
     }
 
     public function commentReportForm($comment_id){
+        if(!Auth::chec()) return redirect('/login');
         try {
+
             $comment = Comment::find($comment_id);
             $type = 'COMMENT';
     
@@ -51,10 +52,9 @@ class ReportController extends Controller
 
 
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return redirect()->route('error');
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return redirect()->route('error');
         }
         
     }
@@ -110,10 +110,9 @@ class ReportController extends Controller
             
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
 
     }

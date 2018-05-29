@@ -60,8 +60,10 @@ function showCommentReports(event) {
 function viewReports() {
 	let data = JSON.parse(this.responseText);
 
-	let content = document.querySelector("section div#reports");
-	content.innerHTML = data.html;
+	if(data.success){
+		let content = document.querySelector("section div#reports");
+		content.innerHTML = data.html;
+	}
 
 	addEventListenersAdmin();
 }

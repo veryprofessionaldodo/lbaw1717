@@ -128,6 +128,8 @@ form input.form-control.main-search {
 
 div#pagination_section {
 	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 ul.pagination{

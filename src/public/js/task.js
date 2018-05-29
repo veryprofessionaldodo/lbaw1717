@@ -188,32 +188,35 @@ function assignSelfTask(event) {
 function updateAssignUsers() {
 	let data = JSON.parse(this.responseText);
 
-	let buttonClaim = document.querySelector("div.task_options a.claim");
-	let assignTaskOtherButton = document.querySelector("div.coordinator_options a.claim_other");
+	if(data.success){
+		let buttonClaim = document.querySelector("div.task_options a.claim");
+		let assignTaskOtherButton = document.querySelector("div.coordinator_options a.claim_other");
 
-	if (data.unclaim_url != null) {
+		if (data.unclaim_url != null) {
 
-		// user is assigned
-		updateDivAssignUsers(data);
+			// user is assigned
+			updateDivAssignUsers(data);
 
-		buttonClaim.innerHTML = "Unclaim task";
-		buttonClaim.href = data.unclaim_url;
+			buttonClaim.innerHTML = "Unclaim task";
+			buttonClaim.href = data.unclaim_url;
 
-		assignTaskOtherButton.outerHTML = '<a class="btn btn-primary claim_other" id="assign_user">Assign task to user</a>';
-		assignTaskOtherButton = document.querySelector("div.coordinator_options a#assign_user");
-		assignTaskOtherButton.addEventListener('click', showAssignUserForm);
+			assignTaskOtherButton.outerHTML = '<a class="btn btn-primary claim_other" id="assign_user">Assign task to user</a>';
+			assignTaskOtherButton = document.querySelector("div.coordinator_options a#assign_user");
+			assignTaskOtherButton.addEventListener('click', showAssignUserForm);
 
-	}
-	else if (data.claim_url != null) {
-		// user is unassigned
-		let assigned_users = document.querySelector("div.assigned_users");
-		while (assigned_users.hasChildNodes()) {
-			assigned_users.removeChild(assigned_users.lastChild);
 		}
+		else if (data.claim_url != null) {
+			// user is unassigned
+			let assigned_users = document.querySelector("div.assigned_users");
+			while (assigned_users.hasChildNodes()) {
+				assigned_users.removeChild(assigned_users.lastChild);
+			}
 
-		buttonClaim.innerHTML = "Claim task";
-		buttonClaim.href = data.claim_url;
+			buttonClaim.innerHTML = "Claim task";
+			buttonClaim.href = data.claim_url;
+		}
 	}
+	
 }
 
 function assignOtherTask(event) {
@@ -226,7 +229,6 @@ function assignOtherTask(event) {
 
 function updateOtherUserAssigned() {
 	let data = JSON.parse(this.responseText);
-	console.log(data);
 
 	if (!data.success) {
 		let errorMessage = '<div class="col-12 alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>' + data.error + '</strong></div>';

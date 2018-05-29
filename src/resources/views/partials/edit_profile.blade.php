@@ -16,7 +16,7 @@
 		</div>
 		<div class="form_area">
 			<label>Image File: </label>
-			<input type="file" class="form-control" name="user_image"> <!-- Change this later TODO -->
+			<input type="file" class="form-control" name="user_image">
 		</div>
 		<div id="form_options">
 			<button type="submit" class="btn btn-success">Submit</button>

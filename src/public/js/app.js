@@ -5,9 +5,6 @@ function addEventListeners() {
 
 	let notificationDropIcon = document.querySelector("nav.navbar #notifications label");
 	notificationDropIcon.addEventListener('click', dropNotificationsMenu);
-
-	/*let searchButton = document.querySelector("nav form button.btn.btn-primary");
-	searchButton.addEventListener('click', searchProjectAction);*/
 }
 
 function dropUserOptions() {
@@ -61,24 +58,5 @@ function sendAjaxRequest(method, url, data, handler) {
 	else
 		request.send();
 }
-
-
-
-/*function searchProjectAction(event) {
-	event.preventDefault();
-	
-	let form = document.querySelector("nav form");
-	let inputValue = document.querySelector("nav form input").value;
-	let url = form.action;
-	
-	sendAjaxRequest("POST", url, {search: inputValue}, displayResults);
-}
-
-function displayResults() {
-	let data = JSON.parse(this.responseText);
-	
-	let content = document.querySelector("section.container-fluid div.row.content_view");
-	content.innerHTML = data.html;
-}*/
 
 addEventListeners();

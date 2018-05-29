@@ -1,14 +1,33 @@
 div.row {
     width: 100%;
     margin: 0;
+    
+}
+
+
+div.col-12:nth-child(2){
+    border: 1px solid #666677;
+    padding: 1em;
+}
+
+div.row:nth-child(3) {
+    display: grid;
 }
 
 div.col-12 {
     padding: 0;
 }
 
+div.task_options.col-9 {
+    text-align: right;
+}
+
 div#task h1 {
     margin: 0.5em 0;
+}
+
+div.coordinator_options {
+    color: white;
 }
 
 div.col-12.alert.alert-dismissible.alert-danger{
@@ -54,18 +73,21 @@ section#task_page button.send_name {
 }
 
 section#task_page div#checkbox {
-    text-align: right;
-    margin: 0 auto;
     vertical-align: middle;
     text-align: center;
     padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    min-height: 100%;
+    height: 100%;
 }
 
 section#task_page input[type="checkbox"] {
-	width: 1.5em;
-    height: 1.5em;
-    vertical-align: middle;
-    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inherit;
+    float: right;
+    margin-right: 2em;
 }
 
 

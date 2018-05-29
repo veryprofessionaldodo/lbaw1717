@@ -196,7 +196,8 @@ div.list-group-item span {
 }
 
 .assigned_users img {
-	max-width: 40%;
+	max-width: 35%;
+	border-radius: 100%;
 }
 
 div.sprint-task {
