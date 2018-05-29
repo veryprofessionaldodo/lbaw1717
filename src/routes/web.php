@@ -39,6 +39,7 @@ Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction'
 Route::post('api/projects/{project_id}/request', 'User\UserController@requestJoinProject')->name('request_join_project');
 Route::post('api/users/{username}/search', 'User\UserController@searchProjects')->name('search_user_project');
 Route::post('api/users/{username}/search/{role}', 'User\UserController@searchProjectsRole')->name('search_user_project_role');
+Route::post('api/projects/{project_id}/leave', 'User\UserController@leave')->name('leave_project');//done
 
 //Notifications
 Route::post('api/notifications/{notification_id}/dismiss','User\UserController@dismissNotification')->name('dismiss_notification');//done
@@ -66,6 +67,7 @@ Route::post('api/projects/{project_id}/settings/members', 'ProjectController@pro
 
 Route::get('api/projects/{project_id}/members/edit', 'ProjectController@editForm')->name('edit_project_form');//done
 Route::post('api/projects/{project_id}/members/edit', 'ProjectController@edit')->name('edit_project');//done
+
 
 
 Route::get('api/projects/{project_id}', 'ProjectController@show')->name('project'); // done

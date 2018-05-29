@@ -262,6 +262,27 @@ class UserController extends Controller {
             // Handle unexpected errors
         }
     }
+
+    public function leave(Request $request){
+        if (!Auth::check()) return redirect('/login');
+        try {
+
+          $project = Project::find($request->input('project_id'));
+    
+          DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',Auth::user()->id]])->delete();
+
+          $projects = Auth::user()->userProjects();
+
+          $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user()])->render();
+          return response()->json(array('success' => true,'html' => $html, 'project_name' => $project->name));
+          
+        } catch(\Illuminate\Database\QueryException $qe) {
+          // Catch the specific exception and handle it 
+          //(returning the view with the parsed errors, p.e)
+        } catch (\Exception $e) {
+          // Handle unexpected errors
+        }
+      }
 }
 
 ?>

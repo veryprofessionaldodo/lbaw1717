@@ -18,7 +18,7 @@
 				<span>{{ $project->sprints_count }} Sprints</span>
 			@elseif(Auth::user()->username == $user->username)
 				<span>{{ $project->sprints_count }} Sprint</span>
-				<button class="btn btn-secondary">
+				<button href="{{ route('leave_project', ['id' => $project->id])}}"class="btn btn-secondary">
 					<i class="fas fa-sign-out-alt"></i>
 				</button>
 			@endif
