@@ -297,10 +297,61 @@ class ProjectController extends Controller
         $april = $project->monthlySprints()[0]->count;
         $may = $project->monthlySprints()[1]->count;
       }
+
+     
+      $tasksPerMonth = $project->monthlyTasksPerDay();
+
+      if(count($tasksPerMonth)==0){
+        $task1 = 0;
+        $task2 = 0;
+        $task3 = 0;
+        $task4 = 0;
+        $task5 = 0;
+      }
+      else if(count($tasksPerMonth)==1){
+        $task1 = $tasksPerMonth[0]->count;
+        $task2 = 0;
+        $task3 = 0;
+        $task4 = 0;
+        $task5 = 0;
+      }
+      else if(count($tasksPerMonth)==2){
+        $task1 = $tasksPerMonth[0]->count;
+        $task2 = $tasksPerMonth[1]->count;
+        $task3 = 0;
+        $task4 = 0;
+        $task5 = 0;
+      }
+      else if(count($tasksPerMonth)==3){
+        $task1 = $tasksPerMonth[0]->count;
+        $task2 = $tasksPerMonth[1]->count;
+        $task3 = $tasksPerMonth[2]->count;
+        $task4 = 0;
+        $task5 = 0;
+      }
+      else if(count($tasksPerMonth)==4){
+        $task1 = $tasksPerMonth[0]->count;
+        $task2 = $tasksPerMonth[1]->count;
+        $task3 = $tasksPerMonth[2]->count;
+        $task4 = $tasksPerMonth[3]->count;
+        $task5 = 0;
+      }
+      else {
+        $task1 = $tasksPerMonth[0]->count;
+        $task2 = $tasksPerMonth[1]->count;
+        $task3 = $tasksPerMonth[2]->count;
+        $task4 = $tasksPerMonth[3]->count;
+        $task5 = $tasksPerMonth[4]->count;
+      
+      }
+
+      $tasksArray = array($task1, $task2, $task3, $task4, $task5);
+      
+
       return view('pages/statistics', ['project' => $project, 
       'tasksCompleted' => $tasksCompleted, 'sprintsCompleted' => $sprintsCompleted, 'topContributor1' => $topContributor1, 
       'topContributor2' => $topContributor2, 'topContributor3' => $topContributor3,
-      'april' => $april, 'may' => $may]);
+      'april' => $april, 'may' => $may, 'tasksArray' => $tasksArray]);
       
     } catch(\Illuminate\Database\QueryException $qe) {
       return redirect()->route('error');
@@ -314,7 +365,7 @@ class ProjectController extends Controller
   */
   public function projectSettings($project_id){
     if (!Auth::check()) return redirect('/login');
-    try {
+   try {
       $project = Project::find($project_id);
       $requests = $project->invites()->get();
   
