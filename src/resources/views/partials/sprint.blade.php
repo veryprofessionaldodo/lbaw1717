@@ -7,7 +7,7 @@
 		$a = new \DateTime('now'); 
 		$b = new \DateTime($sprint->deadline);
 		$diff = $a->diff($b);
-		$diff = $diff->format('%d');
+		$diff = $diff->format('%a');
 	?>
 	<p>{{ $diff }} days until deadline</p>
 

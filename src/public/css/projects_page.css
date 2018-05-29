@@ -155,14 +155,17 @@ div.list-group-item a.btn.edit_sprint {
 	grid-row: 1; 
 	background-color: inherit;
 	padding: 0;
-	margin: auto 0 auto auto;
+	margin: 0;
+	text-align: center;
 }
+
 div.list-group-item a.btn.delete_sprint {
 	grid-column: 4;
 	grid-row: 1; 
 	background-color: inherit;
 	padding: 0;
-	margin: auto 0 auto auto;
+	margin: 0;
+	text-align: center;
 }
 
 div.list-group-item a.btn.edit_sprint svg {
