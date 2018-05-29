@@ -16,7 +16,7 @@ CONTAINER
 }
 
 .card > .card-body {
-	background-color: #ECE7F3;
+	background-color: #e3e8ef;
 	border: 0px solid #000;
 	border-top: 1px solid #001;
 	padding: 1em;
@@ -34,20 +34,23 @@ CONTAINER
 }
 
 #container .sprints_stats{
+	margin-top:1em;
     grid-column-start: 2;
     grid-row: 2;
     align-self: center;
 }
 
 #container .tasks_stats {
+	margin-bottom:1em;
     grid-column-start: 2;
     grid-row: 3;
-    align-self: center;
+	align-self: center;
+	border-bottom: 1px solid black;
 }
 
 #container .contributor {
-    color: #000000;
-    background-color: #0A1827;
+    color: #001;
+    background-color: #e3e8ef;
 }
 
 #container .members_stats {
@@ -64,12 +67,12 @@ CONTAINER
 
 .contributor_info p {
 	margin: auto 0;
-	color: #DF691A;
+	color: #001;
 	text-decoration: none;
 }
 .contributor_info p:last-of-type {
 	margin: auto 0;
-	color: #ECE7F3;
+	color: #001;
 	text-decoration: none;
 }
 

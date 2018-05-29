@@ -9,12 +9,12 @@
 
 <div id="container">
 
-        <div id="options">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('project', ['id' => $project->id])}}">Project</a></li>            
-                    <li class="breadcrumb-item active">Stats</li>            
-                </ol>     
-            </div>
+    <div id="options">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('project', ['id' => $project->id])}}">Project</a></li>            
+            <li class="breadcrumb-item active">Stats</li>            
+        </ol>     
+    </div>
 
     <div class="sprints_stats">
         <div class="card">
@@ -30,6 +30,7 @@
             </div>
         </div>
     </div>
+
     <div class="members_stats">
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action active">
@@ -133,7 +134,7 @@
             </div>
         </div>
     </div>
-
+</div>
 @else
 
 @endif
