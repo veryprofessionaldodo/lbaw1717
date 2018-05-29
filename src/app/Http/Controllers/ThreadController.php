@@ -18,23 +18,28 @@ class ThreadController extends Controller {
             try {
                 
                 $project = Project::find($project_id);
-                $thread = Thread::find($thread_id);
-                $comments = Thread::find($thread_id)->comments()->with('user')->get();
-                
-                $role = Auth::user()->isCoordinator($project_id);
-                
-                if($role == false)
-                $role = 'tm';
-                else
-                $role = 'co';
-                
-                return view('pages/thread_page',['project' => $project,'thread' => $thread, 'comments' => $comments, 'role' => $role]);
+                if(Auth::user()->isProjectMember($project)){
+                    $thread = Thread::find($thread_id);
+                    $comments = Thread::find($thread_id)->comments()->with('user')->get();
+                    
+                    $role = Auth::user()->isCoordinator($project_id);
+                    
+                    if($role == false)
+                    $role = 'tm';
+                    else
+                    $role = 'co';
+                    
+                    return view('pages/thread_page',['project' => $project,'thread' => $thread, 'comments' => $comments, 'role' => $role]);
+
+                }
+                else {
+                    return redirect()->route('error');    
+                }
                 
             } catch(\Illuminate\Database\QueryException $qe) {
-                // Catch the specific exception and handle it 
-                //(returning the view with the parsed errors, p.e)
+                return redirect()->route('error');
             } catch (\Exception $e) {
-                // Handle unexpected errors
+                return redirect()->route('error');
             }
         }
     }
@@ -44,15 +49,20 @@ class ThreadController extends Controller {
             try {
                 
                 $project = Project::find($project_id);
-                $threads = Thread::where('project_id','=',$project_id)->with('user')->paginate(5);
-                
-                return view('pages/forum',['project' => $project,'threads' => $threads]);
+                if(Auth::user()->isProjectMember($project)){
+                    $threads = Thread::where('project_id','=',$project_id)->with('user')->paginate(5);
+                    
+                    return view('pages/forum',['project' => $project,'threads' => $threads]);
+
+                }
+                else {
+                    return redirect()->route('error');
+                }
                 
             } catch(\Illuminate\Database\QueryException $qe) {
-                // Catch the specific exception and handle it 
-                //(returning the view with the parsed errors, p.e)
+                return redirect()->route('error');
             } catch (\Exception $e) {
-                // Handle unexpected errors
+                return redirect()->route('error');
             }
         }
     }
@@ -61,32 +71,43 @@ class ThreadController extends Controller {
         if(Auth::check()){
             
             $project = Project::find($project_id);
-            return view('pages/new_thread_page',['project' => $project]);
-            
+            if(Auth::user()->isProjectMember($project)){
+                return view('pages/new_thread_page',['project' => $project]);
+            }
+            else {
+                return redirect()->route('error');
+            }
         }
+        else
+            return redirect('/login');
     }
     
     public function store(Request $request, int $project_id) {
         if (!Auth::check()) return redirect('/login');
         
         try {
-            $thread = new Thread();
-            
-            //TODO authorize
-            
-            $thread->name = $request->input('title');
-            $thread->description = $request->input('description');
-            $thread->project_id = $project_id;
-            $thread->user_creator_id = Auth::user()->id;
-            
-            $thread->save();
-            return redirect()->route('forum', ['id' => $project_id]);
+
+            $project = Project::find($project_id);
+            if(Auth::user()->isProjectMember($project)){
+                $thread = new Thread();
+                
+                $thread->name = $request->input('title');
+                $thread->description = $request->input('description');
+                $thread->project_id = $project_id;
+                $thread->user_creator_id = Auth::user()->id;
+                
+                $thread->save();
+                return redirect()->route('forum', ['id' => $project_id]);
+
+            }
+            else {
+                return redirect()->route('error');
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return redirect()->route('error');
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return redirect()->route('error');
         }
     }
     
@@ -97,14 +118,18 @@ class ThreadController extends Controller {
                 
                 $project = Project::find($id);
                 $thread = Thread::find($thread_id);
-                
-                return view('pages/edit_thread_page',['project' => $project, 'thread' => $thread]);
+
+                if(Auth::user()->id === $thread->user_creator_id){
+                    return view('pages/edit_thread_page',['project' => $project, 'thread' => $thread]);
+                }
+                else {
+                    return redirect()->route('error');
+                }    
                 
             } catch(\Illuminate\Database\QueryException $qe) {
-                // Catch the specific exception and handle it 
-                //(returning the view with the parsed errors, p.e)
+                return redirect()->route('error');
             } catch (\Exception $e) {
-                // Handle unexpected errors
+                return redirect()->route('error');
             }
         }
     }
@@ -115,22 +140,27 @@ class ThreadController extends Controller {
         try {
             
             $thread = Thread::find($thread_id);
-            //TODO authorize
             
-            $thread->name = $request->input('title');
-            $thread->description = $request->input('description');
-            $thread->project_id = $project_id;
-            $thread->user_creator_id = Auth::user()->id;
+            if(Auth::user()->id === $thread->user_creator_id){
+                $thread->name = $request->input('title');
+                $thread->description = $request->input('description');
+                $thread->project_id = $project_id;
+                $thread->user_creator_id = Auth::user()->id;
+                
+                $thread->save();
+                
+                return redirect()->route('thread', ['id' => $project_id, 'thread_id' => $thread_id]);
+
+            }
+            else {
+                return redirect()->route('error');
+            }
             
-            $thread->save();
-            
-            return redirect()->route('thread', ['id' => $project_id, 'thread_id' => $thread_id]);
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return redirect()->route('error');
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return redirect()->route('error');
         }
     }
     
@@ -143,20 +173,22 @@ class ThreadController extends Controller {
     public function destroy(Request $request)
     {
         try {
+
             $thread = Thread::find($request->input('thread_id'));
             $project_id = $thread->project()->first()->id;
             
-            $thread->delete();
-            
-            return response()->json(array('success' => true, 'url' => '/projects/'.$project_id.'/threads'));
-            /*$viewHTML = $this->list($project_id)->render();
-            return response()->json(array('success' => true, 'html' => $viewHTML));*/
+            if(Auth::user()->id === $thread->user_creator_id || Auth::user()->isCoordinator($project_id)
+            || Auth::user()->isAdmin){
+                $thread->delete();
+                
+                return response()->json(array('success' => true, 'url' => '/projects/'.$project_id.'/threads'));
+
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
     }
 }
