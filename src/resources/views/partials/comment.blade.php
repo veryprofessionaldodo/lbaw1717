@@ -6,7 +6,7 @@
 		<img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}">
 	@endif
 	
-	<a href="{{ route('user_profile', ['username' => $comment->user->username])}}">{{$comment->user->username}}</a> <!-- TODO ANCHOR and adapte css-->
+	<a href="{{ route('user_profile', ['username' => $comment->user->username])}}">{{$comment->user->username}}</a>
 	<p id="{{$comment->id}}" class="content">{{$comment->content}}</p>
 	
 	@if($comment->task_id == NULL)
@@ -14,11 +14,9 @@
 		<form id="edit" method="POST" style="display: none;" action="{{ route('editCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}">
 		{{ csrf_field()}}
 		
-		<!-- <div class="col-8">-->
 			<input type="text" class="form-control col-10" name="content" id="content">    
 			<button type="submit" class="btn btn-primary col-2">Send</button>
 			
-			<!--<div class="offset-2"></div>-->
 		</form> 
 		</div>
 	@else

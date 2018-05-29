@@ -229,7 +229,6 @@ function assignOtherTask(event) {
 
 function updateOtherUserAssigned() {
 	let data = JSON.parse(this.responseText);
-	console.log(data);
 
 	if (!data.success) {
 		let errorMessage = '<div class="col-12 alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>' + data.error + '</strong></div>';

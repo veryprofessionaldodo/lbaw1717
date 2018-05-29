@@ -25,7 +25,7 @@
 
         <div class="row"> 
           <div id="search_bar_admin" class="col-12"> 
-            <form> <!-- change styling of this input --> 
+            <form> 
               <input class="form-control" type="text" placeholder="Search"> 
               <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button> 
             </form> 

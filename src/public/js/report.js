@@ -30,8 +30,6 @@ function createReportAction(event) {
 
         sendAjaxRequest('post', event.target.href,
             { summary: report_summary, comment_id: comment_id, type: type }, showPageUpdated);
-    } else {
-        console.log('ERROR IN REPORT ACTION !!!');
     }
 }
 

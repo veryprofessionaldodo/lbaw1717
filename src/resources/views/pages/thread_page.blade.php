@@ -76,13 +76,11 @@
                 <form method="POST" action="{{ route('new_comment', ['id' => $project->id, 'thread_id' => $thread->id])}}">
                 {{ csrf_field()}}
                 
-                <!-- <div class="col-8">-->
                     <label>Your post:</label>
                     <input type="text" class="form-control col-10" name="content" id="content">   
                      
                     <button type="submit" class="btn btn-primary col-2">Send</button>
                     
-                    <!--<div class="offset-2"></div>-->
                 </form> 
             </div> 
                 

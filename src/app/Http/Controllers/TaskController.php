@@ -174,8 +174,6 @@ class TaskController extends Controller
                     
                     $task_state_record = new Task_state_record();
                     
-                    // TODO Authorize
-                    
                     $task_state_record->state = $request->state;
                     $task_state_record->user_completed_id = Auth::id();
                     $task_state_record->task_id = $task_id;
@@ -301,8 +299,6 @@ class TaskController extends Controller
             $project = Project::find($id);
             if(Auth::user()->isProjectMember($project)){
                 $task_state_record = new Task_state_record();
-                
-                // TODO Authorize
                 
                 $task_state_record->state = 'Assigned';
                 $task_state_record->user_completed_id = Auth::user()->id;

@@ -5,9 +5,6 @@ function addEventListeners() {
 
 	let notificationDropIcon = document.querySelector("nav.navbar #notifications label");
 	notificationDropIcon.addEventListener('click', dropNotificationsMenu);
-
-	/*let searchButton = document.querySelector("nav form button.btn.btn-primary");
-	searchButton.addEventListener('click', searchProjectAction);*/
 }
 
 function dropUserOptions() {
