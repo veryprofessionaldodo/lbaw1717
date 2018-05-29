@@ -57,7 +57,10 @@ class ProjectController extends Controller
       }
     }
     else {
-      // TODO: do the visitor view 
+      $project = Project::find($id);
+        $members = $project->user()->get();
+        $role = 'guest';
+        return view('pages/project_page', ['project' => $project, 'role' => $role, 'members' => $members]);
     }
   }
   

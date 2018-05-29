@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if(Auth::check())
+
 
 
 <div id="container">
@@ -135,8 +135,6 @@
         </div>
     </div>
 </div>
-@else
 
-@endif
 
 @endsection
