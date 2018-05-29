@@ -32,7 +32,7 @@ aside {
 }
 
 aside p {
-	font-size: 1vw;
+	font-size: 12px;
 }
 
 aside > * {
@@ -120,6 +120,10 @@ div#options div#role_button {
 div#options form {
 	margin: auto;
 	text-align: right;
+}
+
+#edit_profile {
+	color: white;
 }
 
 div#options .form-control {
@@ -238,16 +242,21 @@ div.container.edit_profile, div.container.new_project {
 	right:0;
 	top:5em;
 	bottom: 0;
-	margin: auto;
-	position: absolute;
+	margin-top: 1em;
+	margin-bottom: 1em;
 	z-index: 1;
 	display: block;
-	background-color: #5bc0de;
-
+	background-color: #008cba;
+	color: white;
 	padding: 1em;
 	max-width: 40em;
 	max-height: 30em;
 	text-align: justify;
+	
+}
+
+.container h2 {
+	color: white;
 }
 
 div.container.edit_profile h2, div.container.new_project h2 {
