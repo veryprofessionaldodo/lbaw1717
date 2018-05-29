@@ -22,6 +22,7 @@
     <link href="{{ asset('css/statistics.css') }}" rel="stylesheet">
     <link href="{{ asset('css/project_settings.css') }}" rel="stylesheet">
     <link href="{{ asset('css/user_report.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pass_reset.css') }}" rel="stylesheet">
     
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -67,7 +68,7 @@
         
         <form class="form-inline my-2 my-lg-0 mr-auto" method="POST" action="{{ route('search') }}">
           {{ csrf_field() }}
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control main-search mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
 

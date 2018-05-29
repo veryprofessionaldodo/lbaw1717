@@ -68,7 +68,7 @@ function viewReports() {
 
 function dismissReport(button) {
 	let href = button.getAttribute('href');
-	let report_id = button.id;
+	let report_id = button.parentElement.parentElement.parentElement.getAttribute("data-id");
 
 	swal({
 		title: "Are you sure you want to dismiss this report?",
@@ -86,6 +86,7 @@ function dismissReport(button) {
 
 function disableUser(button) {
 	let href = button.getAttribute('href');
+	let report_id = button.parentElement.parentElement.parentElement.getAttribute("data-id");
 
 	swal({
 		title: "Are you sure you want to disable this user?",
@@ -95,7 +96,6 @@ function disableUser(button) {
 	})
 		.then((willDelete) => {
 			if (willDelete) {
-				let report_id = button.id;
 				sendAjaxRequest('post', href, { report_id: report_id }, reportHandler);
 				swal("This user has been disable !", {
 					icon: "success",
@@ -106,6 +106,7 @@ function disableUser(button) {
 
 function deleteCommentReport(button) {
 	let href = button.getAttribute('href');
+	let report_id = button.parentElement.parentElement.parentElement.getAttribute("data-id");
 
 	swal("Delete Comment", {
 		icon: "warning",
@@ -122,7 +123,6 @@ function deleteCommentReport(button) {
 		},
 	})
 		.then((value) => {
-			let report_id = button.id;
 			let disable;
 			switch (value) {
 

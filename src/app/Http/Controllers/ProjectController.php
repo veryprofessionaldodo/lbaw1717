@@ -50,10 +50,9 @@ class ProjectController extends Controller
         return view('pages/project_page', ['project' => $project, 'sprints' => $sprints, 'role' => $role, 'members'=>$members]);
         
       } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
+        return redirect()->route('error');
       } catch (\Exception $e) {
-        // Handle unexpected errors
+        return redirect()->route('error');
       }
     }
     else {
@@ -91,17 +90,14 @@ class ProjectController extends Controller
         $this->authorize('not_authorized', $project);
         
         $sprints = $project->SprintsTasksComments();
-        
-        //TODO: get user assigned to task
-        
+                
         $viewHTML = view('partials.sprints_view', ['project' => $project, 'sprints'=>$sprints, 'role' => $role])->render();
         return response()->json(array('success' => true, 'html' => $viewHTML));
         
       } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
+        return redirect()->route('error');
       } catch (\Exception $e) {
-        // Handle unexpected errors
+        return redirect()->route('error');
       }
       
     }
@@ -142,10 +138,9 @@ class ProjectController extends Controller
         return response()->json(array('success' => true, 'html' => $viewHTML));
         
       } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
+        return redirect()->route('error');
       } catch (\Exception $e) {
-        // Handle unexpected errors
+        return redirect()->route('error');
       }
     }
     else
@@ -164,10 +159,9 @@ class ProjectController extends Controller
         return response()->json(array('success' => true, 'html' => $viewHTML));
         
       } catch(\Illuminate\Database\QueryException $qe) {
-        // Catch the specific exception and handle it 
-        //(returning the view with the parsed errors, p.e)
+        return response()->json(array('success' => false));
       } catch (\Exception $e) {
-        // Handle unexpected errors
+        return response()->json(array('success' => false));
       }
     }
     else 
@@ -177,15 +171,14 @@ class ProjectController extends Controller
   public function searchProject(Request $request) {
 
     try {  
-      // TODO: verify this!
+      
       $projects = Project::search($request->input('search'))->with('user')->where('ispublic','=',true)->paginate(5);
       return view('pages.result_search', ['projects' => $projects]);
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return redirect()->route('error');
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return redirect()->route('error');
     }
   }
 
@@ -199,10 +192,9 @@ class ProjectController extends Controller
       return response()->json(array('success' => true, 'html' => $html));
 
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
 
@@ -218,10 +210,9 @@ class ProjectController extends Controller
       return response()->json(array('success' => true, 'html' => $html));
 
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
   
@@ -258,10 +249,9 @@ class ProjectController extends Controller
       return back();
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return redirect()->route('error');
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return redirect()->route('error');
     }
   }
   
@@ -313,10 +303,9 @@ class ProjectController extends Controller
       'april' => $april, 'may' => $may]);
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return redirect()->route('error');
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return redirect()->route('error');
     }
   }
 
@@ -332,10 +321,9 @@ class ProjectController extends Controller
       return view('pages/project_settings', ['project' => $project, 'requests' => $requests])->render();
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return redirect()->route('error');
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return redirect()->route('error');
     }
   }
 
@@ -345,17 +333,22 @@ class ProjectController extends Controller
   public function projectSettingsRequestsView($project_id){
     if (!Auth::check()) return redirect('/login');
     try {
-      $project = Project::find($project_id);
-      $requests = $project->invites()->get();
-  
-      $viewHTML =  view('partials/project_settings_requests', ['project' => $project, 'requests' => $requests])->render();
-      return response()->json(array('success' => true, 'html' => $viewHTML)); 
+      if(Auth::user()->isCoordinator($project_id)){
+        $project = Project::find($project_id);
+        $requests = $project->invites()->get();
+    
+        $viewHTML =  view('partials/project_settings_requests', ['project' => $project, 'requests' => $requests])->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML)); 
+
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
   
@@ -366,17 +359,21 @@ class ProjectController extends Controller
     if (!Auth::check()) return redirect('/login');
   
     try {
-      $project = Project::find($project_id);
-      $members = $project->user()->get();
-
-      $viewHTML = view('partials/project_settings_members', ['project' => $project, 'members' => $members])->render();
-      return response()->json(array('success' => true, 'html' => $viewHTML));
+      if(Auth::user()->isCoordinator($project_id)){
+        $project = Project::find($project_id);
+        $members = $project->user()->get();
+  
+        $viewHTML = view('partials/project_settings_members', ['project' => $project, 'members' => $members])->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
 
@@ -384,18 +381,22 @@ class ProjectController extends Controller
     if (!Auth::check()) return redirect('/login');
     try {
 
-      $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
-      $request_id = $request->id;
-      
-      $request->delete();
-
-      return response()->json(array('success' => true, 'request_id' => $request_id));
+      if(Auth::user()->isCoodinator($request->project_id)){
+        $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
+        $request_id = $request->id;
+        
+        $request->delete();
+  
+        return response()->json(array('success' => true, 'request_id' => $request_id));
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
 
@@ -403,21 +404,22 @@ class ProjectController extends Controller
     if (!Auth::check()) return redirect('/login');
     try {
 
-      $user = User::where('username','=',$request->input('username'))->first();
-      
-      DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->update(
-        ['iscoordinator' => true]
-      );
+      if(Auth::user()->isCoordinator($request->project_id)){
+        $user = User::where('username','=',$request->input('username'))->first();
+        
+        DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->update(
+          ['iscoordinator' => true]
+        );
+        return response()->json(array('success' => true, 'member_username' => $user->username));
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
 
-      //$users= DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->get();
-      //return $users;
-      return response()->json(array('success' => true, 'member_username' => $user->username));
-      
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
 
@@ -428,17 +430,22 @@ class ProjectController extends Controller
     if (!Auth::check()) return redirect('/login');
     try {
 
-      $user = User::where('username','=',$request->input('username'))->first();
+      if(Auth::user()->isCoordinator($request->project_id)){
 
-      DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->delete();
+        $user = User::where('username','=',$request->input('username'))->first();
 
-      return response()->json(array('success' => true, 'member_username' => $user->username));
+        DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->delete();
+
+        return response()->json(array('success' => true, 'member_username' => $user->username));
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
 
@@ -446,22 +453,27 @@ class ProjectController extends Controller
     if (!Auth::check()) return redirect('/login');
     try {
 
-      $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
-      $request_id = $request->id;
+      if(Auth::user()->isCoordinator($request->project_id)){
+        $request = Project::find($request->input('project_id'))->invites()->where('id','=',$request->input('request_id'))->first();
+        $request_id = $request->id;
+  
+        DB::table('project_members')->insert(
+          ['user_id' => $request->user_invited_id , 'project_id' =>$request->project_id , 'iscoordinator' => FALSE]
+        );
+  
+        $request->delete();
+  
+        return response()->json(array('success' => true, 'request_id' => $request_id));
 
-      DB::table('project_members')->insert(
-        ['user_id' => $request->user_invited_id , 'project_id' =>$request->project_id , 'iscoordinator' => FALSE]
-      );
-
-      $request->delete();
-
-      return response()->json(array('success' => true, 'request_id' => $request_id));
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
 
@@ -469,16 +481,21 @@ class ProjectController extends Controller
     if (!Auth::check()) return redirect('/login');
     try {
 
-      $project = Project::find($project_id);
-      $categories = Category::all();
-      $viewHTML = view('pages/edit_project_page',['project' => $project, 'categories' => $categories])->render();
-      return response()->json(array('success' => true, 'html' => $viewHTML));
+      if(Auth::user()->isCoordinator($project_id)){
+        $project = Project::find($project_id);
+        $categories = Category::all();
+        $viewHTML = view('pages/edit_project_page',['project' => $project, 'categories' => $categories])->render();
+        return response()->json(array('success' => true, 'html' => $viewHTML));
+
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
 
   }
@@ -486,57 +503,65 @@ class ProjectController extends Controller
   public function edit(Request $request){
     if (!Auth::check()) return redirect('/login');    
     try {
-      $project = Project::find($request->input('project_id'));
-      $old_categories = $project->categories()->get();
-      
-      $project->name = $request->input('name');
-      $project->description = $request->input('description');
-
-      if($request->input('public') == 'on')
-        $project->ispublic = TRUE;
-      else
-        $project->ispublic = FALSE;
-
-      $project->save(); //saves edited information
-
-      //removes old categories associated with this project
-      foreach($old_categories as $old_cat){
-        Category::find($old_cat->id)->projects()->detach($project->id);
-      }
-      
-      $new_categories = $request->input('categories');
-      $cat_array = explode(',',$new_categories);
-
-      if(!empty($new_categories)){
-        foreach($cat_array as $cat) {
-          Category::find($cat)->projects()->attach($project->id); //sets the new categories of the project
+      if(Auth::user()->isCoordinator($request->project_id)){
+        $project = Project::find($request->input('project_id'));
+        $old_categories = $project->categories()->get();
+        
+        $project->name = $request->input('name');
+        $project->description = $request->input('description');
+  
+        if($request->input('public') == 'on')
+          $project->ispublic = TRUE;
+        else
+          $project->ispublic = FALSE;
+  
+        $project->save(); //saves edited information
+  
+        //removes old categories associated with this project
+        foreach($old_categories as $old_cat){
+          Category::find($old_cat->id)->projects()->detach($project->id);
         }
+        
+        $new_categories = $request->input('categories');
+        $cat_array = explode(',',$new_categories);
+  
+        if(!empty($new_categories)){
+          foreach($cat_array as $cat) {
+            Category::find($cat)->projects()->attach($project->id); //sets the new categories of the project
+          }
+        }
+        
+        return back();
       }
-      
-      return back();
-      
+      else {
+        return redirect()->route('error');
+      }
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return redirect()->route('error');
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return redirect()->route('error');
     }
   }
 
   public function destroy(Request $request){
     if (!Auth::check()) return redirect('/login');
     try {
-      $project = Project::find($request->input('project_id'));
+      if(Auth::user()->isCoordinator($request->project_id)){
+        $project = Project::find($request->input('project_id'));
+  
+        $project->delete();
+  
+        return response()->json(array('success' => true, 'url' => '/api/users/'. Auth::user()->username));
 
-      $project->delete();
-
-      return response()->json(array('success' => true, 'url' => '/api/users/'. Auth::user()->username));
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
 
@@ -544,36 +569,41 @@ class ProjectController extends Controller
     if (!Auth::check()) return redirect('/login');
     try {
 
-      $user = User::where('username','=',$request->input('username'))->first();
+      if(Auth::user()->isCoordinator($request->project_id)){
+        $user = User::where('username','=',$request->input('username'))->first();
+        
+        if($user == null) //if input invalid
+          return response()->json(array('success' => false,'reason' => 'user'));
+  
+        $invite = Invite::where([['project_id','=',$request->input('project_id')],['user_invited_id','=',$user->id]])->first(); 
+  
+        if($invite != null) //if has alredy been sent and invite to the user
+          return response()->json(array('success' => false, 'reason' => 'invite'));
+  
+        $invite = DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->first();
+  
+        if($invite != null)//if the user is already a member
+          return response()->json(array('success' => false, 'reason' => 'project_member'));
+  
+        $invite = new Invite();
+  
+        $invite->user_invited_id = $user->id;
+        $invite->project_id = $request->input('project_id');
+        $invite->user_who_invited_id = Auth::user()->id;
+  
+        $invite->save();
+  
+        return response()->json(array('success' => true,'username', $user->username));
 
-      if($user == null) //if input invalid
-        return response()->json(array('success' => false,'reason' => 'user'));
-
-      $invite = Invite::where([['project_id','=',$request->input('project_id')],['user_invited_id','=',$user->id]])->first(); 
-
-      if($invite != null) //if has alredy been sent and invite to the user
-        return response()->json(array('success' => false, 'reason' => 'invite'));
-
-      $invite = DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',$user->id]])->first();
-
-      if($invite != null)//if the user is already a member
-        return response()->json(array('success' => false, 'reason' => 'project_member'));
-
-      $invite = new Invite();
-
-      $invite->user_invited_id = $user->id;
-      $invite->project_id = $request->input('project_id');
-      $invite->user_who_invited_id = Auth::user()->id;
-
-      $invite->save();
-
-      return response()->json(array('success' => true,'username', $user->username));
+      }
+      else {
+        return response()->json(array('success' => false));
+      }
       
     } catch(\Illuminate\Database\QueryException $qe) {
-      // Catch the specific exception and handle it 
-      //(returning the view with the parsed errors, p.e)
+      return response()->json(array('success' => false));
     } catch (\Exception $e) {
-      // Handle unexpected errors
+      return response()->json(array('success' => false));
     }
   }
 }

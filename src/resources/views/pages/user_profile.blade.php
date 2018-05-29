@@ -49,7 +49,7 @@
 					@endif
 
 					
-					<form class="col-lg-6 col-md-6 col-sm-6 col-12 searchbar" method="POST" action="{{ route('search_user_project', ['username' => Auth::user()->username]) }}">
+					<form class="col-lg-6 col-md-6 col-sm-6 col-12 searchbar" method="POST" action="{{ route('search_user_project', ['username' => $user->username]) }}">
 						@if(Auth::user()->username == $user->username)
 						<input type="text" name="search" placeholder="Search Your Projects" class="form-control">
 						@else
@@ -68,8 +68,8 @@
 								<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
 								 aria-expanded="false"></button>
 								<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-									<a class="dropdown-item" href="{{ route('search_user_project_role', ['username' => Auth::user()->username, 'role' => 'Coordinator']) }}">Coordinator</a>
-									<a class="dropdown-item" href="{{ route('search_user_project_role', ['username' => Auth::user()->username, 'role' => 'Team_Member']) }}">Team Member</a>
+									<a class="dropdown-item" href="{{ route('search_user_project_role', ['username' => $user->username, 'role' => 'Coordinator']) }}">Coordinator</a>
+									<a class="dropdown-item" href="{{ route('search_user_project_role', ['username' => $user->username, 'role' => 'Team_Member']) }}">Team Member</a>
 								</div>
 							</div>
 						</div>
@@ -79,9 +79,9 @@
 
 			<div id="projects">
 				@if(Auth::user()->username == $user->username)
-					@include('partials.user_projects',['projects' => $projects, 'user' => $user])
+					@include('partials.user_projects',['projects' => $projects, 'user' => $user, 'pagination' => $pagination])
 				@else
-					@include('partials.user_projects',['projects' => $public_projects, 'user' => $user])
+					@include('partials.user_projects',['projects' => $public_projects, 'user' => $user, 'pagination' => $pagination])
 				@endif
 			</div>
 						

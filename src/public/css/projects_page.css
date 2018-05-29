@@ -26,7 +26,7 @@ section > span {
 }
 
 section.container-fluid {
-	min-height: 100vh;
+	min-height: 85vh;
 	margin: 2em auto;
 	max-width: 75%;
 }
@@ -549,7 +549,7 @@ div.container.create_new {
 	bottom: 0;
 	margin: auto;
 	width: 100vw;
-	height: 100vh;	
+	height: 85vh;	
 	position: absolute;
 	z-index: 1;
 	display: block;
@@ -787,7 +787,7 @@ div.container.new_sprint div#form_options {
 @media screen and (max-width: 600px){
 
 	section.container-fluid {
-		min-height: 100vh;
+		min-height: 85vh;
 		margin: 2em 0;
 		width: 100%;
 		max-width: 100%;
@@ -901,7 +901,7 @@ div.container.new_sprint div#form_options {
 
 	div.container.create_new {
 		width: 100vw;
-		height: 100vh;	
+		height: 85vh;	
 		margin: 1em 0;
 	}
 

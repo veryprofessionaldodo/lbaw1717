@@ -938,12 +938,10 @@ INSERT INTO project_categories (project_id, category_id) VALUES (98,9);
 INSERT INTO project_categories (project_id, category_id) VALUES (99,1);
 INSERT INTO project_categories (project_id, category_id) VALUES (100,10);
 
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 1, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 1, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 2, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (3, '2018-05-08 10:00:00+01', 3, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (4, '2018-05-08 10:00:00+01', 3, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 4, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 4, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (3, '2018-05-08 10:00:00+01', 4, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (4, '2018-05-08 10:00:00+01', 4, TRUE);
@@ -958,7 +956,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 11, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (19, '2018-05-08 10:00:00+01', 11, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 9, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 9, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 11, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 8, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (20, '2018-05-08 10:00:00+01', 10, FALSE);
@@ -984,12 +981,10 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (7, '2018-05-08 10:00:00+01', 4, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 4, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (16, '2018-05-08 10:00:00+01', 2, TRUE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 14, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 15, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 16, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (3, '2018-05-08 10:00:00+01', 17, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (4, '2018-05-08 10:00:00+01', 18, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 19, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 20, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (3, '2018-05-08 10:00:00+01', 21, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (4, '2018-05-08 10:00:00+01', 22, TRUE);
@@ -1003,7 +998,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 30, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (19, '2018-05-08 10:00:00+01', 31, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 32, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 33, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 34, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 35, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (20, '2018-05-08 10:00:00+01', 36, FALSE);
@@ -1025,7 +1019,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 52, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6, '2018-05-08 10:00:00+01', 53, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 54, TRUE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 55, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (7, '2018-05-08 10:00:00+01',56, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 58, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (16, '2018-05-08 10:00:00+01', 59, TRUE);
@@ -1042,7 +1035,6 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 70, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (19, '2018-05-08 10:00:00+01', 71, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 72, FALSE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 73, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (2, '2018-05-08 10:00:00+01', 74, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 75, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (20, '2018-05-08 10:00:00+01', 76, FALSE);
@@ -1064,14 +1056,13 @@ INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (17, '2018-05-08 10:00:00+01', 92, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (6, '2018-05-08 10:00:00+01', 93, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (11, '2018-05-08 10:00:00+01', 94, TRUE);
-INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (1, '2018-05-08 10:00:00+01', 95, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (7, '2018-05-08 10:00:00+01',96, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (18, '2018-05-08 10:00:00+01', 98, FALSE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (16, '2018-05-08 10:00:00+01', 99, TRUE);
 INSERT INTO project_members (user_id, date, project_id, iscoordinator) VALUES (16, '2018-05-08 10:00:00+01', 100, TRUE);
 
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Could there be a section about Programming?','I think we are focusing more on mathematics and programming is being left out. It is an interesting subject and very useful these days!', '2018-05-08 12:00:00+01',1,2);
-INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Could there be a section about Programming?','start project', '2018-05-08 12:00:00+01',6,6);
+INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Could there be a section about Programming?','I think there should.', '2018-05-08 12:00:00+01',6,6);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I think I broke the project....oopsie!','Ah...guys, it ain''t working! Could someone fix this please!?\n*screeching*', '2018-05-08 12:00:00+01',4,18);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Another game with a game with a female lead character....boring!','Guys, come on! Not again! I know it is a trend, but why not vary and make, for example, a game with several principal characters, where you can play with different characters, both in gender but also in race. This game could do it, the story allows it!', now(),3,4);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I don''t know...will this really work?','Will it be really possible to make this game? It is HL3 and, well, is open source. By the way, isn''t it kinda illegal? Doesn''t Valve has the rights to this?\nJust saying...', '2018-05-08 12:00:00+01',9,18);
@@ -1080,7 +1071,7 @@ INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('D
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I believe the mock ups are kinda ugly...','We should do it again','2018-05-08 12:00:00+01',4,18);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I have a great idea!','Let''s make the character like Geralt of Witcher 3 and the dragons will be Roach! Ah, hilarious!\nMy name''s Jeff!', '2018-05-08 12:00:00+01',10,20);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Did you know?','Linux is kinda based on Minix...well not really, but first I wanted to improve Minix features but Andrew didn''t wanted me to, so I based some of Linux in Minix... but I changed lots of things, of course!', '2018-05-08 12:00:00+01',12,9);
-INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Witcher 3 quest!','Could someone give some hints about where i can find cedaline in witcher 3?', '2018-05-08 12:00:00+01',90,2);
+INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Witcher 3 quest!','Could someone give some hints about where i can find celandine in witcher 3?', '2018-05-08 12:00:00+01',90,2);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Could there be a section about Programming?','I think we are focusing more on mathematics and programming is being left out. It is an interesting subject and very useful these days!', '2018-05-08 12:00:00+01',1,2);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('I think I broke the project....oopsie!','Ah...guys, it ain''t working! Could someone fix this please!?\n*screeching*', '2018-05-08 12:00:00+01',4,18);
 INSERT INTO thread (name,description,date,project_id,user_creator_id) VALUES ('Another game with a game with a female lead character....boring!','Guys, come on! Not again! I know it is a trend, but why not vary and make, for example, a game with several principal characters, where you can play with different characters, both in gender but also in race. This game could do it, the story allows it!', now(),3,4);
@@ -1196,8 +1187,8 @@ INSERT INTO comment (content,date,user_id,task_id,thread_id) VALUES ('SPAM SPAM 
 
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',5);
 INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',13);
-INSERT INTO sprint_state_record (date,state,sprint_id) VALUES ('2018-05-08 16:30:00+01','Completed',21);
-INSERT INTO sprint_state_record (date,state,sprint_id) VALUES ('2018-04-08 19:30:00+01','Completed',22);
+INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',21);
+INSERT INTO sprint_state_record (date,state,sprint_id) VALUES (now(),'Completed',22);
 
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 12:30:00+01','Assigned',1,1);
 INSERT INTO task_state_record (date,state,user_completed_id,task_id) VALUES ('2018-05-08 12:30:00+01','Assigned',1,3);

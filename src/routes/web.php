@@ -39,6 +39,7 @@ Route::post('api/users/{username}/edit', 'User\UserController@editProfileAction'
 Route::post('api/projects/{project_id}/request', 'User\UserController@requestJoinProject')->name('request_join_project');
 Route::post('api/users/{username}/search', 'User\UserController@searchProjects')->name('search_user_project');
 Route::post('api/users/{username}/search/{role}', 'User\UserController@searchProjectsRole')->name('search_user_project_role');
+Route::post('api/projects/{project_id}/leave', 'User\UserController@leave')->name('leave_project');//done
 
 //Notifications
 Route::post('api/notifications/{notification_id}/dismiss','User\UserController@dismissNotification')->name('dismiss_notification');//done
@@ -108,7 +109,7 @@ Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}', 'CommentC
 Route::post('projects/{id}/threads/{thread_id}/comments/{comment_id}/edit', 'CommentController@edit')->name('editCommentThread');
 
 //Admin Administraton, Report and Static Pages
-Route::get('api/admin/{username}', 'AdminController@showAdminPage'); // done
+Route::get('api/admin/{username}', 'AdminController@showAdminPage')->name('admin_page'); // done
 Route::get('api/admin/{username}/reports/comments', 'AdminController@commentReportsView')->name('admin_comments'); //done
 Route::get('api/admin/{username}/reports/users', 'AdminController@userReportsView')->name('admin_users'); //done
 
@@ -124,6 +125,7 @@ Route::get('actions/reports/users/{username}', 'ReportController@userReportForm'
 Route::post('actions/reports/users/{username}', 'ReportController@createReport')->name('create_user_report'); //done
 Route::post('actions/reports/comments{comment_id}', 'ReportController@createReport')->name('create_comment_report'); //done
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('error', function(){
+    return view('layouts.404');
+})->name('error');

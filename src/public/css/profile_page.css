@@ -10,12 +10,12 @@ h2 {
 */
 
 div.container-fluid {
-	min-height: 100vh;
+	min-height: 85vh;
 	margin-bottom: 0;
 }
 
 div.container-fluid > div.row {
-	min-height: 100vh;
+	min-height: 85vh;
 }
 
 /**
@@ -131,6 +131,7 @@ div#options .form-control {
 	color: #0A1827;
 	width: auto;
 	vertical-align: middle;
+	display: inline;
 }
 
 div#options .form-control:focus {

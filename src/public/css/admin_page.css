@@ -12,7 +12,7 @@ h2 {
   margin: 0; 
   padding: 0; 
   vertical-align: top; 
-  min-height: 100vh; 
+  min-height: 85vh; 
   color: black; 
 } 
  
@@ -136,8 +136,12 @@ section div#reports div.report div.report_principal_info div.options{
   grid-column-end: 4; 
   text-align: right; 
   margin: auto 0; 
-  display: block; 
+  display: inline-flex;
 } 
+
+div.options button:first-child {
+  margin-right: 0.5em;
+}
  
 section div#reports div.report div.report_details { 
   outline: 1px solid #558A8C; 
@@ -155,7 +159,7 @@ section div#reports div.report div.report_details h4:first-of-type {
 */ 
  
 section div#reports div.report.report_comment div.report_principal_info { 
-  background-color: #ECE7F3; 
+  background-color: #e3e8ef; 
   padding: 1em; 
   display: grid; 
   grid-template-columns: 40% auto 20%; 
