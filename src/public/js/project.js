@@ -212,11 +212,12 @@ function updateTaskCompletion() {
 
 function updateTaskState() {
 	let data = JSON.parse(this.responseText);
-
+	
 	let task = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task");
 
 	if (data.state === "Completed") {
 		task.classList.add("task_completed");
+		console.log(task.classList);
 
 		let assigned_users = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
 		if (assigned_users !== null)
@@ -225,7 +226,6 @@ function updateTaskState() {
 	} else if (data.state === "Uncompleted") {
 
 		task.classList.remove("task_completed");
-		console.log(task);
 
 		if (data.user_username != null) {
 			createAssignUserDiv(data);

@@ -1228,3 +1228,4 @@ INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES 
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',6,8,11);
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',4,6,6);
 INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',8,6,6);
+INSERT INTO invite (date,user_invited_id,project_id,user_who_invited_id) VALUES ('2018-05-08 19:30:00+01',13,6,NULL);
