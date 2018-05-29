@@ -50,6 +50,7 @@ Route::post('api/users/projects', 'ProjectController@create')->name('create_proj
 Route::get('api/projects/{project_id}/members', 'ProjectController@projectMembersView')->name('project_members'); //done
 Route::get('api/projects/{project_id}/settings', 'ProjectController@projectSettings')->name('project_settings');//done
 Route::get('api/projects/{project_id}/settings/members', 'ProjectController@projectSettingsMembersView')->name('project_settings_members');//done
+Route::post('api/projects/{project_id}/settings/members/invite', 'ProjectController@inviteMember')->name('invite_new_member');//done
 Route::post('api/projects/{project_id}/settings/members/{username}/remove', 'ProjectController@projectSettingsMembersRemove')->name('remove_member');//done
 Route::post('api/projects/{project_id}/settings/members/{username}/promote', 'ProjectController@projectSettingsPromote')->name('promote_member');//done
 Route::get('api/projects/{project_id}/settings/requests', 'ProjectController@projectSettingsRequestsView')->name('project_settings_requests');//done
@@ -61,7 +62,7 @@ Route::post('api/projects/{project_id}/settings/members', 'ProjectController@pro
 
 
 Route::get('api/projects/{project_id}/members/edit', 'ProjectController@editForm')->name('edit_project_form');//done
-Route::post('api/projects/{project_id}/members/edit', 'ProjectController@edit')->name('edit_project');
+Route::post('api/projects/{project_id}/members/edit', 'ProjectController@edit')->name('edit_project');//done
 
 
 Route::get('api/projects/{project_id}', 'ProjectController@show')->name('project'); // done
