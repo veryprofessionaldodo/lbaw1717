@@ -14,26 +14,6 @@ use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function index()
-    {
-        //
-    }
-    
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-    
-    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
@@ -44,32 +24,38 @@ class CommentController extends Controller
         if (!Auth::check()) return redirect('/login');
 
         try {
-            $thread = Thread::find($thread_id);
-            
-            $comment = new Comment();
-            $comment->content = $request->content;
-            $comment->user_id = Auth::id();
-            
-            $thread->comments()->save($comment); 
-            
-
             $project = Project::find($id);
-            $thread = Thread::find($thread_id);
-            $role = Auth::user()->isCoordinator($id);
 
-            if($role == false)
-                $role = 'tm';
-            else
-                $role = 'co';
+            if(Auth::user()->isProjectMember($project)){
+                $thread = Thread::find($thread_id);
+                
+                $comment = new Comment();
+                $comment->content = $request->content;
+                $comment->user_id = Auth::id();
+                
+                $thread->comments()->save($comment); 
+                
+    
+                $thread = Thread::find($thread_id);
+                $role = Auth::user()->isCoordinator($id);
+    
+                if($role == false)
+                    $role = 'tm';
+                else
+                    $role = 'co';
+    
+                $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'thread' => $thread, 'role' => $role])->render();
+                return response()->json(array('success' => true, 'comment' => $commentView));
+            }
+            else {
+                return response()->json(array('success' => false));
+            }
 
-            $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'thread' => $thread, 'role' => $role])->render();
-            return response()->json(array('success' => true, 'comment' => $commentView));
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
     }
     
@@ -84,45 +70,39 @@ class CommentController extends Controller
         if (!Auth::check()) return redirect('/login');
 
         try {
-            $task = Task::find($task_id);
-            
-            $comment = new Comment();
-            $comment->content = $request->content;
-            $comment->user_id = Auth::user()->id;
-            
-            $task->comments()->save($comment);
-            $comment->save();
-            
-
             $project = Project::find($id);
-            $task = Task::find($task_id);
-            $role = Auth::user()->isCoordinator($id);
-            if($role == false)
-                $role = 'tm';
-            else
-                $role = 'co';
+            if(Auth::user()->isProjectMember($project)){
+
+                $task = Task::find($task_id);
+                
+                $comment = new Comment();
+                $comment->content = $request->content;
+                $comment->user_id = Auth::user()->id;
+                
+                $task->comments()->save($comment);
+                $comment->save();
+                
+
+                $task = Task::find($task_id);
+                $role = Auth::user()->isCoordinator($id);
+                if($role == false)
+                    $role = 'tm';
+                else
+                    $role = 'co';
 
 
-            $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'task' => $task, 'role' => $role])->render();
-            return response()->json(array('success' => true, 'comment' => $commentView, 'task_id' => $task_id));
+                $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'task' => $task, 'role' => $role])->render();
+                return response()->json(array('success' => true, 'comment' => $commentView, 'task_id' => $task_id));
+            }
+            else {
+                return response()->json(array('success' => false));
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
-    }
-    
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function show($id)
-    {
-        //
     }
     
     /**
@@ -139,17 +119,21 @@ class CommentController extends Controller
         
             $comment = Comment::find($comment_id);
 
-            $comment->content = $request->content;
-
-            $comment->save();
-
-            return back();
+            if(Auth::user()->id === $comment->user_id){
+                $comment->content = $request->content;
+    
+                $comment->save();
+    
+                return back();
+            }
+            else {
+                return response()->json(array('success' => false));
+            }
 
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
  
     }
@@ -162,53 +146,32 @@ class CommentController extends Controller
         
             $comment = Comment::find($comment_id);
 
-            $comment->content = $request->content;
-
-            $comment->save();
-
-            $project = Project::find($id);
-            $task = Task::find($task_id);
-            $role = Auth::user()->isCoordinator($id);
-            if($role == false)
-                $role = 'tm';
-            else
-                $role = 'co';
-
-            $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'task' => $task, 'role' => $role])->render();
-            return response()->json(array('success' => true, 'comment' => $commentView, 'task_id' => $task_id, 'comment_id' => $comment_id));
+            if(Auth::user()->id === $comment->user_id){
+                $comment->content = $request->content;
+    
+                $comment->save();
+    
+                $project = Project::find($id);
+                $task = Task::find($task_id);
+                $role = Auth::user()->isCoordinator($id);
+                
+                if($role == false)
+                    $role = 'tm';
+                else
+                    $role = 'co';
+    
+                $commentView = view('partials.comment', ['project' => $project, 'comment' => $comment, 'task' => $task, 'role' => $role])->render();
+                return response()->json(array('success' => true, 'comment' => $commentView, 'task_id' => $task_id, 'comment_id' => $comment_id));
+            }
+            else{
+                return response()->json(array('success' => false));
+            }
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
  
-    }
-    
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, $id, $thread_id, $comment_id)
-    {
-        if (!Auth::check()) return redirect('/login');
-
-        try {
-            $comment = Comment::find($request->input('comment_id'));
-            $comment->delete();
-
-           // return response()->json(array('success' => true, 'comment_id' => $request->input('comment_id')));
-            
-        } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
-        } catch (\Exception $e) {
-            // Handle unexpected errors
-        }
-
     }
     
     /**
@@ -221,19 +184,21 @@ class CommentController extends Controller
     {
         if (!Auth::check()) return redirect('/login');
 
-        //authorize - check if creator, admin or coordinator
-
         try {
             $comment = Comment::find($request->input('comment_id'));
-            $comment->delete();
+            if(Auth::user()->id === $comment->user_id || Auth::user()->isCoordinator($request->project_id) || Auth::user()->isAdmin()){
+                $comment->delete();
 
-            return response()->json(array('success' => true, 'comment_id' => $request->input('comment_id')));
+                return response()->json(array('success' => true, 'comment_id' => $request->input('comment_id')));
+            }
+            else {
+                return response()->json(array('success' => false));
+            }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            // Catch the specific exception and handle it 
-            //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
     }
 }

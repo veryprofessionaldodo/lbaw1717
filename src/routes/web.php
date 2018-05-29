@@ -69,7 +69,6 @@ Route::get('api/projects/{project_id}/members/edit', 'ProjectController@editForm
 Route::post('api/projects/{project_id}/members/edit', 'ProjectController@edit')->name('edit_project');//done
 
 
-
 Route::get('api/projects/{project_id}', 'ProjectController@show')->name('project'); // done
 
 //Sprints and Tasks

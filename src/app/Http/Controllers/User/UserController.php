@@ -87,9 +87,9 @@ class UserController extends Controller {
             return response()->json(array('success' => true, 'html' => $viewHTML));
 
         } catch(\Illuminate\Database\QueryException $qe) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         }
             
     }
@@ -149,9 +149,9 @@ class UserController extends Controller {
             }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         }
     }
 
@@ -177,13 +177,13 @@ class UserController extends Controller {
                 return response()->json(array('success' => true, 'notification_id' => $notification_id));
             
             }else {
-                return redirect()->route('error');
+                return response()->json(array('success' => false));
             }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } 
     }
 
@@ -205,13 +205,13 @@ class UserController extends Controller {
                 return response()->json(array('success' => true, 'notification_id' => $notification_id));
             }
             else {
-                return redirect()->route('error');
+                return response()->json(array('success' => false));
             }
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } 
     }
 
@@ -242,9 +242,9 @@ class UserController extends Controller {
             }            
             
         } catch(\Illuminate\Database\QueryException $qe) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         }
     }
 
@@ -259,10 +259,10 @@ class UserController extends Controller {
 
         }catch(\Illuminate\Database\QueryException $qe) {
             echo dd($qe);
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
             echo dd($e);
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         }
     }
 
@@ -276,9 +276,9 @@ class UserController extends Controller {
             return response()->json(array('success' => true,'html' => $html));
 
         }catch(\Illuminate\Database\QueryException $qe) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-            return redirect()->route('error');
+            return response()->json(array('success' => false));
         }
     }
 
@@ -296,10 +296,9 @@ class UserController extends Controller {
           return response()->json(array('success' => true,'html' => $html, 'project_name' => $project->name));
           
         } catch(\Illuminate\Database\QueryException $qe) {
-          // Catch the specific exception and handle it 
-          //(returning the view with the parsed errors, p.e)
+            return response()->json(array('success' => false));
         } catch (\Exception $e) {
-          // Handle unexpected errors
+            return response()->json(array('success' => false));
         }
       }
 }
