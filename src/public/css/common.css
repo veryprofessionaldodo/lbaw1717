@@ -16,6 +16,10 @@ nav.navbar a.navbar-brand {
 	font-size: 24px;
 }
 
+nav.navbar a.navbar-brand {
+	color: #FFF;
+}
+
 nav.navbar a.navbar-brand:hover {
 	color: #DF691A;
 }
