@@ -16,13 +16,15 @@ function addEventListenersProject() {
 		newSprintButton.addEventListener('click', getSprintForm);
 	}
 
-	submitComment = document.querySelector("div.comment div.form_comment form#submit");
-	if (submitComment !== null)
-		submitComment.addEventListener('submit', addComment);
+	let submitComment = document.querySelectorAll("div.comment div.form_comment form#submit");
+	for(let i = 0; i < submitComment.length; i++){
+		submitComment[i].addEventListener('submit', addComment);
+	}
 
-	editComment = document.querySelector("div.comment div.form_comment.row form#edit");
-	if(editComment !== null)
-		editComment.addEventListener('submit', editTaskComment);
+	let editComment = document.querySelectorAll("div.comment div.form_comment.row form#edit");
+	for(let i = 0; i < editComment.length; i++){
+		editComment[i].addEventListener('submit', editTaskComment);
+	}
 
 	// tasks completion
 	let tasksCheckboxes = document.querySelectorAll("div.sprint-task input[type='checkbox']");
@@ -163,15 +165,12 @@ function showMembersView() {
 
 function addComment(event) {
 	event.preventDefault();
-	console.log(event.target.action);
 
-	let content = document.querySelector("div.comment div.form_comment input[name='content']").value;
-
+	let content = event.target.childNodes[3].value;
 	sendAjaxRequest('post', event.target.action, { content: content }, updateComments);
 }
 
 function updateComments() {
-	alert(this.responseText);
 	let data = JSON.parse(this.responseText);
 
 	let comments = document.querySelector("div#task-" + data.task_id);
@@ -180,7 +179,8 @@ function updateComments() {
 
 	form.insertAdjacentHTML('beforebegin', data.comment);
 
-	let input = document.querySelector("div.comment div.form_comment input[name='content']");
+	let input = document.querySelector("div#task-" + data.task_id + " div.comment div.form_comment input[name='content']");
+	
 	input.value = "";
 
 }
@@ -216,8 +216,8 @@ function updateCommentDeletion() {
 }
 
 function prepareForEdition(button) {
-    
-    let ps = document.getElementsByClassName("content");
+	
+    /*let ps = document.getElementsByClassName("content");
 
     var order = 0;
 
@@ -229,13 +229,19 @@ function prepareForEdition(button) {
 
 	let commentInfo = document.querySelectorAll("p.content")[order];
 	let commentDiv = document.querySelectorAll("div.form_comment.row")[order];
-    let commentForm = document.querySelectorAll("div.form_comment.row form#edit")[order];
+	let commentForm = document.querySelectorAll("div.form_comment.row form#edit")[order];*/
+	
+	let commentInfo = document.querySelector("div.comment[data-id='" + button.id + "'] p.content");
+	let commentDiv = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row");
+	let commentForm = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row form#edit");
+	console.log(commentInfo);
+	console.log(commentDiv);
 	
 	
 	let href = commentForm.getAttribute('href');
 
     if(commentInfo.style.display !== "none"){
-		let input = commentForm.querySelector("input");
+		let input = commentForm.querySelector("input[name='content']");
 		let content = commentInfo.innerHTML;
         input.value = content;
         commentInfo.style.display = "none"
@@ -251,17 +257,18 @@ function prepareForEdition(button) {
 function editTaskComment(event){
 	event.preventDefault();
 
-	let content = document.querySelector("div.comment div.form_comment input[name='content']").value;
+	let content = event.target.childNodes[3].value;
 
 	sendAjaxRequest('post', event.target.action, { content: content }, editUpdate);
 }
 
 function editUpdate(){
 	let data = JSON.parse(this.responseText);
-
+	console.log(data);
 	if(data.success){
-		let parent = document.querySelector("div #task-"+ data.task_id);
-		parent.innerHTML = data.comment;
+		let comment = document.querySelector("div.comment[data-id='"+ data.comment_id + "']");
+		console.log(comment);
+		comment.outerHTML = data.comment;
 	}
 }
 
@@ -395,9 +402,7 @@ function addTaskInfo() {
 	inputEffort.value = "";
 	inputTaskName.value = "";
 
-	let submitComment = document.querySelector("div.comment div.form_comment form");
-	if (submitComment !== null)
-		submitComment.addEventListener('submit', addComment);
+	addEventListenersProject();
 }
 
 function createTaskProjectButton(event){
@@ -434,9 +439,7 @@ function addTaskProjectInfo() {
 	inputTaskName.value = "";
 	inputEffort.value = "";
 
-	let submitComment = document.querySelector("div.comment div.form_comment form");
-	if (submitComment !== null)
-		submitComment.addEventListener('submit', addComment);
+	addEventListenersProject();
 }
 
 function deleteSprint(event) {

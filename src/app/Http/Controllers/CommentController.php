@@ -88,7 +88,7 @@ class CommentController extends Controller
             
             $comment = new Comment();
             $comment->content = $request->content;
-            $comment->user_id = Auth::id();
+            $comment->user_id = Auth::user()->id;
             
             $task->comments()->save($comment);
             $comment->save();
