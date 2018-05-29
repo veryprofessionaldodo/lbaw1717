@@ -51,15 +51,15 @@ class TaskController extends Controller
 
             }
             else {
-                return response()->json(array('success' => false));
+                return response()->json(array('success' => false, 'sprint_id' => $request->sprint_id, 'error' => 'Unknown error'));
             }
 
         } catch(\Illuminate\Database\QueryException $qe) {
             // Catch the specific exception and handle it (max effort surpassed)
-            return response()->json(array('success' => false, 'sprint_id' => $request->sprint_id));
+            return response()->json(array('success' => false, 'sprint_id' => $request->sprint_id, 'error' => 'Max effort exceeded!'));
         
         } catch (\Exception $e) {
-            return response()->json(array('success' => false));
+            return response()->json(array('success' => false, 'sprint_id' => $request->sprint_id, 'error' => 'Unknown error'));
         }
     }
     

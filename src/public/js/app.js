@@ -62,23 +62,4 @@ function sendAjaxRequest(method, url, data, handler) {
 		request.send();
 }
 
-
-
-/*function searchProjectAction(event) {
-	event.preventDefault();
-	
-	let form = document.querySelector("nav form");
-	let inputValue = document.querySelector("nav form input").value;
-	let url = form.action;
-	
-	sendAjaxRequest("POST", url, {search: inputValue}, displayResults);
-}
-
-function displayResults() {
-	let data = JSON.parse(this.responseText);
-	
-	let content = document.querySelector("section.container-fluid div.row.content_view");
-	content.innerHTML = data.html;
-}*/
-
 addEventListeners();

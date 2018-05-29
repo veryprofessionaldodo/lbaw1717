@@ -1,9 +1,5 @@
 function addEventListenersProfile() {
 
-	// window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').content;
-	// window.axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-	// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
 	let editProfileButton = document.querySelector(".container-fluid .row aside div a#edit_profile");
 	if (editProfileButton !== null)
 		editProfileButton.addEventListener('click', editProfileForm);
@@ -12,12 +8,6 @@ function addEventListenersProfile() {
 	if (createProjectButton !== null)
 		createProjectButton.addEventListener('click', createProjectForm);
 
-	// let paginationLinks = document.querySelectorAll("ul.pagination li a, ul.pagination li span");
-	// console.log(paginationLinks);
-	// for(var i = 0; i < paginationLinks.length; i++){
-	// 	console.log(paginationLinks[i]);
-	// 	paginationLinks[i].addEventListener('click', getUserProjectsPage);
-	// }
 
 	let searchUserProjectForm = document.querySelector("form.searchbar");
 	if (searchUserProjectForm !== null)
@@ -73,38 +63,25 @@ function createProjectForm(event) {
 
 function showEditProfileForm() {
 	let data = JSON.parse(this.responseText);
-	//insert verification of success
+	
+	if(data.success){
+		let section = document.querySelector("div.container-fluid .row section");
+		section.innerHTML = data.html;
+	}
 
-	let section = document.querySelector("div.container-fluid .row section");
-	section.innerHTML = data.html;
-	console.log('Here');
-	/*let submitEdit = document.querySelector("div.edit_profile div#form_options a.btn-success");
-	submitEdit.addEventListener('click', sendEditProfile);*/
 }
 
 function showCreateProjectForm() {
 	let data = JSON.parse(this.responseText);
-	//insetrt verification of success
 
-	let section = document.querySelector("div.container-fluid .row section");
-	section.innerHTML = data.html;
-	let submitProject = document.querySelector("div.new_project div#form_options a.btn-success");
-	submitProject.addEventListener('click', createProjectAction);
+	if(data.success){
+		let section = document.querySelector("div.container-fluid .row section");
+		section.innerHTML = data.html;
+		let submitProject = document.querySelector("div.new_project div#form_options a.btn-success");
+		submitProject.addEventListener('click', createProjectAction);
+	}
 }
 
-/*function sendEditProfile(event) {
-	event.preventDefault();
-
-	let new_name = document.querySelector("input[name='user_name']").value;
-	let new_username = document.querySelector("input[name='user_username']").value;
-	let new_email = document.querySelector("input[name='user_email']").value;
-	let new_image = document.querySelector("input[name='user_image']").value; // change this later TODO
-
-	console.log(new_image);
-
-	sendAjaxRequest('post', event.target.href, {name: new_name, username: new_username, 
-								email: new_email, image: new_image} , showProfileUpdated);
-}*/
 
 function createProjectAction(event) {
 	event.preventDefault();
@@ -130,7 +107,6 @@ function createProjectAction(event) {
 }
 
 function showProfileUpdated() {
-	// TODO: Change to AJAX
 	document.body.innerHTML = this.responseText;
 }
 
@@ -149,22 +125,6 @@ function getSelectValues(select) {
 	return result;
 }
 
-// function getUserProjectsPage(event) {
-// 	event.preventDefault();
-// 	console.log('ah!');
-
-// 	var page = event.target.href.split('page=')[1];
-
-// 	sendAjaxRequest('get', event.target.href, null, changePage);
-// }
-
-// function changePage() {
-// 	var response = JSON.parse(this.responseText);
-// 	console.log(response);
-
-// 	let content = document.querySelector("div.#projects");
-// 	content.innerHTML = response.html;
-// }
 
 function searchUserProjects(event) {
 	event.preventDefault();
@@ -186,10 +146,13 @@ function showUserProjects() {
 
 	let data = JSON.parse(this.responseText);
 
-	let div = document.querySelector("div#projects");
-	div.innerHTML = data.html;
+	if(data.success){
+		let div = document.querySelector("div#projects");
+		div.innerHTML = data.html;
+	
+		addEventListenersProfile();
+	}
 
-	addEventListenersProfile();
 }
 
 

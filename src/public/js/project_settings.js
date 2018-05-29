@@ -74,10 +74,13 @@ function showSettingsView() {
 
     let data = JSON.parse(this.responseText);
 
-    let content = document.querySelector("section.container-fluid div.content_view");
-    content.innerHTML = data.html;
+    if(data.success){
+        let content = document.querySelector("section.container-fluid div.content_view");
+        content.innerHTML = data.html;
+    
+        addEventListenersSettings();
+    }
 
-    addEventListenersSettings();
 }
 
 function deleteRequest(event) {
@@ -226,9 +229,11 @@ function editProjectForm(event) {
 function showEditProjectForm() {
     let data = JSON.parse(this.responseText);
 
-    document.body.innerHTML = data.html;
-    let submitProject = document.querySelector("div#container div#overlay div.jumbotron form p.lead button#editProject-btn");
-    submitProject.addEventListener('click', editProjectAction);
+    if(data.success){
+        document.body.innerHTML = data.html;
+        let submitProject = document.querySelector("div#container div#overlay div.jumbotron form p.lead button#editProject-btn");
+        submitProject.addEventListener('click', editProjectAction);
+    }
 }
 
 function editProjectAction(event) {
@@ -270,9 +275,11 @@ function submitSearchTeamMember(event) {
 function showProjectMemberSearch() {
     let data = JSON.parse(this.responseText);
 
-    let div = document.querySelector("div#show_members_settings");
-
-    div.innerHTML = data.html;
+    if(data.success){
+        let div = document.querySelector("div#show_members_settings");
+    
+        div.innerHTML = data.html;
+    }
 }
 
 
