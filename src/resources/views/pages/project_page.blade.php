@@ -7,6 +7,10 @@
 @if($role == 'tm')
 
 <section class="container-fluid">
+	<span data-toggle="tooltip" data-placement="top"
+	title="If you have any questions regarding this page, you can clarify them at the FAQ (in the footer)">
+		<i class="fas fa-info-circle"></i>
+	</span>
 	<div class="row">
 		<div class="col-12">
 			<h1>{{ $project->name }}</h1>
@@ -71,7 +75,10 @@
 @elseif($role == 'co')
 
 <section class="container-fluid">
-
+	<span data-toggle="popover" data-placement="top"
+		title="If you have any questions regarding this page, you can clarify them at the FAQ (in the footer)">
+		<i class="fas fa-info-circle"></i>
+	</span>
 	<div class="row">
 		<div class="col-12">
 			<h1>{{ $project->name }}</h1>

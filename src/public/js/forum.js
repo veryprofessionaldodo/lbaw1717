@@ -6,9 +6,9 @@ function addEventListenersForum() {
       if(editButton !== null){
           editButton.addEventListener('click', showEditForm);
       }*/
-    submitComment = document.querySelector("div.comment#thread form");
-    if (submitComment !== null)
-        submitComment.addEventListener('submit', addCommentThread);
+    let submitCommentThread = document.querySelector("div.comment#thread form");
+    if (submitCommentThread !== null)
+        submitCommentThread.addEventListener('submit', addCommentThread);
 }
 /*
 function editThreadAction(event) {

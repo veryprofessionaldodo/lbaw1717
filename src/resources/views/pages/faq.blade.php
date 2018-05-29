@@ -6,6 +6,9 @@
 
 
 <section class="container-fluid">
+
+    <h1>FAQ</h1>
+
     <div id="accordion">
         <div class="card">
             <div class="card-header" id="headingOne">
@@ -16,7 +19,7 @@
                 </h5>
             </div>
         
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
                     After logging in, in your profile page, you will find a button <strong>"Create New Project"</strong>, that will take you to form.
                     After you fill the name, description, categories of the project and decide if you want the project to be public or private, submit
@@ -65,18 +68,14 @@
             <div class="card-header" id="headingFour">
             <h5 class="mb-0">
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                How to create a task
+                What functionalites does a task have?
                 </button>
             </h5>
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                 <div class="card-body">
-                    If you are a coordinator of a project, you can create tasks in it.
-                    The tasks can be related to sprint or can exist on their own. If you want to create a task inside a sprint,
-                    you need to open the <strong>Sprint</strong> Tab and, inside a sprint, you can create a new task.
-                    To create a new task, you need to provide a name and an effort, that can't exceed the sprint's maximum effort value.
-                    After the creation of a new task, you can access it by clicking on its name, which will take you to the task page.
-                    If you want to create a task unrelated to any sprint, the process is the same but you need to create it in the <strong>Task</strong> Tab.
+                    Besides completing, uncompleting and edit a task, you can claim it to yourself or, if you are a project coordinator, you can assign it to another user.
+                    You can access all these options inside the task page, which you can enter by clicking on the task name;
                 </div>
             </div>
         </div>

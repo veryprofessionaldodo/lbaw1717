@@ -104,6 +104,7 @@
 
       <div id="info">
           <a href="#">Terms of use</a>
+          <a href="{{ url('/faq')}}">FAQ</a>
       </div>
   </footer>
   </body>
