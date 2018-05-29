@@ -4,13 +4,13 @@
         <label>Project Name: 
             <span data-toggle="tooltip" data-placement="top" title="Your Project Name"><i class="fas fa-info-circle"></i></span>
         </label>
-        <input type="text" class="form-control" name="project_name" placeholder="Project Name">
+        <input type="text" class="form-control" name="project_name" placeholder="Project Name" required>
     </div>
     <div class="form_area">
         <label>Project Description: 
             <span data-toggle="tooltip" data-placement="top" title="Your project objectives and structure"><i class="fas fa-info-circle"></i></span>
         </label>
-        <input type="text" class="form-control" name="project_description" placeholder="Project Description">
+        <input type="text" class="form-control" name="project_description" placeholder="Project Description" required>
     </div>
     <div class="form_area custom-checkbox">
         <label>Public: 
@@ -24,7 +24,7 @@
                 <i class="fas fa-info-circle"></i></span>
         </label>
         <!--MAC::Hold down the control (ctrl) button to select multiple options-->  
-        <select name="categories[]" class="form-control" multiple>
+        <select name="categories[]" class="form-control" multiple >
             @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{$category->name}}</option>
             @endforeach

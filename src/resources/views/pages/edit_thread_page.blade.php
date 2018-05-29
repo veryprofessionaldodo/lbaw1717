@@ -26,7 +26,7 @@
                 {{csrf_field()}}
                 <div class="form-group">
                     <label class="col-form-label" for="title">Insert the new title: </label>
-                    <input type="text" class="form-control" name="title" placeholder="Title..." id="title" value="{{$thread->name}}"></input>
+                    <input type="text" class="form-control" name="title" placeholder="Title..." id="title" value="{{$thread->name}}" required></input>
                 </div>
                 <div class="form-group">
                     <label class="col-form-label" for="description">Insert the description of the issue: </label>

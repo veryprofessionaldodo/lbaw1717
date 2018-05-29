@@ -187,10 +187,11 @@ function updateComments() {
 		let form = document.querySelector("div#task-" + data.task_id + " div.comment:last-of-type");
 	
 		form.insertAdjacentHTML('beforebegin', data.comment);
+
+		addEventListenersProject();
 	}
 
 	let input = document.querySelector("div#task-" + data.task_id + " div.comment div.form_comment input[name='content']");
-	
 	input.value = "";
 
 }

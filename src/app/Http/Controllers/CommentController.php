@@ -127,13 +127,13 @@ class CommentController extends Controller
                 return back();
             }
             else {
-                return response()->json(array('success' => false));
+                return redirect()->route('error');
             }
 
         } catch(\Illuminate\Database\QueryException $qe) {
-            return response()->json(array('success' => false));
+            return redirect()->route('error');
         } catch (\Exception $e) {
-            return response()->json(array('success' => false));
+            return redirect()->route('error');
         }
  
     }

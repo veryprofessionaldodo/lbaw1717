@@ -28,8 +28,8 @@
 	@if($role == 'co')
 		<form class="sprint-task create_task" method="POST" action="{{ route('new_task', ['project_id' => $project->id]) }}">
 			{{ csrf_field() }}
-			<input type="text" class="form_control" name="new_task" placeholder="Task Name">
-			<input type="number" class="form_control" name="effort" min="1" max="20" placeholder="Effort">
+			<input type="text" class="form_control" name="new_task" placeholder="Task Name" required>
+			<input type="number" class="form_control" name="effort" min="1" max="20" placeholder="Effort" required>
 			<a class="btn" data-id="{{ $sprint->id}}-{{ $project->id }}">New Task</a>
 		</form>
 	@endif
