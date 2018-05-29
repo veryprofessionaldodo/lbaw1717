@@ -51,14 +51,14 @@ function updateNotifications() {
 
     let data = JSON.parse(this.responseText);
     if (data.success) {
-        let notifications = document.querySelectorAll("div#notifications_box ul li");
+        let notifications = document.querySelectorAll("ul#notification_box li");
 
         if (notifications.length == 1) {
-            let notificationDropdown = document.querySelector("nav .user #notifications #notifications_box");
+            let notificationDropdown = document.querySelector("nav .user #notification_box");
             notificationDropdown.style.height = 0;
             notificationDropdown.style.opacity = 0;
         } else {
-            let notification = document.querySelector("div#notifications_box ul li[data-id='" + data.notification_id + "']");
+            let notification = document.querySelector("ul#notification_box  li[data-id='" + data.notification_id + "']");
             notification.remove();
         }
     }
