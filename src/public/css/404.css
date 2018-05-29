@@ -34,7 +34,7 @@ html, body {
     animation: animateTextBackground 10s ease-in-out infinite;
   }
   .error-page h1 + p {
-    color: #d6d6d6;
+    color: black;
     font-size: 8vh;
     font-weight: bold;
     line-height: 10vh;

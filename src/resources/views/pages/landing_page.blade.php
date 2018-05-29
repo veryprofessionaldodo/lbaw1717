@@ -27,7 +27,6 @@
             <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
     
-            
         </div>
     </nav>
 
@@ -41,9 +40,9 @@
     </div>
 
     <div id="sign_mobile">
-        <button class="btn btn-primary">Sign Up</button>
+        <a href="/register" class="btn btn-primary">Sign Up</a>
         <div></div>
-        <button class="btn btn-primary">Sign In</button>
+        <a href="/login" class="btn btn-primary">Sign In</a>
     </div>
 
     <div id="sign">
