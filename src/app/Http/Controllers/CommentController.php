@@ -123,8 +123,8 @@ class CommentController extends Controller
                 $comment->content = $request->content;
     
                 $comment->save();
-    
-                return back();
+
+                return redirect()->route('thread', ['id' => $id, 'thread_id' => $thread_id]);
             }
             else {
                 return redirect()->route('error');
