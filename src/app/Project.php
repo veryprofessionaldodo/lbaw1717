@@ -25,7 +25,7 @@ class Project extends Model
   }
 
   public function categories() {
-    return $this->hasMany('App\Category', 'project_categories');
+    return $this->belongsToMany('App\Category', 'project_categories');
   }
 
   public function threads() {

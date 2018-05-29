@@ -173,7 +173,7 @@ class ProjectController extends Controller
 
     try {  
       // TODO: verify this!
-      $projects = Project::search($request->input('search'))->with('user')->where('ispublic','=',true)->paginate(5);
+      $projects = Project::search($request->input('search'))->with('user')->where('ispublic','=',true)->paginate(2);
       return view('pages.result_search', ['projects' => $projects]);
       
     } catch(\Illuminate\Database\QueryException $qe) {
@@ -455,8 +455,8 @@ class ProjectController extends Controller
 
       $project = Project::find($project_id);
       $categories = Category::all();
-      
-      return view('pages/edit_project_page',['project' => $project, 'categories' => $categories]);
+      $viewHTML = view('pages/edit_project_page',['project' => $project, 'categories' => $categories])->render();
+      return response()->json(array('success' => true, 'html' => $viewHTML));
       
     } catch(\Illuminate\Database\QueryException $qe) {
       // Catch the specific exception and handle it 
@@ -467,37 +467,37 @@ class ProjectController extends Controller
 
   }
 
-  public function edit(Request $request, $project_id){
+  public function edit(Request $request){
     if (!Auth::check()) return redirect('/login');    
     try {
-      $project = Project::find($project_id);
-
+      $project = Project::find($request->input('project_id'));
+      $old_categories = $project->categories()->get();
+      
       $project->name = $request->input('name');
       $project->description = $request->input('description');
 
-      if($request->input('public') != null)
+      if($request->input('public') == 'on')
         $project->ispublic = TRUE;
       else
         $project->ispublic = FALSE;
 
-      $project->save();
+      $project->save(); //saves edited information
 
+      //removes old categories associated with this project
+      foreach($old_categories as $old_cat){
+        Category::find($old_cat->id)->projects()->detach($project->id);
+      }
       
-      $project->categories();
-      
-      $categories = $request->input('categories');
-      echo $categories;
-      
-      $cat_array = explode(',',$categories);
-      foreach($cat_array as $cat) {
-        if(in_array($cat,$project->categories())){
-          Category::find($cat)->projects()->attach($project->id);
-        }else{
-          Category::find($cat)->projects()->attach($project->id);
+      $new_categories = $request->input('categories');
+      $cat_array = explode(',',$new_categories);
+
+      if(!empty($new_categories)){
+        foreach($cat_array as $cat) {
+          Category::find($cat)->projects()->attach($project->id); //sets the new categories of the project
         }
       }
       
-      return redirect()->route('project_settings', ['project_id' => $project_id]);
+      return back();
       
     } catch(\Illuminate\Database\QueryException $qe) {
       // Catch the specific exception and handle it 
@@ -512,7 +512,7 @@ class ProjectController extends Controller
     try {
       $project = Project::find($request->input('project_id'));
 
-      //$project->delete();
+      $project->delete();
 
       return response()->json(array('success' => true, 'url' => '/api/users/'. Auth::user()->username));
       
