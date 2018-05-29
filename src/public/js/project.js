@@ -123,9 +123,11 @@ function switchMembersView(event) {
 function showSprintsView() {
 	let data = JSON.parse(this.responseText);
 
-	let content = document.querySelector("section.container-fluid div.row.content_view");
-	content.innerHTML = data.html;
-	addEventListenersProject();
+	if(data.success){
+		let content = document.querySelector("section.container-fluid div.row.content_view");
+		content.innerHTML = data.html;
+		addEventListenersProject();
+	}
 }
 
 function getSprintForm(event) {
@@ -137,30 +139,36 @@ function getSprintForm(event) {
 function showSprintForm() {
 	let data = JSON.parse(this.responseText);
 
-	let content = document.querySelector("section.container-fluid div#project_structure");
-	content.innerHTML = data.html;
+	if(data.success){
+		let content = document.querySelector("section.container-fluid div#project_structure");
+		content.innerHTML = data.html;
+	}
 }
 
 function showTasksView() {
 	let data = JSON.parse(this.responseText);
 
-	let content = document.querySelector("section.container-fluid div.row.content_view");
-	content.innerHTML = data.html;
-	addEventListenersProject();
+	if(data.success){
+		let content = document.querySelector("section.container-fluid div.row.content_view");
+		content.innerHTML = data.html;
+		addEventListenersProject();
+	}
 }
 
 function showMembersView() {
 	let data = JSON.parse(this.responseText);
 
-	let content = document.querySelector("section.container-fluid div.row.content_view");
-	content.innerHTML = data.html;
-
-	let searchProjectMember = document.querySelector("form#user_search");
-	if(searchProjectMember !== null){
-		searchProjectMember.addEventListener('submit', submitMemberSearch);
+	if(data.success){
+		let content = document.querySelector("section.container-fluid div.row.content_view");
+		content.innerHTML = data.html;
+	
+		let searchProjectMember = document.querySelector("form#user_search");
+		if(searchProjectMember !== null){
+			searchProjectMember.addEventListener('submit', submitMemberSearch);
+		}
+	
+		addEventListenersProject();
 	}
-
-	addEventListenersProject();
 }
 
 function addComment(event) {
@@ -173,11 +181,13 @@ function addComment(event) {
 function updateComments() {
 	let data = JSON.parse(this.responseText);
 
-	let comments = document.querySelector("div#task-" + data.task_id);
-
-	let form = document.querySelector("div#task-" + data.task_id + " div.comment:last-of-type");
-
-	form.insertAdjacentHTML('beforebegin', data.comment);
+	if(data.success){
+		let comments = document.querySelector("div#task-" + data.task_id);
+	
+		let form = document.querySelector("div#task-" + data.task_id + " div.comment:last-of-type");
+	
+		form.insertAdjacentHTML('beforebegin', data.comment);
+	}
 
 	let input = document.querySelector("div#task-" + data.task_id + " div.comment div.form_comment input[name='content']");
 	
@@ -219,10 +229,7 @@ function prepareForEdition(button) {
 	
 	let commentInfo = document.querySelector("div.comment[data-id='" + button.id + "'] p.content");
 	let commentDiv = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row");
-	let commentForm = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row form#edit");
-	console.log(commentInfo);
-	console.log(commentDiv);
-	
+	let commentForm = document.querySelector("div.comment[data-id='" + button.id + "'] div.form_comment.row form#edit");	
 	
 	let href = commentForm.getAttribute('href');
 
@@ -274,24 +281,25 @@ function updateTaskCompletion() {
 function updateTaskState() {
 	let data = JSON.parse(this.responseText);
 	
-	let task = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task");
-
-	if (data.state === "Completed") {
-		task.classList.add("task_completed");
-		console.log(task.classList);
-
-		let assigned_users = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
-		if (assigned_users !== null)
-			assigned_users.remove();
-
-	} else if (data.state === "Uncompleted") {
-
-		task.classList.remove("task_completed");
-
-		if (data.user_username != null) {
-			createAssignUserDiv(data);
+	if(data.success){
+		let task = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task");
+	
+		if (data.state === "Completed") {
+			task.classList.add("task_completed");
+	
+			let assigned_users = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
+			if (assigned_users !== null)
+				assigned_users.remove();
+	
+		} else if (data.state === "Uncompleted") {
+	
+			task.classList.remove("task_completed");
+	
+			if (data.user_username != null) {
+				createAssignUserDiv(data);
+			}
+	
 		}
-
 	}
 }
 
@@ -311,24 +319,26 @@ function assignSelfTask(event) {
 function updateAssignUsers() {
 	let data = JSON.parse(this.responseText);
 
-	let assigned_user = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
-
-	// the request was to unassign user of the task
-	if (data.claim_url != null) {
-
-		assigned_user.remove();
-
-	}
-	else {
-		// if the request was to assign user to task
-		if (assigned_user !== null) {
-
-			//update assigned_user
-			assigned_user.firstChild.src = data.image;
-			assigned_user.firstChild.title = data.username;
+	if(data.success){
+		let assigned_user = document.querySelector("div[data-id='" + data.task_id + "'].sprint-task div.assigned_users");
+	
+		// the request was to unassign user of the task
+		if (data.claim_url != null) {
+	
+			assigned_user.remove();
+	
 		}
 		else {
-			createAssignUserDiv(data);
+			// if the request was to assign user to task
+			if (assigned_user !== null) {
+	
+				//update assigned_user
+				assigned_user.firstChild.src = data.image;
+				assigned_user.firstChild.title = data.username;
+			}
+			else {
+				createAssignUserDiv(data);
+			}
 		}
 	}
 }
@@ -372,13 +382,12 @@ function addTaskInfo() {
 	let data = JSON.parse(this.responseText);
 	
 	let div = document.querySelector("div#sprint-" + data.sprint_id + " form.sprint-task.create_task");
-	console.log(div);
-
+	
 	if (data.success) {
 		div.insertAdjacentHTML('beforebegin', data.html);
 	}
 	else {
-		let element = '<div class="alert alert-dismissible alert-danger"> <button type="button" class="close" data-dismiss="alert">&times;</button><strong>Max effort exceeded!</strong></div>';
+		let element = '<div class="alert alert-dismissible alert-danger"> <button type="button" class="close" data-dismiss="alert">&times;</button><strong>' + data.error + '</strong></div>';
 		div.insertAdjacentHTML('beforebegin', element);
 	}
 
@@ -448,11 +457,7 @@ function deleteSprint(event) {
 			all: {
 				text: "Delete sprint and tasks inside!",
 				value: "all",
-			},
-			/*change: {
-				text: "Delete Sprint and move tasks to other sprints",
-				value: "change",
-			},*/
+			}
 		},
 	})
 		.then((value) => {
@@ -468,7 +473,6 @@ function deleteSprint(event) {
 					break;
 
 				case "change":
-					//sendAjaxRequest('post', href, { project_id: project_id, sprint_id: sprint_id, value: value }, deleteSprintHandler);
 					break;
 
 				default:
@@ -547,12 +551,10 @@ function deleteProjectUpdate() {
 
 function getEditSprintForm(event){
 	event.preventDefault();
-	console.log(event.target.tagName);
 	if(event.target.tagName === "A"){
 		sendAjaxRequest('GET', event.target.href, null, showEditSprintForm);
 	}
 	else if(event.target.tagName === "svg"){
-		console.log(event.target.parentNode.href);
 		sendAjaxRequest('GET', event.target.parentNode.href, null, showEditSprintForm);
 	}
 	else {
@@ -563,8 +565,10 @@ function getEditSprintForm(event){
 function showEditSprintForm() {
 	let data = JSON.parse(this.responseText);
 
-	let div = document.querySelector("div#project_structure");
-	div.innerHTML = data.html;
+	if(data.success){
+		let div = document.querySelector("div#project_structure");
+		div.innerHTML = data.html;
+	}
 }
 
 function submitMemberSearch(event){
@@ -578,9 +582,11 @@ function submitMemberSearch(event){
 function showTeamMembersSearch(){
 	let data = JSON.parse(this.responseText);
 
-	let div = document.querySelector("div#show_members");
-
-	div.innerHTML = data.html;
+	if(data.success){
+		let div = document.querySelector("div#show_members");
+	
+		div.innerHTML = data.html;
+	}
 }
 
 

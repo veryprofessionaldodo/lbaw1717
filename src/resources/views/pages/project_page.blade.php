@@ -165,7 +165,6 @@
 @elseif($role == 'guest')
 
 <section class="container-fluid">
-	<!-- rows iniciais das project pages -->
 
 <div class="row">
 	<div class="col-12">

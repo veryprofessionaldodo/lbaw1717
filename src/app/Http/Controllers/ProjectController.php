@@ -101,9 +101,6 @@ class ProjectController extends Controller
       }
       
     }
-    else {
-      // TODO: do the visitor view 
-    }
   }
   
   

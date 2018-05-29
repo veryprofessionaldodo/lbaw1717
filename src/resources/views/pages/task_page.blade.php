@@ -96,8 +96,6 @@
         </form>
     </div>
 
-    {{--  Adicionar comentários  --}}
-
 </section>
 
 @endif
