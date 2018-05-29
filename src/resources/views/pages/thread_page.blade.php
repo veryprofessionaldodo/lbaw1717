@@ -77,7 +77,7 @@
                 {{ csrf_field()}}
                 
                     <label>Your post:</label>
-                    <input type="text" class="form-control col-10" name="content" id="content">   
+                    <input type="text" class="form-control col-10" name="content" id="content" required>   
                      
                     <button type="submit" class="btn btn-primary col-2">Send</button>
                     

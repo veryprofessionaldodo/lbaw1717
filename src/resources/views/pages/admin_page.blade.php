@@ -12,10 +12,10 @@
     <div class="row"> 
       <aside class="col-12" id="navbar"> 
         <div class="row"> 
-          <a class="col-6" href="{{route('admin_users', ['username' => Auth::user()->username])}}">
+          <a id="active"class="col-6" href="{{route('admin_users', ['username' => Auth::user()->username])}}">
               User <br> Reports
-          </a>
-          <a id="active" class="col-6" href="{{route('admin_comments', ['username' => Auth::user()->username])}}"> 
+            </a>
+            <a  class="col-6" href="{{route('admin_comments', ['username' => Auth::user()->username])}}"> 
            Comment <br> Reports
           </a> 
         </div> 

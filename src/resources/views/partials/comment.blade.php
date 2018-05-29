@@ -13,11 +13,9 @@
 		<div class="form_comment row">
 		<form id="edit" method="POST" style="display: none;" action="{{ route('editCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}">
 		{{ csrf_field()}}
-		
-			<input type="text" class="form-control col-10" name="content" id="content">
+			<input type="text" class="form-control col-10" name="content" id="content" required>
 			<button type="button" class="btn btn-danger" onclick="editCommentThread(this)">Cancel</button>    
 			<button type="submit" class="btn btn-primary">Send</button>
-			
 		</form> 
 		</div>
 	@else

@@ -59,7 +59,7 @@
                 {{ $errors->first('username') }}
                 </span>
             @endif
-            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
             @if ($errors->has('password'))
                 <span class="error">
                 {{ $errors->first('password') }}
