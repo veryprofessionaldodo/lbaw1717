@@ -306,6 +306,11 @@ div.container.edit_profile div#form_options, div.container.new_project div#form_
 	text-align: center;
 }
 
+div.container.new_project span{
+	cursor: pointer;
+}
+
+
 @media screen and (min-width: 1000px) {
 	section div.project {
 		grid-template-columns: 50% auto 30%;

@@ -103,10 +103,10 @@ function updateTaskCompletion() {
 		state = "Uncompleted";
 	}
 
-	sendAjaxRequest('post', url, { state: state }, updateTaskState);
+	sendAjaxRequest('post', url, { state: state }, updateTaskStatePage);
 }
 
-function updateTaskState() {
+function updateTaskStatePage() {
 	let data = JSON.parse(this.responseText);
 
 	if (!data.success) {
