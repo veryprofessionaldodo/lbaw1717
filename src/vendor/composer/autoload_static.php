@@ -345,8 +345,6 @@ class ComposerStaticInitcefbd70cf5fe713d749ffb7c85db3621
         'App\\Invite' => __DIR__ . '/../..' . '/app/Invite.php',
         'App\\Notification' => __DIR__ . '/../..' . '/app/Notification.php',
         'App\\Notifications\\ResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/ResetPasswordNotification.php',
-        'App\\Policies\\CardPolicy' => __DIR__ . '/../..' . '/app/Policies/CardPolicy.php',
-        'App\\Policies\\ItemPolicy' => __DIR__ . '/../..' . '/app/Policies/ItemPolicy.php',
         'App\\Policies\\ProjectPolicy' => __DIR__ . '/../..' . '/app/Policies/ProjectPolicy.php',
         'App\\Policies\\SprintPolicy' => __DIR__ . '/../..' . '/app/Policies/SprintPolicy.php',
         'App\\Project' => __DIR__ . '/../..' . '/app/Project.php',

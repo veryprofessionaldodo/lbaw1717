@@ -33,8 +33,6 @@ return array(
     'App\\Invite' => $baseDir . '/app/Invite.php',
     'App\\Notification' => $baseDir . '/app/Notification.php',
     'App\\Notifications\\ResetPasswordNotification' => $baseDir . '/app/Notifications/ResetPasswordNotification.php',
-    'App\\Policies\\CardPolicy' => $baseDir . '/app/Policies/CardPolicy.php',
-    'App\\Policies\\ItemPolicy' => $baseDir . '/app/Policies/ItemPolicy.php',
     'App\\Policies\\ProjectPolicy' => $baseDir . '/app/Policies/ProjectPolicy.php',
     'App\\Policies\\SprintPolicy' => $baseDir . '/app/Policies/SprintPolicy.php',
     'App\\Project' => $baseDir . '/app/Project.php',

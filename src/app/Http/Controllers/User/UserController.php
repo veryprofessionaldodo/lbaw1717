@@ -24,6 +24,10 @@ class UserController extends Controller {
 
         try {
             $user = User::where('username',$username)->first();
+            if($user == null){
+                return redirect()->route('error');
+            }
+
             $projects = $user->userProjects();
             $public_projects = $user->userPublicProjects();
 
@@ -115,10 +119,10 @@ class UserController extends Controller {
                     echo $file;
                     $user->image = $request->file('user_image')->store('');              
                 }
-        
-        
+    
                 $user->save();
-                return back();
+
+                return redirect()->route('user_profile', ['username' => $request->user_username]);
             }
             else {
                 return redirect()->route('error');
@@ -288,15 +292,15 @@ class UserController extends Controller {
         if (!Auth::check()) return redirect('/login');
         try {
 
-          $project = Project::find($request->input('project_id'));
-    
-          DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',Auth::user()->id]])->delete();
+            $project = Project::find($request->input('project_id'));
+        
+            DB::table('project_members')->where([['project_id','=',$request->input('project_id')],['user_id','=',Auth::user()->id]])->delete();
+            
+            $projects = Auth::user()->userProjects();
 
-          $projects = Auth::user()->userProjects();
-
-          $html = view('partials.user_projects', ['projects' => $projects, 'user' => Auth::user()])->render();
-          return response()->json(array('success' => true,'html' => $html, 'project_name' => $project->name));
-          
+            $html = view('partials.user_projects', ['projects' => $projects, 'pagination' => 'get', 'user' => Auth::user()])->render();
+            return response()->json(array('success' => true,'html' => $html, 'project_name' => $project->name));
+            
         } catch(\Illuminate\Database\QueryException $qe) {
             return response()->json(array('success' => false));
         } catch (\Exception $e) {
