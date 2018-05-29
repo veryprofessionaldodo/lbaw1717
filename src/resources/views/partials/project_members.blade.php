@@ -2,7 +2,7 @@
 	<div class="row">
 		
 	
-		<div class="col-12">
+		<div class="col-12 first_col">
 			<div id="user_search">
 				<label>Search project user: </label>
 				<input type="text" class="form-control" name="new_team_member" placeholder="Username">
