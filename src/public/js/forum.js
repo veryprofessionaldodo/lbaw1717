@@ -35,6 +35,7 @@ function editCommentThread(button) {
     }
 }
 
+
 function showPageUpdated() {
 
     let data = JSON.parse(this.responseText);
