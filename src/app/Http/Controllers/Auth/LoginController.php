@@ -45,8 +45,15 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request) {
+        $tmp = $request->session()->has('disabled');
         Auth::logout();
         Session::flush();
+        if($tmp){
+            \Session::flash('flash_message_danger','Your account is disabled'); //<--FLASH MESSAGE
+        }
+        else {
+            Session::flash('flash_message','You have been logged out'); //<--FLASH MESSAGE
+        }
         return redirect('/');
     }
 
