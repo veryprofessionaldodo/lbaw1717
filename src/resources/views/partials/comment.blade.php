@@ -52,7 +52,7 @@
 			
 			@if($comment->task_id == NULL)
 				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" 
-					onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" 
+					onclick="deleteCommentThread(this)" data-id="{{$comment->id}}" class="deleteComment" 
 					data-toggle="tooltip" data-placement="bottom" title="Delete Comment">
 					<i class="fas fa-trash"></i>
 				</button>
@@ -68,7 +68,7 @@
 
 			@if($comment->task_id == NULL)
 				<button href="{{ route('deleteCommentThread', ['id' => $project->id, 'thread_id' => $thread->id, 'comment_id' => $comment->id])}}" 
-					onclick="deleteCommentThread(this)" id="{{$comment->id}}" class="deleteComment" 
+					onclick="deleteCommentThread(this)" data-id="{{$comment->id}}" class="deleteComment" 
 					data-toggle="tooltip" data-placement="bottom" title="Delete Comment"><i class="fas fa-trash"></i>
 				</button>
 				<button class="btn btn-warning edit_comment" onclick="editCommentThread(this)" id="{{$comment->id}}"

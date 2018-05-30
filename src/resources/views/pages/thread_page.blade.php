@@ -21,9 +21,9 @@
         <div class="row" id="header">
             <div class="col-3">
                 @if($thread->user->image != NULL)
-                    <img alt="Profile Image" src="{{$thread->user->image}}" width="150px">
+                    <img alt="Profile Image" src="{{$thread->user->image}}" width="150">
                 @else
-                    <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" width="150px">
+                    <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" width="150">
                 @endif
                 <p>{{$thread->user->username}}</p>
             </div>
