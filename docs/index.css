@@ -43,6 +43,10 @@ div.content:last-of-type {
     margin-bottom: 2em;
 }
 
+div#video {
+    text-align: center;
+}
+
 footer{
     background-color: #008cba;
     color: white;
