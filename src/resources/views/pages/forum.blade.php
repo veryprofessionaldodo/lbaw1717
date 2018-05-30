@@ -20,16 +20,20 @@
         </div>
         
         <div id="threads">
-            <table class="table table-hover" width="200px" height="200%">
-                <tr id="descriptions_table">
-    	            <th class="desc" scope="col">Title</th>
-                    <th class="desc" scope="col">User</th>
-                    <th class="desc" scope="col">Date</th>
-                </tr>
+            <table class="table table-hover">
+                <thead>
+                    <tr id="descriptions_table">
+                        <th class="desc" scope="col">Title</th>
+                        <th class="desc" scope="col">User</th>
+                        <th class="desc" scope="col">Date</th>
+                    </tr>
+                </thead>
                 
-                @foreach($threads as $thread)
-			        @include('partials.thread', ['thread' => $thread])
-                @endforeach
+                <tbody>
+                    @foreach($threads as $thread)
+                        @include('partials.thread', ['thread' => $thread])
+                    @endforeach
+                </tbody>
                 
             </table>
         </div>

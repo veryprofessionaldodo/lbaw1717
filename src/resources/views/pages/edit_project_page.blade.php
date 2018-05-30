@@ -26,11 +26,11 @@
                 {{csrf_field()}}
                 <div class="form-group">
                     <label class="col-form-label" for="name">Insert the new name: </label>
-                    <input type="text" class="form-control" name="name" placeholder="Name..." id="title" value="{{$project->name}}"></input>
+                    <input type="text" class="form-control" name="name" placeholder="Name..." id="title" value="{{$project->name}}" required></input>
                 </div>
                 <div class="form-group">
                     <label class="col-form-label" for="description">Insert the description: </label>
-                    <textarea class="form-control" id="description" name="description" placeholder ="Description..." rows="5">{{$project->description}}</textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder ="Description..." rows="5" required>{{$project->description}}</textarea>
                 </div>
                 <div class="form_area custom-checkbox">
                     <label>Public: </label>

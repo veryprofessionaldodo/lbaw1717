@@ -36,7 +36,7 @@
 			<div class="col-12">
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
-						<a class="nav-link active" id="requests"data-toggle="tab" href="{{route('project_settings_requests', ['project_id' => $project->id])}}"><i class="far fa-sticky-note"></i>  Requests</a>
+						<a class="nav-link active" id="requests" data-toggle="tab" href="{{route('project_settings_requests', ['project_id' => $project->id])}}"><i class="far fa-sticky-note"></i>  Requests</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="members" data-toggle="tab" href="{{route('project_settings_members', ['project_id' => $project->id])}}"><i class="fas fa-users"></i> Members</a>

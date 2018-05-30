@@ -35,6 +35,7 @@ function editCommentThread(button) {
     }
 }
 
+
 function showPageUpdated() {
 
     let data = JSON.parse(this.responseText);
@@ -78,7 +79,7 @@ function deleteCommentThread(button) {
     })
         .then((willDelete) => {
             if (willDelete) {
-                let comment_id = button.id;
+                let comment_id = button.getAttribute("data-id");
                 sendAjaxRequest('post', href, { comment_id: comment_id }, updateCommentThreadDeletion);
             }
         });

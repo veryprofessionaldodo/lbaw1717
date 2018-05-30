@@ -136,16 +136,16 @@ div.buttons a.promote{
 	REQUESTS
 */
 
-div#requests {
+div#requests_view {
 	margin: 0;
 	
 }
 
-div#requests div.request:last-of-type {
+div#requests_view div.request:last-of-type {
 	margin-bottom: 2em;
 }
 
-div#requests div.request {
+div#requests_view div.request {
 	width: 100%;
 	padding: 1em;
 	background-color: #e3e8ef;
@@ -154,12 +154,12 @@ div#requests div.request {
 }
 
 
-div#requests div.request p {
+div#requests_view div.request p {
 	margin: auto;
 	text-align: left;
 }
 
-div#requests div.request div.option_buttons {
+div#requests_view div.request div.option_buttons {
 	text-align: right;
 	/*margin: auto 3em auto auto;*/
 }
@@ -182,11 +182,11 @@ div#requests div.request div.option_buttons {
 
 
 @media screen and (max-width: 767px) {
-	div#requests div.request p {
+	div#requests_view div.request p {
 		text-align: center;
 		margin-bottom: 1em;
 	}
-	div#requests div.request div.option_buttons {
+	div#requests_view div.request div.option_buttons {
 		text-align: center;
 	}
 }

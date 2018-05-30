@@ -36,10 +36,10 @@
 
 		<div id="row_mobile">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mobile_nav">
-				<button type="button" class="btn btn-secondary" id="project_buttons">
+				<button type="button" class="btn btn-secondary project_buttons1">
 					<i class="fas fa-comments"></i>
 				</button>
-				<button type="button" class="btn btn-secondary" id="project_buttons">
+				<button type="button" class="btn btn-secondary project_buttons1">
 					<i class="fas fa-chart-line"></i>
 				</button>
 			</nav>
@@ -92,7 +92,7 @@
 	</div>
 
 	
-<div class="{{$role}}"id="project_structure">
+<div class="{{$role}}" id="project_structure">
 		@if(Auth::user()->isadmin == false)
 		<div class="row">
 			<div class="col-12 new_sprint">
@@ -109,24 +109,24 @@
 		<div class="row">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="buttons_nav">
-					<a class="btn btn-secondary" class="project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
+					<a class="btn btn-secondary project_buttons" href="{{route('forum',['project_id' => $project->id])}}">
 							<i class="fas fa-comments"></i> Forum</a>
-					<a class="btn btn-secondary" class="project_buttons" href="{{route('project_stats',['project_id' => $project->id])}}">
+					<a class="btn btn-secondary project_buttons" href="{{route('project_stats',['project_id' => $project->id])}}">
 							<i class="fas fa-chart-line"></i> Statistics</a>
-					<a class="btn btn-secondary" class="project_buttons" href="{{route('project_settings',['project_id' => $project->id])}}">
+					<a class="btn btn-secondary project_buttons" href="{{route('project_settings',['project_id' => $project->id])}}">
 						<i class="fas fa-cog"></i> Settings</a>
 				</nav>
 			</div>
 	
 			<div id="row_mobile">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mobile_nav">
-					<button type="button" class="btn btn-secondary" id="project_buttons">
+					<button type="button" class="btn btn-secondary project_buttons1">
 						<i class="fas fa-comments"></i>
 					</button>
-					<button type="button" class="btn btn-secondary" id="project_buttons">
+					<button type="button" class="btn btn-secondary project_buttons1">
 						<i class="fas fa-chart-line"></i>
 					</button>
-					<button type="button" class="btn btn-secondary" id="project_buttons">
+					<button type="button" class="btn btn-secondary project_buttons1">
 						<i class="fas fa-cog"></i>
 					</button>
 				</nav>

@@ -36,7 +36,7 @@ class ReportController extends Controller
     }
 
     public function commentReportForm($comment_id){
-        if(!Auth::chec()) return redirect('/login');
+        if(!Auth::check()) return redirect('/login');
         try {
 
             $comment = Comment::find($comment_id);

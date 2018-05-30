@@ -21,11 +21,11 @@
         <div class="row" id="header">
             <div class="col-3">
                 @if($thread->user->image != NULL)
-                    <img alt="Profile Image"src="{{$thread->user->image}}" width="150px">
+                    <img alt="Profile Image" src="{{$thread->user->image}}" width="150">
                 @else
-                    <img alt="Profile Default Image"src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" width="150px">
+                    <img alt="Profile Default Image" src="{{ asset('storage/'.'1ciQdXDSTzGidrYCo7oOiWFXAfE4DAKgy3FmLllM.jpeg')}}" width="150">
                 @endif
-                <figcaption>{{$thread->user->username}}</figcaption>
+                <p>{{$thread->user->username}}</p>
             </div>
             <div class="col-7">
                 <div id="issue">
@@ -77,7 +77,7 @@
                 {{ csrf_field()}}
                 
                     <label>Your post:</label>
-                    <input type="text" class="form-control col-10" name="content" id="content">   
+                    <input type="text" class="form-control col-10" name="content" id="content" required>   
                      
                     <button type="submit" class="btn btn-primary col-2">Send</button>
                     

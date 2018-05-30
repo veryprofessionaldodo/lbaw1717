@@ -5,11 +5,11 @@
 @if($last_record->state == "Completed")
 	<div data-id="{{ $task->id}}" class="sprint-task task_completed">
 		<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
-				<i class="fas fa-sort-down"></i></a>
-				<a class="task_name" href="{{route('task_page',['project_id' => $project->id, 'task_id' => $task->id])}}">{{$task->name}}</a>
+			<i class="fas fa-sort-down"></i></a>
+			<a class="task_name" href="{{route('task_page',['project_id' => $project->id, 'task_id' => $task->id])}}">{{$task->name}}</a>
 
-			<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox" checked>
-		</div>
+		<input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox" checked>
+	</div>
 @else
 	<div data-id="{{ $task->id}}" class="sprint-task">
 		<a data-toggle="collapse" data-target="#task-{{$task->id}}" aria-expanded="false">
@@ -41,7 +41,7 @@
 		<div class="form_comment row">
 			<form method="POST" id="submit" action="{{ route('create_comment_task',['project_id' => $project->id,'task_id' => $task->id]) }}">
 				{{ csrf_field()}}
-				<input type="text" class="form-control col-10" name="content">
+				<input type="text" class="form-control col-10" name="content" required>
 				<button class="btn btn-primary col-2" type="submit">Send</button>
 			</form>
 		</div>

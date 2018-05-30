@@ -29,7 +29,7 @@
             <hr class="my-4">
             <div class="form-group">
                 <label class="col-form-label" for="description">Summarize the reason of the report: </label>
-                <textarea name="report_summary" class="form-control" id="description" placeholder ="Description..." rows="5"></textarea>
+                <textarea name="report_summary" class="form-control" id="description" placeholder ="Description..." rows="5" required></textarea>
             </div>
             <div id="lead">
             
