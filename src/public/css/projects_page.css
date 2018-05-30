@@ -206,9 +206,6 @@ div.sprint-task {
 	display: grid;
 	grid-template-columns: 5% auto 10% 5%;
 	border-bottom: 1px solid #667;
-	/*border-left: 2px solid #000;
-	border-right: 2px solid #000;
-	border-top: 2px solid #000;*/
 }
 
 div.sprint-task input{

@@ -106,13 +106,24 @@ div > button:hover {
 section div#reports { 
   margin: 2em 0; 
 } 
- 
+
 section div#reports div.report { 
-  margin: 1em 0; 
+  padding: 0;
 } 
+
  
+section div#reports div.report:first-of-type { 
+  border-top: 2px solid #667788;
+  padding: 0;
+} 
+
+div.report.report_comment.col-12:last-of-type {
+  border-bottom: 1px solid #667788;
+  padding: 0;
+} 
+
 section div#reports div.report div.report_principal_info { 
-  border-top: 1px solid #508689; 
+  border-top: 1px solid #667788; 
   background-color: #e3e8ef; 
   padding: 1em; 
   display: grid; 

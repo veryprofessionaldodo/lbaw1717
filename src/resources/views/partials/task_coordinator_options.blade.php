@@ -27,6 +27,7 @@
     <button class="btn btn-warning edit_task"><i class="fas fa-pencil-alt"></i></button>
     
     <form method="POST" id="delete_task" action="{{route('delete_task', ['project_id' => $project->id, 'task_id' => $task->id])}}">
+        
         <input type="hidden" name="_method" value="delete" />
         {{ csrf_field() }}
         <button type='submit' class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>

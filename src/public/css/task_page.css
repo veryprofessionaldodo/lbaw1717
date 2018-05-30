@@ -1,7 +1,6 @@
 div.row {
     width: 100%;
     margin: 0;
-    
 }
 
 
@@ -57,6 +56,20 @@ section#task_page form#assign_user_form {
     display: inline;
 }
 
+div.task_options {
+    max-width:60%;
+}
+
+#checkbox {
+    display: inline-flex;
+}
+
+#checkbox p {
+    margin: 0;
+    margin-right: 1em;
+    display: inline-flex;
+}
+
 section#task_page form#assign_user_form.hidden {
     display: none;
 }
@@ -109,4 +122,87 @@ section#task_page div#task_info form {
 
 section#task_page div#task_info form button {
     margin-top: 1em;
+} 
+@media screen and (max-width: 700px) {
+    div.col-12:nth-child(2){
+        border: 1px solid #666677;
+        padding: 1em;
+        display: grid;
+        grid-template-rows: 10% 50% 30% 10%;
+    }
+
+    div.col-12 div.row {
+        display: block;
+        grid-row-start: 1;
+        grid-row-end: 4;
+    }
+
+    div.assigned_users {
+        display:block;
+        margin-left: auto;
+        margin-right: auto;
+        grid-row-start: 1;
+        grid-row-end: 2;        
+        width: 100%;
+        max-width: 100%;
+    }
+
+    div.coordinator_options {
+        text-align: center;
+        grid-row: 3;
+    }
+
+    div.task_options a {
+        margin-bottom: 0.5em;
+    }
+
+    section#task_page div.assigned_users p {
+        display: block;   
+        margin-top: 0;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #checkbox p {
+        margin-top:1em;
+        margin-bottom: 1em;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    div.task_options.col-8 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    section#task_page div#checkbox {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 100%;
+        display: block;
+    }
+
+    section#task_page input[type="checkbox"] {
+        display: block;
+        margin-top: 0;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+    }
+
+    section#task_page div.assigned_users img {
+        margin-bottom: 1em;
+        max-width: 15%;
+    }
+
 }

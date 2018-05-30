@@ -46,7 +46,7 @@
                     @endif
                 </div>
                 
-                <div class="task_options col-9">
+                <div class="task_options col-8">
                     
                     @if($last_record->state !== "Completed")
                         @if($coordinator)
@@ -68,7 +68,8 @@
 
                 </div>
                 
-                <div class="col-1" id="checkbox">
+                <div class="col-2" id="checkbox">
+                    <p>Completed</p>
                     @if($last_record->state == "Completed")
                         <input data-url="{{ route('update_task', ['project_id' => $project->id, 'task_id' => $task->id])}}" type="checkbox" checked>    
                     @else
