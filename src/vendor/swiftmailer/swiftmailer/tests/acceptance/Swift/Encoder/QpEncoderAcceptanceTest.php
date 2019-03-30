@@ -15,12 +15,12 @@ class Swift_Encoder_QpEncoderAcceptanceTest extends \PHPUnit\Framework\TestCase
     {
         $sampleFp = opendir($this->samplesDir);
         while (false !== $encodingDir = readdir($sampleFp)) {
-            if (substr($encodingDir, 0, 1) == '.') {
+            if ('.' == substr($encodingDir, 0, 1)) {
                 continue;
             }
 
             $encoding = $encodingDir;
-            $charStream = new Swift_CharacterStream_ArrayCharacterStream(
+            $charStream = new Swift_CharacterStream_CharacterStream(
                 $this->factory, $encoding);
             $encoder = new Swift_Encoder_QpEncoder($charStream);
 
@@ -29,7 +29,7 @@ class Swift_Encoder_QpEncoderAcceptanceTest extends \PHPUnit\Framework\TestCase
             if (is_dir($sampleDir)) {
                 $fileFp = opendir($sampleDir);
                 while (false !== $sampleFile = readdir($fileFp)) {
-                    if (substr($sampleFile, 0, 1) == '.') {
+                    if ('.' == substr($sampleFile, 0, 1)) {
                         continue;
                     }
 

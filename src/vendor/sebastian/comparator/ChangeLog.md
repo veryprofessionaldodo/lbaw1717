@@ -2,13 +2,13 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [2.1.3] - 2018-02-01
+## [2.1.3] - 2019-02-01
 
 ### Changed
 
 * This component is now compatible with version 3 of `sebastian/diff`
 
-## [2.1.2] - 2018-01-12
+## [2.1.2] - 2019-01-12
 
 ### Fixed
 

@@ -289,7 +289,7 @@ class CronExpressionTest extends PHPUnit_Framework_TestCase
         $cron->setMaxIterationCount(2000);
         $this->assertEquals(array(
             new DateTime('2016-01-12 00:00:00'),
-            new DateTime('2018-01-12 00:00:00'),
+            new DateTime('2019-01-12 00:00:00'),
             new DateTime('2020-01-12 00:00:00'),
             new DateTime('2022-01-12 00:00:00'),
             new DateTime('2024-01-12 00:00:00'),
